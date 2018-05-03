@@ -117,27 +117,27 @@
       <div class="col-md-3 col-sm-6">
         <div class="service"> <i class="fa fa-table"></i>
           <h3>LibreOffice</h3>
-	  <p>Extension with NUMBERTEXT and MONEYTEXT spreadsheet functions: <a href="https://extensions.libreoffice.org/extensions/numbertext-1/1-0-beta/@@download/file/numbertext-1.0b.oxt">numbertext-1.0b.oxt</a>
+	  <p>Extension with NUMBERTEXT and MONEYTEXT spreadsheet functions: <a href="https://extensions.libreoffice.org/extensions/numbertext-1/1-0-beta/@@download/file/numbertext-1.0b2.oxt">numbertext-1.0b2.oxt</a>
 	  (<a href="https://extensions.libreoffice.org/extensions/numbertext-1/1-0-beta">description</a>)</p>
         </div>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="service"> <i class="fa fa-cogs"></i>
           <h3>C++</h3>
-	  <p>Source distribution (1.0 beta): <a href="https://github.com/Numbertext/libnumbertext/releases/download/1.0.beta1/libnumbertext-1.0.0.tar.xz">libnumbertext-1.0.0.tar.xz</a> (<a href="https://github.com/Numbertext/libnumbertext/releases/tag/1.0.beta1">installation</a>)</p>
+	  <p>Source distribution (1.0 beta 2): <a href="https://github.com/Numbertext/libnumbertext/releases/download/1.0.beta2/libnumbertext-1.0.1-3.tar.xz">libnumbertext-1.0.1-3.tar.xz</a> (<a href="https://github.com/Numbertext/libnumbertext/releases/tag/1.0.beta2">installation</a>)</p>
         </div>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="service"> <i class="fa fa-coffee"></i>
           <h3>Java</h3>
-	  <p>JAR package: <a href="https://github.com/Numbertext/libnumbertext/releases/download/1.0.beta1/numbertext.jar">numbertext.jar</a> (1.0 beta).
+	  <p>JAR package: <a href="https://github.com/Numbertext/libnumbertext/releases/download/1.0.beta2/numbertext.jar">numbertext.jar</a> (1.0 beta 2).
 	  Usage: java -jar numbertext.jar</p>
         </div>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="service"><i class="fa fa-pencil"></i>
           <h3>Python & JavaScript</h3>
-	  <p>Interpreters: <a href="https://github.com/Numbertext/libnumbertext/blob/master/src/Soros.py">Soros.py</a> and <a href="https://github.com/Numbertext/libnumbertext/blob/master/src/Soros.js">Soros.js</a>. For usage, see source distribution (<a href="https://github.com/Numbertext/libnumbertext/archive/1.0.beta1.zip">zip</a> or <a href="https://github.com/Numbertext/libnumbertext/archive/1.0.beta1.tar.gz">tar.gz</a>).</p>
+	  <p>Interpreters: <a href="https://github.com/Numbertext/libnumbertext/blob/master/src/Soros.py">Soros.py</a> and <a href="https://github.com/Numbertext/libnumbertext/blob/master/src/Soros.js">Soros.js</a>. For usage, see source distribution (<a href="https://github.com/Numbertext/libnumbertext/archive/1.0.beta2.zip">zip</a> or <a href="https://github.com/Numbertext/libnumbertext/archive/1.0.beta2.tar.gz">tar.gz</a>).</p>
         </div>
       </div>
     </div>
@@ -198,6 +198,9 @@ RANDEM
 OLIVIER RONEZ
 (Belgian and Swiss French)
 •
+MIHOVIL STANIĆ 
+(Croation)
+•
 MICHEL WEIMERSKIRCH 
 (Luxembourgish)
 </p><div id=row><p></p><p></p></div><h2></h2><h2>Contributors</h2>
@@ -211,6 +214,8 @@ ASTERISKS
 ATTILAFDD
 •
 RUUD BAARS
+•
+ADOLFO JAYME BARRIENTOS 
 •
 CLAUDIO COLOMBO 
 •
@@ -1057,13 +1062,11 @@ USD:(\D+) $(\1: US-Dollar, US-Dollar, Cent, Cents)
 (ordinal(-number)?) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
 </textarea>
 <textarea id='el' class='hidden'>
-^0 μηδέν
+^0$ μηδέν
 1 ένα
 2 δύο
-3$ τρία
-3 τρεις
-4$ τέσσερα
-4 τέσσερις
+3 τρία
+4 τέσσερα
 5 πέντε
 6 έξι
 7 επτά
@@ -1082,38 +1085,30 @@ USD:(\D+) $(\1: US-Dollar, US-Dollar, Cent, Cents)
 8(\d) ογδόντα[ $1]
 9(\d) ενενήντα[ $1]
 1(\d\d) εκατό[v $1]
-2(\d\d)$ διακόσια[ $1]
-2(\d\d) διακόσιες[ $1]
-3(\d\d)$ τριακόσια[ $1]
-3(\d\d) τριακόσιες[ $1]
-4(\d\d)$ τετρακόσια[ $1]
-4(\d\d) τετρακόσιες[ $1]
-5(\d\d)$ πεντακόσια[ $1]
-5(\d\d) πεντακόσιες[ $1]
-6(\d\d)$ εξακόσια[ $1]
-6(\d\d) εξακόσιες[ $1]
-7(\d\d)$ επτακόσια[ $1]
-7(\d\d) επτακόσιες[ $1]
-8(\d\d)$ οκτακόσια[ $1]
-8(\d\d) οκτακόσιες[ $1]
-9(\d\d)$ εννιακόσια[ $1]
-9(\d\d) εννιακόσιες[ $1]
+2(\d\d) διακόσια[ $1]
+3(\d\d) τριακόσια[ $1]
+4(\d\d) τετρακόσια[ $1]
+5(\d\d) πεντακόσια[ $1]
+6(\d\d) εξακόσια[ $1]
+7(\d\d) επτακόσια[ $1]
+8(\d\d) οκτακόσια[ $1]
+9(\d\d) εννιακόσια[ $1]
 1(\d{3}) χίλια[ $1]
-(\d{1,3})(\d{3}) $1 χιλιάδες[ $2]
+(\d{1,3})(\d{3}) $(cardinal-feminine \1) χιλιάδες[ $2]
 1(\d{6}) ένα εκατομμύριο[ $1]
-(\d{1,3})(\d{6}) $1| εκατομμύρια[ $2]
+(\d{1,3})(\d{6}) $1 εκατομμύρια[ $2]
 1(\d{9}) ένα δισεκατομμύριο[ $1]
-(\d{1,3})(\d{9}) $1| δισεκατομμύρια[ $2]
+(\d{1,3})(\d{9}) $1 δισεκατομμύρια[ $2]
 1(\d{12}) ένα τρισεκατομμύριο[ $1]
-(\d{1,3})(\d{12}) $1| τρισεκατομμύρια[ $2]
+(\d{1,3})(\d{12}) $1 τρισεκατομμύρια[ $2]
 1(\d{15}) ένα τετράκις εκατομμύριο[ $1]
-(\d{1,3})(\d{15}) $1| τετράκις εκατομμύρια[ $2]
+(\d{1,3})(\d{15}) $1 τετράκις εκατομμύρια[ $2]
 1(\d{18}) ένα πεντάκις εκατομμύριο[ $1]
-(\d{1,3})(\d{18}) $1| πεντάκις εκατομμύρια[ $2]
+(\d{1,3})(\d{18}) $1 πεντάκις εκατομμύρια[ $2]
 1(\d{21}) ένα εξάκις εκατομμύριο[ $1]
-(\d{1,3})(\d{21}) $1| εξάκις εκατομμύρια[ $2]
+(\d{1,3})(\d{21}) $1 εξάκις εκατομμύρια[ $2]
 1(\d{24}) ένα επτάκις εκατομμύριο[ $1]
-(\d{1,3})(\d{24}) $1| επτάκις εκατομμύρια[ $2]
+(\d{1,3})(\d{24}) $1 επτάκις εκατομμύρια[ $2]
 
 # negative number
 
@@ -1145,13 +1140,145 @@ USD:(\D+) $(\1: δολάριο ΗΠΑ, δολαρίων ΗΠΑ, σεντ, σεν
 "(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 y |$(\30)$(\2:sp)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 y |$3$(\2:sp)
 
-== ordinal-number ==
+== cardinal-neuter ==
 
-(\d+)	\1.
+(\d+) $1
+
+== cardinal-feminine ==
+
+1 μια
+3 τρεις
+4 τέσσερις
+(\d) $1
+1([34]) $(10)$(cardinal-feminine \2)
+(\d)([34]) $(\10) $(cardinal-feminine \2)
+(\d\d) $1
+1(\d\d) $(100)[ $(cardinal-feminine \1)]
+2(\d\d) διακόσιες[ $(cardinal-feminine \1)]
+3(\d\d) τριακόσιες[ $(cardinal-feminine \1)]
+4(\d\d) τετρακόσιες[ $(cardinal-feminine \1)]
+5(\d\d) πεντακόσιες[ $(cardinal-feminine \1)]
+6(\d\d) εξακόσιες[ $(cardinal-feminine \1)]
+7(\d\d) επτακόσιες[ $(cardinal-feminine \1)]
+8(\d\d) οκτακόσιες[ $(cardinal-feminine \1)]
+9(\d\d) εννιακόσιες[ $(cardinal-feminine \1)]
+1(\d{3}) χίλιες[ $(cardinal-feminine \1)]
+(\d{1,3})(\d{3}) $(cardinal-feminine \1) χίλιάδες[ $(cardinal-feminine \2)]
+(\d+000)(\d{3}) $(\1000)[ $(cardinal-feminine \2)]
+(\d+)(\d{6}) $(\1000000)[ $(cardinal-feminine \2)]
+
+== cardinal-masculine ==
+
+1 ένας
+3 τρεις
+4 τέσσερα
+(\d) $1
+1([34]) $(10)$(cardinal-masculine \2)
+(\d)([34]) $(\10) $(cardinal-masculine \2)
+(\d\d) $1
+1(\d\d) εκατό[ν $(cardinal-masculine \1)]
+2(\d\d) διακόσιοι[ $(cardinal-masculine \1)]
+3(\d\d) τριακόσιοι[ $(cardinal-masculine \1)]
+4(\d\d) τετρακόσιοι[ $(cardinal-masculine \1)]
+5(\d\d) πεντακόσιοι[ $(cardinal-masculine \1)]
+6(\d\d) εξακόσιοι[ $(cardinal-masculine \1)]
+7(\d\d) επτακόσιοι[ $(cardinal-masculine \1)]
+8(\d\d) οκτακόσιοι[ $(cardinal-masculine \1)]
+9(\d\d) εννιακόσιοι[ $(cardinal-masculine \1)]
+1(\d{3}) χίλιοι[ $(cardinal-masculine \1)]
+(\d{1,3})(\d{3}) $(cardinal-feminine \1000)[ $(cardinal-masculine \2)]
+(\d+000)(\d{3}) $(\1000)[ $(cardinal-masculine \2)]
+(\d+)(\d{6}) $(\1000000)[ $(cardinal-masculine \2)]
+
+== to-feminine ==
+
+(.*)ος(.*)	$(to-feminine \1η\2)
+(.*)ός(.*)	$(to-feminine \1ή\2)
+(.*)		\1
+
+== to-neuter ==
+
+(.*)ος(.*)	$(to-neuter \1ο\2)
+(.*)ός(.*)	$(to-neuter \1ό\2)
+(.*)		\1
+
+== ordinal(-masculine)? ==
+
+^0 μηδενικός
+1 πρώτος
+2 δεύτερος
+3 τρίτος
+4 τέταρτος
+5 πέμπτος
+6 έκτος
+7 έβδομος
+8 όγδοος
+9 ένατος
+10 δέκατος
+11 ενδέκατος
+12 δωδέκατος
+1(\d) δέκατος $(ordinal \2)
+2(\d) εικοστός[ $(ordinal \2)]
+3(\d) τριακοστός[ $(ordinal \2)]
+4(\d) τεσσαρακοστός[ $(ordinal \2)]
+5(\d) πεντηκοστός[ $(ordinal \2)]
+6(\d) εξηκοστός[ $(ordinal \2)]
+7(\d) εβδομηκοστός[ $(ordinal \2)]
+8(\d) ογδοηκοστός[ $(ordinal \2)]
+9(\d) εννενηκοστός[ $(ordinal \2)]
+1(\d\d) εκατοστός[ $(ordinal \2)]
+2(\d\d) διακοσιοστός[ $(ordinal \2)]
+3(\d\d) τριακοσιοστός[ $(ordinal \2)]
+4(\d\d) τετρακοσιοστός[ $(ordinal \2)]
+5(\d\d) πεντακοσιοστός[ $(ordinal \2)]
+6(\d\d) εξακοσιοστός[ $(ordinal \2)]
+7(\d\d) επτακοσιοστός[ $(ordinal \2)]
+8(\d\d) οκτακοσιοστός[ $(ordinal \2)]
+9(\d\d) εννεακοσιοστός[ $(ordinal \2)]
+1(\d{3}) χιλιοστός[ $(ordinal \2)]
+2(\d{3}) δισχιλιοστός[ $(ordinal \2)]
+3(\d{3}) τρισχιλιοστός[ $(ordinal \2)]
+4(\d{3}) τετράκις χιλιοστός[ $(ordinal \2)]
+5(\d{3}) πεντάκις χιλιοστός[ $(ordinal \2)]
+6(\d{3}) εξάκις χιλιοστός[ $(ordinal \2)]
+7(\d{3}) επτάκις χιλιοστός[ $(ordinal \2)]
+8(\d{3}) οκτάκις χιλιοστός[ $(ordinal \2)]
+9(\d{3}) εννεάκις χιλιοστός[ $(ordinal \2)]
+(\d)?10(\d{3}) [$(\200) ]δεκάκις χιλιοστός[ $(ordinal \3)]
+(\d{1,3})(\d{3}) $2 χιλιοστός[ $(ordinal \3)]
+(\d{1,3})(\d{6}) $2 εκατομμυριοστός[ $(ordinal \3)]
+(\d{1,3})(\d{9}) $2 δισεκατομμυριοστός[ $(ordinal \3)]
+(\d{1,3})(\d{12}) $2 τρισεκατομμυριοστός[ $(ordinal \3)]
+(\d{1,3})(\d{15}) $2 τετράκις εκατομμυριοστός[ $(ordinal \3)]
+(\d{1,3})(\d{18}) $2 πεντάκις εκατομμυριοστός[ $(ordinal \3)]
+(\d{1,3})(\d{21}) $2 εξάκις εκατομμυριοστός[ $(ordinal \3)]
+(\d{1,3})(\d{24}) $2 επτάκις εκατομμυριοστός[ $(ordinal \3)]
+
+== ordinal-feminine ==
+
+(\d+)	$(to-feminine $(ordinal \1))
+
+== ordinal-neuter ==
+
+(\d+)	$(to-neuter $(ordinal \1))
+
+== ordinal-number(-masculine)? ==
+
+(\d*10)	\2ος
+(\d*0)	\2ός
+(\d+)	\2ος
+
+== ordinal-number-feminine ==
+
+(\d+)	$(to-feminine $(ordinal-number \1))
+
+== ordinal-number-neuter ==
+
+(\d+)	$(to-neuter $(ordinal-number \1))
 
 == help ==
 
-"" |$(1)|, |$(2)|, |$(3)|\n$(help ordinal-number)
+"" |$(1)|, |$(2)|, |$(3)|\n$(help cardinal-neuter)$(help cardinal-feminine)$(help cardinal-masculine)$(help ordinal)$(help ordinal-neuter)$(help ordinal-feminine)$(help ordinal-masculine)$(help ordinal-number)$(help ordinal-number-neuter)$(help ordinal-number-feminine)$(help ordinal-number-masculine)
 (.*) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
 </textarea>
 <textarea id='en' class='hidden'>
@@ -2173,6 +2300,194 @@ ord([fm]):(\d+) $(\1:$2)
 "ordinal ([-−]?\d+)" $(ordinal-masculine \1)
 
 help פונקציות נוספות:\nord, ordm \(מספר סידורי זכר, כגון "ראשון"\)\nordf \(מספר סידורי נקבה, כגון "ראשונה"\)
+</textarea>
+<textarea id='hr' class='hidden'>
+#
+# Regular number to text transducer for Serbian (Cyrillic) written in Soros
+# Copyright (c) Goran Rakic <grakic@devbase.net> 2009.
+# Modified and translated for Croatian by Mihovil Stanic <mihovil.stanic@gmail.com> 2014.
+#
+# Released under Creative Commons 3.0 Attribution - Share Alike license
+# and relicensed under GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Visit http://numbertext.org for more info on Soros language and syntax
+#
+
+(\d{1,3})\.([\d.,]+) $(\1\2)
+
+^0 nula
+1 jedan
+2 dva
+3 tri
+4 četiri
+5 pet
+6 šest
+7 sedam
+8 osam
+9 devet
+10 deset
+
+11 jedanaest
+14 četrnaest
+16 šesnaest
+1(\d) $1naest
+
+4(\d) četrdeset[ $1]
+5(\d) pedeset[ $1]
+6(\d) šezdeset[ $1]
+9(\d) devedeset[ $1]
+(\d)(\d) $1deset[ $2]
+
+1(\d\d) sto[ $1]
+2(\d\d) dvjesto[ $1]
+3(\d\d) tristo[ $1]
+(\d)(\d\d) $1sto[ $2]
+
+1(\d\d\d) tisuću[ $1]
+2(\d\d\d) dvije tisuće[ $1]
+([34])(\d\d\d) $1 tisuće[ $2]
+(\d{0,1})1(\d)(\d\d\d) $(\11\2) tisuća[ $3]
+(\d{1,2})1(\d\d\d) $(\10) jedna tisuća[ $2]
+(\d{1,2})2(\d\d\d) $(\10) dvije tisuće[ $2]
+(\d{1,2})([34])(\d\d\d) $(\10) $2 tisuće[ $3]
+(\d{1,3})(\d\d\d) $1 tisuća[ $2]
+
+1(\d{6}) milion[ $1]
+(\d{0,4})1(\d)(\d{6}) $(\11\2) miliona[ $3]
+(\d{1,5})1(\d{6}) $(\10) jedan milion[ $2]
+(\d{1,3})(\d{6}) $1 miliona[ $2]
+
+1(\d{9}) milijarda[ $1]
+2(\d{9}) dvije milijarde[ $1]
+([34])(\d{9}) $1 milijarde[ $2]
+(\d{1,2})0(\d{9}) $(\10) milijardi[ $2]
+(\d{0,1})1(\d)(\d{9}) $(\11\2) milijardi[ $3]
+(\d{1,2})1(\d{9}) $(\10) jedna milijarda[ $2]
+(\d{1,2})2(\d{9}) $(\10) dvije milijarde[ $2]
+(\d{1,2})([34])(\d{9}) $(\10) $2 milijarde[ $3]
+(\d{1,3})(\d{9}) $1 milijarde[ $2]
+
+1(\d{12}) bilijun[ $1]
+(\d{0,4})1(\d)(\d{12}) $(\11\2) bilijuna[ $3]
+(\d{1,5})1(\d{12}) $(\10) jedan bilijun[ $2]
+(\d{1,6})(\d{12}) $1 bilijuna[ $2]
+
+1(\d{18}) trilijun[ $1]
+(\d{0,4})1(\d)(\d{18}) $(\11\2) trilijuna[ $3]
+(\d{1,5})1(\d{18}) $(\10) jedan trilijun[ $2]
+(\d{1,6})(\d{18}) $1 trilijuna[ $2]
+
+1(\d{24}) kvadrilijun[ $1]
+(\d{0,4})1(\d)(\d{24}) $(\11\2) kvadrilijuna[ $3]
+(\d{1,5})1(\d{24}) $(\10) jedan kvadrilijun[ $2]
+(\d{1,6})(\d{24}) $1 kvadrilijuna[ $2]
+
+1(\d{30}) kvintilijun[ $1]
+(\d{0,4})1(\d)(\d{30}) $(\11\2) kvintilijuna[ $3]
+(\d{1,5})1(\d{30}) $(\10) jedan kvintilijun[ $2]
+(\d{1,6})(\d{30}) $1 kvintilijuna[ $2]
+
+1(\d{36}) sekstilijun[ $1]
+(\d{0,4})1(\d)(\d{36}) $(\11\2) sekstilijuna[ $3]
+(\d{1,5})1(\d{36}) $(\10) jedan sekstilijun[ $2]
+(\d{1,6})(\d{36}) $1 sekstilijuna[ $2]
+
+# negative number
+
+[-−] minus
+[-−](\d+) minus |$1
+
+# Decimal code by https://twitter.com/_uranium_
+"([-−]?\d+)[.,]" $1| zarez
+"([-−]?\d+[.,])([^0]\d)" $1 $2
+"([-−]?\d+[.,]\d*[1-9]?)0+$" $1
+"([-−]?\d+[.,])(\d)(\d)(\d)" $1| |$2 |$3 |$4
+"([-−]?\d+[.,]\d*)(\d)" $1 |$2
+
+# currency
+
+# unit/subunit
+
+us:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \1
+up:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \2
+ug:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \3
+ss:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \4
+sp:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \5
+sg:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \6
+
+HRK:(\D+) $(\1: kuna, kune, kuna, lipa, lipe, lipa) #ff
+DKK:(\D+) $(\1: kruna, krune, kruna, ora, ore, ora) #ff
+SEK:(\D+) $(\1: kruna, krune, kruna, ora, ore, ora) #ff
+CZK:(\D+) $(\1: kruna, krune, kruna, haler, halera, halera) #fm
+HUF:(\D+) $(\1: forinta, forinte, forinti, filer, filera, filera) #fm
+GBP:(\D+) $(\1: funta, funte, funti, peni, penija, penija) #fm
+BAM:(\D+) $(\1: konvertibilna marka, konvertibilne marke, konvertibilnih marki, fening, feninga, feninga) #fm
+BGN:(\D+) $(\1: lev, leva, leva, stotinka, stotinke, stotinki) #mf
+RSD:(\D+) $(\1: dinar, dinara, dinara, para, pare, para) #mf
+RON:(\D+) $(\1: leu, leu, leu, ban, bana, bana) #mm
+CHF:(\D+) $(\1: franak, franka, franaka, centim, centima, centima) #mm
+EUR:(\D+) $(\1: euro, eura, eura, cent, centa, centa) #mm
+USD:(\D+) $(\1: dolar, dolara, dolara, cent, centa, centa) #mm
+PLN:(\D+) $(\1: zlot, zlota, zlota, groš, groša, groša) #mm
+
+# Covers cases where currency sign is after numbers or different position
+"(.*) kn" $(HRK \1)
+"(.*) €" $(EUR \1)
+"(.*)€" $(EUR \1)
+"€(.*)" $(EUR \1)
+"€ (.*)" $(EUR \1)
+"(.*) Ft" $(HUF \1)
+"(.*) din." $(RSD \1)
+"\$(.*)" $(USD \1)
+"\$ (.*)" $(USD \1)
+"(.*) \$" $(USD \1)
+"KM(.*)" $(BAM \1)
+"£(.*)" $(GBP \1)
+"(.*) HRK" $(HRK \1)
+"(.*) DKK" $(DKK \1)
+"(.*) SEK" $(SEK \1)
+"(.*) CZK" $(CZK \1)
+"(.*) HUF" $(HUF \1)
+"(.*) GBP" $(GBP \1)
+"(.*) BAM" $(BAM \1)
+"(.*) BGN" $(BGN \1)
+"(.*) RSD" $(RSD \1)
+"(.*) RON" $(RON \1)
+"(.*) CHF" $(CHF \1)
+"(.*) EUR" $(EUR \1)
+"(.*) USD" $(USD \1)
+"(.*) PLN" $(PLN \1)
+
+"(HRK|DKK|SEK|CZK|HUF|GBP|BAM) ([-−]?1)([.,]00?)?" jedna$(\1:us) #female, for 1
+"(HRK|DKK|SEK|CZK|HUF|GBP|BAM) ([-−]?2)([.,]00?)?" dvije$(\1:up) #female, for 2
+"(HRK|DKK|SEK|CZK|HUF|GBP|BAM) ([02-9])1([.,]00?)?" $(\20) jedna$(\1:us) #female, for numbers from 21-91 ending with 1
+"(HRK|DKK|SEK|CZK|HUF|GBP|BAM) ([02-9])2([.,]00?)?" $(\20) dvije$(\1:up) #female, for numbers from 22-92 ending with 2
+"(HRK|DKK|SEK|CZK|HUF|GBP|BAM) ([-−]?\d*)([02-9])1([.,]00?)?" $(\200) $(\30) jedna$(\1:us) #female, for numbers >100 ending with 1 but not 11
+"(HRK|DKK|SEK|CZK|HUF|GBP|BAM) ([-−]?\d*)([02-9])2([.,]00?)?" $(\200) $(\30) dvije$(\1:up) #female, for numbers >100 ending with 2 but not 12
+"([A-Z]{3}) ([-−]?1)([.,]00?)?" $2|$(\1:us)
+"([A-Z]{3}) ([-−]?\d*[02-9]1)([.,]00?)?" $2|$(\1:us)
+"([A-Z]{3}) ([-−]?[234])([.,]00?)?" $2|$(\1:up)
+"([A-Z]{3}) ([-−]?\d*[02-9][234])([.,]00?)?" $2|$(\1:up)
+"([A-Z]{3}) ([-−]?\d+)([.,]00?)?" $2|$(\1:ug)
+
+"((HRK|DKK|SEK|BGN|RSD) [-−]?\d+)[.,]([02-9])1" $1 $(\30) jedna $(\2:ss) #decimal, female, ending with 1 but not 11
+"((HRK|DKK|SEK|BGN|RSD) [-−]?\d+)[.,]([02-9])2" $1 $(\30) dvije $(\2:sp) #decimal, female, ending with 2 but not 12
+"(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 |$(1)$(\2:ss)
+"(([A-Z]{3}) [-−]?\d+)[.,]([02-9]1)" $1 |$3$(\2:ss)
+"(([A-Z]{3}) [-−]?\d+)[.,]([02-9][234])" $1 |$3$(\2:sp)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 |$(\30)$(\2:sg)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 |$3$(\2:sg)
+
+== ordinal-number ==
+
+(\d+)	\1.
+
+== help ==
+
+"" |$(1)|, |$(2)|, |$(3)|\n$(help ordinal-number)
+(.*) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
 </textarea>
 <textarea id='hu' class='hidden'>
 ^0 nulla
@@ -5847,13 +6162,11 @@ USD:(\D+) $(\1: US-Dollar, US-Dollar, Cent, Cents)
 (ordinal(-number)?) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
 </textarea>
 <textarea rows='0' cols='0' id='el' class='hidden'>
-^0 μηδέν
+^0$ μηδέν
 1 ένα
 2 δύο
-3$ τρία
-3 τρεις
-4$ τέσσερα
-4 τέσσερις
+3 τρία
+4 τέσσερα
 5 πέντε
 6 έξι
 7 επτά
@@ -5872,38 +6185,30 @@ USD:(\D+) $(\1: US-Dollar, US-Dollar, Cent, Cents)
 8(\d) ογδόντα[ $1]
 9(\d) ενενήντα[ $1]
 1(\d\d) εκατό[v $1]
-2(\d\d)$ διακόσια[ $1]
-2(\d\d) διακόσιες[ $1]
-3(\d\d)$ τριακόσια[ $1]
-3(\d\d) τριακόσιες[ $1]
-4(\d\d)$ τετρακόσια[ $1]
-4(\d\d) τετρακόσιες[ $1]
-5(\d\d)$ πεντακόσια[ $1]
-5(\d\d) πεντακόσιες[ $1]
-6(\d\d)$ εξακόσια[ $1]
-6(\d\d) εξακόσιες[ $1]
-7(\d\d)$ επτακόσια[ $1]
-7(\d\d) επτακόσιες[ $1]
-8(\d\d)$ οκτακόσια[ $1]
-8(\d\d) οκτακόσιες[ $1]
-9(\d\d)$ εννιακόσια[ $1]
-9(\d\d) εννιακόσιες[ $1]
+2(\d\d) διακόσια[ $1]
+3(\d\d) τριακόσια[ $1]
+4(\d\d) τετρακόσια[ $1]
+5(\d\d) πεντακόσια[ $1]
+6(\d\d) εξακόσια[ $1]
+7(\d\d) επτακόσια[ $1]
+8(\d\d) οκτακόσια[ $1]
+9(\d\d) εννιακόσια[ $1]
 1(\d{3}) χίλια[ $1]
-(\d{1,3})(\d{3}) $1 χιλιάδες[ $2]
+(\d{1,3})(\d{3}) $(cardinal-feminine \1) χιλιάδες[ $2]
 1(\d{6}) ένα εκατομμύριο[ $1]
-(\d{1,3})(\d{6}) $1| εκατομμύρια[ $2]
+(\d{1,3})(\d{6}) $1 εκατομμύρια[ $2]
 1(\d{9}) ένα δισεκατομμύριο[ $1]
-(\d{1,3})(\d{9}) $1| δισεκατομμύρια[ $2]
+(\d{1,3})(\d{9}) $1 δισεκατομμύρια[ $2]
 1(\d{12}) ένα τρισεκατομμύριο[ $1]
-(\d{1,3})(\d{12}) $1| τρισεκατομμύρια[ $2]
+(\d{1,3})(\d{12}) $1 τρισεκατομμύρια[ $2]
 1(\d{15}) ένα τετράκις εκατομμύριο[ $1]
-(\d{1,3})(\d{15}) $1| τετράκις εκατομμύρια[ $2]
+(\d{1,3})(\d{15}) $1 τετράκις εκατομμύρια[ $2]
 1(\d{18}) ένα πεντάκις εκατομμύριο[ $1]
-(\d{1,3})(\d{18}) $1| πεντάκις εκατομμύρια[ $2]
+(\d{1,3})(\d{18}) $1 πεντάκις εκατομμύρια[ $2]
 1(\d{21}) ένα εξάκις εκατομμύριο[ $1]
-(\d{1,3})(\d{21}) $1| εξάκις εκατομμύρια[ $2]
+(\d{1,3})(\d{21}) $1 εξάκις εκατομμύρια[ $2]
 1(\d{24}) ένα επτάκις εκατομμύριο[ $1]
-(\d{1,3})(\d{24}) $1| επτάκις εκατομμύρια[ $2]
+(\d{1,3})(\d{24}) $1 επτάκις εκατομμύρια[ $2]
 
 # negative number
 
@@ -5935,13 +6240,145 @@ USD:(\D+) $(\1: δολάριο ΗΠΑ, δολαρίων ΗΠΑ, σεντ, σεν
 "(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 y |$(\30)$(\2:sp)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 y |$3$(\2:sp)
 
-== ordinal-number ==
+== cardinal-neuter ==
 
-(\d+)	\1.
+(\d+) $1
+
+== cardinal-feminine ==
+
+1 μια
+3 τρεις
+4 τέσσερις
+(\d) $1
+1([34]) $(10)$(cardinal-feminine \2)
+(\d)([34]) $(\10) $(cardinal-feminine \2)
+(\d\d) $1
+1(\d\d) $(100)[ $(cardinal-feminine \1)]
+2(\d\d) διακόσιες[ $(cardinal-feminine \1)]
+3(\d\d) τριακόσιες[ $(cardinal-feminine \1)]
+4(\d\d) τετρακόσιες[ $(cardinal-feminine \1)]
+5(\d\d) πεντακόσιες[ $(cardinal-feminine \1)]
+6(\d\d) εξακόσιες[ $(cardinal-feminine \1)]
+7(\d\d) επτακόσιες[ $(cardinal-feminine \1)]
+8(\d\d) οκτακόσιες[ $(cardinal-feminine \1)]
+9(\d\d) εννιακόσιες[ $(cardinal-feminine \1)]
+1(\d{3}) χίλιες[ $(cardinal-feminine \1)]
+(\d{1,3})(\d{3}) $(cardinal-feminine \1) χίλιάδες[ $(cardinal-feminine \2)]
+(\d+000)(\d{3}) $(\1000)[ $(cardinal-feminine \2)]
+(\d+)(\d{6}) $(\1000000)[ $(cardinal-feminine \2)]
+
+== cardinal-masculine ==
+
+1 ένας
+3 τρεις
+4 τέσσερα
+(\d) $1
+1([34]) $(10)$(cardinal-masculine \2)
+(\d)([34]) $(\10) $(cardinal-masculine \2)
+(\d\d) $1
+1(\d\d) εκατό[ν $(cardinal-masculine \1)]
+2(\d\d) διακόσιοι[ $(cardinal-masculine \1)]
+3(\d\d) τριακόσιοι[ $(cardinal-masculine \1)]
+4(\d\d) τετρακόσιοι[ $(cardinal-masculine \1)]
+5(\d\d) πεντακόσιοι[ $(cardinal-masculine \1)]
+6(\d\d) εξακόσιοι[ $(cardinal-masculine \1)]
+7(\d\d) επτακόσιοι[ $(cardinal-masculine \1)]
+8(\d\d) οκτακόσιοι[ $(cardinal-masculine \1)]
+9(\d\d) εννιακόσιοι[ $(cardinal-masculine \1)]
+1(\d{3}) χίλιοι[ $(cardinal-masculine \1)]
+(\d{1,3})(\d{3}) $(cardinal-feminine \1000)[ $(cardinal-masculine \2)]
+(\d+000)(\d{3}) $(\1000)[ $(cardinal-masculine \2)]
+(\d+)(\d{6}) $(\1000000)[ $(cardinal-masculine \2)]
+
+== to-feminine ==
+
+(.*)ος(.*)	$(to-feminine \1η\2)
+(.*)ός(.*)	$(to-feminine \1ή\2)
+(.*)		\1
+
+== to-neuter ==
+
+(.*)ος(.*)	$(to-neuter \1ο\2)
+(.*)ός(.*)	$(to-neuter \1ό\2)
+(.*)		\1
+
+== ordinal(-masculine)? ==
+
+^0 μηδενικός
+1 πρώτος
+2 δεύτερος
+3 τρίτος
+4 τέταρτος
+5 πέμπτος
+6 έκτος
+7 έβδομος
+8 όγδοος
+9 ένατος
+10 δέκατος
+11 ενδέκατος
+12 δωδέκατος
+1(\d) δέκατος $(ordinal \2)
+2(\d) εικοστός[ $(ordinal \2)]
+3(\d) τριακοστός[ $(ordinal \2)]
+4(\d) τεσσαρακοστός[ $(ordinal \2)]
+5(\d) πεντηκοστός[ $(ordinal \2)]
+6(\d) εξηκοστός[ $(ordinal \2)]
+7(\d) εβδομηκοστός[ $(ordinal \2)]
+8(\d) ογδοηκοστός[ $(ordinal \2)]
+9(\d) εννενηκοστός[ $(ordinal \2)]
+1(\d\d) εκατοστός[ $(ordinal \2)]
+2(\d\d) διακοσιοστός[ $(ordinal \2)]
+3(\d\d) τριακοσιοστός[ $(ordinal \2)]
+4(\d\d) τετρακοσιοστός[ $(ordinal \2)]
+5(\d\d) πεντακοσιοστός[ $(ordinal \2)]
+6(\d\d) εξακοσιοστός[ $(ordinal \2)]
+7(\d\d) επτακοσιοστός[ $(ordinal \2)]
+8(\d\d) οκτακοσιοστός[ $(ordinal \2)]
+9(\d\d) εννεακοσιοστός[ $(ordinal \2)]
+1(\d{3}) χιλιοστός[ $(ordinal \2)]
+2(\d{3}) δισχιλιοστός[ $(ordinal \2)]
+3(\d{3}) τρισχιλιοστός[ $(ordinal \2)]
+4(\d{3}) τετράκις χιλιοστός[ $(ordinal \2)]
+5(\d{3}) πεντάκις χιλιοστός[ $(ordinal \2)]
+6(\d{3}) εξάκις χιλιοστός[ $(ordinal \2)]
+7(\d{3}) επτάκις χιλιοστός[ $(ordinal \2)]
+8(\d{3}) οκτάκις χιλιοστός[ $(ordinal \2)]
+9(\d{3}) εννεάκις χιλιοστός[ $(ordinal \2)]
+(\d)?10(\d{3}) [$(\200) ]δεκάκις χιλιοστός[ $(ordinal \3)]
+(\d{1,3})(\d{3}) $2 χιλιοστός[ $(ordinal \3)]
+(\d{1,3})(\d{6}) $2 εκατομμυριοστός[ $(ordinal \3)]
+(\d{1,3})(\d{9}) $2 δισεκατομμυριοστός[ $(ordinal \3)]
+(\d{1,3})(\d{12}) $2 τρισεκατομμυριοστός[ $(ordinal \3)]
+(\d{1,3})(\d{15}) $2 τετράκις εκατομμυριοστός[ $(ordinal \3)]
+(\d{1,3})(\d{18}) $2 πεντάκις εκατομμυριοστός[ $(ordinal \3)]
+(\d{1,3})(\d{21}) $2 εξάκις εκατομμυριοστός[ $(ordinal \3)]
+(\d{1,3})(\d{24}) $2 επτάκις εκατομμυριοστός[ $(ordinal \3)]
+
+== ordinal-feminine ==
+
+(\d+)	$(to-feminine $(ordinal \1))
+
+== ordinal-neuter ==
+
+(\d+)	$(to-neuter $(ordinal \1))
+
+== ordinal-number(-masculine)? ==
+
+(\d*10)	\2ος
+(\d*0)	\2ός
+(\d+)	\2ος
+
+== ordinal-number-feminine ==
+
+(\d+)	$(to-feminine $(ordinal-number \1))
+
+== ordinal-number-neuter ==
+
+(\d+)	$(to-neuter $(ordinal-number \1))
 
 == help ==
 
-"" |$(1)|, |$(2)|, |$(3)|\n$(help ordinal-number)
+"" |$(1)|, |$(2)|, |$(3)|\n$(help cardinal-neuter)$(help cardinal-feminine)$(help cardinal-masculine)$(help ordinal)$(help ordinal-neuter)$(help ordinal-feminine)$(help ordinal-masculine)$(help ordinal-number)$(help ordinal-number-neuter)$(help ordinal-number-feminine)$(help ordinal-number-masculine)
 (.*) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
 </textarea>
 <textarea rows='0' cols='0' id='en' class='hidden'>
@@ -6963,6 +7400,194 @@ ord([fm]):(\d+) $(\1:$2)
 "ordinal ([-−]?\d+)" $(ordinal-masculine \1)
 
 help פונקציות נוספות:\nord, ordm \(מספר סידורי זכר, כגון "ראשון"\)\nordf \(מספר סידורי נקבה, כגון "ראשונה"\)
+</textarea>
+<textarea rows='0' cols='0' id='hr' class='hidden'>
+#
+# Regular number to text transducer for Serbian (Cyrillic) written in Soros
+# Copyright (c) Goran Rakic <grakic@devbase.net> 2009.
+# Modified and translated for Croatian by Mihovil Stanic <mihovil.stanic@gmail.com> 2014.
+#
+# Released under Creative Commons 3.0 Attribution - Share Alike license
+# and relicensed under GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Visit http://numbertext.org for more info on Soros language and syntax
+#
+
+(\d{1,3})\.([\d.,]+) $(\1\2)
+
+^0 nula
+1 jedan
+2 dva
+3 tri
+4 četiri
+5 pet
+6 šest
+7 sedam
+8 osam
+9 devet
+10 deset
+
+11 jedanaest
+14 četrnaest
+16 šesnaest
+1(\d) $1naest
+
+4(\d) četrdeset[ $1]
+5(\d) pedeset[ $1]
+6(\d) šezdeset[ $1]
+9(\d) devedeset[ $1]
+(\d)(\d) $1deset[ $2]
+
+1(\d\d) sto[ $1]
+2(\d\d) dvjesto[ $1]
+3(\d\d) tristo[ $1]
+(\d)(\d\d) $1sto[ $2]
+
+1(\d\d\d) tisuću[ $1]
+2(\d\d\d) dvije tisuće[ $1]
+([34])(\d\d\d) $1 tisuće[ $2]
+(\d{0,1})1(\d)(\d\d\d) $(\11\2) tisuća[ $3]
+(\d{1,2})1(\d\d\d) $(\10) jedna tisuća[ $2]
+(\d{1,2})2(\d\d\d) $(\10) dvije tisuće[ $2]
+(\d{1,2})([34])(\d\d\d) $(\10) $2 tisuće[ $3]
+(\d{1,3})(\d\d\d) $1 tisuća[ $2]
+
+1(\d{6}) milion[ $1]
+(\d{0,4})1(\d)(\d{6}) $(\11\2) miliona[ $3]
+(\d{1,5})1(\d{6}) $(\10) jedan milion[ $2]
+(\d{1,3})(\d{6}) $1 miliona[ $2]
+
+1(\d{9}) milijarda[ $1]
+2(\d{9}) dvije milijarde[ $1]
+([34])(\d{9}) $1 milijarde[ $2]
+(\d{1,2})0(\d{9}) $(\10) milijardi[ $2]
+(\d{0,1})1(\d)(\d{9}) $(\11\2) milijardi[ $3]
+(\d{1,2})1(\d{9}) $(\10) jedna milijarda[ $2]
+(\d{1,2})2(\d{9}) $(\10) dvije milijarde[ $2]
+(\d{1,2})([34])(\d{9}) $(\10) $2 milijarde[ $3]
+(\d{1,3})(\d{9}) $1 milijarde[ $2]
+
+1(\d{12}) bilijun[ $1]
+(\d{0,4})1(\d)(\d{12}) $(\11\2) bilijuna[ $3]
+(\d{1,5})1(\d{12}) $(\10) jedan bilijun[ $2]
+(\d{1,6})(\d{12}) $1 bilijuna[ $2]
+
+1(\d{18}) trilijun[ $1]
+(\d{0,4})1(\d)(\d{18}) $(\11\2) trilijuna[ $3]
+(\d{1,5})1(\d{18}) $(\10) jedan trilijun[ $2]
+(\d{1,6})(\d{18}) $1 trilijuna[ $2]
+
+1(\d{24}) kvadrilijun[ $1]
+(\d{0,4})1(\d)(\d{24}) $(\11\2) kvadrilijuna[ $3]
+(\d{1,5})1(\d{24}) $(\10) jedan kvadrilijun[ $2]
+(\d{1,6})(\d{24}) $1 kvadrilijuna[ $2]
+
+1(\d{30}) kvintilijun[ $1]
+(\d{0,4})1(\d)(\d{30}) $(\11\2) kvintilijuna[ $3]
+(\d{1,5})1(\d{30}) $(\10) jedan kvintilijun[ $2]
+(\d{1,6})(\d{30}) $1 kvintilijuna[ $2]
+
+1(\d{36}) sekstilijun[ $1]
+(\d{0,4})1(\d)(\d{36}) $(\11\2) sekstilijuna[ $3]
+(\d{1,5})1(\d{36}) $(\10) jedan sekstilijun[ $2]
+(\d{1,6})(\d{36}) $1 sekstilijuna[ $2]
+
+# negative number
+
+[-−] minus
+[-−](\d+) minus |$1
+
+# Decimal code by https://twitter.com/_uranium_
+"([-−]?\d+)[.,]" $1| zarez
+"([-−]?\d+[.,])([^0]\d)" $1 $2
+"([-−]?\d+[.,]\d*[1-9]?)0+$" $1
+"([-−]?\d+[.,])(\d)(\d)(\d)" $1| |$2 |$3 |$4
+"([-−]?\d+[.,]\d*)(\d)" $1 |$2
+
+# currency
+
+# unit/subunit
+
+us:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \1
+up:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \2
+ug:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \3
+ss:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \4
+sp:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \5
+sg:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \6
+
+HRK:(\D+) $(\1: kuna, kune, kuna, lipa, lipe, lipa) #ff
+DKK:(\D+) $(\1: kruna, krune, kruna, ora, ore, ora) #ff
+SEK:(\D+) $(\1: kruna, krune, kruna, ora, ore, ora) #ff
+CZK:(\D+) $(\1: kruna, krune, kruna, haler, halera, halera) #fm
+HUF:(\D+) $(\1: forinta, forinte, forinti, filer, filera, filera) #fm
+GBP:(\D+) $(\1: funta, funte, funti, peni, penija, penija) #fm
+BAM:(\D+) $(\1: konvertibilna marka, konvertibilne marke, konvertibilnih marki, fening, feninga, feninga) #fm
+BGN:(\D+) $(\1: lev, leva, leva, stotinka, stotinke, stotinki) #mf
+RSD:(\D+) $(\1: dinar, dinara, dinara, para, pare, para) #mf
+RON:(\D+) $(\1: leu, leu, leu, ban, bana, bana) #mm
+CHF:(\D+) $(\1: franak, franka, franaka, centim, centima, centima) #mm
+EUR:(\D+) $(\1: euro, eura, eura, cent, centa, centa) #mm
+USD:(\D+) $(\1: dolar, dolara, dolara, cent, centa, centa) #mm
+PLN:(\D+) $(\1: zlot, zlota, zlota, groš, groša, groša) #mm
+
+# Covers cases where currency sign is after numbers or different position
+"(.*) kn" $(HRK \1)
+"(.*) €" $(EUR \1)
+"(.*)€" $(EUR \1)
+"€(.*)" $(EUR \1)
+"€ (.*)" $(EUR \1)
+"(.*) Ft" $(HUF \1)
+"(.*) din." $(RSD \1)
+"\$(.*)" $(USD \1)
+"\$ (.*)" $(USD \1)
+"(.*) \$" $(USD \1)
+"KM(.*)" $(BAM \1)
+"£(.*)" $(GBP \1)
+"(.*) HRK" $(HRK \1)
+"(.*) DKK" $(DKK \1)
+"(.*) SEK" $(SEK \1)
+"(.*) CZK" $(CZK \1)
+"(.*) HUF" $(HUF \1)
+"(.*) GBP" $(GBP \1)
+"(.*) BAM" $(BAM \1)
+"(.*) BGN" $(BGN \1)
+"(.*) RSD" $(RSD \1)
+"(.*) RON" $(RON \1)
+"(.*) CHF" $(CHF \1)
+"(.*) EUR" $(EUR \1)
+"(.*) USD" $(USD \1)
+"(.*) PLN" $(PLN \1)
+
+"(HRK|DKK|SEK|CZK|HUF|GBP|BAM) ([-−]?1)([.,]00?)?" jedna$(\1:us) #female, for 1
+"(HRK|DKK|SEK|CZK|HUF|GBP|BAM) ([-−]?2)([.,]00?)?" dvije$(\1:up) #female, for 2
+"(HRK|DKK|SEK|CZK|HUF|GBP|BAM) ([02-9])1([.,]00?)?" $(\20) jedna$(\1:us) #female, for numbers from 21-91 ending with 1
+"(HRK|DKK|SEK|CZK|HUF|GBP|BAM) ([02-9])2([.,]00?)?" $(\20) dvije$(\1:up) #female, for numbers from 22-92 ending with 2
+"(HRK|DKK|SEK|CZK|HUF|GBP|BAM) ([-−]?\d*)([02-9])1([.,]00?)?" $(\200) $(\30) jedna$(\1:us) #female, for numbers >100 ending with 1 but not 11
+"(HRK|DKK|SEK|CZK|HUF|GBP|BAM) ([-−]?\d*)([02-9])2([.,]00?)?" $(\200) $(\30) dvije$(\1:up) #female, for numbers >100 ending with 2 but not 12
+"([A-Z]{3}) ([-−]?1)([.,]00?)?" $2|$(\1:us)
+"([A-Z]{3}) ([-−]?\d*[02-9]1)([.,]00?)?" $2|$(\1:us)
+"([A-Z]{3}) ([-−]?[234])([.,]00?)?" $2|$(\1:up)
+"([A-Z]{3}) ([-−]?\d*[02-9][234])([.,]00?)?" $2|$(\1:up)
+"([A-Z]{3}) ([-−]?\d+)([.,]00?)?" $2|$(\1:ug)
+
+"((HRK|DKK|SEK|BGN|RSD) [-−]?\d+)[.,]([02-9])1" $1 $(\30) jedna $(\2:ss) #decimal, female, ending with 1 but not 11
+"((HRK|DKK|SEK|BGN|RSD) [-−]?\d+)[.,]([02-9])2" $1 $(\30) dvije $(\2:sp) #decimal, female, ending with 2 but not 12
+"(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 |$(1)$(\2:ss)
+"(([A-Z]{3}) [-−]?\d+)[.,]([02-9]1)" $1 |$3$(\2:ss)
+"(([A-Z]{3}) [-−]?\d+)[.,]([02-9][234])" $1 |$3$(\2:sp)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 |$(\30)$(\2:sg)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 |$3$(\2:sg)
+
+== ordinal-number ==
+
+(\d+)	\1.
+
+== help ==
+
+"" |$(1)|, |$(2)|, |$(3)|\n$(help ordinal-number)
+(.*) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
 </textarea>
 <textarea rows='0' cols='0' id='hu' class='hidden'>
 ^0 nulla
@@ -9848,10 +10473,10 @@ language = {
 "cs": "Česky",
 "da": "Dansk",
 "de": "Deutsch",
-"de-CH": "Deutsch&nbsp;(CH/LI)",
+"de-CH": "Deutsch&nbsp;(CH)",
 "el": "Ελληνικά",
 "en": "English",
-"en-GB": "English&nbsp;(AU/GB/IE/NZ)",
+"en-GB": "English&nbsp;(GB)",
 "en-IN": "English&nbsp;(IN)",
 "es": "Español",
 "eo": "Esperanto",
@@ -9859,6 +10484,7 @@ language = {
 "fr-BE": "Français&nbsp;(BE)",
 "fr-CH": "Français&nbsp;(CH)",
 "he": "עברית",
+"hr": "Hrvatski",
 "hu": "Magyar",
 "id": "Bahasa Indonesia",
 "it": "Italiano",
@@ -9918,6 +10544,7 @@ default_currency = {
 "ms": "MYR",
 "he": "ILS",
 "hu": "HUF",
+"hr": "HRK",
 "nl": "EUR",
 "pl": "PLN",
 "pt": "EUR",
@@ -9954,6 +10581,7 @@ numlang['es']=new Soros(document.getElementById('es').value, 'es')
 numlang['fi']=new Soros(document.getElementById('fi').value, 'fi')
 numlang['fr']=new Soros(document.getElementById('fr').value, 'fr')
 numlang['he']=new Soros(document.getElementById('he').value, 'he')
+numlang['hr']=new Soros(document.getElementById('hr').value, 'hr')
 numlang['hu']=new Soros(document.getElementById('hu').value, 'hu')
 numlang['id']=new Soros(document.getElementById('id').value, 'id')
 numlang['it']=new Soros(document.getElementById('it').value, 'it')
@@ -10042,33 +10670,34 @@ function tim( ) {
 "<tr class=' "+ (17%2?"second":"")+"' style='text-align:left;' title='fr-BE'><td valign='top'>" + language["fr-BE"] + "</td><td >" + numlang['fr-BE'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["fr-BE"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
 "<tr class=' "+ (18%2?"second":"")+"' style='text-align:left;' title='fr-CH'><td valign='top'>" + language["fr-CH"] + "</td><td >" + numlang['fr-CH'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["fr-CH"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
 "<tr class=' "+ (19%2?"second":"")+"' style='text-align:left;' title='he'><td valign='top'>" + language["he"] + "</td><td align='right'>" + numlang['he'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["he"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (20%2?"second":"")+"' style='text-align:left;' title='hu'><td valign='top'>" + language["hu"] + "</td><td >" + numlang['hu'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["hu"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (21%2?"second":"")+"' style='text-align:left;' title='id'><td valign='top'>" + language["id"] + "</td><td >" + numlang['id'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["id"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (22%2?"second":"")+"' style='text-align:left;' title='it'><td valign='top'>" + language["it"] + "</td><td >" + numlang['it'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["it"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (23%2?"second":"")+"' style='text-align:left;' title='ja'><td valign='top'>" + language["ja"] + "</td><td >" + numlang['ja'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ja"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (24%2?"second":"")+"' style='text-align:left;' title='ko'><td valign='top'>" + language["ko"] + "</td><td >" + numlang['ko'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ko"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (25%2?"second":"")+"' style='text-align:left;' title='ko-KP'><td valign='top'>" + language["ko-KP"] + "</td><td >" + numlang['ko-KP'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ko-KP"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (26%2?"second":"")+"' style='text-align:left;' title='lb'><td valign='top'>" + language["lb"] + "</td><td >" + numlang['lb'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["lb"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (27%2?"second":"")+"' style='text-align:left;' title='lt'><td valign='top'>" + language["lt"] + "</td><td >" + numlang['lt'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["lt"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (28%2?"second":"")+"' style='text-align:left;' title='lv'><td valign='top'>" + language["lv"] + "</td><td >" + numlang['lv'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["lv"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (29%2?"second":"")+"' style='text-align:left;' title='ms'><td valign='top'>" + language["ms"] + "</td><td >" + numlang['ms'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ms"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (30%2?"second":"")+"' style='text-align:left;' title='nl'><td valign='top'>" + language["nl"] + "</td><td >" + numlang['nl'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["nl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (31%2?"second":"")+"' style='text-align:left;' title='pl'><td valign='top'>" + language["pl"] + "</td><td >" + numlang['pl'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["pl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (32%2?"second":"")+"' style='text-align:left;' title='pt'><td valign='top'>" + language["pt"] + "</td><td >" + numlang['pt'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["pt"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (33%2?"second":"")+"' style='text-align:left;' title='pt-BR'><td valign='top'>" + language["pt-BR"] + "</td><td >" + numlang['pt-BR'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["pt-BR"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (34%2?"second":"")+"' style='text-align:left;' title='ro'><td valign='top'>" + language["ro"] + "</td><td >" + numlang['ro'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ro"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (35%2?"second":"")+"' style='text-align:left;' title='ru'><td valign='top'>" + language["ru"] + "</td><td >" + numlang['ru'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ru"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (36%2?"second":"")+"' style='text-align:left;' title='sh'><td valign='top'>" + language["sh"] + "</td><td >" + numlang['sh'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sh"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (37%2?"second":"")+"' style='text-align:left;' title='sl'><td valign='top'>" + language["sl"] + "</td><td >" + numlang['sl'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (38%2?"second":"")+"' style='text-align:left;' title='sr'><td valign='top'>" + language["sr"] + "</td><td >" + numlang['sr'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (39%2?"second":"")+"' style='text-align:left;' title='sv'><td valign='top'>" + language["sv"] + "</td><td >" + numlang['sv'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sv"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (40%2?"second":"")+"' style='text-align:left;' title='th'><td valign='top'>" + language["th"] + "</td><td >" + numlang['th'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["th"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (41%2?"second":"")+"' style='text-align:left;' title='tr'><td valign='top'>" + language["tr"] + "</td><td >" + numlang['tr'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["tr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (42%2?"second":"")+"' style='text-align:left;' title='vi'><td valign='top'>" + language["vi"] + "</td><td >" + numlang['vi'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["vi"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (43%2?"second":"")+"' style='text-align:left;' title='zh'><td valign='top'>" + language["zh"] + "</td><td >" + numlang['zh'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["zh"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class='rovas "+ (44%2?"second":"")+"' style='text-align:left;' title='Hung'><td valign='top'>" + language["Hung"] + "</td><td align='right'>" + numlang['Hung'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["Hung"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (45%2?"second":"")+"' style='text-align:left;' title='Roman-large'><td valign='top'>" + language["Roman-large"] + "</td><td >" + numlang['Roman-large'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["Roman-large"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (46%2?"second":"")+"' style='text-align:left;' title='Suzhou'><td valign='top'>" + language["Suzhou"] + "</td><td >" + numlang['Suzhou'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["Suzhou"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (20%2?"second":"")+"' style='text-align:left;' title='hr'><td valign='top'>" + language["hr"] + "</td><td >" + numlang['hr'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["hr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (21%2?"second":"")+"' style='text-align:left;' title='hu'><td valign='top'>" + language["hu"] + "</td><td >" + numlang['hu'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["hu"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (22%2?"second":"")+"' style='text-align:left;' title='id'><td valign='top'>" + language["id"] + "</td><td >" + numlang['id'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["id"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (23%2?"second":"")+"' style='text-align:left;' title='it'><td valign='top'>" + language["it"] + "</td><td >" + numlang['it'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["it"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (24%2?"second":"")+"' style='text-align:left;' title='ja'><td valign='top'>" + language["ja"] + "</td><td >" + numlang['ja'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ja"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (25%2?"second":"")+"' style='text-align:left;' title='ko'><td valign='top'>" + language["ko"] + "</td><td >" + numlang['ko'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ko"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (26%2?"second":"")+"' style='text-align:left;' title='ko-KP'><td valign='top'>" + language["ko-KP"] + "</td><td >" + numlang['ko-KP'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ko-KP"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (27%2?"second":"")+"' style='text-align:left;' title='lb'><td valign='top'>" + language["lb"] + "</td><td >" + numlang['lb'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["lb"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (28%2?"second":"")+"' style='text-align:left;' title='lt'><td valign='top'>" + language["lt"] + "</td><td >" + numlang['lt'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["lt"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (29%2?"second":"")+"' style='text-align:left;' title='lv'><td valign='top'>" + language["lv"] + "</td><td >" + numlang['lv'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["lv"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (30%2?"second":"")+"' style='text-align:left;' title='ms'><td valign='top'>" + language["ms"] + "</td><td >" + numlang['ms'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ms"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (31%2?"second":"")+"' style='text-align:left;' title='nl'><td valign='top'>" + language["nl"] + "</td><td >" + numlang['nl'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["nl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (32%2?"second":"")+"' style='text-align:left;' title='pl'><td valign='top'>" + language["pl"] + "</td><td >" + numlang['pl'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["pl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (33%2?"second":"")+"' style='text-align:left;' title='pt'><td valign='top'>" + language["pt"] + "</td><td >" + numlang['pt'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["pt"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (34%2?"second":"")+"' style='text-align:left;' title='pt-BR'><td valign='top'>" + language["pt-BR"] + "</td><td >" + numlang['pt-BR'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["pt-BR"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (35%2?"second":"")+"' style='text-align:left;' title='ro'><td valign='top'>" + language["ro"] + "</td><td >" + numlang['ro'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ro"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (36%2?"second":"")+"' style='text-align:left;' title='ru'><td valign='top'>" + language["ru"] + "</td><td >" + numlang['ru'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ru"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (37%2?"second":"")+"' style='text-align:left;' title='sh'><td valign='top'>" + language["sh"] + "</td><td >" + numlang['sh'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sh"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (38%2?"second":"")+"' style='text-align:left;' title='sl'><td valign='top'>" + language["sl"] + "</td><td >" + numlang['sl'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (39%2?"second":"")+"' style='text-align:left;' title='sr'><td valign='top'>" + language["sr"] + "</td><td >" + numlang['sr'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (40%2?"second":"")+"' style='text-align:left;' title='sv'><td valign='top'>" + language["sv"] + "</td><td >" + numlang['sv'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sv"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (41%2?"second":"")+"' style='text-align:left;' title='th'><td valign='top'>" + language["th"] + "</td><td >" + numlang['th'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["th"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (42%2?"second":"")+"' style='text-align:left;' title='tr'><td valign='top'>" + language["tr"] + "</td><td >" + numlang['tr'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["tr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (43%2?"second":"")+"' style='text-align:left;' title='vi'><td valign='top'>" + language["vi"] + "</td><td >" + numlang['vi'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["vi"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (44%2?"second":"")+"' style='text-align:left;' title='zh'><td valign='top'>" + language["zh"] + "</td><td >" + numlang['zh'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["zh"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class='rovas "+ (45%2?"second":"")+"' style='text-align:left;' title='Hung'><td valign='top'>" + language["Hung"] + "</td><td align='right'>" + numlang['Hung'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["Hung"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (46%2?"second":"")+"' style='text-align:left;' title='Roman-large'><td valign='top'>" + language["Roman-large"] + "</td><td >" + numlang['Roman-large'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["Roman-large"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (47%2?"second":"")+"' style='text-align:left;' title='Suzhou'><td valign='top'>" + language["Suzhou"] + "</td><td >" + numlang['Suzhou'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["Suzhou"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
 <!-- **************************************************************************************************** -->
     "<tr><td colspan=2>*Old numeral systems (extended for large numbers) &ndash; Old Hungarian, Roman and Suzhou numerals</td></tr></tbody></table>";
 }
