@@ -254,6 +254,7 @@ function copy_result() {
 <option value='hr'>hr</option>
 <option value='hu'>hu</option>
 <option value='id'>id</option>
+<option value='is'>is</option>
 <option value='it'>it</option>
 <option value='ja'>ja</option>
 <option value='ko'>ko</option>
@@ -1911,23 +1912,26 @@ USD:(\D+) $(\1: americký dolar, amerických dolarů, cent, centů)
 
 ([-−]?\d+)	$(ordinal |$1)
 
-(.*)(jedno|jeden)	\1první
-(.*)(dvě|dva)		\1druhý
-(.*)tři			\1třetí
-(.*)čtyři		\1čtvrtý
-(.*)pět			\1pátý
-(.*)(šest|sedm|osm|desát|náct|sát)	\1\2ý
-(.*)devět		\1devátý
-"(.*)[^ ](c|s)et"	\1\2átý
-(.*)sto			\1stý
-"(.*)dvě stě"		\1dvoustý
-"(.*)tři sta"		\1třístý
-"(.*)čtyři sta"		\1čtyřstý
-"(.*)(pět|šest|sedm|osm) set"	\1\2istý
-"(.*)devět set"		\1devítistý
-(.*)tisíce?		\1tisící
-(.*)milión[yů]		\1milióntý
-(.*)miliard[ay]?	\1miliardtý
+(.*)(jedno|jeden)(.*)	$(ordinal \1první\3)
+
+"(.*)dvě stě(.*)"	$(ordinal \1dvoustý\2)
+"(.*)tři sta(.*)"	$(ordinal \1třístý\2)
+"(.*)čtyři sta(.*)"	$(ordinal \1čtyřstý\2)
+"(.*)(pět|šest|sedm|osm) set(.*)"	$(ordinal \1\2istý\3)
+"(.*)devět set(.*)"	$(ordinal \1devítistý\2)
+
+(.*)(dvě|dva)\b(.*)	$(ordinal \1druhý\3)
+(.*)tři\b(.*)		$(ordinal \1třetí\2)
+(.*)čtyři\b(.*)		$(ordinal \1čtvrtý\2)
+(.*)pět\b(.*)		$(ordinal \1pátý\2)
+"(.*)(šest|sedm|osm|desát|náct|sát)( .+|$)"	$(ordinal \1\2ý\3)
+(.*)devět\b(.*)		$(ordinal \1devátý\2)
+"(.*)[^ ](c|s)et\b(.*)"	$(ordinal \1\2átý\3)
+(.*)sto\b(.*)		$(ordinal \1stý\2)
+(.*)tisíce?(.*)		\1tisící\2
+(.*)milión[yů](.*)	\1milióntý\2
+(.*)miliard[ay]?(.*)	\1miliardtý\2
+(.*)			\1
 
 == ordinal-number ==
 
@@ -3692,18 +3696,26 @@ ZAR:(.)	$(\1: dél-afrikai rand, cent)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 $(\30)$(\2:s)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 $3$(\2:s)
 
-# Article a/az
+
+# Article a/az (number name)
 
 "(article |cardinal |formal ){3}(([a-zA-Z]+ )*1\d{2}([.,]\d*)?)" az $(formal \2)
 "(article |cardinal ){2}(([a-zA-Z]+ )*1(\d{3})*([.,]\d*)?)" az $2
 "(article |cardinal ){2}(([a-zA-Z]+ )*5.*)" az $2
 "(article |cardinal ){2}(.*)" a $2
 
+
+# Article a/az + suffixation
+
+"article (-[^0-9]+) ([{\(\[]?(\d+|[a-zA-Z])[}\)\]]?)" $(article $(\1 \2))
+
+# Article a/az (number)
+
 == article ==
 
-(1(\d{3}|\d{6})*) az \1
-(5.*) az \1
-(.*) a \1
+([{\(\[]?(1(\d{3}|\d{6})*|[aefilmnorsuxyAEFILMNORSUXY])[}\)\]]?(-.*)?)	az \1
+([{\(\[]?5.*)		az \1
+(.*)			a \1
 
 == ordinal ==
 
@@ -3764,9 +3776,161 @@ ZAR:(.)	$(\1: dél-afrikai rand, cent)
 (\d{1,4})(\d{12}) \1 billió[ $(text \2)]
 (\d{1,4})(\d{15}) \1 billiárd[ $(text \2)]
 
+# suffix functions for numbers, dates, letters and parenthesized references
+# -a, -áig, -ától, -ba, -ban, -ból, -d, -dik, -hoz, -nak, -nál, -n, -ra, -ról, -s, -szor, -szoros, -t, -tól, -ul, -vá, -vé
+# for example:
+#   -t 2 -> 2-t
+#   -t 3 -> 3-at
+#   -t 4 -> 4-et
+#   -t 5 -> 5-öt
+#   -t 6 -> 6-ot
+#   -ban a) -> a)-ban
+#   -ban b) -> b)-ben
+
+== -a ==
+
+"(1|.* 1)"	\1-je
+"(2|.* 2)"	\1-a
+
+== -ai ==
+
+"(1|.* 1)"	\1-jei
+0"(2|.* 2)"	\1-ai
+
+== -i ==
+
+"(1|.* 1)"	\1-ji
+
+== -án ==
+
+"(1|.* 1)"	\1-jén
+"(2|.* 2)"	\1-án
+
+== -áig ==
+
+"(1|.* 1)"	\1-jéig
+"(2|.* 2)"	\1-áig
+
+== -ától ==
+
+"(1|.* 1)"	\1-jétől
+"(2|.* 2)"	\1-ától
+
+== -d ==
+
+([{\(\[]?(.*[^0]0{6,8}|.*[^0]0{12,14})[}\)\]]?)	\1-od
+([{\(\[]?[ahkoquAHKOQU][}\)\]]?)	\1-ad
+([{\(\[]?[bcdefgijlmnprstvwxzBCDEFGIJLMNPRSTVWXZ][}\)\]]?)	\1-ed
+
+== -([ds]) ==
+
+([{\(\[]?.*2[}\)\]]?)	\2-e\1
+([{\(\[]?[yY][.]?[}\)\]]?)	\2-o\1
+
+== -([dst]) ==
+
+([{\(\[]?.*5[}\)\]]?)		\2-ö\1
+([{\(\[]?(0|.*2|.*[^0]0{6,8}|.*[^0]0{12,14}|[abcdeghijkopqtuvwyzABCDEGHIJKOPQTUVWYZ][.]?)[}\)\]]?)	\2-\1
+([{\(\[]?(.*6|.*[^0]0{9,11}|.*[^0]0{15,17})[}\)\]]?)	\2-o\1
+([{\(\[]?(\d+|[a-zA-Z])[}\)\]]?)	$(-a\1 \2)
+
+== -dik ==
+
+(.?(\d+|[a-zA-Z][.]?)[}\)\]]?)		$(-d \1)ik
+
+== -hoz ==
+
+((.*2|.*5)[}\)\]]?)	\1-höz
+
+== -szoros ==
+
+(.*5[}\)\]]?)		\1-szörös
+
+== -szor ==
+
+([{\(\[]?(\d+|[a-zA-Z])[}\]\)]?)	$(-szor $(-szoros \1))
+(.*-sz.r).s		\1
+
+== -ig ==
+
+szerda	szerdáig
+((.*\d|[{\(\[]?[a-zA-Z])[}\)\]]?)	\1-ig
+(.*\D)	\1ig
+
+== -tól ==
+
+szerda	szerdától
+(hétfő|kedd|csütörtök|péntek|(szeptem|októ|novem|decem)ber)	\1től
+(szombat|vasárnap|(jan|febr)uár|március|április|május|jú(n|l)ius|augusztus)	\1tól
+
+== -ban ==
+
+((szeptem|októ|novem|decem)ber)	\1ben
+((jan|febr)uár|március|április|május|jú(n|l)ius|augusztus)	\1ban
+
+== -n ==
+
+hétfő		hétfőn
+kedd		kedden
+szerda		szerdán
+csütörtök	csütörtökön
+péntek		pénteken
+(szombat|vasárnap)	\1on
+
+(.*5[}\)\]]?)		\1-ön
+([{\(\[]?(0|.*2|.*[^0]0{6,8}|.*[^0]0{12,14}|[abcdeghijkopqtuvwzABCDEGHIJKOPQTUVWZ][.]?)[}\)\]]?)	\1-n
+(.?(\d+|[flmnrsxyFLMNRSXY][.]?)[}\)\]]?)		$(-on \1)
+
+== -val ==
+
+([{\(\[]?(0|.*[^0]0{6,8}|.*[^0]0{12,14}|[ahkoquAHKOQU][.]?)[}\)\]]?)	\1-val
+(.*[14][}\)\]]?)	\1-gyel
+(.*(2|[bcdegijptvwzBCDEGIJPTVWZ][.]?)[}\)\]]?)		\1-vel
+(.*3[}\)\]]?)		\1-mal
+(.*[57][}\)\]]?)	\1-tel
+(.*6[}\)\]]?)		\1-tal
+((.*8|.*30)[}\)\]]?)	\1-cal
+(.*9[}\)\]]?)		\1-cel
+(.*10[}\)\]]?)		\1-zel
+(.*20[}\)\]]?)		\1-szal
+(.*[4579]0[}\)\]]?)	\1-nel
+(.*([68]0|[yY][.]?)[}\)\]]?)	\1-nal
+(.*[^0]00[}\)\]]?)	\1-zal
+(.*[^0]0{3,5}[}\)\]]?)	\1-rel
+((.*[^0]0{9,11}|.*[^0]0{15,17})[}\)\]]?)	\1-dal
+(.*([flmnrsFLMNRS])[.]?[}\)\]]?)	\1-\2el
+(.*[xX][.]?[}\)\]]?)	\1-szel
+
+== -vá ==
+
+([{\(\[]?(\d+|[a-zA-Z])[}\)\]]?)		$(-vá $(-val \1))
+(.*)al		\1á
+(.*)el		\1é
+
+== (-a|-ad|-ai|-án|-áig|-ban?|-ból|-hoz|-i|-nak|-nál|-on|-ra|-ról|-as|-szoros|-at|-á?tól|-ul) ==
+
+# 1-be, 2-nek, 4-et etc., b)-ben, c)-ből, d)-hez, n-et etc.
+# add affix after conversion to the alternative form
+
+([{\(\[]?(.*[124579]|.*[14579]0|.*[^0]0{3,5}|[bcdefgijlmnprstvwxzBCDEFGIJLMNPRSTVWXZ][.]?)[}\)\]]?) \2$(\1 \1)
+
+# otherwise: 0-ba, 3-at, 6-nál etc., a)-ban, h)-ból, k-hoz, y-ról etc.
+
+([{\(\[]?(.*[0-9]+|[ahkoquyAHKOQUY][.]?)[}\)\]]?) \2\1
+
+# conversion to the alternative form: -ban -> -ben etc.
+
+-szoros		-szeres
+-(.*)[ao](.*)	-\2e\3
+-([brt])ól	-\2ől
+-ától		-étől
+-(.*)[á](.*)	-\2é\3
+-ul		-ül
+
 == help ==
 
-"" $(1)|, $(2)|, $(3)\n$(\0 ordinal)$(\0 ordinal-number)year: $(year 2001), $(year 2002)|, $(year 2003)\nformal: $(formal 100), $(formal 200), $(formal 1000)\ntext: $(text 1), $(text 12000), $(text 10000000000)\ncurrency \(for example, HUF\): $(HUF 2,5)\nformal HUF: $(formal HUF 102,5)
+"" $(1)|, $(2)|, $(3)\n$(\0 ordinal)$(\0 ordinal-number)year: $(year 2001), $(year 2002)|, $(year 2003)\nformal: $(formal 100), $(formal 200), $(formal 1000)\ntext: $(text 1), $(text 12000), $(text 10000000000)\ncurrency \(for example, HUF\): $(HUF 2,5)\nformal HUF: $(formal HUF 102,5)\nSuffixation of numbers and letters: -a, -án, -áig, -ától, -ba, -ban, -ból, -d, -dik, -hoz,\n    -nak, -nál, -n, -ra, -ról, -s, -szor, -szoros, -t, -tól, -ul, -vá, -val,\n    for example: -szor 15 -> $(-szor 15)\narticle: $(article 5)\narticle cardinal: $(article cardinal 100)\narticle cardinal formal: $(article cardinal formal 100)\narticle -ban: $(article -ban a\))
+
 "(ordinal(-number)?|USD)" \1: $(\1 1), $(\1 2), $(\1 3)\n
 
 </textarea>
@@ -3893,6 +4057,110 @@ ZWL:(.)	$(\1: dollar Zimbabwe, sen)
 
 "" $(1), $(2), $(3)\n$(help ordinal)$(help ordinal-number)
 (ordinal(-number)?) \1: $(\1 1), $(\1 2), $(\1 3)\n
+</textarea>
+<textarea id='is' class='hidden'>
+^0 núll
+1 einn
+2 tveir
+3 þrír
+4 fjórir
+5 fimm
+6 sex
+7 sjö
+8 átta
+9 níu
+10 tíu
+11 ellefu
+12 tólf
+13 þrettán
+14 fjórtán
+1([56]) $1tán
+17 sautján
+18 átján
+19 nítján
+2(\d) tuttugu[ og $1]
+3(\d) þrjátíu[ og $1]
+4(\d) fjörutíu[ og $1]
+(\d)(\d) $1tíu[ og $2]
+1(\d\d) hundrað[ og $1]
+(\d)(\d\d) [$(cardinal-neuter $1) ]hundrað[ og $2]
+1(\d{3}) þúsund[ og $1]
+(\d{1,3})(\d{3}) [$(cardinal-neuter $1) ]þúsund[ og $2]
+1(\d{6}) ein milljón[ $1]
+(\d{1,3})(\d{6}) [$(cardinal-feminine $1) ]milljónir[ og $2]
+1(\d{9}) einn miljarður[ $1]
+(\d{1,33})(\d{9}) [$1 ]miljarðar[ $2]
+
+== cardinal(-masculine)? ==
+
+(\d+) $2
+
+== cardinal-feminine ==
+
+(\d+) $(cardinal-feminine $1)
+(.*)einn \1ein
+(.*)tveir \1tvær
+(.*)þrír \1þrjár
+(.*)fjórir \1fjórar
+(.*) \1
+
+== cardinal-neuter ==
+
+(\d+) $(cardinal-neuter $1)
+(.*)einn \1eitt
+(.*)tveir \1tvö
+(.*)þrír \1þrjú
+(.*)fjórir \1fjögur
+(.*) \1
+
+== ordinal(-masculine)? ==
+
+0
+1 fyrsti
+2 annar
+3 þriðji
+4 fjórði
+5 fimmti
+6 sjötti
+7 sjöundi
+8 áttundi
+9 níundi
+10 tíundi
+(1\d) $2di
+2(\d) tuttugasti[ og $(ordinal \2)]
+3(\d) þrítugasti[ og $(ordinal \2)]
+4(\d) fertugasti[ og $(ordinal \2)]
+8(\d) áttugasti[ og $(ordinal \2)]
+(\d)(\d) $2tugasti[ og $(ordinal \3)]
+1(\d\d) hundraðasti[ og $(ordinal \2)]
+(\d)(\d\d) [$(cardinal-neuter \2)]hundraðasti[ og $(ordinal \3)]
+1(\d{3}) þúsundasti[ og $(ordinal \2)]
+(\d{1,3})(\d{3}) [$(cardinal-neuter \2)]hundraðasti[ og $(ordinal \3)]
+(.*) \1
+
+== ordinal-feminine ==
+
+(.*)annar(.*) $(ordinal-feminine \1önnur\2)
+
+== ordinal-neuter ==
+
+(.*)annar(.*) $(ordinal-feminine \1annað\2)
+
+== ordinal(-feminine|-neuter)? ==
+
+(\d+) $(ordinal-feminine |$(ordinal \2))
+(.*)i\b(.*) $(ordinal-feminine \2a\3)
+(.*) \2
+
+== ordinal-number ==
+
+(\d+)	\1.
+
+== help ==
+
+"" |$(1)|, |$(2)|, |$(3)|\n$(help cardinal-feminine)$(help cardinal-masculine)$(help cardinal-neuter)$(help ordinal-feminine)$(help ordinal-masculine)$(help ordinal-neuter)$(help ordinal-number)
+(.*) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
+
 </textarea>
 <textarea id='it' class='hidden'>
 ^0 zero
@@ -5747,14 +6015,55 @@ USD:(.+) $(\1: ameriški dolar, ameriška dolarja, ameriški dolarji, ameriške 
 "(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 $(\30)$(\2:s5)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 $3$(\2:s5)
 
+== cardinal(-feminine|-neuter)? ==
+
+(\d+) $2
+
+== cardinal-masculine ==
+
+(\d+) $(cardinal-masculine |$1)
+(.*)dve \1dva
+(.*) \1
+
+== cardinal-adverbial ==
+
+(\d+) $(cardinal-adverbial |$1)
+(.*)ena \1enkrat
+(.*)dve \1dvakrat
+(.*) \1krat
+
+== ordinal(-masculine)? ==
+
+(\d+) $(ordinal |$2)
+"(.*) (.*)" $(ordinal \2\3) # remove spaces
+(.*)ena \2prvi
+(.*)dve \2drugi
+(.*)tri \2tretji
+(.*)štiri \2četrti
+(.*) \2i
+
+== ordinal-feminine ==
+
+(\d+) $(ordinal-feminine $(ordinal \1))
+(.*)i \1a
+
+== ordinal-neuter ==
+
+(\d+) $(ordinal-neuter $(ordinal \1))
+(.*)i \1o
+
+== ordinal-adverbial ==
+
+(\d+) $(ordinal |$1)č
+
 == ordinal-number ==
 
 (\d+)	\1.
 
 == help ==
-
-"" |$(1)|, |$(2)|, |$(3)|\n$(help ordinal-number)
+"" |$(1)|, |$(2)|, |$(3)|\n$(help cardinal-feminine)$(help cardinal-masculine)$(help cardinal-neuter)$(help ordinal-feminine)$(help ordinal-masculine)$(help ordinal-neuter)$(help ordinal-number)
 (.*) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
+
 </textarea>
 <textarea id='sr' class='hidden'>
 #
