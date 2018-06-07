@@ -189,6 +189,9 @@ ALEX BODNARU
 ASTERISKS
 (Latvian)
 •
+ADRIÁN CHAVES 
+(Galician)
+•
 MIKE KAGANSKI 
 (Russian)
 •
@@ -228,6 +231,8 @@ RUUD BAARS
 ADOLFO JAYME BARRIENTOS 
 •
 STEPHAN BERGMANN
+•
+TOMÁŠ CHVÁTAL 
 •
 CLAUDIO COLOMBO 
 •
@@ -295,9 +300,13 @@ SUPAPONG
 •
 KÁLMÁN SZALAI 
 •
+ANDRÁS TÍMÁR 
+•
 TANTAI THANAKANOK 
 •
 XHYDROGENE
+•
+MIKLÓS VAJNA 
 •
 LAIMONAS VĖBRA 
 •
@@ -1880,7 +1889,7 @@ f:(.*un)([^a].*,|,)(.*as?) $(f:\1a\2\3)	# un libra -> una libra
 f:(.*ient)o(s.*),(.*as?) $(f:\1a\2,\3)  # doscientos libra/libras -> doscientas
 f:(.*),(.*) \1\2
 
-"([A-Z]{3}) ([-−]?[01])([.,]00?)?"$(f:|$2,$(\1:us))
+"([A-Z]{3}) ([-−]?1)([.,]00?)?"$(f:|$2,$(\1:us))
 "([A-Z]{3}) ([-−]?\d+0{6,})([.,]00?)?" $2 de$(\1:up)
 "([A-Z]{3}) ([-−]?\d+)([.,]00?)?"$(f:|$2,$(\1:up))
 
@@ -2291,6 +2300,197 @@ XPF:(\D+) $(\1: franc Pacifique, francs Pacifique, de francs Pacifique, centime,
 
 "" $(1), $(2), $(3)\n$(help ordinal)$(help ordinal-feminine)$(help ordinal-masculine)$(help ordinal-number-feminine)$(help ordinal-number-masculine)
 (ordinal(-feminine|-masculine|-number)?) \1: $(\1 1), $(\1 2), $(\1 3)\n
+</textarea>
+<textarea id='gl' class='hidden'>
+^0 cero
+1$ un
+1 un
+2 dous
+3 tres
+4 catro
+5 cinco
+6 seis
+7 sete
+8 oito
+9 nove
+10 dez
+11 once
+12 doce
+13 trece
+14 catorce
+15 quince
+1(\d) deza$1
+20 vinte
+30 trinta
+40 corenta
+50 cincuenta
+60 sesenta
+70 setenta
+80 oitenta
+90 noventa
+(\d)(\d) $(\10) e $2
+1(\d\d) cen[to $1]
+(\d\d) $(\100) $2
+(\d)(\d\d) $1centos[ $2]
+1(\d{3}) mil[ $1]
+(\d{1,3})(\d{3}) $1 mil[ $2]
+1(\d{6}) un millón[ $1]
+(\d{1,6})(\d{6}) $1 millóns[ $2]
+1(\d{12}) un billón[ $1]
+(\d{1,6})(\d{12}) $1 billóns[ $2]
+1(\d{18}) un trillón[ $1]
+(\d{1,6})(\d{18}) $1 trillóns[ $2]
+(\d{7,})(\d{18}) $1 de trillóns[ $2]
+
+# negative number
+
+[-−](\d+) menos |$1
+
+# decimals
+
+([-−]?\d+)[.] $1| punto
+([-−]?\d+)[,] $1| coma
+([-−]?\d+[.,])([^0]\d) $1| |$2
+([-−]?\d+[.,])(\d)(\d)(\d) |$1 |$2| |$3| |$4
+([-−]?\d+[.,]\d*)(\d) $1| |$2
+
+# currency
+
+# unit/subunit singular/plural
+
+us:([^,]*),([^,]*),([^,]*),([^,]*) \1
+up:([^,]*),([^,]*),([^,]*),([^,]*) \2
+ss:([^,]*),([^,]*),([^,]*),([^,]*) \3
+sp:([^,]*),([^,]*),([^,]*),([^,]*) \4
+
+ARS:(\D+) $(\1: peso arxentino, pesos arxentinos, centavo, centavos)
+BOB:(\D+) $(\1: boliviano, bolivianos, centavo, centavos)
+BZD:(\D+) $(\1: dólar belizense, dólares belizenses, centavo, centavos)
+CEC:(\D+) $(\1: peso convertíbel, pesos convertíbeis, centavo, centavos)
+CHF:(\D+) $(\1: franco suízo, francos suízos, céntimo, céntimos)
+CLP:(\D+) $(\1: peso chileno, pesos chilenos, centavo, centavos)
+CNY:(\D+) $(\1: iuan renminbi, iuans renminbi, fen, fen)
+COP:(\D+) $(\1: peso colombiano, pesos colombianos, centavo, centavos)
+CRC:(\D+) $(\1: colón costarriqueño, colóns costarriqueños, céntimo, céntimos)
+DOP:(\D+) $(\1: peso dominicano, pesos dominicanos, centavo, centavos)
+ESP:(\D+) $(\1: peseta, pesetas, céntimo, céntimos)
+EUR:(\D+) $(\1: euro, euros, céntimo, céntimos)
+GBP:(\D+) $(\1: libra esterlina, libras esterlinas, penique, peniques)
+GTQ:(\D+) $(\1: quetzal, quetzais, centavo, centavos)
+HLN:(\D+) $(\1: lempira, lempiras, centavo, centavos)
+JPY:(\D+) $(\1: ien, iens sen, sen)
+MXN:(\D+) $(\1: peso mexicano, pesos mexicanos, centavo, centavos)
+NIO:(\D+) $(\1: córdoba, córdobas, centavo, centavos)
+PEN:(\D+) $(\1: sol, soles, centavo, centavos)
+PYG:(\D+) $(\1: guaraní, guaranís, céntimo, céntimos)
+USD:(\D+) $(\1: dólar estadounidense, dólares estadounidenses, centavo, centavos)
+UYU:(\D+) $(\1: peso uruguaio, pesos uruguaios, centésimo, centésimos)
+VEF:(\D+) $(\1: bolívar forte, bolívares fortes, céntimo, céntimos)
+
+# masculine to feminine conversion of "un" after millions,
+# if "as?$" matches currency name
+
+f:(.*ill)(.*),(.*) \1$(f:\2,\3)		# don't modify un in millions
+f:(.*un)([^h].*,|,)(.*as?) $(f:\1ha\2\3)	# un libra → unha libra
+f:(.*)dous(.*,|,)(.*as?) $(f:\1dúas\2\3)	# dous libras → dúas libra
+f:(.*)douscentos(.*,|,)(.*as?) $(f:\1duascentas\2\3)	# douscentos libras → duascentas libras
+f:(.*ent)o(s.*),(.*as?) $(f:\1a\2,\3)  # trescentos libras → trescentas libras
+f:(.*),(.*) \1\2
+
+"([A-Z]{3}) ([-−]?1)([.,]00?)?"$(f:|$2,$(\1:us))
+"([A-Z]{3}) ([-−]?\d+0{6,})([.,]00?)?" $2 de$(\1:up)
+"([A-Z]{3}) ([-−]?\d+)([.,]00?)?"$(f:|$2,$(\1:up))
+
+"(CNY [-−]?\d+)[.,]10?" $1 $2 jiao
+"(CNY [-−]?\d+)[.,](\d)0?" $1 $2 jiao
+"(CNY [-−]?\d+[.,]\d)1" $1 $2 fen
+"(CNY [-−]?\d+[.,]\d)(\d)" $1 $2 fen
+
+"(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 con |$(1)$(\2:ss)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 con |$(\30)$(\2:sp)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 con |$3$(\2:sp)
+
+# ordinal
+
+feminine:(.*un) \1ha
+feminine:(.*) \1
+
+== feminine ==
+
+(.*)	$(feminine:|$1|)
+
+== masculine ==
+
+1 un
+(.*)	$1
+
+== ordinal-masculine ==
+
+(.*) $(ordinal \1)
+
+== ordinal ==
+
+1 primeiro
+2 segundo
+3 terceiro
+4 cuarto
+5 quinto
+6 sexto
+7 sétimo
+8 oitavo
+9 noveno
+10 décimo
+11 undécimo
+12 duodécimo
+20 vixésimo
+30 trixésimo
+40 cuadraxésimo
+50 quincuaxésimo
+60 sesaxésimo
+70 septuaxésimo
+80 octoxésimo
+90 nonaxésimo
+(\d)(\d) $(ordinal \10) $(ordinal \2)
+100 centésimo
+200 ducentésimo
+300 tricentésimo
+400 cuadrinxentésimo
+500 quinxentésimo
+600 sexcentésimo
+700 septinxentésimo
+800 octinxentésimo
+900 noninxentésimo
+(\d)(\d\d) $(ordinal \100) $(ordinal \2)
+1(\d{3}) milésimo[ $(ordinal \1)]
+(\d{1,3})(\d{3}) $1 milésimo[ $(ordinal \2)]
+1(\d{6}) millonésimo[ $(ordinal \1)]
+(\d{1,3})(\d{6}) $1 millonésimo[ $(ordinal \2)]
+1(\d{9}) milmillonésimo[ $(ordinal \1)]
+(\d{1,3})(\d{9}) $1 milmillonésimo[ $(ordinal \2)]
+
+== ordinal-feminine ==
+
+([-−]?\d+) $(ordinal-feminine $(ordinal-masculine \1))
+(.*)o\b(.*)  $(ordinal-feminine \1a\2)
+(.*)   \1
+
+== ordinal-masculine-adjective ==
+
+([-−]?\d+) $(ordinal-masculine-adjective $(ordinal-masculine \1))
+(.*) \1
+
+# ordinal abbreviation
+
+== (ordinal)-number-(feminine|masculine|masculine-adjective) ==
+
+([-−]?\d+) \3$(ordinal-number-feminine $(\1-\2 \3))
+.*a .ª
+.*o .º
+
+== help ==
+
+"" $(1)|, $(2), $(3)\n$(\0 feminine)$(\0 masculine)$(\0 ordinal-number-masculine)$(\0 ordinal-number-masculine-adjective)$(\0 ordinal-number-feminine)$(\0 ordinal-feminine)$(\0 ordinal-masculine)$(\0 ordinal-masculine-adjective)
+(feminine|masculine|ordinal(-number)?(-feminine|-masculine)?(-adjective)?) \1: $(\1 1), $(\1 2), $(\1 3)\n
 </textarea>
 <textarea id='he' class='hidden'>
 ^0 אפס
@@ -7619,7 +7819,7 @@ f:(.*un)([^a].*,|,)(.*as?) $(f:\1a\2\3)	# un libra -> una libra
 f:(.*ient)o(s.*),(.*as?) $(f:\1a\2,\3)  # doscientos libra/libras -> doscientas
 f:(.*),(.*) \1\2
 
-"([A-Z]{3}) ([-−]?[01])([.,]00?)?"$(f:|$2,$(\1:us))
+"([A-Z]{3}) ([-−]?1)([.,]00?)?"$(f:|$2,$(\1:us))
 "([A-Z]{3}) ([-−]?\d+0{6,})([.,]00?)?" $2 de$(\1:up)
 "([A-Z]{3}) ([-−]?\d+)([.,]00?)?"$(f:|$2,$(\1:up))
 
@@ -8030,6 +8230,197 @@ XPF:(\D+) $(\1: franc Pacifique, francs Pacifique, de francs Pacifique, centime,
 
 "" $(1), $(2), $(3)\n$(help ordinal)$(help ordinal-feminine)$(help ordinal-masculine)$(help ordinal-number-feminine)$(help ordinal-number-masculine)
 (ordinal(-feminine|-masculine|-number)?) \1: $(\1 1), $(\1 2), $(\1 3)\n
+</textarea>
+<textarea rows='0' cols='0' id='gl' class='hidden'>
+^0 cero
+1$ un
+1 un
+2 dous
+3 tres
+4 catro
+5 cinco
+6 seis
+7 sete
+8 oito
+9 nove
+10 dez
+11 once
+12 doce
+13 trece
+14 catorce
+15 quince
+1(\d) deza$1
+20 vinte
+30 trinta
+40 corenta
+50 cincuenta
+60 sesenta
+70 setenta
+80 oitenta
+90 noventa
+(\d)(\d) $(\10) e $2
+1(\d\d) cen[to $1]
+(\d\d) $(\100) $2
+(\d)(\d\d) $1centos[ $2]
+1(\d{3}) mil[ $1]
+(\d{1,3})(\d{3}) $1 mil[ $2]
+1(\d{6}) un millón[ $1]
+(\d{1,6})(\d{6}) $1 millóns[ $2]
+1(\d{12}) un billón[ $1]
+(\d{1,6})(\d{12}) $1 billóns[ $2]
+1(\d{18}) un trillón[ $1]
+(\d{1,6})(\d{18}) $1 trillóns[ $2]
+(\d{7,})(\d{18}) $1 de trillóns[ $2]
+
+# negative number
+
+[-−](\d+) menos |$1
+
+# decimals
+
+([-−]?\d+)[.] $1| punto
+([-−]?\d+)[,] $1| coma
+([-−]?\d+[.,])([^0]\d) $1| |$2
+([-−]?\d+[.,])(\d)(\d)(\d) |$1 |$2| |$3| |$4
+([-−]?\d+[.,]\d*)(\d) $1| |$2
+
+# currency
+
+# unit/subunit singular/plural
+
+us:([^,]*),([^,]*),([^,]*),([^,]*) \1
+up:([^,]*),([^,]*),([^,]*),([^,]*) \2
+ss:([^,]*),([^,]*),([^,]*),([^,]*) \3
+sp:([^,]*),([^,]*),([^,]*),([^,]*) \4
+
+ARS:(\D+) $(\1: peso arxentino, pesos arxentinos, centavo, centavos)
+BOB:(\D+) $(\1: boliviano, bolivianos, centavo, centavos)
+BZD:(\D+) $(\1: dólar belizense, dólares belizenses, centavo, centavos)
+CEC:(\D+) $(\1: peso convertíbel, pesos convertíbeis, centavo, centavos)
+CHF:(\D+) $(\1: franco suízo, francos suízos, céntimo, céntimos)
+CLP:(\D+) $(\1: peso chileno, pesos chilenos, centavo, centavos)
+CNY:(\D+) $(\1: iuan renminbi, iuans renminbi, fen, fen)
+COP:(\D+) $(\1: peso colombiano, pesos colombianos, centavo, centavos)
+CRC:(\D+) $(\1: colón costarriqueño, colóns costarriqueños, céntimo, céntimos)
+DOP:(\D+) $(\1: peso dominicano, pesos dominicanos, centavo, centavos)
+ESP:(\D+) $(\1: peseta, pesetas, céntimo, céntimos)
+EUR:(\D+) $(\1: euro, euros, céntimo, céntimos)
+GBP:(\D+) $(\1: libra esterlina, libras esterlinas, penique, peniques)
+GTQ:(\D+) $(\1: quetzal, quetzais, centavo, centavos)
+HLN:(\D+) $(\1: lempira, lempiras, centavo, centavos)
+JPY:(\D+) $(\1: ien, iens sen, sen)
+MXN:(\D+) $(\1: peso mexicano, pesos mexicanos, centavo, centavos)
+NIO:(\D+) $(\1: córdoba, córdobas, centavo, centavos)
+PEN:(\D+) $(\1: sol, soles, centavo, centavos)
+PYG:(\D+) $(\1: guaraní, guaranís, céntimo, céntimos)
+USD:(\D+) $(\1: dólar estadounidense, dólares estadounidenses, centavo, centavos)
+UYU:(\D+) $(\1: peso uruguaio, pesos uruguaios, centésimo, centésimos)
+VEF:(\D+) $(\1: bolívar forte, bolívares fortes, céntimo, céntimos)
+
+# masculine to feminine conversion of "un" after millions,
+# if "as?$" matches currency name
+
+f:(.*ill)(.*),(.*) \1$(f:\2,\3)		# don't modify un in millions
+f:(.*un)([^h].*,|,)(.*as?) $(f:\1ha\2\3)	# un libra → unha libra
+f:(.*)dous(.*,|,)(.*as?) $(f:\1dúas\2\3)	# dous libras → dúas libra
+f:(.*)douscentos(.*,|,)(.*as?) $(f:\1duascentas\2\3)	# douscentos libras → duascentas libras
+f:(.*ent)o(s.*),(.*as?) $(f:\1a\2,\3)  # trescentos libras → trescentas libras
+f:(.*),(.*) \1\2
+
+"([A-Z]{3}) ([-−]?1)([.,]00?)?"$(f:|$2,$(\1:us))
+"([A-Z]{3}) ([-−]?\d+0{6,})([.,]00?)?" $2 de$(\1:up)
+"([A-Z]{3}) ([-−]?\d+)([.,]00?)?"$(f:|$2,$(\1:up))
+
+"(CNY [-−]?\d+)[.,]10?" $1 $2 jiao
+"(CNY [-−]?\d+)[.,](\d)0?" $1 $2 jiao
+"(CNY [-−]?\d+[.,]\d)1" $1 $2 fen
+"(CNY [-−]?\d+[.,]\d)(\d)" $1 $2 fen
+
+"(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 con |$(1)$(\2:ss)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 con |$(\30)$(\2:sp)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 con |$3$(\2:sp)
+
+# ordinal
+
+feminine:(.*un) \1ha
+feminine:(.*) \1
+
+== feminine ==
+
+(.*)	$(feminine:|$1|)
+
+== masculine ==
+
+1 un
+(.*)	$1
+
+== ordinal-masculine ==
+
+(.*) $(ordinal \1)
+
+== ordinal ==
+
+1 primeiro
+2 segundo
+3 terceiro
+4 cuarto
+5 quinto
+6 sexto
+7 sétimo
+8 oitavo
+9 noveno
+10 décimo
+11 undécimo
+12 duodécimo
+20 vixésimo
+30 trixésimo
+40 cuadraxésimo
+50 quincuaxésimo
+60 sesaxésimo
+70 septuaxésimo
+80 octoxésimo
+90 nonaxésimo
+(\d)(\d) $(ordinal \10) $(ordinal \2)
+100 centésimo
+200 ducentésimo
+300 tricentésimo
+400 cuadrinxentésimo
+500 quinxentésimo
+600 sexcentésimo
+700 septinxentésimo
+800 octinxentésimo
+900 noninxentésimo
+(\d)(\d\d) $(ordinal \100) $(ordinal \2)
+1(\d{3}) milésimo[ $(ordinal \1)]
+(\d{1,3})(\d{3}) $1 milésimo[ $(ordinal \2)]
+1(\d{6}) millonésimo[ $(ordinal \1)]
+(\d{1,3})(\d{6}) $1 millonésimo[ $(ordinal \2)]
+1(\d{9}) milmillonésimo[ $(ordinal \1)]
+(\d{1,3})(\d{9}) $1 milmillonésimo[ $(ordinal \2)]
+
+== ordinal-feminine ==
+
+([-−]?\d+) $(ordinal-feminine $(ordinal-masculine \1))
+(.*)o\b(.*)  $(ordinal-feminine \1a\2)
+(.*)   \1
+
+== ordinal-masculine-adjective ==
+
+([-−]?\d+) $(ordinal-masculine-adjective $(ordinal-masculine \1))
+(.*) \1
+
+# ordinal abbreviation
+
+== (ordinal)-number-(feminine|masculine|masculine-adjective) ==
+
+([-−]?\d+) \3$(ordinal-number-feminine $(\1-\2 \3))
+.*a .ª
+.*o .º
+
+== help ==
+
+"" $(1)|, $(2), $(3)\n$(\0 feminine)$(\0 masculine)$(\0 ordinal-number-masculine)$(\0 ordinal-number-masculine-adjective)$(\0 ordinal-number-feminine)$(\0 ordinal-feminine)$(\0 ordinal-masculine)$(\0 ordinal-masculine-adjective)
+(feminine|masculine|ordinal(-number)?(-feminine|-masculine)?(-adjective)?) \1: $(\1 1), $(\1 2), $(\1 3)\n
 </textarea>
 <textarea rows='0' cols='0' id='he' class='hidden'>
 ^0 אפס
@@ -11788,6 +12179,7 @@ language = {
 "fr": "Français",
 "fr-BE": "Français&nbsp;(BE)",
 "fr-CH": "Français&nbsp;(CH)",
+"gl": "Galego",
 "he": "עברית",
 "hr": "Hrvatski",
 "hu": "Magyar",
@@ -11840,6 +12232,7 @@ default_currency = {
 "fr": "EUR",
 "fr-BE": "EUR",
 "fr-CH": "CHF",
+"gl": "EUR",
 "id": "IDR",
 "is": "ISK",
 "it": "EUR",
@@ -11889,6 +12282,7 @@ numlang['eo']=new Soros(document.getElementById('eo').value, 'eo')
 numlang['es']=new Soros(document.getElementById('es').value, 'es')
 numlang['fi']=new Soros(document.getElementById('fi').value, 'fi')
 numlang['fr']=new Soros(document.getElementById('fr').value, 'fr')
+numlang['gl']=new Soros(document.getElementById('gl').value, 'gl')
 numlang['he']=new Soros(document.getElementById('he').value, 'he')
 numlang['hr']=new Soros(document.getElementById('hr').value, 'hr')
 numlang['hu']=new Soros(document.getElementById('hu').value, 'hu')
@@ -11980,36 +12374,37 @@ function tim( ) {
 "<tr class=' "+ (17%2?"second":"")+"' style='text-align:left;' title='fr'><td valign='top'>" + language["fr"] + "</td><td >" + numlang['fr'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["fr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
 "<tr class=' "+ (18%2?"second":"")+"' style='text-align:left;' title='fr-BE'><td valign='top'>" + language["fr-BE"] + "</td><td >" + numlang['fr-BE'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["fr-BE"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
 "<tr class=' "+ (19%2?"second":"")+"' style='text-align:left;' title='fr-CH'><td valign='top'>" + language["fr-CH"] + "</td><td >" + numlang['fr-CH'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["fr-CH"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (20%2?"second":"")+"' style='text-align:left;' title='he'><td valign='top'>" + language["he"] + "</td><td align='right'>" + numlang['he'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["he"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (21%2?"second":"")+"' style='text-align:left;' title='hr'><td valign='top'>" + language["hr"] + "</td><td >" + numlang['hr'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["hr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (22%2?"second":"")+"' style='text-align:left;' title='hu'><td valign='top'>" + language["hu"] + "</td><td >" + numlang['hu'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["hu"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (23%2?"second":"")+"' style='text-align:left;' title='id'><td valign='top'>" + language["id"] + "</td><td >" + numlang['id'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["id"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (24%2?"second":"")+"' style='text-align:left;' title='is'><td valign='top'>" + language["is"] + "</td><td >" + numlang['is'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["is"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (25%2?"second":"")+"' style='text-align:left;' title='it'><td valign='top'>" + language["it"] + "</td><td >" + numlang['it'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["it"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (26%2?"second":"")+"' style='text-align:left;' title='ja'><td valign='top'>" + language["ja"] + "</td><td >" + numlang['ja'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ja"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (27%2?"second":"")+"' style='text-align:left;' title='ko'><td valign='top'>" + language["ko"] + "</td><td >" + numlang['ko'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ko"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (28%2?"second":"")+"' style='text-align:left;' title='ko-KP'><td valign='top'>" + language["ko-KP"] + "</td><td >" + numlang['ko-KP'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ko-KP"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (29%2?"second":"")+"' style='text-align:left;' title='lb'><td valign='top'>" + language["lb"] + "</td><td >" + numlang['lb'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["lb"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (30%2?"second":"")+"' style='text-align:left;' title='lt'><td valign='top'>" + language["lt"] + "</td><td >" + numlang['lt'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["lt"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (31%2?"second":"")+"' style='text-align:left;' title='lv'><td valign='top'>" + language["lv"] + "</td><td >" + numlang['lv'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["lv"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (32%2?"second":"")+"' style='text-align:left;' title='ms'><td valign='top'>" + language["ms"] + "</td><td >" + numlang['ms'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ms"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (33%2?"second":"")+"' style='text-align:left;' title='nl'><td valign='top'>" + language["nl"] + "</td><td >" + numlang['nl'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["nl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (34%2?"second":"")+"' style='text-align:left;' title='pl'><td valign='top'>" + language["pl"] + "</td><td >" + numlang['pl'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["pl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (35%2?"second":"")+"' style='text-align:left;' title='pt'><td valign='top'>" + language["pt"] + "</td><td >" + numlang['pt'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["pt"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (36%2?"second":"")+"' style='text-align:left;' title='pt-BR'><td valign='top'>" + language["pt-BR"] + "</td><td >" + numlang['pt-BR'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["pt-BR"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (37%2?"second":"")+"' style='text-align:left;' title='ro'><td valign='top'>" + language["ro"] + "</td><td >" + numlang['ro'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ro"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (38%2?"second":"")+"' style='text-align:left;' title='ru'><td valign='top'>" + language["ru"] + "</td><td >" + numlang['ru'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ru"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (39%2?"second":"")+"' style='text-align:left;' title='sh'><td valign='top'>" + language["sh"] + "</td><td >" + numlang['sh'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sh"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (40%2?"second":"")+"' style='text-align:left;' title='sl'><td valign='top'>" + language["sl"] + "</td><td >" + numlang['sl'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (41%2?"second":"")+"' style='text-align:left;' title='sr'><td valign='top'>" + language["sr"] + "</td><td >" + numlang['sr'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (42%2?"second":"")+"' style='text-align:left;' title='sv'><td valign='top'>" + language["sv"] + "</td><td >" + numlang['sv'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sv"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (43%2?"second":"")+"' style='text-align:left;' title='th'><td valign='top'>" + language["th"] + "</td><td >" + numlang['th'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["th"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (44%2?"second":"")+"' style='text-align:left;' title='tr'><td valign='top'>" + language["tr"] + "</td><td >" + numlang['tr'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["tr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (45%2?"second":"")+"' style='text-align:left;' title='vi'><td valign='top'>" + language["vi"] + "</td><td >" + numlang['vi'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["vi"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (46%2?"second":"")+"' style='text-align:left;' title='zh'><td valign='top'>" + language["zh"] + "</td><td >" + numlang['zh'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["zh"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class='rovas "+ (47%2?"second":"")+"' style='text-align:left;' title='Hung'><td valign='top'>" + language["Hung"] + "</td><td align='right'>" + numlang['Hung'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["Hung"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (48%2?"second":"")+"' style='text-align:left;' title='Roman-large'><td valign='top'>" + language["Roman-large"] + "</td><td >" + numlang['Roman-large'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["Roman-large"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (49%2?"second":"")+"' style='text-align:left;' title='Suzhou'><td valign='top'>" + language["Suzhou"] + "</td><td >" + numlang['Suzhou'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["Suzhou"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (20%2?"second":"")+"' style='text-align:left;' title='gl'><td valign='top'>" + language["gl"] + "</td><td >" + numlang['gl'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["gl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (21%2?"second":"")+"' style='text-align:left;' title='he'><td valign='top'>" + language["he"] + "</td><td align='right'>" + numlang['he'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["he"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (22%2?"second":"")+"' style='text-align:left;' title='hr'><td valign='top'>" + language["hr"] + "</td><td >" + numlang['hr'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["hr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (23%2?"second":"")+"' style='text-align:left;' title='hu'><td valign='top'>" + language["hu"] + "</td><td >" + numlang['hu'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["hu"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (24%2?"second":"")+"' style='text-align:left;' title='id'><td valign='top'>" + language["id"] + "</td><td >" + numlang['id'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["id"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (25%2?"second":"")+"' style='text-align:left;' title='is'><td valign='top'>" + language["is"] + "</td><td >" + numlang['is'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["is"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (26%2?"second":"")+"' style='text-align:left;' title='it'><td valign='top'>" + language["it"] + "</td><td >" + numlang['it'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["it"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (27%2?"second":"")+"' style='text-align:left;' title='ja'><td valign='top'>" + language["ja"] + "</td><td >" + numlang['ja'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ja"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (28%2?"second":"")+"' style='text-align:left;' title='ko'><td valign='top'>" + language["ko"] + "</td><td >" + numlang['ko'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ko"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (29%2?"second":"")+"' style='text-align:left;' title='ko-KP'><td valign='top'>" + language["ko-KP"] + "</td><td >" + numlang['ko-KP'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ko-KP"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (30%2?"second":"")+"' style='text-align:left;' title='lb'><td valign='top'>" + language["lb"] + "</td><td >" + numlang['lb'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["lb"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (31%2?"second":"")+"' style='text-align:left;' title='lt'><td valign='top'>" + language["lt"] + "</td><td >" + numlang['lt'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["lt"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (32%2?"second":"")+"' style='text-align:left;' title='lv'><td valign='top'>" + language["lv"] + "</td><td >" + numlang['lv'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["lv"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (33%2?"second":"")+"' style='text-align:left;' title='ms'><td valign='top'>" + language["ms"] + "</td><td >" + numlang['ms'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ms"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (34%2?"second":"")+"' style='text-align:left;' title='nl'><td valign='top'>" + language["nl"] + "</td><td >" + numlang['nl'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["nl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (35%2?"second":"")+"' style='text-align:left;' title='pl'><td valign='top'>" + language["pl"] + "</td><td >" + numlang['pl'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["pl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (36%2?"second":"")+"' style='text-align:left;' title='pt'><td valign='top'>" + language["pt"] + "</td><td >" + numlang['pt'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["pt"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (37%2?"second":"")+"' style='text-align:left;' title='pt-BR'><td valign='top'>" + language["pt-BR"] + "</td><td >" + numlang['pt-BR'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["pt-BR"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (38%2?"second":"")+"' style='text-align:left;' title='ro'><td valign='top'>" + language["ro"] + "</td><td >" + numlang['ro'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ro"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (39%2?"second":"")+"' style='text-align:left;' title='ru'><td valign='top'>" + language["ru"] + "</td><td >" + numlang['ru'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ru"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (40%2?"second":"")+"' style='text-align:left;' title='sh'><td valign='top'>" + language["sh"] + "</td><td >" + numlang['sh'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sh"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (41%2?"second":"")+"' style='text-align:left;' title='sl'><td valign='top'>" + language["sl"] + "</td><td >" + numlang['sl'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (42%2?"second":"")+"' style='text-align:left;' title='sr'><td valign='top'>" + language["sr"] + "</td><td >" + numlang['sr'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (43%2?"second":"")+"' style='text-align:left;' title='sv'><td valign='top'>" + language["sv"] + "</td><td >" + numlang['sv'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sv"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (44%2?"second":"")+"' style='text-align:left;' title='th'><td valign='top'>" + language["th"] + "</td><td >" + numlang['th'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["th"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (45%2?"second":"")+"' style='text-align:left;' title='tr'><td valign='top'>" + language["tr"] + "</td><td >" + numlang['tr'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["tr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (46%2?"second":"")+"' style='text-align:left;' title='vi'><td valign='top'>" + language["vi"] + "</td><td >" + numlang['vi'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["vi"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (47%2?"second":"")+"' style='text-align:left;' title='zh'><td valign='top'>" + language["zh"] + "</td><td >" + numlang['zh'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["zh"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class='rovas "+ (48%2?"second":"")+"' style='text-align:left;' title='Hung'><td valign='top'>" + language["Hung"] + "</td><td align='right'>" + numlang['Hung'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["Hung"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (49%2?"second":"")+"' style='text-align:left;' title='Roman-large'><td valign='top'>" + language["Roman-large"] + "</td><td >" + numlang['Roman-large'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["Roman-large"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (50%2?"second":"")+"' style='text-align:left;' title='Suzhou'><td valign='top'>" + language["Suzhou"] + "</td><td >" + numlang['Suzhou'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["Suzhou"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
 <!-- **************************************************************************************************** -->
     "<tr><td colspan=2>*Old numeral systems (extended for large numbers) &ndash; Old Hungarian, Roman and Suzhou numerals</td></tr></tbody></table>";
 }
