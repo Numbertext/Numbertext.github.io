@@ -339,6 +339,7 @@ FRIEDEL WOLFF
 <option value="GBP">GBP</option>
 <option value="JPY">JPY</option>
 <option value="USD">USD</option>
+<option value="help">help</option>
 </select>
  </h2>
     </div>
@@ -898,10 +899,10 @@ XEU:(.+),(.+) $(\2mm: ecu, ecus, d'ecus, cèntim, cèntims, \1)
 (.*)è  \1ena
 (.*)   \1a
 
-== (ordinal)-number-(feminine|masculine) ==
+== (ordinal)-number(-feminine|-masculine)? ==
 
-([-−]?\d+)	\3$(ordinal-number $(\1-\2 \3))
-.*(.) \1
+([-−]?\d+)	\3$(ordinal-number $(\1\2 \3))
+.*(.) \3
 
 == help ==
 
@@ -1977,9 +1978,9 @@ feminine:(.*) \1
 
 # ordinal abbreviation
 
-== (ordinal)-number-(feminine|masculine|masculine-adjective) ==
+== (ordinal)-number(-feminine|-masculine|-masculine-adjective)? ==
 
-([-−]?\d+) \3$(ordinal-number-feminine $(\1-\2 \3))
+([-−]?\d+) \3$(ordinal-number $(\1\2 \3))
 .*er .ᵉʳ
 .*a .ª
 .*o .º
@@ -2481,9 +2482,9 @@ feminine:(.*) \1
 
 # ordinal abbreviation
 
-== (ordinal)-number-(feminine|masculine|masculine-adjective) ==
+== (ordinal)-number(-feminine|-masculine|-masculine-adjective)? ==
 
-([-−]?\d+) \3$(ordinal-number-feminine $(\1-\2 \3))
+([-−]?\d+) \3$(ordinal-number $(\1\2 \3))
 .*a .ª
 .*o .º
 
@@ -2999,21 +3000,27 @@ ZAR:(.)	$(\1: dél-afrikai rand, cent)
 # Article a/az (number name)
 
 "(article |cardinal |formal ){3}(([a-zA-Z]+ )*1\d{2}([.,]\d*)?)" az $(formal \2)
-"(article |cardinal ){2}(([a-zA-Z]+ )*1(\d{3})*([.,]\d*)?)" az $2
-"(article |cardinal ){2}(([a-zA-Z]+ )*5.*)" az $2
-"(article |cardinal ){2}(.*)" a $2
+"(article |cardinal |ordinal ){2}(([a-zA-Z]+ )*1(\d{3})*([.,]\d*)?)" az $(\1 \2)
+"(article |cardinal |ordinal ){2}(([a-zA-Z]+ )*5.*)" az $(\1 \2)
+"(article |cardinal |ordinal ){2}(.*)" a $(\1 \2)
 
 
 # Article a/az + suffixation
 
 "article (-[^0-9]+) ([{\(\[]?(\d+|[a-zA-Z])[}\)\]]?)" $(article $(\1 \2))
 
-# Article a/az (number)
+# Article a/az (number, month names and other words)
 
 == article ==
 
-([{\(\[]?(1(\d{3}|\d{6})*|[aefilmnorsuxyAEFILMNORSUXY])[}\)\]]?(-.*)?)	az \1
-([{\(\[]?5.*)		az \1
+((i|v|l(v?i{0,3}|i[vx])|d(xc)?[ilxv]*|m(cm)?[cdilxv]*)[.](-.*)?)   az \1 # Roman numbers
+((I|V|L(V?I{0,3}|I[VX])|D(XC)?[ILXV]*|M(CM)?[CDILXV]*)[.](-.*)?)   az \1 # ROMAN NUMBERS
+((iii?|iv|vi{1,3}|ix|(x{1,3}|xl|lx{1,3}|xc)(i{0,3}|vi{0,3}|ix)|(c{1,3}|cd|dc{1,3})[ilxv]*|mmm?[dilxv]*)[.](-.*)?)   a \1 # Roman numbers II.
+((III?|IV|VI{1,3}|IX|(X{1,3}|XL|LX{1,3}|XC)(I{0,3}|VI{0,3}|IX)|(c{1,3}|CD|DC{1,3})[ILXV]*|MMM?[DILXV]*)[.](-.*)?)   a \1 # ROMAN NUMBERS II.
+
+([{\(\[]?(1(\d{3}|\d{6})*|[aefilmnorsuxyAEFILMNORSUXY])[}\)\]]?(-.*)?)	az \1 # numbers and 1-letter indices
+([{\(\[]?5.*)		az \1 # numbers
+([aáeéiíoóöőuúüűAÁEÉIÍOÓÖŐUÚÜŰ].*) az \1
 (.*)			a \1
 
 == ordinal ==
@@ -3150,6 +3157,29 @@ ZAR:(.)	$(\1: dél-afrikai rand, cent)
 ([{\(\[]?(\d+|[a-zA-Z])[}\]\)]?)	$(-szor $(-szoros \1))
 (.*-sz.r).s		\1
 
+
+# MONTHS
+
+== -(a|á)(ban|tól|ig)? ==
+
+((jan|febr)uár)		\3j\1\2
+
+== -(á)?(a|ban|tól|ig) ==
+
+((jan|febr)uár|március|április|május|jú(n|l)ius|augusztus)	\3\1\2
+
+# convert optional "á" and vowels of "ban", "tól", "ig" to
+# "-ben", "-től", "-ig" using prefix "-on", and remove dash
+
+((szeptem|októ|novem|decem)ber)	\3$(remove-dash $(-on -\1))$(remove-dash $(-on -\2))
+
+== remove-dash ==
+
+-(.*)	\1
+
+
+# DAYS
+
 == -ig ==
 
 szerda	szerdáig
@@ -3159,13 +3189,8 @@ szerda	szerdáig
 == -tól ==
 
 szerda	szerdától
-(hétfő|kedd|csütörtök|péntek|(szeptem|októ|novem|decem)ber)	\1től
-(szombat|vasárnap|(jan|febr)uár|március|április|május|jú(n|l)ius|augusztus)	\1tól
-
-== -ban ==
-
-((szeptem|októ|novem|decem)ber)	\1ben
-((jan|febr)uár|március|április|május|jú(n|l)ius|augusztus)	\1ban
+(hétfő|kedd|csütörtök|péntek)	\1től
+(szombat|vasárnap)	\1tól
 
 == -n ==
 
@@ -3174,7 +3199,7 @@ hétfő		hétfőn
 szerda		szerdán
 csütörtök	csütörtökön
 szombat		szombaton
-vasárnap	vasárnap
+vasárnap	vasárnap	# no suffix in dates
 
 (.*5[}\)\]]?)		\1-ön
 ([{\(\[]?(0|.*2|.*[^0]0{6,8}|.*[^0]0{12,14}|[abcdeghijkopqtuvwzABCDEGHIJKOPQTUVWZ][.]?)[}\)\]]?)	\1-n
@@ -3211,7 +3236,7 @@ vasárnap	vasárnap
 # 1-be, 2-nek, 4-et etc., b)-ben, c)-ből, d)-hez, n-et etc.
 # add affix after conversion to the alternative form
 
-([{\(\[]?(.*[124579]|.*[14579]0|.*[^0]0{3,5}|[bcdefgijlmnprstvwxzBCDEFGIJLMNPRSTVWXZ][.]?)[}\)\]]?) \2$(\1 \1)
+([{\(\[]?(.*[124579]|.*[14579]0|.*[^0]0{3,5}|[bcdefgijlmnprstvwxzBCDEFGIJLMNPRSTVWXZ][.]?)[}\)\]]?) \2$(-on \1)
 
 # otherwise: 0-ba, 3-at, 6-nál etc., a)-ban, h)-ból, k-hoz, y-ról etc.
 
@@ -3225,10 +3250,11 @@ vasárnap	vasárnap
 -ától		-étől
 -(.*)[á](.*)	-\2é\3
 -ul		-ül
+(-ig?)	\2
 
 == help ==
 
-"" $(1)|, $(2)|, $(3)\n$(\0 ordinal)$(\0 ordinal-number)year: $(year 2001), $(year 2002)|, $(year 2003)\nformal: $(formal 100), $(formal 200), $(formal 1000)\ntext: $(text 1), $(text 12000), $(text 10000000000)\ncurrency \(for example, HUF\): $(HUF 2,5)\nformal HUF: $(formal HUF 102,5)\nSuffixation of numbers and letters: -a, -án, -áig, -ától, -ba, -ban, -ból, -d, -dik, -hoz,\n    -nak, -nál, -n, -ra, -ról, -s, -szor, -szoros, -t, -tól, -ul, -vá, -val,\n    for example: -szor 15 -> $(-szor 15)\narticle: $(article 5)\narticle cardinal: $(article cardinal 100)\narticle cardinal formal: $(article cardinal formal 100)\narticle -ban: $(article -ban a\))
+"" $(1)|, $(2)|, $(3)\n$(\0 ordinal)$(\0 ordinal-number)year: $(year 2001), $(year 2002)|, $(year 2003)\nformal: $(formal 100), $(formal 200), $(formal 1000)\ntext: $(text 1), $(text 12000), $(text 10000000000)\ncurrency \(for example, HUF\): $(HUF 2,5)\nformal HUF: $(formal HUF 102,5)\nSuffixation of numbers and letters: -a, -ában, -án, -áig, -ától, -ba, -ban, -ból, -d, -dik, -hoz,\n    -nak, -nál, -n, -ra, -ról, -s, -szor, -szoros, -t, -tól, -ul, -vá, -val,\n    for example: -szor 15 -> $(-szor 15)\narticle: $(article 5)\narticle cardinal: $(article cardinal 100)\narticle cardinal formal: $(article cardinal formal 100)\narticle -ban: $(article -ban a\))
 
 "(ordinal(-number)?|USD)" \1: $(\1 1), $(\1 2), $(\1 3)\n
 
@@ -4776,9 +4802,9 @@ f:(.*),(.*) \1\2
 (.*)o\b(.*)  $(ordinal-feminine \1a\2)
 (.*)   \1
 
-== (ordinal)-number-(feminine|masculine)? ==
+== (ordinal)-number(-feminine|-masculine)? ==
 
-([-−]?\d+) \3$(ordinal-number-feminine $(\1-\2 \3))
+([-−]?\d+) \3$(ordinal-number $(\1\2 \3))
 .*er .ᵉʳ
 .*a .ª
 .*o .º
@@ -6828,10 +6854,10 @@ XEU:(.+),(.+) $(\2mm: ecu, ecus, d'ecus, cèntim, cèntims, \1)
 (.*)è  \1ena
 (.*)   \1a
 
-== (ordinal)-number-(feminine|masculine) ==
+== (ordinal)-number(-feminine|-masculine)? ==
 
-([-−]?\d+)	\3$(ordinal-number $(\1-\2 \3))
-.*(.) \1
+([-−]?\d+)	\3$(ordinal-number $(\1\2 \3))
+.*(.) \3
 
 == help ==
 
@@ -7907,9 +7933,9 @@ feminine:(.*) \1
 
 # ordinal abbreviation
 
-== (ordinal)-number-(feminine|masculine|masculine-adjective) ==
+== (ordinal)-number(-feminine|-masculine|-masculine-adjective)? ==
 
-([-−]?\d+) \3$(ordinal-number-feminine $(\1-\2 \3))
+([-−]?\d+) \3$(ordinal-number $(\1\2 \3))
 .*er .ᵉʳ
 .*a .ª
 .*o .º
@@ -8411,9 +8437,9 @@ feminine:(.*) \1
 
 # ordinal abbreviation
 
-== (ordinal)-number-(feminine|masculine|masculine-adjective) ==
+== (ordinal)-number(-feminine|-masculine|-masculine-adjective)? ==
 
-([-−]?\d+) \3$(ordinal-number-feminine $(\1-\2 \3))
+([-−]?\d+) \3$(ordinal-number $(\1\2 \3))
 .*a .ª
 .*o .º
 
@@ -8929,21 +8955,27 @@ ZAR:(.)	$(\1: dél-afrikai rand, cent)
 # Article a/az (number name)
 
 "(article |cardinal |formal ){3}(([a-zA-Z]+ )*1\d{2}([.,]\d*)?)" az $(formal \2)
-"(article |cardinal ){2}(([a-zA-Z]+ )*1(\d{3})*([.,]\d*)?)" az $2
-"(article |cardinal ){2}(([a-zA-Z]+ )*5.*)" az $2
-"(article |cardinal ){2}(.*)" a $2
+"(article |cardinal |ordinal ){2}(([a-zA-Z]+ )*1(\d{3})*([.,]\d*)?)" az $(\1 \2)
+"(article |cardinal |ordinal ){2}(([a-zA-Z]+ )*5.*)" az $(\1 \2)
+"(article |cardinal |ordinal ){2}(.*)" a $(\1 \2)
 
 
 # Article a/az + suffixation
 
 "article (-[^0-9]+) ([{\(\[]?(\d+|[a-zA-Z])[}\)\]]?)" $(article $(\1 \2))
 
-# Article a/az (number)
+# Article a/az (number, month names and other words)
 
 == article ==
 
-([{\(\[]?(1(\d{3}|\d{6})*|[aefilmnorsuxyAEFILMNORSUXY])[}\)\]]?(-.*)?)	az \1
-([{\(\[]?5.*)		az \1
+((i|v|l(v?i{0,3}|i[vx])|d(xc)?[ilxv]*|m(cm)?[cdilxv]*)[.](-.*)?)   az \1 # Roman numbers
+((I|V|L(V?I{0,3}|I[VX])|D(XC)?[ILXV]*|M(CM)?[CDILXV]*)[.](-.*)?)   az \1 # ROMAN NUMBERS
+((iii?|iv|vi{1,3}|ix|(x{1,3}|xl|lx{1,3}|xc)(i{0,3}|vi{0,3}|ix)|(c{1,3}|cd|dc{1,3})[ilxv]*|mmm?[dilxv]*)[.](-.*)?)   a \1 # Roman numbers II.
+((III?|IV|VI{1,3}|IX|(X{1,3}|XL|LX{1,3}|XC)(I{0,3}|VI{0,3}|IX)|(c{1,3}|CD|DC{1,3})[ILXV]*|MMM?[DILXV]*)[.](-.*)?)   a \1 # ROMAN NUMBERS II.
+
+([{\(\[]?(1(\d{3}|\d{6})*|[aefilmnorsuxyAEFILMNORSUXY])[}\)\]]?(-.*)?)	az \1 # numbers and 1-letter indices
+([{\(\[]?5.*)		az \1 # numbers
+([aáeéiíoóöőuúüűAÁEÉIÍOÓÖŐUÚÜŰ].*) az \1
 (.*)			a \1
 
 == ordinal ==
@@ -9080,6 +9112,29 @@ ZAR:(.)	$(\1: dél-afrikai rand, cent)
 ([{\(\[]?(\d+|[a-zA-Z])[}\]\)]?)	$(-szor $(-szoros \1))
 (.*-sz.r).s		\1
 
+
+# MONTHS
+
+== -(a|á)(ban|tól|ig)? ==
+
+((jan|febr)uár)		\3j\1\2
+
+== -(á)?(a|ban|tól|ig) ==
+
+((jan|febr)uár|március|április|május|jú(n|l)ius|augusztus)	\3\1\2
+
+# convert optional "á" and vowels of "ban", "tól", "ig" to
+# "-ben", "-től", "-ig" using prefix "-on", and remove dash
+
+((szeptem|októ|novem|decem)ber)	\3$(remove-dash $(-on -\1))$(remove-dash $(-on -\2))
+
+== remove-dash ==
+
+-(.*)	\1
+
+
+# DAYS
+
 == -ig ==
 
 szerda	szerdáig
@@ -9089,13 +9144,8 @@ szerda	szerdáig
 == -tól ==
 
 szerda	szerdától
-(hétfő|kedd|csütörtök|péntek|(szeptem|októ|novem|decem)ber)	\1től
-(szombat|vasárnap|(jan|febr)uár|március|április|május|jú(n|l)ius|augusztus)	\1tól
-
-== -ban ==
-
-((szeptem|októ|novem|decem)ber)	\1ben
-((jan|febr)uár|március|április|május|jú(n|l)ius|augusztus)	\1ban
+(hétfő|kedd|csütörtök|péntek)	\1től
+(szombat|vasárnap)	\1tól
 
 == -n ==
 
@@ -9104,7 +9154,7 @@ hétfő		hétfőn
 szerda		szerdán
 csütörtök	csütörtökön
 szombat		szombaton
-vasárnap	vasárnap
+vasárnap	vasárnap	# no suffix in dates
 
 (.*5[}\)\]]?)		\1-ön
 ([{\(\[]?(0|.*2|.*[^0]0{6,8}|.*[^0]0{12,14}|[abcdeghijkopqtuvwzABCDEGHIJKOPQTUVWZ][.]?)[}\)\]]?)	\1-n
@@ -9141,7 +9191,7 @@ vasárnap	vasárnap
 # 1-be, 2-nek, 4-et etc., b)-ben, c)-ből, d)-hez, n-et etc.
 # add affix after conversion to the alternative form
 
-([{\(\[]?(.*[124579]|.*[14579]0|.*[^0]0{3,5}|[bcdefgijlmnprstvwxzBCDEFGIJLMNPRSTVWXZ][.]?)[}\)\]]?) \2$(\1 \1)
+([{\(\[]?(.*[124579]|.*[14579]0|.*[^0]0{3,5}|[bcdefgijlmnprstvwxzBCDEFGIJLMNPRSTVWXZ][.]?)[}\)\]]?) \2$(-on \1)
 
 # otherwise: 0-ba, 3-at, 6-nál etc., a)-ban, h)-ból, k-hoz, y-ról etc.
 
@@ -9155,10 +9205,11 @@ vasárnap	vasárnap
 -ától		-étől
 -(.*)[á](.*)	-\2é\3
 -ul		-ül
+(-ig?)	\2
 
 == help ==
 
-"" $(1)|, $(2)|, $(3)\n$(\0 ordinal)$(\0 ordinal-number)year: $(year 2001), $(year 2002)|, $(year 2003)\nformal: $(formal 100), $(formal 200), $(formal 1000)\ntext: $(text 1), $(text 12000), $(text 10000000000)\ncurrency \(for example, HUF\): $(HUF 2,5)\nformal HUF: $(formal HUF 102,5)\nSuffixation of numbers and letters: -a, -án, -áig, -ától, -ba, -ban, -ból, -d, -dik, -hoz,\n    -nak, -nál, -n, -ra, -ról, -s, -szor, -szoros, -t, -tól, -ul, -vá, -val,\n    for example: -szor 15 -> $(-szor 15)\narticle: $(article 5)\narticle cardinal: $(article cardinal 100)\narticle cardinal formal: $(article cardinal formal 100)\narticle -ban: $(article -ban a\))
+"" $(1)|, $(2)|, $(3)\n$(\0 ordinal)$(\0 ordinal-number)year: $(year 2001), $(year 2002)|, $(year 2003)\nformal: $(formal 100), $(formal 200), $(formal 1000)\ntext: $(text 1), $(text 12000), $(text 10000000000)\ncurrency \(for example, HUF\): $(HUF 2,5)\nformal HUF: $(formal HUF 102,5)\nSuffixation of numbers and letters: -a, -ában, -án, -áig, -ától, -ba, -ban, -ból, -d, -dik, -hoz,\n    -nak, -nál, -n, -ra, -ról, -s, -szor, -szoros, -t, -tól, -ul, -vá, -val,\n    for example: -szor 15 -> $(-szor 15)\narticle: $(article 5)\narticle cardinal: $(article cardinal 100)\narticle cardinal formal: $(article cardinal formal 100)\narticle -ban: $(article -ban a\))
 
 "(ordinal(-number)?|USD)" \1: $(\1 1), $(\1 2), $(\1 3)\n
 
@@ -10706,9 +10757,9 @@ f:(.*),(.*) \1\2
 (.*)o\b(.*)  $(ordinal-feminine \1a\2)
 (.*)   \1
 
-== (ordinal)-number-(feminine|masculine)? ==
+== (ordinal)-number(-feminine|-masculine)? ==
 
-([-−]?\d+) \3$(ordinal-number-feminine $(\1-\2 \3))
+([-−]?\d+) \3$(ordinal-number $(\1\2 \3))
 .*er .ᵉʳ
 .*a .ª
 .*o .º
@@ -12336,8 +12387,8 @@ window.height = window.innerHeight
 
 function usernum() {
     clearTimeout(window.time)
-    window.num = document.getElementById('num').value
     window.currency = document.getElementById('money').value
+    window.num = (window.currency == "help") ? "help" : document.getElementById('num').value
     if (window.num != undefined && window.num != "") {
 	window.header = "x"
     } else {
@@ -12350,61 +12401,61 @@ function tim( ) {
     var b = new Date()
     var header = ""
     if (window.header == "") {
-	window.num = Math.round(b.getTime()/1000) + ""
+	window.num = (window.currency == "help") ? "help" : Math.round(b.getTime()/1000) + "";
 	header = "Unix time in sec (" + num + ")"
 	window.time = setTimeout("tim()", 1000);
     } else header = "Number (" + window.num + ")"
     	target = document.getElementById('result')
     	if (document.body.scrollTop < target.offsetTop + target.offsetHeight) target.innerHTML = "<table id='conv' width='100%'><tbody><tr id='header' style='text-align:left;background-color:rgba(100%, 100%, 100%, 0)'><td width='150px'>Language<td>" + header + "</td></tr>" +
 <!-- **************************************************************************************************** -->
-"<tr class=' "+ (3%2?"second":"")+"' style='text-align:left;' title='af'><td valign='top'>" + language["af"] + "</td><td >" + numlang['af'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["af"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (4%2?"second":"")+"' style='text-align:left;' title='bg'><td valign='top'>" + language["bg"] + "</td><td >" + numlang['bg'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["bg"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (5%2?"second":"")+"' style='text-align:left;' title='ca'><td valign='top'>" + language["ca"] + "</td><td >" + numlang['ca'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ca"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (6%2?"second":"")+"' style='text-align:left;' title='cs'><td valign='top'>" + language["cs"] + "</td><td >" + numlang['cs'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["cs"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (7%2?"second":"")+"' style='text-align:left;' title='da'><td valign='top'>" + language["da"] + "</td><td >" + numlang['da'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["da"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (8%2?"second":"")+"' style='text-align:left;' title='de'><td valign='top'>" + language["de"] + "</td><td >" + numlang['de'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["de"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (9%2?"second":"")+"' style='text-align:left;' title='de-CH'><td valign='top'>" + language["de-CH"] + "</td><td >" + numlang['de-CH'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["de-CH"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (10%2?"second":"")+"' style='text-align:left;' title='el'><td valign='top'>" + language["el"] + "</td><td >" + numlang['el'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["el"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (11%2?"second":"")+"' style='text-align:left;' title='en'><td valign='top'>" + language["en"] + "</td><td >" + numlang['en'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["en"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (12%2?"second":"")+"' style='text-align:left;' title='en-GB'><td valign='top'>" + language["en-GB"] + "</td><td >" + numlang['en-GB'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["en-GB"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (13%2?"second":"")+"' style='text-align:left;' title='en-IN'><td valign='top'>" + language["en-IN"] + "</td><td >" + numlang['en-IN'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["en-IN"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (14%2?"second":"")+"' style='text-align:left;' title='eo'><td valign='top'>" + language["eo"] + "</td><td >" + numlang['eo'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["eo"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (15%2?"second":"")+"' style='text-align:left;' title='es'><td valign='top'>" + language["es"] + "</td><td >" + numlang['es'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["es"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (16%2?"second":"")+"' style='text-align:left;' title='fi'><td valign='top'>" + language["fi"] + "</td><td >" + numlang['fi'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["fi"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (17%2?"second":"")+"' style='text-align:left;' title='fr'><td valign='top'>" + language["fr"] + "</td><td >" + numlang['fr'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["fr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (18%2?"second":"")+"' style='text-align:left;' title='fr-BE'><td valign='top'>" + language["fr-BE"] + "</td><td >" + numlang['fr-BE'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["fr-BE"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (19%2?"second":"")+"' style='text-align:left;' title='fr-CH'><td valign='top'>" + language["fr-CH"] + "</td><td >" + numlang['fr-CH'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["fr-CH"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (20%2?"second":"")+"' style='text-align:left;' title='gl'><td valign='top'>" + language["gl"] + "</td><td >" + numlang['gl'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["gl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (21%2?"second":"")+"' style='text-align:left;' title='he'><td valign='top'>" + language["he"] + "</td><td align='right'>" + numlang['he'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["he"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (22%2?"second":"")+"' style='text-align:left;' title='hr'><td valign='top'>" + language["hr"] + "</td><td >" + numlang['hr'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["hr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (23%2?"second":"")+"' style='text-align:left;' title='hu'><td valign='top'>" + language["hu"] + "</td><td >" + numlang['hu'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["hu"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (24%2?"second":"")+"' style='text-align:left;' title='id'><td valign='top'>" + language["id"] + "</td><td >" + numlang['id'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["id"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (25%2?"second":"")+"' style='text-align:left;' title='is'><td valign='top'>" + language["is"] + "</td><td >" + numlang['is'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["is"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (26%2?"second":"")+"' style='text-align:left;' title='it'><td valign='top'>" + language["it"] + "</td><td >" + numlang['it'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["it"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (27%2?"second":"")+"' style='text-align:left;' title='ja'><td valign='top'>" + language["ja"] + "</td><td >" + numlang['ja'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ja"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (28%2?"second":"")+"' style='text-align:left;' title='ko'><td valign='top'>" + language["ko"] + "</td><td >" + numlang['ko'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ko"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (29%2?"second":"")+"' style='text-align:left;' title='ko-KP'><td valign='top'>" + language["ko-KP"] + "</td><td >" + numlang['ko-KP'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ko-KP"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (30%2?"second":"")+"' style='text-align:left;' title='lb'><td valign='top'>" + language["lb"] + "</td><td >" + numlang['lb'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["lb"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (31%2?"second":"")+"' style='text-align:left;' title='lt'><td valign='top'>" + language["lt"] + "</td><td >" + numlang['lt'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["lt"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (32%2?"second":"")+"' style='text-align:left;' title='lv'><td valign='top'>" + language["lv"] + "</td><td >" + numlang['lv'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["lv"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (33%2?"second":"")+"' style='text-align:left;' title='ms'><td valign='top'>" + language["ms"] + "</td><td >" + numlang['ms'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ms"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (34%2?"second":"")+"' style='text-align:left;' title='nl'><td valign='top'>" + language["nl"] + "</td><td >" + numlang['nl'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["nl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (35%2?"second":"")+"' style='text-align:left;' title='pl'><td valign='top'>" + language["pl"] + "</td><td >" + numlang['pl'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["pl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (36%2?"second":"")+"' style='text-align:left;' title='pt'><td valign='top'>" + language["pt"] + "</td><td >" + numlang['pt'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["pt"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (37%2?"second":"")+"' style='text-align:left;' title='pt-BR'><td valign='top'>" + language["pt-BR"] + "</td><td >" + numlang['pt-BR'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["pt-BR"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (38%2?"second":"")+"' style='text-align:left;' title='ro'><td valign='top'>" + language["ro"] + "</td><td >" + numlang['ro'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ro"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (39%2?"second":"")+"' style='text-align:left;' title='ru'><td valign='top'>" + language["ru"] + "</td><td >" + numlang['ru'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["ru"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (40%2?"second":"")+"' style='text-align:left;' title='sh'><td valign='top'>" + language["sh"] + "</td><td >" + numlang['sh'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sh"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (41%2?"second":"")+"' style='text-align:left;' title='sl'><td valign='top'>" + language["sl"] + "</td><td >" + numlang['sl'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (42%2?"second":"")+"' style='text-align:left;' title='sr'><td valign='top'>" + language["sr"] + "</td><td >" + numlang['sr'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (43%2?"second":"")+"' style='text-align:left;' title='sv'><td valign='top'>" + language["sv"] + "</td><td >" + numlang['sv'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["sv"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (44%2?"second":"")+"' style='text-align:left;' title='th'><td valign='top'>" + language["th"] + "</td><td >" + numlang['th'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["th"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (45%2?"second":"")+"' style='text-align:left;' title='tr'><td valign='top'>" + language["tr"] + "</td><td >" + numlang['tr'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["tr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (46%2?"second":"")+"' style='text-align:left;' title='vi'><td valign='top'>" + language["vi"] + "</td><td >" + numlang['vi'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["vi"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (47%2?"second":"")+"' style='text-align:left;' title='zh'><td valign='top'>" + language["zh"] + "</td><td >" + numlang['zh'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["zh"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class='rovas "+ (48%2?"second":"")+"' style='text-align:left;' title='Hung'><td valign='top'>" + language["Hung"] + "</td><td align='right'>" + numlang['Hung'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["Hung"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (49%2?"second":"")+"' style='text-align:left;' title='Roman-large'><td valign='top'>" + language["Roman-large"] + "</td><td >" + numlang['Roman-large'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["Roman-large"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
-"<tr class=' "+ (50%2?"second":"")+"' style='text-align:left;' title='Suzhou'><td valign='top'>" + language["Suzhou"] + "</td><td >" + numlang['Suzhou'].run((window.currency == "-" ? "" : (window.currency == "def" ? default_currency["Suzhou"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (3%2?"second":"")+"' style='text-align:left;' title='af'><td valign='top'>" + language["af"] + "</td><td >" + numlang['af'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["af"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (4%2?"second":"")+"' style='text-align:left;' title='bg'><td valign='top'>" + language["bg"] + "</td><td >" + numlang['bg'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["bg"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (5%2?"second":"")+"' style='text-align:left;' title='ca'><td valign='top'>" + language["ca"] + "</td><td >" + numlang['ca'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ca"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (6%2?"second":"")+"' style='text-align:left;' title='cs'><td valign='top'>" + language["cs"] + "</td><td >" + numlang['cs'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["cs"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (7%2?"second":"")+"' style='text-align:left;' title='da'><td valign='top'>" + language["da"] + "</td><td >" + numlang['da'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["da"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (8%2?"second":"")+"' style='text-align:left;' title='de'><td valign='top'>" + language["de"] + "</td><td >" + numlang['de'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["de"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (9%2?"second":"")+"' style='text-align:left;' title='de-CH'><td valign='top'>" + language["de-CH"] + "</td><td >" + numlang['de-CH'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["de-CH"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (10%2?"second":"")+"' style='text-align:left;' title='el'><td valign='top'>" + language["el"] + "</td><td >" + numlang['el'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["el"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (11%2?"second":"")+"' style='text-align:left;' title='en'><td valign='top'>" + language["en"] + "</td><td >" + numlang['en'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["en"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (12%2?"second":"")+"' style='text-align:left;' title='en-GB'><td valign='top'>" + language["en-GB"] + "</td><td >" + numlang['en-GB'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["en-GB"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (13%2?"second":"")+"' style='text-align:left;' title='en-IN'><td valign='top'>" + language["en-IN"] + "</td><td >" + numlang['en-IN'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["en-IN"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (14%2?"second":"")+"' style='text-align:left;' title='eo'><td valign='top'>" + language["eo"] + "</td><td >" + numlang['eo'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["eo"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (15%2?"second":"")+"' style='text-align:left;' title='es'><td valign='top'>" + language["es"] + "</td><td >" + numlang['es'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["es"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (16%2?"second":"")+"' style='text-align:left;' title='fi'><td valign='top'>" + language["fi"] + "</td><td >" + numlang['fi'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["fi"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (17%2?"second":"")+"' style='text-align:left;' title='fr'><td valign='top'>" + language["fr"] + "</td><td >" + numlang['fr'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["fr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (18%2?"second":"")+"' style='text-align:left;' title='fr-BE'><td valign='top'>" + language["fr-BE"] + "</td><td >" + numlang['fr-BE'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["fr-BE"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (19%2?"second":"")+"' style='text-align:left;' title='fr-CH'><td valign='top'>" + language["fr-CH"] + "</td><td >" + numlang['fr-CH'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["fr-CH"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (20%2?"second":"")+"' style='text-align:left;' title='gl'><td valign='top'>" + language["gl"] + "</td><td >" + numlang['gl'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["gl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (21%2?"second":"")+"' style='text-align:left;' title='he'><td valign='top'>" + language["he"] + "</td><td align='right'>" + numlang['he'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["he"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (22%2?"second":"")+"' style='text-align:left;' title='hr'><td valign='top'>" + language["hr"] + "</td><td >" + numlang['hr'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["hr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (23%2?"second":"")+"' style='text-align:left;' title='hu'><td valign='top'>" + language["hu"] + "</td><td >" + numlang['hu'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["hu"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (24%2?"second":"")+"' style='text-align:left;' title='id'><td valign='top'>" + language["id"] + "</td><td >" + numlang['id'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["id"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (25%2?"second":"")+"' style='text-align:left;' title='is'><td valign='top'>" + language["is"] + "</td><td >" + numlang['is'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["is"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (26%2?"second":"")+"' style='text-align:left;' title='it'><td valign='top'>" + language["it"] + "</td><td >" + numlang['it'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["it"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (27%2?"second":"")+"' style='text-align:left;' title='ja'><td valign='top'>" + language["ja"] + "</td><td >" + numlang['ja'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ja"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (28%2?"second":"")+"' style='text-align:left;' title='ko'><td valign='top'>" + language["ko"] + "</td><td >" + numlang['ko'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ko"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (29%2?"second":"")+"' style='text-align:left;' title='ko-KP'><td valign='top'>" + language["ko-KP"] + "</td><td >" + numlang['ko-KP'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ko-KP"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (30%2?"second":"")+"' style='text-align:left;' title='lb'><td valign='top'>" + language["lb"] + "</td><td >" + numlang['lb'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["lb"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (31%2?"second":"")+"' style='text-align:left;' title='lt'><td valign='top'>" + language["lt"] + "</td><td >" + numlang['lt'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["lt"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (32%2?"second":"")+"' style='text-align:left;' title='lv'><td valign='top'>" + language["lv"] + "</td><td >" + numlang['lv'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["lv"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (33%2?"second":"")+"' style='text-align:left;' title='ms'><td valign='top'>" + language["ms"] + "</td><td >" + numlang['ms'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ms"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (34%2?"second":"")+"' style='text-align:left;' title='nl'><td valign='top'>" + language["nl"] + "</td><td >" + numlang['nl'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["nl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (35%2?"second":"")+"' style='text-align:left;' title='pl'><td valign='top'>" + language["pl"] + "</td><td >" + numlang['pl'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["pl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (36%2?"second":"")+"' style='text-align:left;' title='pt'><td valign='top'>" + language["pt"] + "</td><td >" + numlang['pt'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["pt"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (37%2?"second":"")+"' style='text-align:left;' title='pt-BR'><td valign='top'>" + language["pt-BR"] + "</td><td >" + numlang['pt-BR'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["pt-BR"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (38%2?"second":"")+"' style='text-align:left;' title='ro'><td valign='top'>" + language["ro"] + "</td><td >" + numlang['ro'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ro"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (39%2?"second":"")+"' style='text-align:left;' title='ru'><td valign='top'>" + language["ru"] + "</td><td >" + numlang['ru'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ru"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (40%2?"second":"")+"' style='text-align:left;' title='sh'><td valign='top'>" + language["sh"] + "</td><td >" + numlang['sh'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["sh"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (41%2?"second":"")+"' style='text-align:left;' title='sl'><td valign='top'>" + language["sl"] + "</td><td >" + numlang['sl'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["sl"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (42%2?"second":"")+"' style='text-align:left;' title='sr'><td valign='top'>" + language["sr"] + "</td><td >" + numlang['sr'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["sr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (43%2?"second":"")+"' style='text-align:left;' title='sv'><td valign='top'>" + language["sv"] + "</td><td >" + numlang['sv'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["sv"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (44%2?"second":"")+"' style='text-align:left;' title='th'><td valign='top'>" + language["th"] + "</td><td >" + numlang['th'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["th"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (45%2?"second":"")+"' style='text-align:left;' title='tr'><td valign='top'>" + language["tr"] + "</td><td >" + numlang['tr'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["tr"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (46%2?"second":"")+"' style='text-align:left;' title='vi'><td valign='top'>" + language["vi"] + "</td><td >" + numlang['vi'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["vi"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (47%2?"second":"")+"' style='text-align:left;' title='zh'><td valign='top'>" + language["zh"] + "</td><td >" + numlang['zh'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["zh"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class='rovas "+ (48%2?"second":"")+"' style='text-align:left;' title='Hung'><td valign='top'>" + language["Hung"] + "</td><td align='right'>" + numlang['Hung'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["Hung"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (49%2?"second":"")+"' style='text-align:left;' title='Roman-large'><td valign='top'>" + language["Roman-large"] + "</td><td >" + numlang['Roman-large'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["Roman-large"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
+"<tr class=' "+ (50%2?"second":"")+"' style='text-align:left;' title='Suzhou'><td valign='top'>" + language["Suzhou"] + "</td><td >" + numlang['Suzhou'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["Suzhou"] : window.currency) + " ") + window.num).replace("\n","<br>") + '</td></tr>' +
 <!-- **************************************************************************************************** -->
     "<tr><td colspan=2>*Old numeral systems (extended for large numbers) &ndash; Old Hungarian, Roman and Suzhou numerals</td></tr></tbody></table>";
 }
