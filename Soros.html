@@ -264,6 +264,7 @@ function copy_result() {
 <option value='lv'>lv</option>
 <option value='ms'>ms</option>
 <option value='nl'>nl</option>
+<option value='no'>no</option>
 <option value='pl'>pl</option>
 <option value='pt'>pt</option>
 <option value='ro'>ro</option>
@@ -1977,12 +1978,8 @@ USD:(\D+) $(\1: americký dolar, amerických dolarů, cent, centů)
 90 halvfems
 
 (\d)(\d) $2|og$(\10)
-
-:0+
-:(\d+) og $1
-
-(\d)(\d\d) $1 hundrede $(:\2)
-(\d{1,3})(\d{3}) $1 tusind $(:\2)
+(\d)(\d\d) $1 hundrede[ og $2]
+(\d{1,3})(\d{3}) $1 tusind[ og $2]
 
 a:1,0+
 a:\d+,0+ er
@@ -2907,12 +2904,12 @@ feminine:(.*) \1
 (\d{1,3})(\d{9}) $1 miljardia[ $2]
 1(\d{12}) biljoona[ $1]
 (\d{1,3})(\d{12}) $1 biljoonaa[ $2]
-1(\d{15}) tuhat biljoona[ $1]
-(\d{1,3})(\d{15}) $1 tuhat biljoonaa[ $2]
+1(\d{15}) tuhat biljoonaa[ $1]
+(\d{1,3})(\d{15}) $1 tuhatta biljoonaa[ $2]
 1(\d{18}) triljoona[ $1]
 (\d{1,3})(\d{18}) $1 triljoonaa[ $2]
-1(\d{21}) tuhat triljoona[ $1]
-(\d{1,3})(\d{21}) $1 tuhat triljoonaa[ $2]
+1(\d{21}) tuhat triljoonaa[ $1]
+(\d{1,3})(\d{21}) $1 tuhatta triljoonaa[ $2]
 1(\d{24}) kvadriljoona[ $1]
 (\d{1,3})(\d{24}) $1 kvadriljoonaa[ $2]
 
@@ -2949,28 +2946,28 @@ CZK:(\D+) $(\1: Tšekin kruunu, Tšekin kruunua, haléři, haléřia)
 DKK:(\D+) $(\1: Tanskan kruunu, Tanskan kruunua, äyri, äyriä)
 EEK:(\D+) $(\1: Viron kruunu, Viron kruunua, sentti, senttiä)
 EUR:(\D+) $(\1: euro, euroa, sentti, senttiä)
-GBP:(\D+) $(\1: Englannin punta, Englannin puntaa, penni, pennia)
+GBP:(\D+) $(\1: Englannin punta, Englannin puntaa, penny, pennyä)
 HKD:(\D+) $(\1: Hongkongin dollari, Hongkongin dollaria, sentti, senttiä)
 HRK:(\D+) $(\1: Kroatian kuna, Kroatian kunaa, lipa, lipaa)
 HUF:(\D+) $(\1: Unkarin forintti, Unkarin forinttia, filléri, fillériä)
 IDR:(\D+) $(\1: Indonesian rupia, Indonesian rupiaa, seni, seniä)
 ISK:(\D+) $(\1: Islannin kruunu, Islannin kruunua, äyri, äyriä)
-JPY:(\D+) $(\1: Japanin jeni, Japanin jenia, seni, seniä)
-KRW:(\D+) $(\1: Etelä-Korean won, Etelä-Korean won, chon, chonia)
+JPY:(\D+) $(\1: Japanin jeni, Japanin jeniä, seni, seniä)
+KRW:(\D+) $(\1: Etelä-Korean won, Etelä-Korean wonia, chon, chonia)
 LTL:(\D+) $(\1: Liettuan lita, Liettuan litiä, centasi, centasia)
 LVL:(\D+) $(\1: Latvian lati, Latvian latia, santiimi, santiimia)
-MYR:(\D+) $(\1: Malesian ringgit, Malesian ringgit, sentti, senttiä)
+MYR:(\D+) $(\1: Malesian ringgit, Malesian ringgittia, sentti, senttiä)
 NZD:(\D+) $(\1: Uuden-Seelannin dollari, Uuden-Seelannin dollaria, sentti, senttiä)
 NOK:(\D+) $(\1: Norjan kruunu, Norjan kruunua, äyri, äyriä)
-PHP:(\D+) $(\1: Filippiinien peso, Filippiinien peso, centavo, centavoa)
+PHP:(\D+) $(\1: Filippiinien peso, Filippiinien pesoa, centavo, centavoa)
 PLN:(\D+) $(\1: Puolan złoty, Puolan złotya, groszy, groszya)
-RON:(\D+) $(\1: Romanian leu, Romanian leu, bani, bania)
+RON:(\D+) $(\1: Romanian leu, Romanian leuta, bani, bania)
 RUB:(\D+) $(\1: Venäjän rupla, Venäjän ruplaa, kopeekka, kopeekkaa)
-SEK:(\D+) $(\1: Ruotsin kruunu, Norjan kruunua, äyri, äyriä)
+SEK:(\D+) $(\1: Ruotsin kruunu, Ruotsin kruunua, äyri, äyriä)
 SGD:(\D+) $(\1: Singaporen dollari, Singaporen dollaria, sentti, senttiä)
 THB:(\D+) $(\1: Thaimaan baht, Thaimaan bahtia, satang, satangia)
 TRY:(\D+) $(\1: Turkin liira, Turkin liiraa, kuruşi, kuruşia)
-USD:(\D+) $(\1: USA:n dollari, USA:n dollaria, sentti, senttiä)
+USD:(\D+) $(\1: Yhdysvaltain dollari, Yhdysvaltain dollaria, sentti, senttiä)
 
 "(JPY [-−]?\d+)[.,](\d\d)0" $1
 "(JPY [-−]?\d+[.,]\d\d)1" $1 $2 rini
@@ -2992,7 +2989,7 @@ USD:(\D+) $(\1: USA:n dollari, USA:n dollaria, sentti, senttiä)
 == ordinal ==
 
 ^0 nolla
-1 ensimmäinen
+1$ ensimmäinen
 2$ toinen
 2 kahdes
 3 kolmas
@@ -3888,22 +3885,38 @@ ZAR:(.)	$(\1: dél-afrikai rand, cent)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 $(\30)$(\2:s)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 $3$(\2:s)
 
-
 # Article a/az (number name)
 
-"(article |cardinal |formal ){3}(([a-zA-Z]+ )*1\d{2}([.,]\d*)?)" az $(formal \2)
-"(article |cardinal |ordinal ){2}(([a-zA-Z]+ )*1(\d{3})*([.,]\d*)?)" az $(\1 \2)
-"(article |cardinal |ordinal ){2}(([a-zA-Z]+ )*5.*)" az $(\1 \2)
-"(article |cardinal |ordinal ){2}(.*)" a $(\1 \2)
+"article (cardinal |formal ){2}(([a-zA-Z]+ )*1\d{2}([.,]\d*)?)" az $(formal \2)
+"article (cardinal |ordinal )(([a-zA-Z]+ )*1(\d{3})*([.,]\d*)?)" az $(\1\2)
+"article (cardinal |ordinal )(([a-zA-Z]+ )*5.*)" az $(\1\2)
+"article (cardinal |ordinal )([^-].*)" a $(\1\2)
 
+# Article a/az + optional cardinal/ordinal + suffixation
 
-# Article a/az + suffixation
+"article ((cardinal |ordinal )?(-[^0-9]+) [{\(\[]?(\d+|[a-zA-Z])[}\)\]]?)" $(article $(\1))
 
-"article (-[^0-9]+) ([{\(\[]?(\d+|[a-zA-Z])[}\)\]]?)" $(article $(\1 \2))
+# cardinal/ordinal + suffixation
+
+"(cardinal )(-[^0-9]+) ([{\(\[]?(\d+)[}\)\]]?)"	$(\1$(\2 \4))
+"(ordinal )(-[^0-9]+) ([{\(\[]?(\d+)[}\)\]]?)"	$(\1$(\2 \4.))
+"(cardinal |ordinal )(\d+)[.]?-([a-záéóöőüű]*)$"				$(fix-grammar $(\1\2)|\3)
+
+== fix-grammar ==
+
+(.*)elsői			\1elsejei
+(.*)elsőe(.*)		\1első\2
+(.*)első(j.*)		\1else\2
+(.*)hároma(t|s)		\1hárma\2
+(.*)húszsz(.*)		\1hússz\2
+(.*)gygy(.*)		\1ggy\2
+(.*)				\1
 
 # Article a/az (number, month names and other words)
 
 == article ==
+
+(-.*) $(article $(\1)) # for example, "article -ban október" -> "az októberben"
 
 ((i|v|l(v?i{0,3}|i[vx])|d(xc)?[ilxv]*|m(cm)?[cdilxv]*)[.](-.*)?)   az \1 # Roman numbers
 ((I|V|L(V?I{0,3}|I[VX])|D(XC)?[ILXV]*|M(CM)?[CDILXV]*)[.](-.*)?)   az \1 # ROMAN NUMBERS
@@ -3975,8 +3988,12 @@ ZAR:(.)	$(\1: dél-afrikai rand, cent)
 (\d{1,4})(\d{15}) \1 billiárd[ $(text \2)]
 
 # suffix functions for numbers, dates, letters and parenthesized references
-# -a, -áig, -ától, -ba, -ban, -ból, -d, -dik, -hoz, -nak, -nál, -n, -ra, -ról, -s, -szor, -szoros, -t, -tól, -ul, -vá, -vé
+#
+# canonical and localized suffix function names
+#
 # for example:
+#
+#   accusative 2 -> 2-t
 #   -t 2 -> 2-t
 #   -t 3 -> 3-at
 #   -t 4 -> 4-et
@@ -3984,6 +4001,38 @@ ZAR:(.)	$(\1: dél-afrikai rand, cent)
 #   -t 6 -> 6-ot
 #   -ban a) -> a)-ban
 #   -ban b) -> b)-ben
+
+== database ==
+
+"" :ablative:-tól-től:accusative:-at-et-ot-öt-t:adessive:-nál-nél:adjective:-i-ji:allative:-hoz-hez-höz:attribution-adjective:-as-es-os-ös:dative:-nak-nek:delative:-ról-ről:elative:-ból-ből:fraction-nominative:-ad-ed-od-öd:illative:-ba-be:inessive:-ban-ben:instrumental:-val-vel:multiplicative:-szor-szer-ször:multiplicative-adjective:-szoros-szeres-szörös:possessive:-a-e-je:possessive-ablative:-ától-étől-jétől:possessive-adjective:-ai-ei-jei:possessive-inessive:-ában-ében:possessive-superessive:-án-én:possessive-terminative:-áig-éig-jéig:sublative:-ra-re:superessive:-on-en-ön:terminative:-ig:translative:-vá-vé:
+
+# get suffixed form using the following canonical names
+#
+# for example, "accusative 5" -> "5-öt"
+
+== ([a-z][-a-z]*ive) ==
+
+([^:]*)				$($(\1 $(database)) \2)
+.*\1:(-[^-:]*).*	\2
+
+
+# get suffixed form using the alternative suffix variants
+# by converting them to the preferred (first) variant
+#
+# for example "-et" -> "-at", then
+# "-at 5" -> "5-öt"
+
+== (-[a-z]*[eéöő][a-zéöő]*|-t) ==
+
+([^:]*)						$($(\1 $(database)) \2)
+.*:(-[^-:]+)(-[^-:]+)*\1.*		\2
+
+# replace localized function name with their canonical-name in an input list
+
+== canonical-name ==
+
+"([^:]* )?(-[a-zéáóöő]+)( [^:]*)?"		\1$(canonical-name \2 $(database))\3
+(-[a-zéáóöő]+).*:([a-z]+(-[a-z]+)?):[^:]*\1[-,:].*		\2
 
 == -a ==
 
@@ -3993,7 +4042,7 @@ ZAR:(.)	$(\1: dél-afrikai rand, cent)
 == -ai ==
 
 "(1|.* 1)"	\1-jei
-0"(2|.* 2)"	\1-ai
+"(2|.* 2)"	\1-ai
 
 == -i ==
 
@@ -4013,6 +4062,14 @@ ZAR:(.)	$(\1: dél-afrikai rand, cent)
 
 "(1|.* 1)"	\1-jétől
 "(2|.* 2)"	\1-ától
+
+== -at ==
+
+1[.]	1.-t
+(\d*)2	\12-t
+2[.] 	2.-at
+(\d*)5	\15-öt
+(\d*)6	\16-ot
 
 == -d ==
 
@@ -4038,7 +4095,7 @@ ZAR:(.)	$(\1: dél-afrikai rand, cent)
 
 == -hoz ==
 
-((.*2|.*5)[}\)\]]?)	\1-höz
+((.*2|.*5|1[.])[}\)\]]?)	\1-höz
 
 == -szoros ==
 
@@ -4064,6 +4121,10 @@ ZAR:(.)	$(\1: dél-afrikai rand, cent)
 # "-ben", "-től", "-ig" using prefix "-on", and remove dash
 
 ((szeptem|októ|novem|decem)ber)	\3$(remove-dash $(-on -\1))$(remove-dash $(-on -\2))
+
+== abbreviation ==
+
+(jan|febr|márc|ápr|máj|jún|júl|aug|szept|okt|nov|dec).* \1.
 
 == remove-dash ==
 
@@ -4099,6 +4160,15 @@ vasárnap	vasárnap	# no suffix in dates
 
 == -val ==
 
+# ordinal
+
+(1[.])								\1-vel
+(2[.])								\1-kal
+(.*([368]|[2368]0|\d00|\d0{6,})[.])	\1-kal
+(.*([14579]|[14579]0|\d0{3,5})[.])	\1-kel
+
+# cardinal
+
 ([{\(\[]?(0|.*[^0]0{6,8}|.*[^0]0{12,14}|[ahkoquAHKOQU][.]?)[}\)\]]?)	\1-val
 (.*[14][}\)\]]?)	\1-gyel
 (.*(2|[bcdegijptvwzBCDEGIJPTVWZ][.]?)[}\)\]]?)		\1-vel
@@ -4125,14 +4195,14 @@ vasárnap	vasárnap	# no suffix in dates
 
 == (-a|-ad|-ai|-án|-áig|-ban?|-ból|-hoz|-i|-nak|-nál|-on|-ra|-ról|-as|-szoros|-at|-á?tól|-ul) ==
 
-# 1-be, 2-nek, 4-et etc., b)-ben, c)-ből, d)-hez, n-et etc.
+# 1-be, 2-nek, 2.-nak, 12.-nek, 4-et etc., b)-ben, c)-ből, d)-hez, n-et etc.
 # add affix after conversion to the alternative form
 
-([{\(\[]?(.*[124579]|.*[14579]0|.*[^0]0{3,5}|[bcdefgijlmnprstvwxzBCDEFGIJLMNPRSTVWXZ][.]?)[}\)\]]?) \2$(-on \1)
+([{\(\[]?(2|.+2[.]?|.*[14579][.]?|.*[14579]0[.]?|.*[^0]0{3,5}[.]?|[bcdefgijlmnprstvwxzBCDEFGIJLMNPRSTVWXZ][.]?)[}\)\]]?) \2$(-on \1)
 
 # otherwise: 0-ba, 3-at, 6-nál etc., a)-ban, h)-ból, k-hoz, y-ról etc.
 
-([{\(\[]?(.*[0-9]+|[ahkoquyAHKOQUY][.]?)[}\)\]]?) \2\1
+([{\(\[]?(.*[0-9]+[.]?|[ahkoquyAHKOQUY][.]?)[}\)\]]?) \2\1
 
 # conversion to the alternative form: -ban -> -ben etc.
 
@@ -4146,7 +4216,7 @@ vasárnap	vasárnap	# no suffix in dates
 
 == help ==
 
-"" $(1)|, $(2)|, $(3)\n$(\0 ordinal)$(\0 ordinal-number)year: $(year 2001), $(year 2002)|, $(year 2003)\nformal: $(formal 100), $(formal 200), $(formal 1000)\ntext: $(text 1), $(text 12000), $(text 10000000000)\ncurrency \(for example, HUF\): $(HUF 2,5)\nformal HUF: $(formal HUF 102,5)\nSuffixation of numbers and letters: -a, -ában, -án, -áig, -ától, -ba, -ban, -ból, -d, -dik, -hoz,\n    -nak, -nál, -n, -ra, -ról, -s, -szor, -szoros, -t, -tól, -ul, -vá, -val,\n    for example: -szor 15 -> $(-szor 15)\narticle: $(article 5)\narticle cardinal: $(article cardinal 100)\narticle cardinal formal: $(article cardinal formal 100)\narticle -ban: $(article -ban a\))
+"" $(1)|, $(2)|, $(3)\n$(\0 ordinal)$(\0 ordinal-number)year: $(year 2001), $(year 2002)|, $(year 2003)\nformal: $(formal 100), $(formal 200), $(formal 1000)\ntext: $(text 1), $(text 12000), $(text 10000000000)\ncurrency \(for example, HUF\): $(HUF 2,5)\nformal HUF: $(formal HUF 102,5)\nSuffixation of numbers and letters: -a, -ában, -án, -áig, -ától, -ba, -ban, -ból, -d, -dik, -hoz,\n    -nak, -nál, -n, -ra, -ról, -s, -szor, -szoros, -t, -tól, -ul, -vá, -val,\n    for example: -szor 15 -> $(-szor 15)\narticle: $(article 5)\narticle cardinal: $(article cardinal 100)\narticle cardinal formal: $(article cardinal formal 100)\narticle -ban: $(article -ban a\))\narticle ordinal -ai: $(article ordinal -ai 1)|\ncanonical-name: -szor -> $(canonical-name -szor)
 
 "(ordinal(-number)?|USD)" \1: $(\1 1), $(\1 2), $(\1 3)\n
 
@@ -5366,6 +5436,137 @@ USD:(.)	$(\1: Amerikaanse dollar, cent, cent)
 
 "" $(1)|, $(2)|, $(3)|\n$(\0 ordinal)$(\0 ordinal-number)currency \(for example, EUR\): $(EUR 2.5)
 "(ordinal(-number)?)" \1: $(\1 1), $(\1 2), $(\1 3)\n
+
+</textarea>
+<textarea id='no' class='hidden'>
+^0 null
+1$ éin # [:nn:]
+1$ én
+1 et
+2 to
+3 tre
+4 fire
+5 fem
+6 seks
+7 sju
+8 åtte
+9 ni
+10 ti
+
+11 elleve
+12 tolv
+13 tretten
+14 fjorten
+15 femten
+16 seksten
+17 sytten
+18 atten
+19 nitten
+
+2(\d) tjue[$1]
+3(\d) tretti[$1]
+4(\d) førti[$1]
+5(\d) femti[$1]
+6(\d) seksti[$1]
+7(\d) sytti[$1]
+8(\d) åtti[$1]
+9(\d) nitti[$1]
+
+(\d)(\d\d) $(cardinal-neuter \1) hundre[ og $2]
+(\d{1,3})(\d{3}) $(cardinal-neuter \1) tusen[ og $2]
+
+a:1,0+
+a:\d+,0+ er
+a:1,(\d+) " og $1"
+a:\d+,(\d+) "er og $1"
+
+(\d{1,3})(\d{6}) $1 million$(a:\1,\2)
+(\d{1,3})(\d{9}) $1 milliard$(a:\1,\2)
+(\d{1,3})(\d{12}) $1 billion$(a:\1,\2)
+(\d{1,3})(\d{15}) $1 billiard$(a:\1,\2)
+(\d{1,3})(\d{18}) $1 trillion$(a:\1,\2)
+(\d{1,3})(\d{21}) $1 trilliard$(a:\1,\2)
+(\d{1,3})(\d{24}) $1 kvadrillion$(a:\1,\2)
+
+# negative number
+
+[-−](\d+) minus |$1
+
+# decimals
+
+([-−]?\d+)[.,] $1| komma
+"([-−]?\d+[.,]0*)(\d+)" $1 |$2
+([-−]?\d+[.,]\d*)(\d) $1| |$2
+
+# currency
+
+# unit/subunit singular/plural
+
+us:([^,]*),([^,]*),([^,]*),([^,]*) \1
+up:([^,]*),([^,]*),([^,]*),([^,]*) \2
+ss:([^,]*),([^,]*),([^,]*),([^,]*) \3
+sp:([^,]*),([^,]*),([^,]*),([^,]*) \4
+
+CHF:(\D+) $(\1: sveitsisk franc, sveitsisk franc, centime, centimes)
+CNY:(\D+) $(\1: renminbi yuan, renminbi yuan, fen, fen)
+DKK:(\D+) $(\1: dansk krone, danske kroner, øre, øre)
+EUR:(\D+) $(\1: euro, euro, cent, cent)
+GBP:(\D+) $(\1: britisk pund, britisk pund, penny, pence)
+ISK:(\D+) $(\1: islandsk krone, islandske kroner, eyrir, aurar)
+JPY:(\D+) $(\1: yen, yen, sen, sen)
+NOK:(\D+) $(\1: norsk krone, norske kroner, øre, øre)
+SEK:(\D+) $(\1: svensk krone, svenske kroner, øre,  øre)
+USD:(\D+) $(\1: amerikansk dollar, amerikansk dollar, cent, cent)
+
+"([A-Z]{3}) ([-−]?1)([.,]00?)?" $2$(\1:us)
+"([A-Z]{3}) ([-−]?\d+)([.,]00?)?" $2$(\1:up)
+
+"(CNY [-−]?\d+)[.,]10?" $1 $2 jiao
+"(CNY [-−]?\d+)[.,](\d)0?" $1 $2 jiao
+"(CNY [-−]?\d+[.,]\d)1" $1 $2 fen
+"(CNY [-−]?\d+[.,]\d)(\d)" $1 $2 fen
+
+"(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 |$(1)$(\2:ss)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 |$(\30)$(\2:sp)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 |$3$(\2:sp)
+
+== cardinal-feminine ==
+
+1 éi
+
+== cardinal-neuter ==
+
+1 eitt # [:nn:]
+1 ett
+
+== cardinal(-feminine|-masculine|-neuter)? ==
+
+(.*\d+) $2
+
+== ordinal ==
+
+([-−]?\d+) $(ordinal |$1)
+
+null		nullte		# 0
+(éi?n)		første		# 1
+"(.*) én"	\1 først	# 1
+(.*)to		\1annen		# 2
+(.*)tre		\1tredje	# 3
+(.*)fire	\1fjerde	# 4
+(.*(fem|ellev|tolv|ard|on))(e|er)?	\1te # 5, 11, 12, 10^6, 10^9 etc.
+(.*)seks	\1sjette	# 6
+(.*)tres	\1tressende	# 60
+(.*(sju|ått|ni|ti|tju|ti))e?	\1ende # 7, 8, 9, 10, 20, 30, 40, 50, 70, 80, 90
+(.*(en|hundre|tusen))	\1de	# 13-19, 100, 1000
+
+== ordinal-number ==
+
+(\d+)	\1.
+
+== help ==
+
+"" |$(1)|, |$(2)|, |$(3)|\n$(help cardinal-feminine)$(help cardinal-masculine)$(help cardinal-neuter)$(help ordinal)$(help ordinal-number)
+(cardinal(-feminine|-masculine|-neuter)?|ordinal(-number)?) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
 
 </textarea>
 <textarea id='pl' class='hidden'>
