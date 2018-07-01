@@ -271,10 +271,12 @@ function copy_result() {
 <option value='ru'>ru</option>
 <option value='sh'>sh</option>
 <option value='sl'>sl</option>
+<option value='sq'>sq</option>
 <option value='sr'>sr</option>
 <option value='sv'>sv</option>
 <option value='th'>th</option>
 <option value='tr'>tr</option>
+<option value='uk'>uk</option>
 <option value='vi'>vi</option>
 <option value='zh'>zh</option>
 <option value='Hung'>Hung</option>
@@ -2940,9 +2942,9 @@ sp:([^,]*),([^,]*),([^,]*),([^,]*) \4
 AUD:(\D+) $(\1: Australian dollari, Australian dollaria, sentti, senttiä)
 CAD:(\D+) $(\1: Kanadan dollari, Kanadan dollaria, sentti, senttiä)
 CHF:(\D+) $(\1: Sveitsin frangi, Sveitsin frangia, rappeni, rappenia)
-CNY:(\D+) $(\1: Kiinan juan, Kiinan juania, feni, feniä)
+CNY:(\D+) $(\1: Kiinan juan, Kiinan juania, fen, feniä)
 CYP:(\D+) $(\1: Kyproksen punta, Kyproksen puntaa, sentti, senttiä)
-CZK:(\D+) $(\1: Tšekin koruna, Tšekin korunaa, haléři, haléřia)
+CZK:(\D+) $(\1: Tšekin koruna, Tšekin korunaa, haléř, haléřia)
 DKK:(\D+) $(\1: Tanskan kruunu, Tanskan kruunua, äyri, äyriä)
 EEK:(\D+) $(\1: Viron kruunu, Viron kruunua, sentti, senttiä)
 EUR:(\D+) $(\1: euro, euroa, sentti, senttiä)
@@ -2950,23 +2952,23 @@ GBP:(\D+) $(\1: Englannin punta, Englannin puntaa, penny, pennyä)
 HKD:(\D+) $(\1: Hongkongin dollari, Hongkongin dollaria, sentti, senttiä)
 HRK:(\D+) $(\1: Kroatian kuna, Kroatian kunaa, lipa, lipaa)
 HUF:(\D+) $(\1: Unkarin forintti, Unkarin forinttia, filléri, fillériä)
-IDR:(\D+) $(\1: Indonesian rupia, Indonesian rupiaa, seni, seniä)
+IDR:(\D+) $(\1: Indonesian rupia, Indonesian rupiaa, sen, seniä)
 ISK:(\D+) $(\1: Islannin kruunu, Islannin kruunua, äyri, äyriä)
-JPY:(\D+) $(\1: Japanin jeni, Japanin jeniä, seni, seniä)
+JPY:(\D+) $(\1: Japanin jeni, Japanin jeniä, sen, seniä)
 KRW:(\D+) $(\1: Etelä-Korean won, Etelä-Korean wonia, chon, chonia)
 LTL:(\D+) $(\1: Liettuan lita, Liettuan litiä, centasi, centasia)
 LVL:(\D+) $(\1: Latvian lati, Latvian latia, santiimi, santiimia)
-MYR:(\D+) $(\1: Malesian ringgit, Malesian ringgittia, sentti, senttiä)
+MYR:(\D+) $(\1: Malesian ringgit, Malesian ringgittia, sen, seniä)
 NZD:(\D+) $(\1: Uuden-Seelannin dollari, Uuden-Seelannin dollaria, sentti, senttiä)
 NOK:(\D+) $(\1: Norjan kruunu, Norjan kruunua, äyri, äyriä)
 PHP:(\D+) $(\1: Filippiinien peso, Filippiinien pesoa, centavo, centavoa)
-PLN:(\D+) $(\1: Puolan zloty, Puolan zlotya, groszy, groszya)
-RON:(\D+) $(\1: Romanian leu, Romanian leuta, bani, bania)
+PLN:(\D+) $(\1: Puolan zloty, Puolan zlotya, grosz, groszia)
+RON:(\D+) $(\1: Romanian leu, Romanian leuta, ban, bania)
 RUB:(\D+) $(\1: Venäjän rupla, Venäjän ruplaa, kopeekka, kopeekkaa)
 SEK:(\D+) $(\1: Ruotsin kruunu, Ruotsin kruunua, äyri, äyriä)
 SGD:(\D+) $(\1: Singaporen dollari, Singaporen dollaria, sentti, senttiä)
 THB:(\D+) $(\1: Thaimaan baht, Thaimaan bahtia, satang, satangia)
-TRY:(\D+) $(\1: Turkin liira, Turkin liiraa, kuruşi, kuruşia)
+TRY:(\D+) $(\1: Turkin liira, Turkin liiraa, kuruş, kuruşia)
 USD:(\D+) $(\1: Yhdysvaltain dollari, Yhdysvaltain dollaria, sentti, senttiä)
 
 "(JPY [-−]?\d+)[.,](\d\d)0" $1
@@ -2979,7 +2981,7 @@ USD:(\D+) $(\1: Yhdysvaltain dollari, Yhdysvaltain dollaria, sentti, senttiä)
 # chiao?
 "(CNY [-−]?\d+)[.,]10?" $1 $2 chiao
 "(CNY [-−]?\d+)[.,](\d)0?" $1 $2 chiaota
-"(CNY [-−]?\d+[.,]\d)1" $1 $2 feni
+"(CNY [-−]?\d+[.,]\d)1" $1 $2 fen
 "(CNY [-−]?\d+[.,]\d)(\d)" $1 $2 feniä
 
 "(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 $(1)$(\2:ss)
@@ -3025,7 +3027,7 @@ USD:(\D+) $(\1: Yhdysvaltain dollari, Yhdysvaltain dollaria, sentti, senttiä)
 == help ==
 
 "" $(1), $(2), $(3)\n$(help ordinal)$(help ordinal-number)
-(ordinal(-number)?) \1: $(\1 1), $(\1 2), $(\1 3)\n
+(ordinal(-number)?) \1: $(\1 1)|, $(\1 2)|, $(\1 3)\n
 </textarea>
 <textarea id='fr' class='hidden'>
 ^0 zéro
@@ -3916,7 +3918,7 @@ ZAR:(.)	$(\1: dél-afrikai rand, cent)
 
 == article ==
 
-(-.*) $(article $(\1)) # for example, "article -ban október" -> "az októberben"
+"(-[a-záéö]* .*|[a-z][-a-z]*ive .*)" $(article $(\1)) # for example, "article -ban október" -> "az októberben"
 
 ((i|v|l(v?i{0,3}|i[vx])|d(xc)?[ilxv]*|m(cm)?[cdilxv]*)[.](-.*)?)   az \1 # Roman numbers
 ((I|V|L(V?I{0,3}|I[VX])|D(XC)?[ILXV]*|M(CM)?[CDILXV]*)[.](-.*)?)   az \1 # ROMAN NUMBERS
@@ -4013,8 +4015,7 @@ ZAR:(.)	$(\1: dél-afrikai rand, cent)
 == ([a-z][-a-z]*ive) ==
 
 ([^:]*)				$($(\1 $(database)) \2)
-.*\1:(-[^-:]*).*	\2
-
+.*:\1:(-[^-:]*).*	\2
 
 # get suffixed form using the alternative suffix variants
 # by converting them to the preferred (first) variant
@@ -4145,7 +4146,7 @@ szerda	szerdától
 (hétfő|kedd|csütörtök|péntek)	\1től
 (szombat|vasárnap)	\1tól
 
-== -n ==
+== -on ==
 
 hétfő		hétfőn
 (kedd|péntek)	\1en
@@ -6193,7 +6194,7 @@ USD:(\D+) $(\1: доллар США, доллара США, долларов С�
 == ordinal-neuter ==
 
 0 нулевое
-([-−]?\d+) $(ordinal |$1)
+([-−]?\d+) $(ordinal-neuter |$1)
 
 (.*)один	\1первое
 (.*)два	\1второе
@@ -6512,6 +6513,98 @@ USD:(.+) $(\1: ameriški dolar, ameriška dolarja, ameriški dolarji, ameriške 
 
 == help ==
 "" |$(1)|, |$(2)|, |$(3)|\n$(help cardinal-feminine)$(help cardinal-masculine)$(help cardinal-neuter)$(help ordinal-feminine)$(help ordinal-masculine)$(help ordinal-neuter)$(help ordinal-number)
+(.*) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
+
+</textarea>
+<textarea id='sq' class='hidden'>
+^0$ zero
+1 një
+2 dy
+3 tre
+4 katër
+5 pesë
+6 gjashtë
+7 shtatë
+8 tetë
+9 nëntë
+1(\d) [$1mbë]dhjetë
+2(\d) njëzet[ e $1]
+4(\d) dyzet[ e $1]
+(\d)(\d) $(cardinal-feminine \1)dhjetë[ e $2]
+(\d)(\d\d) $1qind[ e $2]
+(\d{2,3})(\d{3}) $1 mijë[ $2]
+(1)(\d{6}) $(cardinal-feminine \1) milion[ $2]
+(\d{1,3})(\d{6}) $(cardinal-feminine \1) milionë[ $2]
+(1)(\d{9}) $(cardinal-feminine \1) miliar[ $2]
+(\d{1,3})(\d{9}) $(cardinal-feminine \1) miliarë[ $2]
+(1)(\d{12}) $(cardinal-feminine \1) trilion[ $2]
+(\d{1,3})(\d{12}) $(cardinal-feminine \1) trilionë[ $2]
+
+# negative number
+
+[-−](\d+) minus |$1
+
+# decimals
+
+"([-−]?\d+)[.,]" "$1| presje"
+"([-−]?\d+[.,]\d*)(\d)" $1| |$2
+
+# currency
+
+# unit/subunit singular/plural
+
+us:([^,]*),([^,]*),([^,]*),([^,]*) \1
+up:([^,]*),([^,]*),([^,]*),([^,]*) \2
+ss:([^,]*),([^,]*),([^,]*),([^,]*) \3
+sp:([^,]*),([^,]*),([^,]*),([^,]*) \4
+
+ALL:(\D+) $(\1: lek, lekë, qindarka, qindarka)
+EUR:(\D+) $(\1: euro, euro, cent, cent)
+GBP:(\D+) $(\1: paund sterlina, paund sterlina, peni, peni)
+USD:(\D+) $(\1: dollari amerikan, dollarë amerikanë, cent, cent)
+
+"([A-Z]{3}) ([-−]?1)" $2$(\1:us)
+"([A-Z]{3}) ([-−]?\d+)" $2$(\1:up)
+
+"(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 |$(1)$(\2:ss)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 |$(\30)$(\2:sp)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 |$3$(\2:sp)
+
+
+== cardinal-feminine ==
+
+3 tri
+(\d+) $(cardinal-feminine $1)
+(.*)tre \1tri
+(.*) \1
+
+== cardinal(-masculine)? ==
+
+(\d+) $2
+
+== ordinal-feminine ==
+
+(\d+)	e $(ordinal-feminine $1)
+(.*)një \1para
+(.*)të	\1ta
+(.*)ë	\1ta
+(.*)	\1ta
+
+== ordinal(-masculine)? ==
+
+(\d+)	i $(ordinal $2)
+(.*)një \2pari
+(.*)të	\2ti
+(.*)ë	\2ti
+(.*)	\2ti
+
+== ordinal-number ==
+
+(.*) \1.
+
+== help ==
+
+"" |$(1)|, |$(2)|, |$(3)|\n$(help cardinal-feminine)$(help cardinal-masculine)$(help ordinal-feminine)$(help ordinal-masculine)$(help ordinal-number)
 (.*) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
 
 </textarea>
@@ -6977,13 +7070,219 @@ space:(.*) \1
 "(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 |$(\30)$(\2:sp)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 $(space:|$3)$(\2:sp)
 
+== ordinal ==
+
+(\d+) $(ordinal $1)
+(.*ü[çz])	\1üncü
+(.*dör)t	\1düncü
+(.*)altı    \1altıncı
+(.*(kırk|doksan|yar|ış))	\1ıncı
+(.*(uz|on))		\1uncu
+(.*)i		\1inci
+(.*)		\1inci
+
 == ordinal-number ==
 
 (\d+)	\1.
 
 == help ==
 
-"" |$(1)|, |$(2)|, |$(3)|\n$(help cardinal-neuter)$(help cardinal-feminine)$(help cardinal-masculine)$(help ordinal)$(help ordinal-number)
+"" |$(1)|, |$(2)|, |$(3)|\n$(help ordinal)$(help ordinal-number)
+(.*) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
+</textarea>
+<textarea id='uk' class='hidden'>
+^0 нуль
+1 один
+2 два
+3 три
+4 чотири
+5$ п’ять
+5 п’ят
+6$ шість
+6 шіст
+7 сім
+8 вісім
+9$ дев’ять
+9 дев’ят
+10 десять
+11 одинадцять
+12 дванадцять
+13 тринадцять
+14 чотирнадцять
+15 п’ятнадцать
+16 шістнадцять
+17 сімнадцять
+18 вісімнадцять
+19 дев’ятнадцять
+([23])(\d) $1|дцять[ $2]
+4(\d) сорок[ $1]
+9(\d) дев’яносто[ $1]
+(\d)(\d) $1десят[ $2]
+1(\d\d) сто[ $1]
+2(\d\d) двісті[ $1]
+([34])(\d\d) $1ста[ $2]
+(\d)(\d\d) $1сот[ $2]
+(1|\d?[02-9]1)(\d{3}) $(f:$1) тисяча[ $2]
+([234]|\d?[02-9][234])(\d{3}) $(f:$1) тисячі[ $2]
+(\d{1,3})(\d{3}) $1| тисяч[ $2]
+(1|\d?[02-9]1)(\d{6}) $1 мільйон[ $2]
+([234]|\d?[02-9][234])(\d{6}) $1 мільйона[ $2]
+(\d{1,3})(\d{6}) $1 мільйонов[ $2]
+(1|\d?[02-9]1)(\d{9}) $1 мільярд[ $2]
+([234]|\d?[02-9][234])(\d{9}) $1 мільярда[ $2]
+(\d{1,3})(\d{9}) $1 мільярдов[ $2]
+(1|\d?[02-9]1)(\d{12}) $1 трильйон[ $2]
+([234]|\d?[02-9][234])(\d{12}) $1 трильйона[ $2]
+(\d{1,3})(\d{12}) $1 трильйонов[ $2]
+(1|\d?[02-9]1)(\d{15}) $1 квадрильйон[ $2]
+([234]|\d?[02-9][234])(\d{15}) $1 квадрильйона[ $2]
+(\d{1,3})(\d{15}) $1 квадрильйонов[ $2]
+(1|\d?[02-9]1)(\d{18}) $1 квінтильйон[ $2]
+([234]|\d?[02-9][234])(\d{18}) $1 квінтильйона[ $2]
+(\d{1,3})(\d{18}) $1 квінтильйонов[ $2]
+(1|\d?[02-9]1)(\d{21}) $1 секстильйон[ $2]
+([234]|\d?[02-9][234])(\d{21}) $1 секстильйона[ $2]
+(\d{1,3})(\d{21}) $1 секстильйонов[ $2]
+(1|\d?[02-9]1)(\d{24}) $1 септильйон[ $2]
+([234]|\d?[02-9][234])(\d{24}) $1 септильйона[ $2]
+(\d{1,3})(\d{24}) $1 септильйонов[ $2]
+
+# negative numbers
+
+[-−]1 мінус один
+[-−](\d+) мінус |$1
+
+# decimals
+
+"([-−]?)[.,](\d+)" $(\10.\2)
+"[-−]1[.,]" мінус одна ціла
+"([-−]?\d+[02-9]1|1)[.,]" $(f:|$1) ціла
+"([-−]?\d+)[.,]" $(f:|$1) цілий
+"([-−]?\d+[.,])1" $1| и одна десята
+"([-−]?\d+[.,])(\d)" $1| и $(f:|$2) десятий
+"([-−]?\d+[.,])([02-9]1)" $1| и $(f:|$2) сота
+"([-−]?\d+[.,])(\d\d)" $1| и $(f:|$2) сотий
+"([-−]?\d+[.,])(\d[02-9]1)" $1| и $(f:|$2) тисячна
+"([-−]?\d+[.,])(\d{3})" $1| и $(f:|$2) тисячний
+"([-−]?\d+[.,])(\d)(\d)(\d)(\d)" $1| |$2 |$3 |$4 |$5
+"([-−]?\d+[.,]\d*)(\d)" $1| |$2
+
+
+# female conversion
+f:(.*)один \1одна
+f:(.*)два \1дві
+f:(.*) \1
+
+# possessive (1-999) - used in ordinals
+"pos:(.* )?од(ин|на) ?" [$(pos:\1)]одного
+"pos:(.* )?дв[аі] ?" [$(pos:\1)]двох
+"pos:(.* )?три ?" [$(pos:\1)]трьох
+"pos:(.* )?чотири ?" [$(pos:\1)]чотирьох
+"pos:(.* )?вісім ?" [$(pos:\1)]восьми
+"pos:(.* )?([а-я]+)ь ?" [$(pos:\1)]\2и
+"pos:(.* )?сорок ?" [$(pos:\1)]сорока
+"pos:(.* )?([а-я]+)десят ?" [$(pos:\1)]\2десяти
+"pos:(.* )?([а-я]*)сто ?" [$(pos:\1)]\2сто
+"pos:(.*)двести ?"	\1двохсот
+"pos:(.*)иста ?"	\1ьохсот
+"pos:(.*)осемьсот ?" \1осьмисот
+"pos:(.*[^и])сот ?" \1исот
+pos:(.*) \1
+
+# currency
+
+# unit/subunit
+
+us:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \1
+up:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \2
+ug:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \3
+ss:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \4
+sp:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \5
+sg:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \6
+
+EUR:(\D+) $(\1: євро, євро, євро, цент, цента, центов)
+GBP:(\D+) $(\1: фунт стерлінгів, фунта стерлінгів, фунтів стерлінгів, пенні, пенса, пенсів)
+RUB:(\D+) $(\1: рубль, рубля, рублів, копійка, копійки, копійок)
+UAH:(\D+) $(\1: гривня, гривні, гривень, копійка, копійки, копійок)
+USD:(\D+) $(\1: долар США, долара США, доларів США, цент, цента, центів)
+
+"([A-Z]{3}) ([-−]?1)([.,]00?)?" $2|$(\1:us)
+"([A-Z]{3}) ([-−]?\d*[02-9]1)([.,]00?)?" $2|$(\1:us)
+"([A-Z]{3}) ([-−]?[234])([.,]00?)?" $2|$(\1:up)
+"([A-Z]{3}) ([-−]?\d*[02-9][234])([.,]00?)?" $2|$(\1:up)
+"([A-Z]{3}) ([-−]?\d+)([.,]00?)?" $2|$(\1:ug)
+
+"((RUB) [-−]?\d+)[.,]([02-9])1" $1 $(\30) одна$(\2:ss)
+"(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 |$(1)$(\2:ss)
+"((EUR|GBP|USD) [-−]?\d+)[.,]([02-9]2)" $1 $3|$(\2:sp)
+"(([A-Z]{3}) [-−]?\d+)[.,]([02-9][234])" $1 |$3$(\2:sp)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 |$(\30)$(\2:sg)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 |$3$(\2:sg)
+
+== ordinal-feminine ==
+
+0 нульова
+([-−]?\d+) $(ordinal-feminine |$1)
+
+(.*)один	\1перша
+(.*)два		\1друга
+(.*)три		\1третя
+(.*)чотири	\1четверта
+(.*)шість	\1шоста
+(.*)ть		\1та
+(.*)вісім	\1восьма
+(.*)сім		\1сьома
+(.*)к		\1кова
+(.*)осто	\1оста
+(.*)сто		\1сота
+(.*)двісті	\1двохсота
+(.*)иста	\1ьохсота
+(.*)шістсот 	\2шестисота
+(.*)вісімсот	\1восьмисота
+(.*)сімсот 	\2семисота
+(.*)сот		\1исота
+"одна тисяча"	тисячна
+"(.* )тисяч[аі]?" $(pos:\1)тисячна
+"один (\w+ль\w+)"	\1на
+"(.* )([а-я]+ль[а-я]+)(а|ов)"	$(pos:\1)\2на
+"(.* )([а-я]+ль[а-я]+)"	$(pos:\1)\2на
+(.*)	\1а
+
+== ordinal-neuter ==
+
+([-−]?\d+) $(ordinal-neuter |$(ordinal-feminine \1))
+
+(.*)а		\1е
+(.*)я		\1є
+(.*)	\1
+
+== ordinal(-masculine)? ==
+
+([-−]?\d+) $(ordinal-masculine |$(ordinal-feminine \2))
+
+(.*)а		\2ий
+(.*)я		\2ій
+(.*)	\2
+
+== ordinal-number-feminine ==
+
+(\d+) \1-$(ordinal-number-neuter |$(ordinal-feminine \1))
+
+== ordinal-number-neuter ==
+
+(\d+) \1-$(ordinal-number-neuter |$(ordinal-neuter \1))
+
+# use last two letters to get a consonant
+
+.*(..) \1
+
+== ordinal-number(-masculine)? ==
+
+(\d+) \2-й
+
+== help ==
+
+"" |$(1)|, |$(2)|, |$(3)|\n$(help ordinal-feminine)$(help ordinal-masculine)$(help ordinal-neuter)$(help ordinal-number-feminine)$(help ordinal-number-masculine)$(help ordinal-number-neuter)
 (.*) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
 </textarea>
 <textarea id='vi' class='hidden'>
