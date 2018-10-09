@@ -118,27 +118,27 @@
       <div class="col-md-3 col-sm-6">
         <div class="service"> <i class="fa fa-table"></i>
           <h3>LibreOffice</h3>
-	  <p>Extension with NUMBERTEXT and MONEYTEXT spreadsheet functions: <a href="https://extensions.libreoffice.org/extensions/numbertext-1/1.0/@@download/file/numbertext-1.0.oxt">numbertext-1.0.oxt</a>
-	  (<a href="https://extensions.libreoffice.org/extensions/numbertext-1/1.0">description</a>)</p>
+	  <p>Extension with NUMBERTEXT and MONEYTEXT spreadsheet functions: <a href="https://extensions.libreoffice.org/extensions/numbertext-1/1-0.5/@@download/file/numbertext-1.0.5.oxt">numbertext-1.0.5.oxt</a>
+	  (<a href="https://extensions.libreoffice.org/extensions/numbertext-1/1-0.5">description</a>)</p>
         </div>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="service"> <i class="fa fa-cogs"></i>
           <h3>C++</h3>
-	  <p>Source distribution (1.0): <a href="https://github.com/Numbertext/libnumbertext/releases/download/1.0/libnumbertext-1.0.3.tar.xz">libnumbertext-1.0.3.tar.xz</a> (<a href="https://github.com/Numbertext/libnumbertext/releases/tag/1.0">installation</a>)</p>
+	  <p>Source distribution (1.0): <a href="https://github.com/Numbertext/libnumbertext/releases/download/1.0.5/libnumbertext-1.0.5.tar.xz">libnumbertext-1.0.5.tar.xz</a> (<a href="https://github.com/Numbertext/libnumbertext/releases/tag/1.0.5">installation</a>)</p>
         </div>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="service"> <i class="fa fa-coffee"></i>
           <h3>Java</h3>
-	  <p>JAR package: <a href="https://github.com/Numbertext/libnumbertext/releases/download/1.0/numbertext.jar">numbertext.jar</a> (1.0).
+	  <p>JAR package: <a href="https://github.com/Numbertext/libnumbertext/releases/download/1.0.5/numbertext.jar">numbertext.jar</a> (1.0.5).
 	  Usage: java -jar numbertext.jar</p>
         </div>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="service"><i class="fa fa-pencil"></i>
           <h3>Python & JavaScript</h3>
-	  <p>Interpreters: <a href="https://github.com/Numbertext/libnumbertext/blob/master/src/Soros.py">Soros.py</a> and <a href="https://github.com/Numbertext/libnumbertext/blob/master/src/Soros.js">Soros.js</a>. For usage, see source distribution (<a href="https://github.com/Numbertext/libnumbertext/archive/1.0.zip">zip</a> or <a href="https://github.com/Numbertext/libnumbertext/archive/1.0.tar.gz">tar.gz</a>).</p>
+	  <p>Interpreters: <a href="https://github.com/Numbertext/libnumbertext/blob/master/src/Soros.py">Soros.py</a> and <a href="https://github.com/Numbertext/libnumbertext/blob/master/src/Soros.js">Soros.js</a>. For usage, see source distribution (<a href="https://github.com/Numbertext/libnumbertext/archive/1.0.5.zip">zip</a> or <a href="https://github.com/Numbertext/libnumbertext/archive/1.0.5.tar.gz">tar.gz</a>).</p>
         </div>
       </div>
     </div>
@@ -243,6 +243,8 @@ SUSANA SOTELO DOCÍO
 •
 RENE ENGELHARD
 •
+AURIMAS FIŠERAS 
+•
 SOPHIE GAUTIER
 •
 GEORGEPYH
@@ -307,9 +309,13 @@ SUPAPONG
 •
 KÁLMÁN SZALAI 
 •
+TENGWAR
+•
 ANDRÁS TÍMÁR 
 •
 TANTAI THANAKANOK 
+•
+RENS TOONEN 
 •
 XHYDROGENE
 •
@@ -1787,7 +1793,7 @@ USD:(\D+) $(\1: usona dolaro, usonaj dolaroj, cendo, cendoj)
 
 == ordinal-number ==
 
-(\d+)	\1.
+(\d+)	\1-a
 
 == help ==
 
@@ -1999,6 +2005,136 @@ feminine:(.*) \1
 "" $(1)|, $(2), $(3)\n$(\0 feminine)$(\0 masculine)$(\0 ordinal-number-masculine)$(\0 ordinal-number-masculine-adjective)$(\0 ordinal-number-feminine)$(\0 ordinal-feminine)$(\0 ordinal-masculine)$(\0 ordinal-masculine-adjective)
 (feminine|masculine|ordinal(-number)?(-feminine|-masculine)?(-adjective)?) \1: $(\1 1), $(\1 2), $(\1 3)\n
 </textarea>
+<textarea id='et' class='hidden'>
+^0 null
+1 üks
+2 kaks
+3 kolm
+4 neli
+5 viis
+6 kuus
+7 seitse
+8 kaheksa
+9 üheksa
+10 kümme
+1(\d) $1teist
+(\d)(\d) $1kümmend[ $2]
+1(\d\d) sada[ $1]
+(\d)(\d\d) $1sada[ $2]
+1(\d{3}) tuhat[ $1]
+(\d{1,3})(\d{3}) $1 tuhat[ $2]
+1(\d{6}) miljon[ $1]
+(\d{1,3})(\d{6}) $1 miljonit[ $2]
+1(\d{9}) miljard[ $1]
+(\d{1,3})(\d{9}) $1 miljardit[ $2]
+1(\d{12}) biljon[ $1]
+(\d{1,3})(\d{12}) $1 biljonit[ $2]
+1(\d{15}) biljard[ $1]
+(\d{1,3})(\d{15}) $1 biljardit[ $2]
+1(\d{18}) triljon[ $1]
+(\d{1,3})(\d{18}) $1 triljonit[ $2]
+1(\d{21}) triljard[ $1]
+(\d{1,3})(\d{21}) $1 triljardit[ $2]
+1(\d{24}) kvadriljon[ $1]
+(\d{1,3})(\d{24}) $1 kvadriljonit[ $2]
+
+# negative numbers
+
+[-−](\d+) miinus |$1
+
+# decimals
+
+([-−]?\d+)[.,]([01])	|$1| ja |$2 kymmenesosa
+([-−]?\d+)[.,](\d)	|$1| ja |$2 kymmenesosaa
+([-−]?\d+)[.,]0([01])	|$1| ja |$2 sadasosa
+([-−]?\d+)[.,](\d\d)	|$1| ja |$2 sadasosaa
+([-−]?\d+)[.,]00([01])	|$1| ja |$2 tuhannesosa
+([-−]?\d+)[.,](\d\d\d)	|$1| ja |$2 tuhannesosaa
+"([-−]?\d+)[.,](\d)(\d)(\d)(\d)" |$1| ja |$2| |$3| |$4| |$5|
+"([-−]?\d+[.,]\d+)(\d)" $1 |$2|
+
+# currency
+
+# unit/subunit singular/singular partitive
+
+us:([^,]*),([^,]*),([^,]*),([^,]*) \1
+up:([^,]*),([^,]*),([^,]*),([^,]*) \2
+ss:([^,]*),([^,]*),([^,]*),([^,]*) \3
+sp:([^,]*),([^,]*),([^,]*),([^,]*) \4
+
+CHF:(\D+) $(\1: Šveitsi frank,  Šveitsi franki, rapp, rappi)
+CNY:(\D+) $(\1: Hiina jüaan, Hiina jüaan, sent, senti)
+EEK:(\D+) $(\1: Eesti kroon, Eesti krooni, sent, senti)
+EUR:(\D+) $(\1: euro, euroa, sent, senti)
+GBP:(\D+) $(\1: Suurbritannia nael, Suurbritannia naela, penn, penni)
+JPY:(\D+) $(\1: Jaapani jeen, Jaapani jeeni, seniks, seniks)
+USD:(\D+) $(\1: USA dollar, USA dollarit, sent, senti)
+
+"(JPY [-−]?\d+)[.,](\d\d)0" $1
+"(JPY [-−]?\d+[.,]\d\d)1" $1 $2 riniks
+"(JPY [-−]?\d+[.,]\d\d)(\d)" $1 $2 riniks
+
+"([A-Z]{3}) ([-−]?1)([.,]00?)?" $2$(\1:us)
+"([A-Z]{3}) ([-−]?\d+)([.,]00?)?" $2$(\1:up)
+
+"(CNY [-−]?\d+)[.,]10?" $1 $2 tsjao
+"(CNY [-−]?\d+)[.,](\d)0?" $1 $2 tsjaoga
+"(CNY [-−]?\d+[.,]\d)1" $1 $2  fõn
+"(CNY [-−]?\d+[.,]\d)(\d)" $1 $2  fõniga
+
+"(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 $(1)$(\2:ss)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 $(\30)$(\2:sp)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 $3$(\2:sp)
+
+
+
+== ordinal ==
+
+^0 null
+1 esimene
+2 teine
+3 kolmas
+([4-9])$ $(ordinal \1)s
+4 nelja
+5 viie
+6 kuue
+7 seitsme
+8 kaheksa
+9 üheksa
+10 kümnes
+11 üheteistkümnes
+12 kaheteistkümnes
+13 kolmeteistkümnes
+1(\d) $(ordinal \1)teistkümnes
+20 kahekümnes
+2(\d) kahekümne[ $(ordinal \1)]
+30 kolmekümnes
+3(\d) kolmekümne[ $(ordinal \1)]
+(\d)0 $(ordinal \1)kümnes
+(\d)(\d) $(ordinal \1)kümne $(ordinal \2)
+100 sajas
+1(\d\d) saja[ $(ordinal \1)]
+200 kahesajas
+2(\d\d) kahesaja[ $(ordinal \1)]
+(\d)(\d\d) $(ordinal \1)saja[ $(ordinal \2)]
+1(\d{3}) tuhandes[ $(ordinal \1)]
+(\d{1,3})(\d{3}) $(ordinal \1)tuhande[ $(ordinal \2)]
+1(\d{6}) miljones[ $(ordinal \1)]
+(\d{1,3})(\d{6}) $(ordinal \1)miljone[ $(ordinal \2)]
+1(\d{9}) miljardes[ $(ordinal \1)]
+(\d{1,3})(\d{9}) $(ordinal \1)miljarde[ $(ordinal \2)]
+1(\d{12}) biljones[ $(ordinal \1)]
+(\d{1,3})(\d{12}) $(ordinal \1)biljone[ $(ordinal \2)]
+
+== ordinal-number ==
+
+(\d+)	\1.
+
+== help ==
+
+"" $(1), $(2), $(3)\n$(help ordinal)$(help ordinal-number)
+(ordinal(-number)?) \1: $(\1 1)|, $(\1 2)|, $(\1 3)\n
+</textarea>
 <textarea id='fi' class='hidden'>
 ^0 nolla
 1 yksi
@@ -2057,7 +2193,12 @@ up:([^,]*),([^,]*),([^,]*),([^,]*) \2
 ss:([^,]*),([^,]*),([^,]*),([^,]*) \3
 sp:([^,]*),([^,]*),([^,]*),([^,]*) \4
 
+ALL:(\D+) $(\1: Albanian lek, Albanian lekiä, qindarkë, qindarkëa)
 AUD:(\D+) $(\1: Australian dollari, Australian dollaria, sentti, senttiä)
+AZN:(\D+) $(\1: Azerbaidžanin manat, Azerbaidžanin manatia, qepik, qepikia)
+BAM:(\D+) $(\1: Bosnia-Hertsegovinan vaihdettava markka, Bosnia-Hertsegovinan vaihdettavaa markkaa, fening, feningiä)
+BGN:(\D+) $(\1: Bulgarian lev, Bulgarian leviä, stotinka, stotinkaa)
+BYN:(\D+) $(\1: Valko-Venäjän rupla, Valko-Venäjän ruplaa, kopeekka, kopeekkaa)
 CAD:(\D+) $(\1: Kanadan dollari, Kanadan dollaria, sentti, senttiä)
 CHF:(\D+) $(\1: Sveitsin frangi, Sveitsin frangia, rappeni, rappenia)
 CNY:(\D+) $(\1: Kiinan juan, Kiinan juania, fen, feniä)
@@ -2067,6 +2208,8 @@ DKK:(\D+) $(\1: Tanskan kruunu, Tanskan kruunua, äyri, äyriä)
 EEK:(\D+) $(\1: Viron kruunu, Viron kruunua, sentti, senttiä)
 EUR:(\D+) $(\1: euro, euroa, sentti, senttiä)
 GBP:(\D+) $(\1: Englannin punta, Englannin puntaa, penny, pennyä)
+GEL:(\D+) $(\1: Georgian lari, Georgian laria, tetri, tetriä)
+GIP:(\D+) $(\1: Gibraltarin punta, Gibraltarin puntaa, penny, pennyä)
 HKD:(\D+) $(\1: Hongkongin dollari, Hongkongin dollaria, sentti, senttiä)
 HRK:(\D+) $(\1: Kroatian kuna, Kroatian kunaa, lipa, lipaa)
 HUF:(\D+) $(\1: Unkarin forintti, Unkarin forinttia, filléri, fillériä)
@@ -2074,23 +2217,27 @@ IDR:(\D+) $(\1: Indonesian rupia, Indonesian rupiaa, sen, seniä)
 ISK:(\D+) $(\1: Islannin kruunu, Islannin kruunua, äyri, äyriä)
 JPY:(\D+) $(\1: Japanin jeni, Japanin jeniä, sen, seniä)
 KRW:(\D+) $(\1: Etelä-Korean won, Etelä-Korean wonia, chon, chonia)
-LTL:(\D+) $(\1: Liettuan lita, Liettuan litiä, centasi, centasia)
+LTL:(\D+) $(\1: Liettuan liti, Liettuan litiä, centas, centasia)
 LVL:(\D+) $(\1: Latvian lati, Latvian latia, santiimi, santiimia)
-MYR:(\D+) $(\1: Malesian ringgit, Malesian ringgittia, sen, seniä)
+MDL:(\D+) $(\1: Moldovan leu, Moldovan leuta, ban, bania)
+MKD:(\D+) $(\1: Makedonian denaari, Makedonian denaaria, deni, deniä)
+MYR:(\D+) $(\1: Malesian ringgit, Malesian ringgitia, sen, seniä)
 NZD:(\D+) $(\1: Uuden-Seelannin dollari, Uuden-Seelannin dollaria, sentti, senttiä)
 NOK:(\D+) $(\1: Norjan kruunu, Norjan kruunua, äyri, äyriä)
 PHP:(\D+) $(\1: Filippiinien peso, Filippiinien pesoa, centavo, centavoa)
 PLN:(\D+) $(\1: Puolan zloty, Puolan zlotya, grosz, groszia)
 RON:(\D+) $(\1: Romanian leu, Romanian leuta, ban, bania)
+RSD:(\D+) $(\1: Serbian dinaari, Serbian dinaaria, para, paraa)
 RUB:(\D+) $(\1: Venäjän rupla, Venäjän ruplaa, kopeekka, kopeekkaa)
 SEK:(\D+) $(\1: Ruotsin kruunu, Ruotsin kruunua, äyri, äyriä)
 SGD:(\D+) $(\1: Singaporen dollari, Singaporen dollaria, sentti, senttiä)
 THB:(\D+) $(\1: Thaimaan baht, Thaimaan bahtia, satang, satangia)
 TRY:(\D+) $(\1: Turkin liira, Turkin liiraa, kuruş, kuruşia)
+UAH:(\D+) $(\1: Ukrainan hryvnia, Ukrainan hryvniaa, kopeekka, kopeekkaa)
 USD:(\D+) $(\1: Yhdysvaltain dollari, Yhdysvaltain dollaria, sentti, senttiä)
 
 "(JPY [-−]?\d+)[.,](\d\d)0" $1
-"(JPY [-−]?\d+[.,]\d\d)1" $1 $2 rini
+"(JPY [-−]?\d+[.,]\d\d)1" $1 $2 rin
 "(JPY [-−]?\d+[.,]\d\d)(\d)" $1 $2 riniä
 
 "([A-Z]{3}) ([-−]?1)([.,]00?)?" $2$(\1:us)
@@ -4117,26 +4264,66 @@ ss:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \4
 spa:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \5
 spb:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \6
 
-LTL:(\D+) $(\1: litas, litų, litai, centas, centų, centai)
+AUD:(\D+) $(\1: Australijos doleris, Australijos dolerių, Australijos doleriai, centas, centų, centai)
+BGN:(\D+) $(\1: levas, levų, levai, stotinka, stotinkų, stotinkos)
+CAD:(\D+) $(\1: Kanados doleris, Kanados dolerių, Kanados doleriai, centas, centų, centai)
+CHF:(\D+) $(\1: Šveicarijos frankas, Šveicarijos frankų, Šveicarijos frankai, santimas, santimų, santimai)
+CZK:(\D+) $(\1: Čekijos krona, Čekijos kronų, Čekijos kronos, heleris, helerių, heleriai)
+EEK:(\D+) $(\1: Estijos krona, Estijos kronų, Estijos kronos, sentas, sentų, sentai)
 EUR:(\D+) $(\1: euras, eurų, eurai, euro centas, euro centų, euro centai)
-USD:(\D+) $(\1: doleris, dolerių, doleriai, centas, centų, centai)
-NOK:(\D+) $(\1: Norvegijos krona, Norvegijos kronų, Norvegijos kronos, erė, erių, erės)
-SEK:(\D+) $(\1: Švedijos krona, Švedijos kronų, Švedijos kronos, erė, erių, erės)
 GBP:(\D+) $(\1: svaras sterlingų, svarų sterlingų, svarai sterlingų, pensas, pensų, pensai)
-RUB:(\D+) $(\1: rublis, rublių, rubliai, kapeika, kapeikų, kapeikos)
+GHS:(\D+) $(\1: sedis, sedžių, sedžiai, peseva, pesevų, pesevos)
+HKD:(\D+) $(\1: Honkongo doleris, Honkongo dolerių, Honkongo doleriai, centas, centų, centai)
+HRK:(\D+) $(\1: kuna, kunų, kunos, lipa, lipų, lipos)
+HUF:(\D+) $(\1: forintas, forintų, forintai, fileris, filerių, fileriai)
+INR:(\D+) $(\1: Indijos rupija, Indijos rupijų, Indijos rupijos, paisa, paisų, paisos)
+JMD:(\D+) $(\1: Jamaikos doleris, Jamaikos dolerių, Jamaikos doleriai, centas, centų, centai)
+KES:(\D+) $(\1: Kenijos šilingas, Kenijos šilingų, Kenijos šilingai, centas, centų, centai)
+LRD:(\D+) $(\1: Liberijos doleris, Liberijos dolerių, Liberijos doleriai, centas, centų, centai)
+LTL:(\D+) $(\1: litas, litų, litai, centas, centų, centai)
+LVL:(\D+) $(\1: lats, lati, santims, santimi)
+MUR:(\D+) $(\1: Mauricijaus rupija, Mauricijaus rupijų, Mauricijaus rupijos, centas, centų, centai)
+MXN:(\D+) $(\1: Meksikos pesas, Meksikos pesų, Meksikos pesai, sentavas, sentavų, sentavai)
+MWK:(\D+) $(\1: Malavio kvača, Malavio kvačų, Malavio kvačos, tambala, tambalų, tambalos)
+NAD:(\D+) $(\1: Namibijos doleris, Namibijos dolerių, Namibijos doleriai, centas, centų, centai)
+NGN:(\D+) $(\1: naira, nairų, nairos, koba, kobų, kobos)
+NOK:(\D+) $(\1: Norvegijos krona, Norvegijos kronų, Norvegijos kronos, erė, erių, erės)
+NZD:(\D+) $(\1: Naujosios Zelandijos doleris, Naujosios Zelandijos dolerių, Naujosios Zelandijos doleriai, centas, centų, centai)
+PGK:(\D+) $(\1: kina, kinų, kinos, toja, tojų, tojos)
+PHP:(\D+) $(\1: Filipinų pesas, Filipinų pesų, Filipinų pesai, sentimas, sentimų, sentimai)
+PKR:(\D+) $(\1: Pakistano rupija, Pakistano rupijų, Pakistano rupijos, paisa, paisų, paisos)
+PLN:(\D+) $(\1: zlotas, zlotų, zlotai, grašis, grašių, grašiai)
+RON:(\D+) $(\1: Rumunijos lėja, Rumunijos lėjų, Rumunijos lėjos, banas, banų, banai)
+RSD:(\D+) $(\1: Serbijos dinaras, Serbijos dinarų, Serbijos dinarai, paras, parų, parai)
+RUB:(\D+) $(\1: Rusijos rublis, Rusijos rublių, Rusijos rubliai, kapeika, kapeikų, kapeikos)
+RWF:(\D+) $(\1: Ruandos frankas, Ruandos frankų, Ruandos frankai, sentimas, sentimų, sentimai)
+SDG:(\D+) $(\1: Sudano svaras, Sudano svarų, Sudano svarai, piastras, piastrų, piastrai)
+SEK:(\D+) $(\1: Švedijos krona, Švedijos kronų, Švedijos kronos, erė, erių, erės)
+SGD:(\D+) $(\1: Singapūro doleris, Singapūro dolerių, Singapūro doleriai, centas, centų, centai)
+SLL:(\D+) $(\1: leonė, leonių, leonės, centas, centų, centai)
+THB:(\D+) $(\1: Tailando batas, Tailando batų, Tailando batai, satangas, satangų, satangai)
+TRY:(\D+) $(\1: Turkijos lira, Turkijos lirų, Turkijos liros, kurušas, kurušų, kurušai)
+TTD:(\D+) $(\1: Trinidado ir Tobago doleris, Trinidado ir Tobago dolerių, Trinidado ir Tobago doleriai, centas, centų, centai)
+TZS:(\D+) $(\1: Tanzanijos šilingas, Tanzanijos šilingų, Tanzanijos šilingai, centas, centų, centai)
+UAH:(\D+) $(\1: grivina, grivinų, grivinos, kapeika, kapeikų, kapeikos)
+UGX:(\D+) $(\1: Ugandos šilingas, Ugandos šilingų, Ugandos šilingai, centas, centų, centai)
+USD:(\D+) $(\1: JAV doleris, JAV dolerių, JAV doleriai, centas, centų, centai)
+ZAR:(\D+) $(\1: Pietų Afrikos randas, Pietų Afrikos randų, Pietų Afrikos randai, centas, centų, centai)
+ZMK:(\D+) $(\1: Zambijos kvača, Zambijos kvačų, Zambijos kvačos, ngvi, ngvių, ngvės)
+ZWL:(\D+) $(\1: Zimbabvės doleris, Zimbabvės dolerių, Zimbabvės doleriai, centas, centų, centai)
 
 # female gender
 # before delimiter
-"(NOK|SEK) ([-−]?(1|\d*[02-9]1))([.,]00?)?" $(f:$2)|$(\1:us) 				# 1| *01| *21 ...
-"(NOK|SEK) ([-−]?(0|\d*(1[1-9]|[01-9]0)))([.,]00?)?" $2|$(\1:upa)			# 0 | *11| *19| *10| *30 ...
-"(NOK|SEK) ([-−]?\d*[2-9])([.,]00?)?" $(f:$2)|$(\1:upb)					# *2| *8 ...
+"(CZK|EEK|HRK|INR|MUR|MWK|NGN|NOK|PGK|PKR|RON|SEK|SLL|TRY|UAH|ZMK) ([-−]?(1|\d*[02-9]1))([.,]00?)?" $(f:$2)|$(\1:us) 		# 1| *01| *21 ...
+"(CZK|EEK|HRK|INR|MUR|MWK|NGN|NOK|PGK|PKR|RON|SEK|SLL|TRY|UAH|ZMK) ([-−]?(0|\d*(1[1-9]|[01-9]0)))([.,]00?)?" $2|$(\1:upa)	# 0 | *11| *19| *10| *30 ...
+"(CZK|EEK|HRK|INR|MUR|MWK|NGN|NOK|PGK|PKR|RON|SEK|SLL|TRY|UAH|ZMK) ([-−]?\d*[2-9])([.,]00?)?" $(f:$2)|$(\1:upb)			# *2| *8 ...
 
 # atfer delimiter
-"((NOK|SEK|RUB) [-−]?\d+)[.,](01)" $1| ir |$(f:$(1))$(\2:ss) 				# *,01 convertion to *,1
-"((NOK|SEK|RUB) [-−]?\d+)[.,]([2-9]1)" $1| ir |$(f:$3)|$(\2:ss)				# 21, 51, 91 ...
-"((NOK|SEK|RUB) [-−]?\d+)[.,](\d)" $1| ir |$(\30)$(\2:spa)				# *,2 | *,3 ... convertion to *,20 | *,30 ...
-"((NOK|SEK|RUB) [-−]?\d+)[.,](1[1-9])" $1| ir |$3|$(\2:spa)				# 11-19
-"((NOK|SEK|RUB) [-−]?\d+)[.,](\d\d)" $1| ir |$(f:$3)$(\2:spb)				# all the rest
+"((BGN|GHS|HRK|INR|MWK|NGN|NOK|PGK|PKR|SEK|RUB|UAH|ZMK) [-−]?\d+)[.,](0+)" $1|					# 0, 00
+"((BGN|GHS|HRK|INR|MWK|NGN|NOK|PGK|PKR|SEK|RUB|UAH|ZMK) [-−]?\d+)[.,]([02-9]1)" $1| ir |$(f:$3)|$(\2:ss)	# 1, 21, 31, ..., 91
+"((BGN|GHS|HRK|INR|MWK|NGN|NOK|PGK|PKR|SEK|RUB|UAH|ZMK) [-−]?\d+)[.,](\d)" $1| ir |$(\30)$(\2:spa)		# *,x conversion to *,x0
+"((BGN|GHS|HRK|INR|MWK|NGN|NOK|PGK|PKR|SEK|RUB|UAH|ZMK) [-−]?\d+)[.,](1[0-9]|[2-9]0)" $1| ir |$3|$(\2:spa)	# 10-19, 20, 30, ..., 90
+"((BGN|GHS|HRK|INR|MWK|NGN|NOK|PGK|PKR|SEK|RUB|UAH|ZMK) [-−]?\d+)[.,](\d\d)" $1| ir |$(f:$3)$(\2:spb)		# all the rest
 
 # male gender (all except female gender filter matches)
 # before delimiter
@@ -4145,10 +4332,9 @@ RUB:(\D+) $(\1: rublis, rublių, rubliai, kapeika, kapeikų, kapeikos)
 "([A-Z]{3}) ([-−]?\d*[2-9])([.,]00?)?" $2|$(\1:upb)
 
 # atfer delimiter
-"(([A-Z]{3}) [-−]?\d+)[.,](01)" $1| ir |$(1)$(\2:ss)
-"(([A-Z]{3}) [-−]?\d+)[.,]([2-9]1)" $1| ir |$3|$(\2:ss)
+"(([A-Z]{3}) [-−]?\d+)[.,]([02-9]1)" $1| ir |$3|$(\2:ss)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1| ir |$(\30)$(\2:spa)
-"(([A-Z]{3}) [-−]?\d+)[.,](1[1-9])" $1| ir |$3|$(\2:spa)
+"(([A-Z]{3}) [-−]?\d+)[.,](1[0-9]|[2-9]0)" $1| ir |$3|$(\2:spa)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1| ir |$3$(\2:spb)
 
 == feminine ==
@@ -4194,11 +4380,13 @@ RUB:(\D+) $(\1: rublis, rublių, rubliai, kapeika, kapeikų, kapeikos)
 
 == ordinal-number(-masculine)? ==
 
-(\d+)	 \2as
+((\d*[02-9])?3)	 \2-ias		# ends in 3 but not 13
+(\d+)	 \2-as
 
 == ordinal-number-feminine ==
 
-(\d+)	 \1a
+((\d*[02-9])?3)	 \1-ia
+(\d+)	 \1-a
 
 == help ==
 
@@ -4784,6 +4972,8 @@ USD:(\D+) $(\1: dolar amerykański, dolary amerykańskie, dolarów amerykańskic
 == ordinal(-masculine)? ==
 
 ([-−]?\d+)	$(ordinal |$2)
+"(.*)siąt (.*)"	$(ordinal \2siąty \3)
+"(.*)eści (.*)"	$(ordinal \2esty \3)
 
 (.*)jeden	\2pierwszy
 (.*)dwa		\2drugi
@@ -4814,11 +5004,13 @@ USD:(\D+) $(\1: dolar amerykański, dolary amerykańskie, dolarów amerykańskic
 == ordinal-feminine ==
 
 ([-−]?\d+)	$(ordinal-feminine $(ordinal |$1))
+"(.*)[yi] (.*)"		$(ordinal-feminine \1a \2)
 (.*)[yi]	\1a
 
 == ordinal-neuter ==
 
-([-−]?\d+)	$(ordinal-feminine $(ordinal |$1))
+([-−]?\d+)	$(ordinal-neuter $(ordinal |$1))
+"(.*)[yi] (.*)"		$(ordinal-neuter \1e \2)
 (.*)[yi]	\1e
 
 == ordinal-number ==
@@ -8244,7 +8436,7 @@ USD:(\D+) $(\1: usona dolaro, usonaj dolaroj, cendo, cendoj)
 
 == ordinal-number ==
 
-(\d+)	\1.
+(\d+)	\1-a
 
 == help ==
 
@@ -8456,6 +8648,136 @@ feminine:(.*) \1
 "" $(1)|, $(2), $(3)\n$(\0 feminine)$(\0 masculine)$(\0 ordinal-number-masculine)$(\0 ordinal-number-masculine-adjective)$(\0 ordinal-number-feminine)$(\0 ordinal-feminine)$(\0 ordinal-masculine)$(\0 ordinal-masculine-adjective)
 (feminine|masculine|ordinal(-number)?(-feminine|-masculine)?(-adjective)?) \1: $(\1 1), $(\1 2), $(\1 3)\n
 </textarea>
+<textarea rows='0' cols='0' id='et' class='hidden'>
+^0 null
+1 üks
+2 kaks
+3 kolm
+4 neli
+5 viis
+6 kuus
+7 seitse
+8 kaheksa
+9 üheksa
+10 kümme
+1(\d) $1teist
+(\d)(\d) $1kümmend[ $2]
+1(\d\d) sada[ $1]
+(\d)(\d\d) $1sada[ $2]
+1(\d{3}) tuhat[ $1]
+(\d{1,3})(\d{3}) $1 tuhat[ $2]
+1(\d{6}) miljon[ $1]
+(\d{1,3})(\d{6}) $1 miljonit[ $2]
+1(\d{9}) miljard[ $1]
+(\d{1,3})(\d{9}) $1 miljardit[ $2]
+1(\d{12}) biljon[ $1]
+(\d{1,3})(\d{12}) $1 biljonit[ $2]
+1(\d{15}) biljard[ $1]
+(\d{1,3})(\d{15}) $1 biljardit[ $2]
+1(\d{18}) triljon[ $1]
+(\d{1,3})(\d{18}) $1 triljonit[ $2]
+1(\d{21}) triljard[ $1]
+(\d{1,3})(\d{21}) $1 triljardit[ $2]
+1(\d{24}) kvadriljon[ $1]
+(\d{1,3})(\d{24}) $1 kvadriljonit[ $2]
+
+# negative numbers
+
+[-−](\d+) miinus |$1
+
+# decimals
+
+([-−]?\d+)[.,]([01])	|$1| ja |$2 kymmenesosa
+([-−]?\d+)[.,](\d)	|$1| ja |$2 kymmenesosaa
+([-−]?\d+)[.,]0([01])	|$1| ja |$2 sadasosa
+([-−]?\d+)[.,](\d\d)	|$1| ja |$2 sadasosaa
+([-−]?\d+)[.,]00([01])	|$1| ja |$2 tuhannesosa
+([-−]?\d+)[.,](\d\d\d)	|$1| ja |$2 tuhannesosaa
+"([-−]?\d+)[.,](\d)(\d)(\d)(\d)" |$1| ja |$2| |$3| |$4| |$5|
+"([-−]?\d+[.,]\d+)(\d)" $1 |$2|
+
+# currency
+
+# unit/subunit singular/singular partitive
+
+us:([^,]*),([^,]*),([^,]*),([^,]*) \1
+up:([^,]*),([^,]*),([^,]*),([^,]*) \2
+ss:([^,]*),([^,]*),([^,]*),([^,]*) \3
+sp:([^,]*),([^,]*),([^,]*),([^,]*) \4
+
+CHF:(\D+) $(\1: Šveitsi frank,  Šveitsi franki, rapp, rappi)
+CNY:(\D+) $(\1: Hiina jüaan, Hiina jüaan, sent, senti)
+EEK:(\D+) $(\1: Eesti kroon, Eesti krooni, sent, senti)
+EUR:(\D+) $(\1: euro, euroa, sent, senti)
+GBP:(\D+) $(\1: Suurbritannia nael, Suurbritannia naela, penn, penni)
+JPY:(\D+) $(\1: Jaapani jeen, Jaapani jeeni, seniks, seniks)
+USD:(\D+) $(\1: USA dollar, USA dollarit, sent, senti)
+
+"(JPY [-−]?\d+)[.,](\d\d)0" $1
+"(JPY [-−]?\d+[.,]\d\d)1" $1 $2 riniks
+"(JPY [-−]?\d+[.,]\d\d)(\d)" $1 $2 riniks
+
+"([A-Z]{3}) ([-−]?1)([.,]00?)?" $2$(\1:us)
+"([A-Z]{3}) ([-−]?\d+)([.,]00?)?" $2$(\1:up)
+
+"(CNY [-−]?\d+)[.,]10?" $1 $2 tsjao
+"(CNY [-−]?\d+)[.,](\d)0?" $1 $2 tsjaoga
+"(CNY [-−]?\d+[.,]\d)1" $1 $2  fõn
+"(CNY [-−]?\d+[.,]\d)(\d)" $1 $2  fõniga
+
+"(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 $(1)$(\2:ss)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 $(\30)$(\2:sp)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 $3$(\2:sp)
+
+
+
+== ordinal ==
+
+^0 null
+1 esimene
+2 teine
+3 kolmas
+([4-9])$ $(ordinal \1)s
+4 nelja
+5 viie
+6 kuue
+7 seitsme
+8 kaheksa
+9 üheksa
+10 kümnes
+11 üheteistkümnes
+12 kaheteistkümnes
+13 kolmeteistkümnes
+1(\d) $(ordinal \1)teistkümnes
+20 kahekümnes
+2(\d) kahekümne[ $(ordinal \1)]
+30 kolmekümnes
+3(\d) kolmekümne[ $(ordinal \1)]
+(\d)0 $(ordinal \1)kümnes
+(\d)(\d) $(ordinal \1)kümne $(ordinal \2)
+100 sajas
+1(\d\d) saja[ $(ordinal \1)]
+200 kahesajas
+2(\d\d) kahesaja[ $(ordinal \1)]
+(\d)(\d\d) $(ordinal \1)saja[ $(ordinal \2)]
+1(\d{3}) tuhandes[ $(ordinal \1)]
+(\d{1,3})(\d{3}) $(ordinal \1)tuhande[ $(ordinal \2)]
+1(\d{6}) miljones[ $(ordinal \1)]
+(\d{1,3})(\d{6}) $(ordinal \1)miljone[ $(ordinal \2)]
+1(\d{9}) miljardes[ $(ordinal \1)]
+(\d{1,3})(\d{9}) $(ordinal \1)miljarde[ $(ordinal \2)]
+1(\d{12}) biljones[ $(ordinal \1)]
+(\d{1,3})(\d{12}) $(ordinal \1)biljone[ $(ordinal \2)]
+
+== ordinal-number ==
+
+(\d+)	\1.
+
+== help ==
+
+"" $(1), $(2), $(3)\n$(help ordinal)$(help ordinal-number)
+(ordinal(-number)?) \1: $(\1 1)|, $(\1 2)|, $(\1 3)\n
+</textarea>
 <textarea rows='0' cols='0' id='fi' class='hidden'>
 ^0 nolla
 1 yksi
@@ -8514,7 +8836,12 @@ up:([^,]*),([^,]*),([^,]*),([^,]*) \2
 ss:([^,]*),([^,]*),([^,]*),([^,]*) \3
 sp:([^,]*),([^,]*),([^,]*),([^,]*) \4
 
+ALL:(\D+) $(\1: Albanian lek, Albanian lekiä, qindarkë, qindarkëa)
 AUD:(\D+) $(\1: Australian dollari, Australian dollaria, sentti, senttiä)
+AZN:(\D+) $(\1: Azerbaidžanin manat, Azerbaidžanin manatia, qepik, qepikia)
+BAM:(\D+) $(\1: Bosnia-Hertsegovinan vaihdettava markka, Bosnia-Hertsegovinan vaihdettavaa markkaa, fening, feningiä)
+BGN:(\D+) $(\1: Bulgarian lev, Bulgarian leviä, stotinka, stotinkaa)
+BYN:(\D+) $(\1: Valko-Venäjän rupla, Valko-Venäjän ruplaa, kopeekka, kopeekkaa)
 CAD:(\D+) $(\1: Kanadan dollari, Kanadan dollaria, sentti, senttiä)
 CHF:(\D+) $(\1: Sveitsin frangi, Sveitsin frangia, rappeni, rappenia)
 CNY:(\D+) $(\1: Kiinan juan, Kiinan juania, fen, feniä)
@@ -8524,6 +8851,8 @@ DKK:(\D+) $(\1: Tanskan kruunu, Tanskan kruunua, äyri, äyriä)
 EEK:(\D+) $(\1: Viron kruunu, Viron kruunua, sentti, senttiä)
 EUR:(\D+) $(\1: euro, euroa, sentti, senttiä)
 GBP:(\D+) $(\1: Englannin punta, Englannin puntaa, penny, pennyä)
+GEL:(\D+) $(\1: Georgian lari, Georgian laria, tetri, tetriä)
+GIP:(\D+) $(\1: Gibraltarin punta, Gibraltarin puntaa, penny, pennyä)
 HKD:(\D+) $(\1: Hongkongin dollari, Hongkongin dollaria, sentti, senttiä)
 HRK:(\D+) $(\1: Kroatian kuna, Kroatian kunaa, lipa, lipaa)
 HUF:(\D+) $(\1: Unkarin forintti, Unkarin forinttia, filléri, fillériä)
@@ -8531,23 +8860,27 @@ IDR:(\D+) $(\1: Indonesian rupia, Indonesian rupiaa, sen, seniä)
 ISK:(\D+) $(\1: Islannin kruunu, Islannin kruunua, äyri, äyriä)
 JPY:(\D+) $(\1: Japanin jeni, Japanin jeniä, sen, seniä)
 KRW:(\D+) $(\1: Etelä-Korean won, Etelä-Korean wonia, chon, chonia)
-LTL:(\D+) $(\1: Liettuan lita, Liettuan litiä, centasi, centasia)
+LTL:(\D+) $(\1: Liettuan liti, Liettuan litiä, centas, centasia)
 LVL:(\D+) $(\1: Latvian lati, Latvian latia, santiimi, santiimia)
-MYR:(\D+) $(\1: Malesian ringgit, Malesian ringgittia, sen, seniä)
+MDL:(\D+) $(\1: Moldovan leu, Moldovan leuta, ban, bania)
+MKD:(\D+) $(\1: Makedonian denaari, Makedonian denaaria, deni, deniä)
+MYR:(\D+) $(\1: Malesian ringgit, Malesian ringgitia, sen, seniä)
 NZD:(\D+) $(\1: Uuden-Seelannin dollari, Uuden-Seelannin dollaria, sentti, senttiä)
 NOK:(\D+) $(\1: Norjan kruunu, Norjan kruunua, äyri, äyriä)
 PHP:(\D+) $(\1: Filippiinien peso, Filippiinien pesoa, centavo, centavoa)
 PLN:(\D+) $(\1: Puolan zloty, Puolan zlotya, grosz, groszia)
 RON:(\D+) $(\1: Romanian leu, Romanian leuta, ban, bania)
+RSD:(\D+) $(\1: Serbian dinaari, Serbian dinaaria, para, paraa)
 RUB:(\D+) $(\1: Venäjän rupla, Venäjän ruplaa, kopeekka, kopeekkaa)
 SEK:(\D+) $(\1: Ruotsin kruunu, Ruotsin kruunua, äyri, äyriä)
 SGD:(\D+) $(\1: Singaporen dollari, Singaporen dollaria, sentti, senttiä)
 THB:(\D+) $(\1: Thaimaan baht, Thaimaan bahtia, satang, satangia)
 TRY:(\D+) $(\1: Turkin liira, Turkin liiraa, kuruş, kuruşia)
+UAH:(\D+) $(\1: Ukrainan hryvnia, Ukrainan hryvniaa, kopeekka, kopeekkaa)
 USD:(\D+) $(\1: Yhdysvaltain dollari, Yhdysvaltain dollaria, sentti, senttiä)
 
 "(JPY [-−]?\d+)[.,](\d\d)0" $1
-"(JPY [-−]?\d+[.,]\d\d)1" $1 $2 rini
+"(JPY [-−]?\d+[.,]\d\d)1" $1 $2 rin
 "(JPY [-−]?\d+[.,]\d\d)(\d)" $1 $2 riniä
 
 "([A-Z]{3}) ([-−]?1)([.,]00?)?" $2$(\1:us)
@@ -10574,26 +10907,66 @@ ss:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \4
 spa:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \5
 spb:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \6
 
-LTL:(\D+) $(\1: litas, litų, litai, centas, centų, centai)
+AUD:(\D+) $(\1: Australijos doleris, Australijos dolerių, Australijos doleriai, centas, centų, centai)
+BGN:(\D+) $(\1: levas, levų, levai, stotinka, stotinkų, stotinkos)
+CAD:(\D+) $(\1: Kanados doleris, Kanados dolerių, Kanados doleriai, centas, centų, centai)
+CHF:(\D+) $(\1: Šveicarijos frankas, Šveicarijos frankų, Šveicarijos frankai, santimas, santimų, santimai)
+CZK:(\D+) $(\1: Čekijos krona, Čekijos kronų, Čekijos kronos, heleris, helerių, heleriai)
+EEK:(\D+) $(\1: Estijos krona, Estijos kronų, Estijos kronos, sentas, sentų, sentai)
 EUR:(\D+) $(\1: euras, eurų, eurai, euro centas, euro centų, euro centai)
-USD:(\D+) $(\1: doleris, dolerių, doleriai, centas, centų, centai)
-NOK:(\D+) $(\1: Norvegijos krona, Norvegijos kronų, Norvegijos kronos, erė, erių, erės)
-SEK:(\D+) $(\1: Švedijos krona, Švedijos kronų, Švedijos kronos, erė, erių, erės)
 GBP:(\D+) $(\1: svaras sterlingų, svarų sterlingų, svarai sterlingų, pensas, pensų, pensai)
-RUB:(\D+) $(\1: rublis, rublių, rubliai, kapeika, kapeikų, kapeikos)
+GHS:(\D+) $(\1: sedis, sedžių, sedžiai, peseva, pesevų, pesevos)
+HKD:(\D+) $(\1: Honkongo doleris, Honkongo dolerių, Honkongo doleriai, centas, centų, centai)
+HRK:(\D+) $(\1: kuna, kunų, kunos, lipa, lipų, lipos)
+HUF:(\D+) $(\1: forintas, forintų, forintai, fileris, filerių, fileriai)
+INR:(\D+) $(\1: Indijos rupija, Indijos rupijų, Indijos rupijos, paisa, paisų, paisos)
+JMD:(\D+) $(\1: Jamaikos doleris, Jamaikos dolerių, Jamaikos doleriai, centas, centų, centai)
+KES:(\D+) $(\1: Kenijos šilingas, Kenijos šilingų, Kenijos šilingai, centas, centų, centai)
+LRD:(\D+) $(\1: Liberijos doleris, Liberijos dolerių, Liberijos doleriai, centas, centų, centai)
+LTL:(\D+) $(\1: litas, litų, litai, centas, centų, centai)
+LVL:(\D+) $(\1: lats, lati, santims, santimi)
+MUR:(\D+) $(\1: Mauricijaus rupija, Mauricijaus rupijų, Mauricijaus rupijos, centas, centų, centai)
+MXN:(\D+) $(\1: Meksikos pesas, Meksikos pesų, Meksikos pesai, sentavas, sentavų, sentavai)
+MWK:(\D+) $(\1: Malavio kvača, Malavio kvačų, Malavio kvačos, tambala, tambalų, tambalos)
+NAD:(\D+) $(\1: Namibijos doleris, Namibijos dolerių, Namibijos doleriai, centas, centų, centai)
+NGN:(\D+) $(\1: naira, nairų, nairos, koba, kobų, kobos)
+NOK:(\D+) $(\1: Norvegijos krona, Norvegijos kronų, Norvegijos kronos, erė, erių, erės)
+NZD:(\D+) $(\1: Naujosios Zelandijos doleris, Naujosios Zelandijos dolerių, Naujosios Zelandijos doleriai, centas, centų, centai)
+PGK:(\D+) $(\1: kina, kinų, kinos, toja, tojų, tojos)
+PHP:(\D+) $(\1: Filipinų pesas, Filipinų pesų, Filipinų pesai, sentimas, sentimų, sentimai)
+PKR:(\D+) $(\1: Pakistano rupija, Pakistano rupijų, Pakistano rupijos, paisa, paisų, paisos)
+PLN:(\D+) $(\1: zlotas, zlotų, zlotai, grašis, grašių, grašiai)
+RON:(\D+) $(\1: Rumunijos lėja, Rumunijos lėjų, Rumunijos lėjos, banas, banų, banai)
+RSD:(\D+) $(\1: Serbijos dinaras, Serbijos dinarų, Serbijos dinarai, paras, parų, parai)
+RUB:(\D+) $(\1: Rusijos rublis, Rusijos rublių, Rusijos rubliai, kapeika, kapeikų, kapeikos)
+RWF:(\D+) $(\1: Ruandos frankas, Ruandos frankų, Ruandos frankai, sentimas, sentimų, sentimai)
+SDG:(\D+) $(\1: Sudano svaras, Sudano svarų, Sudano svarai, piastras, piastrų, piastrai)
+SEK:(\D+) $(\1: Švedijos krona, Švedijos kronų, Švedijos kronos, erė, erių, erės)
+SGD:(\D+) $(\1: Singapūro doleris, Singapūro dolerių, Singapūro doleriai, centas, centų, centai)
+SLL:(\D+) $(\1: leonė, leonių, leonės, centas, centų, centai)
+THB:(\D+) $(\1: Tailando batas, Tailando batų, Tailando batai, satangas, satangų, satangai)
+TRY:(\D+) $(\1: Turkijos lira, Turkijos lirų, Turkijos liros, kurušas, kurušų, kurušai)
+TTD:(\D+) $(\1: Trinidado ir Tobago doleris, Trinidado ir Tobago dolerių, Trinidado ir Tobago doleriai, centas, centų, centai)
+TZS:(\D+) $(\1: Tanzanijos šilingas, Tanzanijos šilingų, Tanzanijos šilingai, centas, centų, centai)
+UAH:(\D+) $(\1: grivina, grivinų, grivinos, kapeika, kapeikų, kapeikos)
+UGX:(\D+) $(\1: Ugandos šilingas, Ugandos šilingų, Ugandos šilingai, centas, centų, centai)
+USD:(\D+) $(\1: JAV doleris, JAV dolerių, JAV doleriai, centas, centų, centai)
+ZAR:(\D+) $(\1: Pietų Afrikos randas, Pietų Afrikos randų, Pietų Afrikos randai, centas, centų, centai)
+ZMK:(\D+) $(\1: Zambijos kvača, Zambijos kvačų, Zambijos kvačos, ngvi, ngvių, ngvės)
+ZWL:(\D+) $(\1: Zimbabvės doleris, Zimbabvės dolerių, Zimbabvės doleriai, centas, centų, centai)
 
 # female gender
 # before delimiter
-"(NOK|SEK) ([-−]?(1|\d*[02-9]1))([.,]00?)?" $(f:$2)|$(\1:us) 				# 1| *01| *21 ...
-"(NOK|SEK) ([-−]?(0|\d*(1[1-9]|[01-9]0)))([.,]00?)?" $2|$(\1:upa)			# 0 | *11| *19| *10| *30 ...
-"(NOK|SEK) ([-−]?\d*[2-9])([.,]00?)?" $(f:$2)|$(\1:upb)					# *2| *8 ...
+"(CZK|EEK|HRK|INR|MUR|MWK|NGN|NOK|PGK|PKR|RON|SEK|SLL|TRY|UAH|ZMK) ([-−]?(1|\d*[02-9]1))([.,]00?)?" $(f:$2)|$(\1:us) 		# 1| *01| *21 ...
+"(CZK|EEK|HRK|INR|MUR|MWK|NGN|NOK|PGK|PKR|RON|SEK|SLL|TRY|UAH|ZMK) ([-−]?(0|\d*(1[1-9]|[01-9]0)))([.,]00?)?" $2|$(\1:upa)	# 0 | *11| *19| *10| *30 ...
+"(CZK|EEK|HRK|INR|MUR|MWK|NGN|NOK|PGK|PKR|RON|SEK|SLL|TRY|UAH|ZMK) ([-−]?\d*[2-9])([.,]00?)?" $(f:$2)|$(\1:upb)			# *2| *8 ...
 
 # atfer delimiter
-"((NOK|SEK|RUB) [-−]?\d+)[.,](01)" $1| ir |$(f:$(1))$(\2:ss) 				# *,01 convertion to *,1
-"((NOK|SEK|RUB) [-−]?\d+)[.,]([2-9]1)" $1| ir |$(f:$3)|$(\2:ss)				# 21, 51, 91 ...
-"((NOK|SEK|RUB) [-−]?\d+)[.,](\d)" $1| ir |$(\30)$(\2:spa)				# *,2 | *,3 ... convertion to *,20 | *,30 ...
-"((NOK|SEK|RUB) [-−]?\d+)[.,](1[1-9])" $1| ir |$3|$(\2:spa)				# 11-19
-"((NOK|SEK|RUB) [-−]?\d+)[.,](\d\d)" $1| ir |$(f:$3)$(\2:spb)				# all the rest
+"((BGN|GHS|HRK|INR|MWK|NGN|NOK|PGK|PKR|SEK|RUB|UAH|ZMK) [-−]?\d+)[.,](0+)" $1|					# 0, 00
+"((BGN|GHS|HRK|INR|MWK|NGN|NOK|PGK|PKR|SEK|RUB|UAH|ZMK) [-−]?\d+)[.,]([02-9]1)" $1| ir |$(f:$3)|$(\2:ss)	# 1, 21, 31, ..., 91
+"((BGN|GHS|HRK|INR|MWK|NGN|NOK|PGK|PKR|SEK|RUB|UAH|ZMK) [-−]?\d+)[.,](\d)" $1| ir |$(\30)$(\2:spa)		# *,x conversion to *,x0
+"((BGN|GHS|HRK|INR|MWK|NGN|NOK|PGK|PKR|SEK|RUB|UAH|ZMK) [-−]?\d+)[.,](1[0-9]|[2-9]0)" $1| ir |$3|$(\2:spa)	# 10-19, 20, 30, ..., 90
+"((BGN|GHS|HRK|INR|MWK|NGN|NOK|PGK|PKR|SEK|RUB|UAH|ZMK) [-−]?\d+)[.,](\d\d)" $1| ir |$(f:$3)$(\2:spb)		# all the rest
 
 # male gender (all except female gender filter matches)
 # before delimiter
@@ -10602,10 +10975,9 @@ RUB:(\D+) $(\1: rublis, rublių, rubliai, kapeika, kapeikų, kapeikos)
 "([A-Z]{3}) ([-−]?\d*[2-9])([.,]00?)?" $2|$(\1:upb)
 
 # atfer delimiter
-"(([A-Z]{3}) [-−]?\d+)[.,](01)" $1| ir |$(1)$(\2:ss)
-"(([A-Z]{3}) [-−]?\d+)[.,]([2-9]1)" $1| ir |$3|$(\2:ss)
+"(([A-Z]{3}) [-−]?\d+)[.,]([02-9]1)" $1| ir |$3|$(\2:ss)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1| ir |$(\30)$(\2:spa)
-"(([A-Z]{3}) [-−]?\d+)[.,](1[1-9])" $1| ir |$3|$(\2:spa)
+"(([A-Z]{3}) [-−]?\d+)[.,](1[0-9]|[2-9]0)" $1| ir |$3|$(\2:spa)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1| ir |$3$(\2:spb)
 
 == feminine ==
@@ -10651,11 +11023,13 @@ RUB:(\D+) $(\1: rublis, rublių, rubliai, kapeika, kapeikų, kapeikos)
 
 == ordinal-number(-masculine)? ==
 
-(\d+)	 \2as
+((\d*[02-9])?3)	 \2-ias		# ends in 3 but not 13
+(\d+)	 \2-as
 
 == ordinal-number-feminine ==
 
-(\d+)	 \1a
+((\d*[02-9])?3)	 \1-ia
+(\d+)	 \1-a
 
 == help ==
 
@@ -11241,6 +11615,8 @@ USD:(\D+) $(\1: dolar amerykański, dolary amerykańskie, dolarów amerykańskic
 == ordinal(-masculine)? ==
 
 ([-−]?\d+)	$(ordinal |$2)
+"(.*)siąt (.*)"	$(ordinal \2siąty \3)
+"(.*)eści (.*)"	$(ordinal \2esty \3)
 
 (.*)jeden	\2pierwszy
 (.*)dwa		\2drugi
@@ -11271,11 +11647,13 @@ USD:(\D+) $(\1: dolar amerykański, dolary amerykańskie, dolarów amerykańskic
 == ordinal-feminine ==
 
 ([-−]?\d+)	$(ordinal-feminine $(ordinal |$1))
+"(.*)[yi] (.*)"		$(ordinal-feminine \1a \2)
 (.*)[yi]	\1a
 
 == ordinal-neuter ==
 
-([-−]?\d+)	$(ordinal-feminine $(ordinal |$1))
+([-−]?\d+)	$(ordinal-neuter $(ordinal |$1))
+"(.*)[yi] (.*)"		$(ordinal-neuter \1e \2)
 (.*)[yi]	\1e
 
 == ordinal-number ==
@@ -13237,6 +13615,7 @@ language = {
 "en-GB": "English&nbsp;(GB)",
 "en-IN": "English&nbsp;(IN)",
 "es": "Español",
+"et": "Eesti",
 "eo": "Esperanto",
 "fr": "Français",
 "fr-BE": "Français&nbsp;(BE)",
@@ -13294,6 +13673,7 @@ default_currency = {
 "en-IN": "INR",
 "en": "USD",
 "es": "EUR",
+"et": "EUR",
 "eo": "-",
 "fr": "EUR",
 "fr-BE": "EUR",
@@ -13350,6 +13730,7 @@ numlang['el']=new Soros(document.getElementById('el').value, 'el')
 numlang['en']=new Soros(document.getElementById('en').value, 'en')
 numlang['eo']=new Soros(document.getElementById('eo').value, 'eo')
 numlang['es']=new Soros(document.getElementById('es').value, 'es')
+numlang['et']=new Soros(document.getElementById('et').value, 'et')
 numlang['fi']=new Soros(document.getElementById('fi').value, 'fi')
 numlang['fr']=new Soros(document.getElementById('fr').value, 'fr')
 numlang['gl']=new Soros(document.getElementById('gl').value, 'gl')
@@ -13444,45 +13825,46 @@ function tim( ) {
 "<tr class=' "+ (13%2?"second":"")+"' style='text-align:left;' title='en-IN'><td valign='top'>" + language["en-IN"] + "</td><td >" + numlang['en-IN'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["en-IN"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
 "<tr class=' "+ (14%2?"second":"")+"' style='text-align:left;' title='eo'><td valign='top'>" + language["eo"] + "</td><td >" + numlang['eo'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["eo"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
 "<tr class=' "+ (15%2?"second":"")+"' style='text-align:left;' title='es'><td valign='top'>" + language["es"] + "</td><td >" + numlang['es'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["es"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (16%2?"second":"")+"' style='text-align:left;' title='fi'><td valign='top'>" + language["fi"] + "</td><td >" + numlang['fi'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["fi"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (17%2?"second":"")+"' style='text-align:left;' title='fr'><td valign='top'>" + language["fr"] + "</td><td >" + numlang['fr'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["fr"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (18%2?"second":"")+"' style='text-align:left;' title='fr-BE'><td valign='top'>" + language["fr-BE"] + "</td><td >" + numlang['fr-BE'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["fr-BE"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (19%2?"second":"")+"' style='text-align:left;' title='fr-CH'><td valign='top'>" + language["fr-CH"] + "</td><td >" + numlang['fr-CH'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["fr-CH"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (20%2?"second":"")+"' style='text-align:left;' title='gl'><td valign='top'>" + language["gl"] + "</td><td >" + numlang['gl'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["gl"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (21%2?"second":"")+"' style='text-align:left;' title='he'><td valign='top'>" + language["he"] + "</td><td align='right'>" + numlang['he'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["he"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (22%2?"second":"")+"' style='text-align:left;' title='hr'><td valign='top'>" + language["hr"] + "</td><td >" + numlang['hr'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["hr"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (23%2?"second":"")+"' style='text-align:left;' title='hu'><td valign='top'>" + language["hu"] + "</td><td >" + numlang['hu'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["hu"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (24%2?"second":"")+"' style='text-align:left;' title='id'><td valign='top'>" + language["id"] + "</td><td >" + numlang['id'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["id"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (25%2?"second":"")+"' style='text-align:left;' title='is'><td valign='top'>" + language["is"] + "</td><td >" + numlang['is'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["is"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (26%2?"second":"")+"' style='text-align:left;' title='it'><td valign='top'>" + language["it"] + "</td><td >" + numlang['it'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["it"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (27%2?"second":"")+"' style='text-align:left;' title='ja'><td valign='top'>" + language["ja"] + "</td><td >" + numlang['ja'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ja"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (28%2?"second":"")+"' style='text-align:left;' title='ko'><td valign='top'>" + language["ko"] + "</td><td >" + numlang['ko'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ko"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (29%2?"second":"")+"' style='text-align:left;' title='ko-KP'><td valign='top'>" + language["ko-KP"] + "</td><td >" + numlang['ko-KP'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ko-KP"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (30%2?"second":"")+"' style='text-align:left;' title='lb'><td valign='top'>" + language["lb"] + "</td><td >" + numlang['lb'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["lb"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (31%2?"second":"")+"' style='text-align:left;' title='lt'><td valign='top'>" + language["lt"] + "</td><td >" + numlang['lt'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["lt"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (32%2?"second":"")+"' style='text-align:left;' title='lv'><td valign='top'>" + language["lv"] + "</td><td >" + numlang['lv'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["lv"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (33%2?"second":"")+"' style='text-align:left;' title='ms'><td valign='top'>" + language["ms"] + "</td><td >" + numlang['ms'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ms"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (34%2?"second":"")+"' style='text-align:left;' title='nl'><td valign='top'>" + language["nl"] + "</td><td >" + numlang['nl'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["nl"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (35%2?"second":"")+"' style='text-align:left;' title='no'><td valign='top'>" + language["no"] + "</td><td >" + numlang['no'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["no"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (36%2?"second":"")+"' style='text-align:left;' title='nn'><td valign='top'>" + language["nn"] + "</td><td >" + numlang['nn'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["nn"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (37%2?"second":"")+"' style='text-align:left;' title='pl'><td valign='top'>" + language["pl"] + "</td><td >" + numlang['pl'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["pl"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (38%2?"second":"")+"' style='text-align:left;' title='pt'><td valign='top'>" + language["pt"] + "</td><td >" + numlang['pt'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["pt"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (39%2?"second":"")+"' style='text-align:left;' title='pt-BR'><td valign='top'>" + language["pt-BR"] + "</td><td >" + numlang['pt-BR'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["pt-BR"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (40%2?"second":"")+"' style='text-align:left;' title='ro'><td valign='top'>" + language["ro"] + "</td><td >" + numlang['ro'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ro"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (41%2?"second":"")+"' style='text-align:left;' title='ru'><td valign='top'>" + language["ru"] + "</td><td >" + numlang['ru'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ru"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (42%2?"second":"")+"' style='text-align:left;' title='sh'><td valign='top'>" + language["sh"] + "</td><td >" + numlang['sh'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["sh"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (43%2?"second":"")+"' style='text-align:left;' title='sl'><td valign='top'>" + language["sl"] + "</td><td >" + numlang['sl'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["sl"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (44%2?"second":"")+"' style='text-align:left;' title='sq'><td valign='top'>" + language["sq"] + "</td><td >" + numlang['sq'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["sq"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (45%2?"second":"")+"' style='text-align:left;' title='sr'><td valign='top'>" + language["sr"] + "</td><td >" + numlang['sr'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["sr"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (46%2?"second":"")+"' style='text-align:left;' title='sv'><td valign='top'>" + language["sv"] + "</td><td >" + numlang['sv'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["sv"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (47%2?"second":"")+"' style='text-align:left;' title='th'><td valign='top'>" + language["th"] + "</td><td >" + numlang['th'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["th"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (48%2?"second":"")+"' style='text-align:left;' title='tr'><td valign='top'>" + language["tr"] + "</td><td >" + numlang['tr'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["tr"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (49%2?"second":"")+"' style='text-align:left;' title='uk'><td valign='top'>" + language["uk"] + "</td><td >" + numlang['uk'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["uk"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (50%2?"second":"")+"' style='text-align:left;' title='vi'><td valign='top'>" + language["vi"] + "</td><td >" + numlang['vi'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["vi"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (51%2?"second":"")+"' style='text-align:left;' title='zh'><td valign='top'>" + language["zh"] + "</td><td >" + numlang['zh'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["zh"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class='rovas "+ (52%2?"second":"")+"' style='text-align:left;' title='Hung'><td valign='top'>" + language["Hung"] + "</td><td align='right'>" + numlang['Hung'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["Hung"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (53%2?"second":"")+"' style='text-align:left;' title='Roman-large'><td valign='top'>" + language["Roman-large"] + "</td><td >" + numlang['Roman-large'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["Roman-large"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
-"<tr class=' "+ (54%2?"second":"")+"' style='text-align:left;' title='Suzhou'><td valign='top'>" + language["Suzhou"] + "</td><td >" + numlang['Suzhou'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["Suzhou"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (16%2?"second":"")+"' style='text-align:left;' title='et'><td valign='top'>" + language["et"] + "</td><td >" + numlang['et'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["et"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (17%2?"second":"")+"' style='text-align:left;' title='fi'><td valign='top'>" + language["fi"] + "</td><td >" + numlang['fi'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["fi"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (18%2?"second":"")+"' style='text-align:left;' title='fr'><td valign='top'>" + language["fr"] + "</td><td >" + numlang['fr'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["fr"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (19%2?"second":"")+"' style='text-align:left;' title='fr-BE'><td valign='top'>" + language["fr-BE"] + "</td><td >" + numlang['fr-BE'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["fr-BE"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (20%2?"second":"")+"' style='text-align:left;' title='fr-CH'><td valign='top'>" + language["fr-CH"] + "</td><td >" + numlang['fr-CH'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["fr-CH"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (21%2?"second":"")+"' style='text-align:left;' title='gl'><td valign='top'>" + language["gl"] + "</td><td >" + numlang['gl'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["gl"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (22%2?"second":"")+"' style='text-align:left;' title='he'><td valign='top'>" + language["he"] + "</td><td align='right'>" + numlang['he'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["he"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (23%2?"second":"")+"' style='text-align:left;' title='hr'><td valign='top'>" + language["hr"] + "</td><td >" + numlang['hr'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["hr"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (24%2?"second":"")+"' style='text-align:left;' title='hu'><td valign='top'>" + language["hu"] + "</td><td >" + numlang['hu'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["hu"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (25%2?"second":"")+"' style='text-align:left;' title='id'><td valign='top'>" + language["id"] + "</td><td >" + numlang['id'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["id"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (26%2?"second":"")+"' style='text-align:left;' title='is'><td valign='top'>" + language["is"] + "</td><td >" + numlang['is'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["is"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (27%2?"second":"")+"' style='text-align:left;' title='it'><td valign='top'>" + language["it"] + "</td><td >" + numlang['it'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["it"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (28%2?"second":"")+"' style='text-align:left;' title='ja'><td valign='top'>" + language["ja"] + "</td><td >" + numlang['ja'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ja"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (29%2?"second":"")+"' style='text-align:left;' title='ko'><td valign='top'>" + language["ko"] + "</td><td >" + numlang['ko'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ko"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (30%2?"second":"")+"' style='text-align:left;' title='ko-KP'><td valign='top'>" + language["ko-KP"] + "</td><td >" + numlang['ko-KP'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ko-KP"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (31%2?"second":"")+"' style='text-align:left;' title='lb'><td valign='top'>" + language["lb"] + "</td><td >" + numlang['lb'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["lb"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (32%2?"second":"")+"' style='text-align:left;' title='lt'><td valign='top'>" + language["lt"] + "</td><td >" + numlang['lt'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["lt"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (33%2?"second":"")+"' style='text-align:left;' title='lv'><td valign='top'>" + language["lv"] + "</td><td >" + numlang['lv'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["lv"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (34%2?"second":"")+"' style='text-align:left;' title='ms'><td valign='top'>" + language["ms"] + "</td><td >" + numlang['ms'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ms"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (35%2?"second":"")+"' style='text-align:left;' title='nl'><td valign='top'>" + language["nl"] + "</td><td >" + numlang['nl'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["nl"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (36%2?"second":"")+"' style='text-align:left;' title='no'><td valign='top'>" + language["no"] + "</td><td >" + numlang['no'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["no"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (37%2?"second":"")+"' style='text-align:left;' title='nn'><td valign='top'>" + language["nn"] + "</td><td >" + numlang['nn'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["nn"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (38%2?"second":"")+"' style='text-align:left;' title='pl'><td valign='top'>" + language["pl"] + "</td><td >" + numlang['pl'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["pl"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (39%2?"second":"")+"' style='text-align:left;' title='pt'><td valign='top'>" + language["pt"] + "</td><td >" + numlang['pt'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["pt"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (40%2?"second":"")+"' style='text-align:left;' title='pt-BR'><td valign='top'>" + language["pt-BR"] + "</td><td >" + numlang['pt-BR'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["pt-BR"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (41%2?"second":"")+"' style='text-align:left;' title='ro'><td valign='top'>" + language["ro"] + "</td><td >" + numlang['ro'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ro"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (42%2?"second":"")+"' style='text-align:left;' title='ru'><td valign='top'>" + language["ru"] + "</td><td >" + numlang['ru'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["ru"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (43%2?"second":"")+"' style='text-align:left;' title='sh'><td valign='top'>" + language["sh"] + "</td><td >" + numlang['sh'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["sh"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (44%2?"second":"")+"' style='text-align:left;' title='sl'><td valign='top'>" + language["sl"] + "</td><td >" + numlang['sl'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["sl"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (45%2?"second":"")+"' style='text-align:left;' title='sq'><td valign='top'>" + language["sq"] + "</td><td >" + numlang['sq'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["sq"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (46%2?"second":"")+"' style='text-align:left;' title='sr'><td valign='top'>" + language["sr"] + "</td><td >" + numlang['sr'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["sr"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (47%2?"second":"")+"' style='text-align:left;' title='sv'><td valign='top'>" + language["sv"] + "</td><td >" + numlang['sv'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["sv"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (48%2?"second":"")+"' style='text-align:left;' title='th'><td valign='top'>" + language["th"] + "</td><td >" + numlang['th'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["th"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (49%2?"second":"")+"' style='text-align:left;' title='tr'><td valign='top'>" + language["tr"] + "</td><td >" + numlang['tr'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["tr"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (50%2?"second":"")+"' style='text-align:left;' title='uk'><td valign='top'>" + language["uk"] + "</td><td >" + numlang['uk'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["uk"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (51%2?"second":"")+"' style='text-align:left;' title='vi'><td valign='top'>" + language["vi"] + "</td><td >" + numlang['vi'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["vi"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (52%2?"second":"")+"' style='text-align:left;' title='zh'><td valign='top'>" + language["zh"] + "</td><td >" + numlang['zh'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["zh"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class='rovas "+ (53%2?"second":"")+"' style='text-align:left;' title='Hung'><td valign='top'>" + language["Hung"] + "</td><td align='right'>" + numlang['Hung'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["Hung"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (54%2?"second":"")+"' style='text-align:left;' title='Roman-large'><td valign='top'>" + language["Roman-large"] + "</td><td >" + numlang['Roman-large'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["Roman-large"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
+"<tr class=' "+ (55%2?"second":"")+"' style='text-align:left;' title='Suzhou'><td valign='top'>" + language["Suzhou"] + "</td><td >" + numlang['Suzhou'].run((window.currency == "-" || window.currency == "help" ? "" : (window.currency == "def" ? default_currency["Suzhou"] : window.currency) + " ") + window.num).replace(/\n/g,"<br>") + '</td></tr>' +
 <!-- **************************************************************************************************** -->
     "<tr><td colspan=2>*Old numeral systems (extended for large numbers) &ndash; Old Hungarian, Roman and Suzhou numerals</td></tr></tbody></table>";
 }

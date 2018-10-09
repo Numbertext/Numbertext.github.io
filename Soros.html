@@ -248,6 +248,7 @@ function copy_result() {
 <option value='en'>en</option>
 <option value='eo'>eo</option>
 <option value='es'>es</option>
+<option value='et'>et</option>
 <option value='fi'>fi</option>
 <option value='fr'>fr</option>
 <option value='gl'>gl</option>
@@ -2675,7 +2676,7 @@ USD:(\D+) $(\1: usona dolaro, usonaj dolaroj, cendo, cendoj)
 
 == ordinal-number ==
 
-(\d+)	\1.
+(\d+)	\1-a
 
 == help ==
 
@@ -2887,6 +2888,136 @@ feminine:(.*) \1
 "" $(1)|, $(2), $(3)\n$(\0 feminine)$(\0 masculine)$(\0 ordinal-number-masculine)$(\0 ordinal-number-masculine-adjective)$(\0 ordinal-number-feminine)$(\0 ordinal-feminine)$(\0 ordinal-masculine)$(\0 ordinal-masculine-adjective)
 (feminine|masculine|ordinal(-number)?(-feminine|-masculine)?(-adjective)?) \1: $(\1 1), $(\1 2), $(\1 3)\n
 </textarea>
+<textarea id='et' class='hidden'>
+^0 null
+1 üks
+2 kaks
+3 kolm
+4 neli
+5 viis
+6 kuus
+7 seitse
+8 kaheksa
+9 üheksa
+10 kümme
+1(\d) $1teist
+(\d)(\d) $1kümmend[ $2]
+1(\d\d) sada[ $1]
+(\d)(\d\d) $1sada[ $2]
+1(\d{3}) tuhat[ $1]
+(\d{1,3})(\d{3}) $1 tuhat[ $2]
+1(\d{6}) miljon[ $1]
+(\d{1,3})(\d{6}) $1 miljonit[ $2]
+1(\d{9}) miljard[ $1]
+(\d{1,3})(\d{9}) $1 miljardit[ $2]
+1(\d{12}) biljon[ $1]
+(\d{1,3})(\d{12}) $1 biljonit[ $2]
+1(\d{15}) biljard[ $1]
+(\d{1,3})(\d{15}) $1 biljardit[ $2]
+1(\d{18}) triljon[ $1]
+(\d{1,3})(\d{18}) $1 triljonit[ $2]
+1(\d{21}) triljard[ $1]
+(\d{1,3})(\d{21}) $1 triljardit[ $2]
+1(\d{24}) kvadriljon[ $1]
+(\d{1,3})(\d{24}) $1 kvadriljonit[ $2]
+
+# negative numbers
+
+[-−](\d+) miinus |$1
+
+# decimals
+
+([-−]?\d+)[.,]([01])	|$1| ja |$2 kymmenesosa
+([-−]?\d+)[.,](\d)	|$1| ja |$2 kymmenesosaa
+([-−]?\d+)[.,]0([01])	|$1| ja |$2 sadasosa
+([-−]?\d+)[.,](\d\d)	|$1| ja |$2 sadasosaa
+([-−]?\d+)[.,]00([01])	|$1| ja |$2 tuhannesosa
+([-−]?\d+)[.,](\d\d\d)	|$1| ja |$2 tuhannesosaa
+"([-−]?\d+)[.,](\d)(\d)(\d)(\d)" |$1| ja |$2| |$3| |$4| |$5|
+"([-−]?\d+[.,]\d+)(\d)" $1 |$2|
+
+# currency
+
+# unit/subunit singular/singular partitive
+
+us:([^,]*),([^,]*),([^,]*),([^,]*) \1
+up:([^,]*),([^,]*),([^,]*),([^,]*) \2
+ss:([^,]*),([^,]*),([^,]*),([^,]*) \3
+sp:([^,]*),([^,]*),([^,]*),([^,]*) \4
+
+CHF:(\D+) $(\1: Šveitsi frank,  Šveitsi franki, rapp, rappi)
+CNY:(\D+) $(\1: Hiina jüaan, Hiina jüaan, sent, senti)
+EEK:(\D+) $(\1: Eesti kroon, Eesti krooni, sent, senti)
+EUR:(\D+) $(\1: euro, euroa, sent, senti)
+GBP:(\D+) $(\1: Suurbritannia nael, Suurbritannia naela, penn, penni)
+JPY:(\D+) $(\1: Jaapani jeen, Jaapani jeeni, seniks, seniks)
+USD:(\D+) $(\1: USA dollar, USA dollarit, sent, senti)
+
+"(JPY [-−]?\d+)[.,](\d\d)0" $1
+"(JPY [-−]?\d+[.,]\d\d)1" $1 $2 riniks
+"(JPY [-−]?\d+[.,]\d\d)(\d)" $1 $2 riniks
+
+"([A-Z]{3}) ([-−]?1)([.,]00?)?" $2$(\1:us)
+"([A-Z]{3}) ([-−]?\d+)([.,]00?)?" $2$(\1:up)
+
+"(CNY [-−]?\d+)[.,]10?" $1 $2 tsjao
+"(CNY [-−]?\d+)[.,](\d)0?" $1 $2 tsjaoga
+"(CNY [-−]?\d+[.,]\d)1" $1 $2  fõn
+"(CNY [-−]?\d+[.,]\d)(\d)" $1 $2  fõniga
+
+"(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 $(1)$(\2:ss)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 $(\30)$(\2:sp)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 $3$(\2:sp)
+
+
+
+== ordinal ==
+
+^0 null
+1 esimene
+2 teine
+3 kolmas
+([4-9])$ $(ordinal \1)s
+4 nelja
+5 viie
+6 kuue
+7 seitsme
+8 kaheksa
+9 üheksa
+10 kümnes
+11 üheteistkümnes
+12 kaheteistkümnes
+13 kolmeteistkümnes
+1(\d) $(ordinal \1)teistkümnes
+20 kahekümnes
+2(\d) kahekümne[ $(ordinal \1)]
+30 kolmekümnes
+3(\d) kolmekümne[ $(ordinal \1)]
+(\d)0 $(ordinal \1)kümnes
+(\d)(\d) $(ordinal \1)kümne $(ordinal \2)
+100 sajas
+1(\d\d) saja[ $(ordinal \1)]
+200 kahesajas
+2(\d\d) kahesaja[ $(ordinal \1)]
+(\d)(\d\d) $(ordinal \1)saja[ $(ordinal \2)]
+1(\d{3}) tuhandes[ $(ordinal \1)]
+(\d{1,3})(\d{3}) $(ordinal \1)tuhande[ $(ordinal \2)]
+1(\d{6}) miljones[ $(ordinal \1)]
+(\d{1,3})(\d{6}) $(ordinal \1)miljone[ $(ordinal \2)]
+1(\d{9}) miljardes[ $(ordinal \1)]
+(\d{1,3})(\d{9}) $(ordinal \1)miljarde[ $(ordinal \2)]
+1(\d{12}) biljones[ $(ordinal \1)]
+(\d{1,3})(\d{12}) $(ordinal \1)biljone[ $(ordinal \2)]
+
+== ordinal-number ==
+
+(\d+)	\1.
+
+== help ==
+
+"" $(1), $(2), $(3)\n$(help ordinal)$(help ordinal-number)
+(ordinal(-number)?) \1: $(\1 1)|, $(\1 2)|, $(\1 3)\n
+</textarea>
 <textarea id='fi' class='hidden'>
 ^0 nolla
 1 yksi
@@ -2945,7 +3076,12 @@ up:([^,]*),([^,]*),([^,]*),([^,]*) \2
 ss:([^,]*),([^,]*),([^,]*),([^,]*) \3
 sp:([^,]*),([^,]*),([^,]*),([^,]*) \4
 
+ALL:(\D+) $(\1: Albanian lek, Albanian lekiä, qindarkë, qindarkëa)
 AUD:(\D+) $(\1: Australian dollari, Australian dollaria, sentti, senttiä)
+AZN:(\D+) $(\1: Azerbaidžanin manat, Azerbaidžanin manatia, qepik, qepikia)
+BAM:(\D+) $(\1: Bosnia-Hertsegovinan vaihdettava markka, Bosnia-Hertsegovinan vaihdettavaa markkaa, fening, feningiä)
+BGN:(\D+) $(\1: Bulgarian lev, Bulgarian leviä, stotinka, stotinkaa)
+BYN:(\D+) $(\1: Valko-Venäjän rupla, Valko-Venäjän ruplaa, kopeekka, kopeekkaa)
 CAD:(\D+) $(\1: Kanadan dollari, Kanadan dollaria, sentti, senttiä)
 CHF:(\D+) $(\1: Sveitsin frangi, Sveitsin frangia, rappeni, rappenia)
 CNY:(\D+) $(\1: Kiinan juan, Kiinan juania, fen, feniä)
@@ -2955,6 +3091,8 @@ DKK:(\D+) $(\1: Tanskan kruunu, Tanskan kruunua, äyri, äyriä)
 EEK:(\D+) $(\1: Viron kruunu, Viron kruunua, sentti, senttiä)
 EUR:(\D+) $(\1: euro, euroa, sentti, senttiä)
 GBP:(\D+) $(\1: Englannin punta, Englannin puntaa, penny, pennyä)
+GEL:(\D+) $(\1: Georgian lari, Georgian laria, tetri, tetriä)
+GIP:(\D+) $(\1: Gibraltarin punta, Gibraltarin puntaa, penny, pennyä)
 HKD:(\D+) $(\1: Hongkongin dollari, Hongkongin dollaria, sentti, senttiä)
 HRK:(\D+) $(\1: Kroatian kuna, Kroatian kunaa, lipa, lipaa)
 HUF:(\D+) $(\1: Unkarin forintti, Unkarin forinttia, filléri, fillériä)
@@ -2962,23 +3100,27 @@ IDR:(\D+) $(\1: Indonesian rupia, Indonesian rupiaa, sen, seniä)
 ISK:(\D+) $(\1: Islannin kruunu, Islannin kruunua, äyri, äyriä)
 JPY:(\D+) $(\1: Japanin jeni, Japanin jeniä, sen, seniä)
 KRW:(\D+) $(\1: Etelä-Korean won, Etelä-Korean wonia, chon, chonia)
-LTL:(\D+) $(\1: Liettuan lita, Liettuan litiä, centasi, centasia)
+LTL:(\D+) $(\1: Liettuan liti, Liettuan litiä, centas, centasia)
 LVL:(\D+) $(\1: Latvian lati, Latvian latia, santiimi, santiimia)
-MYR:(\D+) $(\1: Malesian ringgit, Malesian ringgittia, sen, seniä)
+MDL:(\D+) $(\1: Moldovan leu, Moldovan leuta, ban, bania)
+MKD:(\D+) $(\1: Makedonian denaari, Makedonian denaaria, deni, deniä)
+MYR:(\D+) $(\1: Malesian ringgit, Malesian ringgitia, sen, seniä)
 NZD:(\D+) $(\1: Uuden-Seelannin dollari, Uuden-Seelannin dollaria, sentti, senttiä)
 NOK:(\D+) $(\1: Norjan kruunu, Norjan kruunua, äyri, äyriä)
 PHP:(\D+) $(\1: Filippiinien peso, Filippiinien pesoa, centavo, centavoa)
 PLN:(\D+) $(\1: Puolan zloty, Puolan zlotya, grosz, groszia)
 RON:(\D+) $(\1: Romanian leu, Romanian leuta, ban, bania)
+RSD:(\D+) $(\1: Serbian dinaari, Serbian dinaaria, para, paraa)
 RUB:(\D+) $(\1: Venäjän rupla, Venäjän ruplaa, kopeekka, kopeekkaa)
 SEK:(\D+) $(\1: Ruotsin kruunu, Ruotsin kruunua, äyri, äyriä)
 SGD:(\D+) $(\1: Singaporen dollari, Singaporen dollaria, sentti, senttiä)
 THB:(\D+) $(\1: Thaimaan baht, Thaimaan bahtia, satang, satangia)
 TRY:(\D+) $(\1: Turkin liira, Turkin liiraa, kuruş, kuruşia)
+UAH:(\D+) $(\1: Ukrainan hryvnia, Ukrainan hryvniaa, kopeekka, kopeekkaa)
 USD:(\D+) $(\1: Yhdysvaltain dollari, Yhdysvaltain dollaria, sentti, senttiä)
 
 "(JPY [-−]?\d+)[.,](\d\d)0" $1
-"(JPY [-−]?\d+[.,]\d\d)1" $1 $2 rini
+"(JPY [-−]?\d+[.,]\d\d)1" $1 $2 rin
 "(JPY [-−]?\d+[.,]\d\d)(\d)" $1 $2 riniä
 
 "([A-Z]{3}) ([-−]?1)([.,]00?)?" $2$(\1:us)
@@ -5005,26 +5147,66 @@ ss:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \4
 spa:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \5
 spb:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \6
 
-LTL:(\D+) $(\1: litas, litų, litai, centas, centų, centai)
+AUD:(\D+) $(\1: Australijos doleris, Australijos dolerių, Australijos doleriai, centas, centų, centai)
+BGN:(\D+) $(\1: levas, levų, levai, stotinka, stotinkų, stotinkos)
+CAD:(\D+) $(\1: Kanados doleris, Kanados dolerių, Kanados doleriai, centas, centų, centai)
+CHF:(\D+) $(\1: Šveicarijos frankas, Šveicarijos frankų, Šveicarijos frankai, santimas, santimų, santimai)
+CZK:(\D+) $(\1: Čekijos krona, Čekijos kronų, Čekijos kronos, heleris, helerių, heleriai)
+EEK:(\D+) $(\1: Estijos krona, Estijos kronų, Estijos kronos, sentas, sentų, sentai)
 EUR:(\D+) $(\1: euras, eurų, eurai, euro centas, euro centų, euro centai)
-USD:(\D+) $(\1: doleris, dolerių, doleriai, centas, centų, centai)
-NOK:(\D+) $(\1: Norvegijos krona, Norvegijos kronų, Norvegijos kronos, erė, erių, erės)
-SEK:(\D+) $(\1: Švedijos krona, Švedijos kronų, Švedijos kronos, erė, erių, erės)
 GBP:(\D+) $(\1: svaras sterlingų, svarų sterlingų, svarai sterlingų, pensas, pensų, pensai)
-RUB:(\D+) $(\1: rublis, rublių, rubliai, kapeika, kapeikų, kapeikos)
+GHS:(\D+) $(\1: sedis, sedžių, sedžiai, peseva, pesevų, pesevos)
+HKD:(\D+) $(\1: Honkongo doleris, Honkongo dolerių, Honkongo doleriai, centas, centų, centai)
+HRK:(\D+) $(\1: kuna, kunų, kunos, lipa, lipų, lipos)
+HUF:(\D+) $(\1: forintas, forintų, forintai, fileris, filerių, fileriai)
+INR:(\D+) $(\1: Indijos rupija, Indijos rupijų, Indijos rupijos, paisa, paisų, paisos)
+JMD:(\D+) $(\1: Jamaikos doleris, Jamaikos dolerių, Jamaikos doleriai, centas, centų, centai)
+KES:(\D+) $(\1: Kenijos šilingas, Kenijos šilingų, Kenijos šilingai, centas, centų, centai)
+LRD:(\D+) $(\1: Liberijos doleris, Liberijos dolerių, Liberijos doleriai, centas, centų, centai)
+LTL:(\D+) $(\1: litas, litų, litai, centas, centų, centai)
+LVL:(\D+) $(\1: lats, lati, santims, santimi)
+MUR:(\D+) $(\1: Mauricijaus rupija, Mauricijaus rupijų, Mauricijaus rupijos, centas, centų, centai)
+MXN:(\D+) $(\1: Meksikos pesas, Meksikos pesų, Meksikos pesai, sentavas, sentavų, sentavai)
+MWK:(\D+) $(\1: Malavio kvača, Malavio kvačų, Malavio kvačos, tambala, tambalų, tambalos)
+NAD:(\D+) $(\1: Namibijos doleris, Namibijos dolerių, Namibijos doleriai, centas, centų, centai)
+NGN:(\D+) $(\1: naira, nairų, nairos, koba, kobų, kobos)
+NOK:(\D+) $(\1: Norvegijos krona, Norvegijos kronų, Norvegijos kronos, erė, erių, erės)
+NZD:(\D+) $(\1: Naujosios Zelandijos doleris, Naujosios Zelandijos dolerių, Naujosios Zelandijos doleriai, centas, centų, centai)
+PGK:(\D+) $(\1: kina, kinų, kinos, toja, tojų, tojos)
+PHP:(\D+) $(\1: Filipinų pesas, Filipinų pesų, Filipinų pesai, sentimas, sentimų, sentimai)
+PKR:(\D+) $(\1: Pakistano rupija, Pakistano rupijų, Pakistano rupijos, paisa, paisų, paisos)
+PLN:(\D+) $(\1: zlotas, zlotų, zlotai, grašis, grašių, grašiai)
+RON:(\D+) $(\1: Rumunijos lėja, Rumunijos lėjų, Rumunijos lėjos, banas, banų, banai)
+RSD:(\D+) $(\1: Serbijos dinaras, Serbijos dinarų, Serbijos dinarai, paras, parų, parai)
+RUB:(\D+) $(\1: Rusijos rublis, Rusijos rublių, Rusijos rubliai, kapeika, kapeikų, kapeikos)
+RWF:(\D+) $(\1: Ruandos frankas, Ruandos frankų, Ruandos frankai, sentimas, sentimų, sentimai)
+SDG:(\D+) $(\1: Sudano svaras, Sudano svarų, Sudano svarai, piastras, piastrų, piastrai)
+SEK:(\D+) $(\1: Švedijos krona, Švedijos kronų, Švedijos kronos, erė, erių, erės)
+SGD:(\D+) $(\1: Singapūro doleris, Singapūro dolerių, Singapūro doleriai, centas, centų, centai)
+SLL:(\D+) $(\1: leonė, leonių, leonės, centas, centų, centai)
+THB:(\D+) $(\1: Tailando batas, Tailando batų, Tailando batai, satangas, satangų, satangai)
+TRY:(\D+) $(\1: Turkijos lira, Turkijos lirų, Turkijos liros, kurušas, kurušų, kurušai)
+TTD:(\D+) $(\1: Trinidado ir Tobago doleris, Trinidado ir Tobago dolerių, Trinidado ir Tobago doleriai, centas, centų, centai)
+TZS:(\D+) $(\1: Tanzanijos šilingas, Tanzanijos šilingų, Tanzanijos šilingai, centas, centų, centai)
+UAH:(\D+) $(\1: grivina, grivinų, grivinos, kapeika, kapeikų, kapeikos)
+UGX:(\D+) $(\1: Ugandos šilingas, Ugandos šilingų, Ugandos šilingai, centas, centų, centai)
+USD:(\D+) $(\1: JAV doleris, JAV dolerių, JAV doleriai, centas, centų, centai)
+ZAR:(\D+) $(\1: Pietų Afrikos randas, Pietų Afrikos randų, Pietų Afrikos randai, centas, centų, centai)
+ZMK:(\D+) $(\1: Zambijos kvača, Zambijos kvačų, Zambijos kvačos, ngvi, ngvių, ngvės)
+ZWL:(\D+) $(\1: Zimbabvės doleris, Zimbabvės dolerių, Zimbabvės doleriai, centas, centų, centai)
 
 # female gender
 # before delimiter
-"(NOK|SEK) ([-−]?(1|\d*[02-9]1))([.,]00?)?" $(f:$2)|$(\1:us) 				# 1| *01| *21 ...
-"(NOK|SEK) ([-−]?(0|\d*(1[1-9]|[01-9]0)))([.,]00?)?" $2|$(\1:upa)			# 0 | *11| *19| *10| *30 ...
-"(NOK|SEK) ([-−]?\d*[2-9])([.,]00?)?" $(f:$2)|$(\1:upb)					# *2| *8 ...
+"(CZK|EEK|HRK|INR|MUR|MWK|NGN|NOK|PGK|PKR|RON|SEK|SLL|TRY|UAH|ZMK) ([-−]?(1|\d*[02-9]1))([.,]00?)?" $(f:$2)|$(\1:us) 		# 1| *01| *21 ...
+"(CZK|EEK|HRK|INR|MUR|MWK|NGN|NOK|PGK|PKR|RON|SEK|SLL|TRY|UAH|ZMK) ([-−]?(0|\d*(1[1-9]|[01-9]0)))([.,]00?)?" $2|$(\1:upa)	# 0 | *11| *19| *10| *30 ...
+"(CZK|EEK|HRK|INR|MUR|MWK|NGN|NOK|PGK|PKR|RON|SEK|SLL|TRY|UAH|ZMK) ([-−]?\d*[2-9])([.,]00?)?" $(f:$2)|$(\1:upb)			# *2| *8 ...
 
 # atfer delimiter
-"((NOK|SEK|RUB) [-−]?\d+)[.,](01)" $1| ir |$(f:$(1))$(\2:ss) 				# *,01 convertion to *,1
-"((NOK|SEK|RUB) [-−]?\d+)[.,]([2-9]1)" $1| ir |$(f:$3)|$(\2:ss)				# 21, 51, 91 ...
-"((NOK|SEK|RUB) [-−]?\d+)[.,](\d)" $1| ir |$(\30)$(\2:spa)				# *,2 | *,3 ... convertion to *,20 | *,30 ...
-"((NOK|SEK|RUB) [-−]?\d+)[.,](1[1-9])" $1| ir |$3|$(\2:spa)				# 11-19
-"((NOK|SEK|RUB) [-−]?\d+)[.,](\d\d)" $1| ir |$(f:$3)$(\2:spb)				# all the rest
+"((BGN|GHS|HRK|INR|MWK|NGN|NOK|PGK|PKR|SEK|RUB|UAH|ZMK) [-−]?\d+)[.,](0+)" $1|					# 0, 00
+"((BGN|GHS|HRK|INR|MWK|NGN|NOK|PGK|PKR|SEK|RUB|UAH|ZMK) [-−]?\d+)[.,]([02-9]1)" $1| ir |$(f:$3)|$(\2:ss)	# 1, 21, 31, ..., 91
+"((BGN|GHS|HRK|INR|MWK|NGN|NOK|PGK|PKR|SEK|RUB|UAH|ZMK) [-−]?\d+)[.,](\d)" $1| ir |$(\30)$(\2:spa)		# *,x conversion to *,x0
+"((BGN|GHS|HRK|INR|MWK|NGN|NOK|PGK|PKR|SEK|RUB|UAH|ZMK) [-−]?\d+)[.,](1[0-9]|[2-9]0)" $1| ir |$3|$(\2:spa)	# 10-19, 20, 30, ..., 90
+"((BGN|GHS|HRK|INR|MWK|NGN|NOK|PGK|PKR|SEK|RUB|UAH|ZMK) [-−]?\d+)[.,](\d\d)" $1| ir |$(f:$3)$(\2:spb)		# all the rest
 
 # male gender (all except female gender filter matches)
 # before delimiter
@@ -5033,10 +5215,9 @@ RUB:(\D+) $(\1: rublis, rublių, rubliai, kapeika, kapeikų, kapeikos)
 "([A-Z]{3}) ([-−]?\d*[2-9])([.,]00?)?" $2|$(\1:upb)
 
 # atfer delimiter
-"(([A-Z]{3}) [-−]?\d+)[.,](01)" $1| ir |$(1)$(\2:ss)
-"(([A-Z]{3}) [-−]?\d+)[.,]([2-9]1)" $1| ir |$3|$(\2:ss)
+"(([A-Z]{3}) [-−]?\d+)[.,]([02-9]1)" $1| ir |$3|$(\2:ss)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1| ir |$(\30)$(\2:spa)
-"(([A-Z]{3}) [-−]?\d+)[.,](1[1-9])" $1| ir |$3|$(\2:spa)
+"(([A-Z]{3}) [-−]?\d+)[.,](1[0-9]|[2-9]0)" $1| ir |$3|$(\2:spa)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1| ir |$3$(\2:spb)
 
 == feminine ==
@@ -5082,11 +5263,13 @@ RUB:(\D+) $(\1: rublis, rublių, rubliai, kapeika, kapeikų, kapeikos)
 
 == ordinal-number(-masculine)? ==
 
-(\d+)	 \2as
+((\d*[02-9])?3)	 \2-ias		# ends in 3 but not 13
+(\d+)	 \2-as
 
 == ordinal-number-feminine ==
 
-(\d+)	 \1a
+((\d*[02-9])?3)	 \1-ia
+(\d+)	 \1-a
 
 == help ==
 
@@ -5672,6 +5855,8 @@ USD:(\D+) $(\1: dolar amerykański, dolary amerykańskie, dolarów amerykańskic
 == ordinal(-masculine)? ==
 
 ([-−]?\d+)	$(ordinal |$2)
+"(.*)siąt (.*)"	$(ordinal \2siąty \3)
+"(.*)eści (.*)"	$(ordinal \2esty \3)
 
 (.*)jeden	\2pierwszy
 (.*)dwa		\2drugi
@@ -5702,11 +5887,13 @@ USD:(\D+) $(\1: dolar amerykański, dolary amerykańskie, dolarów amerykańskic
 == ordinal-feminine ==
 
 ([-−]?\d+)	$(ordinal-feminine $(ordinal |$1))
+"(.*)[yi] (.*)"		$(ordinal-feminine \1a \2)
 (.*)[yi]	\1a
 
 == ordinal-neuter ==
 
-([-−]?\d+)	$(ordinal-feminine $(ordinal |$1))
+([-−]?\d+)	$(ordinal-neuter $(ordinal |$1))
+"(.*)[yi] (.*)"		$(ordinal-neuter \1e \2)
 (.*)[yi]	\1e
 
 == ordinal-number ==
