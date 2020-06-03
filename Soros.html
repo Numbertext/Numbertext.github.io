@@ -280,9 +280,9 @@ function copy_result() {
 <option value='uk'>uk</option>
 <option value='vi'>vi</option>
 <option value='zh'>zh</option>
-<option value='Hung'>Hung</option>
 <option value='Roman'>Roman</option>
 <option value='Suzhou'>Suzhou</option>
+<option value='hu Hung'>hu Hung</option>
 <!-- **************************************************************************************************** -->
 	</select>
 	</div>
@@ -1644,8 +1644,10 @@ USD:(.+),(.+) $(\2mm:щатски долар,щатски долара,цент,
 80 vuitanta
 90 noranta
 (\d)(\d) $(\10)-$2
-1(\d\d) cent[ $1]
-(\d)(\d\d) $1-cents[ $2]
+100 cent
+1(\d\d) cent $1
+(\d)00 $1-cents
+(\d)(\d\d) $1-cents $2
 1(\d{3}) mil[ $1]
 (\d{1,3})(\d{3}) $1 mil[ $2]
 1(\d{6}) un milió[ $1]
@@ -1980,7 +1982,8 @@ USD:(\D+) $(\1: americký dolar, amerických dolarů, cent, centů)
 90 halvfems
 
 (\d)(\d) $2|og$(\10)
-(\d)(\d\d) $1 hundrede[ og $2]
+(\d)00 $1 hundrede
+(\d)(\d\d) $1 hundrede og $2
 (\d{1,3})(\d{3}) $1 tusind[ og $2]
 
 a:1,0+
@@ -2496,6 +2499,7 @@ MGA:(\D+) $(\1: ariary, ariaries, iraimbilanja, iraimbilanja)
 MUR:(\D+) $(\1: Mauritian rupee, Mauritian rupees, cent, cents)
 MXN:(\D+) $(\1: Mexican peso, Mexican pesos, centavo, centavos)
 MWK:(\D+) $(\1: Malawian kwacha, Malawian kwacha, tambala, tambala)
+MYR:(\D+) $(\1: Ringgit, Ringgit, cent, cents)
 NAD:(\D+) $(\1: Namibian dollar, Namibian dollars, cent, cents)
 NGN:(\D+) $(\1: naira, naira, kobo, kobo)
 NZD:(\D+) $(\1: New Zealand dollar, New Zealand dollars, cent, cents)
@@ -2704,6 +2708,8 @@ USD:(\D+) $(\1: usona dolaro, usonaj dolaroj, cendo, cendoj)
 16 dieciséis
 1(\d) dieci$1
 20 veinte
+21$ veintiuno
+21 veintiún
 22 veintidós
 23 veintitrés
 26 veintiséis
@@ -2716,12 +2722,14 @@ USD:(\D+) $(\1: usona dolaro, usonaj dolaroj, cendo, cendoj)
 80 ochenta
 90 noventa
 (\d)(\d) $(\10) y $2
-1(\d\d) cien[to $1]
+100 cien
+1(\d\d) ciento $1
 500 quinientos
 700 setecientos
 900 novecientos
 ([579])(\d\d) $(\100) $2
-(\d)(\d\d) $1cientos[ $2]
+(\d)00 $1cientos
+(\d)(\d\d) $1cientos $2
 1(\d{3}) mil[ $1]
 (\d{1,3})(\d{3}) $1 mil[ $2]
 1(\d{6}) un millón[ $1]
@@ -2784,7 +2792,7 @@ VEF:(\D+) $(\1: bolívar fuerte, bolívares fuertes, céntimo, céntimos)
 # if "as?$" matches currency name
 
 f:(.*ill)(.*),(.*) \1$(f:\2,\3)		# don't modify un in millions
-f:(.*un)([^a].*,|,)(.*as?) $(f:\1a\2\3)	# un libra -> una libra
+f:(.*)[uú]n([^a].*,|,)(.*as?) $(f:\1una\2\3) # un libra -> una libra
 f:(.*ient)o(s.*),(.*as?) $(f:\1a\2,\3)  # doscientos libra/libras -> doscientas
 f:(.*),(.*) \1\2
 
@@ -2803,7 +2811,9 @@ f:(.*),(.*) \1\2
 
 # ordinal
 
-feminine:(.*un)o \1a
+feminine:(.*ill)(.*) \1$(feminine:\2) # don't modify un in millions
+feminine:(.*ient)o(s.*) $(feminine:\1a\2)  # doscientos  -> doscientas
+feminine:(.*)[uú]no?([^a].*|$) $(feminine:\1una\2) # un  -> una
 feminine:(.*) \1
 
 == feminine ==
@@ -4057,7 +4067,8 @@ ZAR:(.)	$(\1: dél-afrikai rand, cent)
 
 == fix-grammar ==
 
-(.*)elsői			\1elsejei
+(.*)elsői			\1elseji
+(.*)elsőei			\1elsejei
 (.*)elsőe(.*)		\1első\2
 (.*)első(j.*)		\1else\2
 (.*)hároma(t|s)		\1hárma\2
@@ -4368,7 +4379,7 @@ vasárnap	vasárnap	# no suffix in dates
 
 == help ==
 
-"" $(1)|, $(2)|, $(3)\n$(\0 ordinal)$(\0 ordinal-number)year: $(year 2001), $(year 2002)|, $(year 2003)\nformal: $(formal 100), $(formal 200), $(formal 1000)\ntext: $(text 1), $(text 12000), $(text 10000000000)\ncurrency \(for example, HUF\): $(HUF 2,5)\nformal HUF: $(formal HUF 102,5)\nSuffixation of numbers and letters: -a, -ában, -án, -áig, -ától, -ba, -ban, -ból, -d, -dik, -hoz,\n    -nak, -nál, -n, -ra, -ról, -s, -szor, -szoros, -t, -tól, -ul, -vá, -val,\n    for example: -szor 15 -> $(-szor 15)\narticle: $(article 5)\narticle cardinal: $(article cardinal 100)\narticle cardinal formal: $(article cardinal formal 100)\narticle -ban: $(article -ban a\))\narticle ordinal -ai: $(article ordinal -ai 1)|\ncanonical-name: -szor -> $(canonical-name -szor)
+"" $(1)|, $(2)|, $(3)\n$(\0 ordinal)$(\0 ordinal-number)year: $(year 2001), $(year 2002)|, $(year 2003)\nformal: $(formal 100), $(formal 200), $(formal 1000)\ntext: $(text 1), $(text 12000), $(text 10000000000)\ncurrency \(for example, HUF\): $(HUF 2,5)\nformal HUF: $(formal HUF 102,5)\nSuffixation of numbers and letters: -a, -ában, -án, -áig, -ától, -ba, -ban, -ból, -d, -dik, -hoz,\n    -nak, -nál, -n, -ra, -ról, -s, -szor, -szoros, -t, -tól, -ul, -vá, -val,\n    for example: -szor 15 -> $(-szor 15)\narticle: $(article 5)\narticle cardinal: $(article cardinal 100)\narticle cardinal formal: $(article cardinal formal 100)\narticle -ban: $(article -ban a\))\narticle -ai: $(article -ai 1)\narticle ordinal -ai: $(article ordinal -ai 1)|\ncanonical-name: -szor -> $(canonical-name -szor)
 
 "(ordinal(-number)?|USD)" \1: $(\1 1), $(\1 2), $(\1 3)\n
 
@@ -5524,6 +5535,7 @@ MGA:(.)	$(\1: ariary, iraimbilanja)
 MUR:(.)	$(\1: rupee Mauritius, sen)
 MXN:(.)	$(\1: peso Meksiko, centavo)
 MWK:(.)	$(\1: kwacha Malawi, tambala)
+MYR:(.)	$(\1: Ringgit, sen)
 NAD:(.)	$(\1: dollar Namibia, sen)
 NGN:(.)	$(\1: naira, kobo)
 NZD:(.)	$(\1: dollar New Zealand, sen)
@@ -6400,6 +6412,11 @@ RUB:(\D+) $(\1: рубль, рубля, рублей, копейка, копей
 UAH:(\D+) $(\1: гривна, гривны, гривен, копейка, копейки, копеек)
 USD:(\D+) $(\1: доллар США, доллара США, долларов США, цент, цента, центов)
 
+"(UAH) ([-−]?1)([.,]00?)?" $(f:$2)|$(\1:us)
+"(UAH) ([-−]?\d*[02-9]1)([.,]00?)?" $(f:$2)|$(\1:us)
+"(UAH) ([-−]?[234])([.,]00?)?" $(f:$2)|$(\1:up)
+"(UAH) ([-−]?\d*[02-9][234])([.,]00?)?" $(f:$2)|$(\1:up)
+"(UAH) ([-−]?\d+)([.,]00?)?" $(f:$2)|$(\1:ug)
 
 "([A-Z]{3}) ([-−]?1)([.,]00?)?" $2|$(\1:us)
 "([A-Z]{3}) ([-−]?\d*[02-9]1)([.,]00?)?" $2|$(\1:us)
@@ -6407,7 +6424,10 @@ USD:(\D+) $(\1: доллар США, доллара США, долларов С�
 "([A-Z]{3}) ([-−]?\d*[02-9][234])([.,]00?)?" $2|$(\1:up)
 "([A-Z]{3}) ([-−]?\d+)([.,]00?)?" $2|$(\1:ug)
 
-"((RUB) [-−]?\d+)[.,]([02-9])1" $1 $(\30) одна$(\2:ss)
+"((RUB) [-−]?\d+)[.,]([02-9])1" $1 [$(\30) ]одна$(\2:ss)
+"((RUB) [-−]?\d+)[.,]([02-9])2" $1 [$(\30) ]две$(\2:sp)
+"((UAH) [-−]?\d+)[.,]([02-9])1" $1 [$(\30) ]одна$(\2:ss)
+"((UAH) [-−]?\d+)[.,]([02-9])2" $1 [$(\30) ]две$(\2:sp)
 "(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 |$(1)$(\2:ss)
 "((EUR|GBP|USD) [-−]?\d+)[.,]([02-9]2)" $1 $3|$(\2:sp)
 "(([A-Z]{3}) [-−]?\d+)[.,]([02-9][234])" $1 |$3$(\2:sp)
@@ -7183,8 +7203,9 @@ USD:(\D+,.*) $(\1: cardinal, US-dollar, US-dollar, cardinal-neuter, cent, cent)
 # currency with decimals
 
 "(THB [-−]?\d+)[,.]00" $1
-"THB ([-−]?\d+)[,.](\d{1,2})" |$1|บาท$2สตางค์
- 
+"THB ([-−]?\d+)[.,](\d{1})" |$1|บาท$(\20)สตางค์
+"THB ([-−]?\d+)[,.](\d{1,2})" |$1|บาท|$2|สตางค์
+
 # other currencies?
 
 [A-Z]{3}
@@ -7470,13 +7491,22 @@ RUB:(\D+) $(\1: рубль, рубля, рублів, копійка, копій
 UAH:(\D+) $(\1: гривня, гривні, гривень, копійка, копійки, копійок)
 USD:(\D+) $(\1: долар США, долара США, доларів США, цент, цента, центів)
 
+"(UAH) ([-−]?1)([.,]00?)?" $(f:$2)|$(\1:us)
+"(UAH) ([-−]?\d*[02-9]1)([.,]00?)?" $(f:$2)|$(\1:us)
+"(UAH) ([-−]?[234])([.,]00?)?" $(f:$2)|$(\1:up)
+"(UAH) ([-−]?\d*[02-9][234])([.,]00?)?" $(f:$2)|$(\1:up)
+"(UAH) ([-−]?\d+)([.,]00?)?" $(f:$2)|$(\1:ug)
+
 "([A-Z]{3}) ([-−]?1)([.,]00?)?" $2|$(\1:us)
 "([A-Z]{3}) ([-−]?\d*[02-9]1)([.,]00?)?" $2|$(\1:us)
 "([A-Z]{3}) ([-−]?[234])([.,]00?)?" $2|$(\1:up)
 "([A-Z]{3}) ([-−]?\d*[02-9][234])([.,]00?)?" $2|$(\1:up)
 "([A-Z]{3}) ([-−]?\d+)([.,]00?)?" $2|$(\1:ug)
 
-"((RUB) [-−]?\d+)[.,]([02-9])1" $1 $(\30) одна$(\2:ss)
+"((RUB) [-−]?\d+)[.,]([02-9])1" $1 [$(\30) ]одна$(\2:ss)
+"((RUB) [-−]?\d+)[.,]([02-9])2" $1 [$(\30) ]двi$(\2:sp)
+"((UAH) [-−]?\d+)[.,]([02-9])1" $1 [$(\30) ]одна$(\2:ss)
+"((UAH) [-−]?\d+)[.,]([02-9])2" $1 [$(\30) ]двi$(\2:sp)
 "(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 |$(1)$(\2:ss)
 "((EUR|GBP|USD) [-−]?\d+)[.,]([02-9]2)" $1 $3|$(\2:sp)
 "(([A-Z]{3}) [-−]?\d+)[.,]([02-9][234])" $1 |$3$(\2:sp)
@@ -7767,52 +7797,6 @@ USD 美元
 "" |$(1)|, |$(2)|, |$(3)|\n$(help formal)
 (formal) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
 </textarea>
-<textarea id='Hung' class='hidden'>
-# Szekler-Hungarian Rovásírás (Old Hungarian, ISO 15924: Hung)
-1:(.*):(.*) \1
-2:(.*):(.*) \1\1
-3:(.*):(.*) \1\1\1
-4:(.*):(.*) \1\1\1\1
-5:(.*):(.*) \2
-6:(.*):(.*) \1\2
-7:(.*):(.*) \1\1\2
-8:(.*):(.*) \1\1\1\2
-9:(.*):(.*) \1\1\1\1\2
-
-(\d) $(\1:𐳺:𐳻)
-(\d)(\d) $2$(\1:𐳼:𐳽)
-1(\d\d) $1𐳾
-(\d)(\d\d) $2𐳾$1
-1(\d\d\d)$ $1𐳿
-(\d{1,3})(\d\d\d) $2𐳿$1
-1(\d{6})$ $1𐳿𐳿
-(\d{1,3})(\d{6}) $2𐳿𐳿$1
-1(\d{9})$ $1𐳿𐳿𐳿
-(\d{1,3})(\d{9}) $2𐳿𐳿𐳿$1
-
-== left-to-right ==
-
-1:(.*):(.*) \1
-2:(.*):(.*) \1\1
-3:(.*):(.*) \1\1\1
-4:(.*):(.*) \1\1\1\1
-5:(.*):(.*) \2
-6:(.*):(.*) \2\1
-7:(.*):(.*) \2\1\1
-8:(.*):(.*) \2\1\1\1
-9:(.*):(.*) \2\1\1\1\1
-
-(\d) $(left-to-right \1:𐳺:𐳻)
-(\d)(\d) $(left-to-right \1:𐳼:𐳽)$(left-to-right \2)
-1(\d\d) 𐳾$(left-to-right \1)
-(\d)(\d\d) $(left-to-right \1)𐳾$(left-to-right \2)
-1(\d\d\d)$ 𐳿$(left-to-right \1)
-(\d{1,3})(\d\d\d) $(left-to-right \1)𐳿$(left-to-right \2)
-1(\d{6})$ 𐳿𐳿$(left-to-right \1)
-(\d{1,3})(\d{6}) $(left-to-right \1)𐳿𐳿$(left-to-right \2)
-1(\d{9})$ 𐳿𐳿𐳿$(left-to-right \1)
-(\d{1,3})(\d{9}) $(left-to-right \1)𐳿𐳿𐳿$(left-to-right \2)
-</textarea>
 <textarea id='Roman' class='hidden'>
 # Roman numbers
 1:(.)(.)(.) \1
@@ -7893,6 +7877,183 @@ help Modules\nRoman-large (language code): multiple parenthesized form\nRoman: o
 "\D\D\D (\d[.,\d]*)" $1元
 
 # formal currency: 圆
+</textarea>
+<textarea id='hu Hung' class='hidden'>
+# Old Hungarian script (ISO 15924 code: Hung)
+
+# Transliterate numbers and words
+
+# convert only words with known characters
+"^(.*[^-0-9a-zA-ZáéëóöőúüűÁÉËÓÖŐÚÜŰ​–,„”\?\;]) 0$" \1
+# and words with known y
+"^y(ard.*) 0$" 𐳒$1
+"^Y([aA][rR][dD].*|[uU][cC][oO][nN].*) 0$" 𐲒$1
+"^Y([bB][lL].*|vette.*) 0$" 𐲐$1
+"^([bB]o|[cC]owbo|[dD]ispla|[gG]ra|[pP]la)y(.*) 0$" $1𐳒$2
+"^(BO|COWBO|DISPLA|GRA|PLA)Y(.*) 0$" $1𐲒$2
+# don't transliterate words with starting y
+"(^[yY].*) 0$" \1
+# don't transliterate words with q, but not with qu
+"(^.*[qQ][^uU].*) 0$" \1
+
+# avoid of exceeding recursion depth
+# convert by 200-character parts
+(.{200})(.+) $1$2
+
+# numbers
+
+# remove space separated zero (in LibreOffice integration)
+"(\d+) 0" $1
+
+"0: (.*) (.*)"
+"1: (.*) (.*)" \1
+"2: (.*) (.*)" \1\1
+"3: (.*) (.*)" \1\1\1
+"4: (.*) (.*)" \1\1\1\1
+"5: (.*) (.*)" \2
+"6: (.*) (.*)" \2\1
+"7: (.*) (.*)" \2\1\1
+"8: (.*) (.*)" \2\1\1\1
+"9: (.*) (.*)" \2\1\1\1\1
+
+(\d) $(\1: 𐳺 𐳻)
+(\d)(\d) $(\1: 𐳼 𐳽)$2
+1(\d\d) $1𐳾
+(\d)(\d\d) $1𐳾$2
+1(\d\d\d)$ $1𐳿
+(\d{1,3})(\d\d\d) $1𐳿$2
+1(\d{6})$ $1𐳿𐳿
+(\d{1,3})(\d{6}) $1𐳿𐳿$2
+1(\d{9})$ $1𐳿𐳿𐳿
+(\d{1,3})(\d{9}) $1𐳿𐳿𐳿$2
+
+# numbers with letters, for example dates with affixes
+
+(\d+)(.+) $1$2
+
+# letters
+
+"^(.*) 0$" $1
+a(.*) 𐳀$1
+A(.*) 𐲀$1
+á(.*) 𐳁$1
+Á(.*) 𐲁$1
+b(.*) 𐳂$1
+B(.*) 𐲂$1
+ccs(.*) 𐳆𐳆$1
+CCS(.*) 𐲆𐲆$1
+cs(.*) 𐳆$1
+C[sS](.*) 𐲆$1
+c(.*) 𐳄$1
+C(.*) 𐲄$1
+d(.*) 𐳇$1
+D(.*) 𐲇$1
+e(.*) 𐳉$1
+E(.*) 𐲉$1
+é(.*) 𐳋$1
+É(.*) 𐲋$1
+ä(.*) 𐳋$1
+Ä(.*) 𐲋$1
+ë(.*) 𐳊$1
+Ë(.*) 𐲊$1
+f(.*) 𐳌$1
+F(.*) 𐲌$1
+ggy(.*) 𐳎𐳎$1
+GGY(.*) 𐲎𐲎$1
+gy(.*) 𐳎$1
+G[yY](.*) 𐲎$1
+g(.*) 𐳍$1
+G(.*) 𐲍$1
+h(.*) 𐳏$1
+H(.*) 𐲏$1
+i(.*) 𐳐$1
+I(.*) 𐲐$1
+í(.*) 𐳑$1
+Í(.*) 𐲑$1
+j(.*) 𐳒$1
+J(.*) 𐲒$1
+k(.*) 𐳓$1
+K(.*) 𐲓$1
+lly(.*) 𐳗𐳗$1
+LLY(.*) 𐲗𐲗$1
+ly(.*) 𐳗$1
+L[yY](.*) 𐲗$1
+l(.*) 𐳖$1
+L(.*) 𐲖$1
+m(.*) 𐳘$1
+M(.*) 𐲘$1
+nny(.*) 𐳚𐳚$1
+NNY(.*) 𐲚𐲚$1
+ny(.*) 𐳚$1
+N[ny](.*) 𐲚$1
+n(.*) 𐳙$1
+N(.*) 𐲙$1
+o(.*) 𐳛$1
+O(.*) 𐲛$1
+ó(.*) 𐳜$1
+Ó(.*) 𐲜$1
+ö(.*) 𐳞$1
+Ö(.*) 𐲞$1
+ő(.*) 𐳟$1
+Ő(.*) 𐲟$1
+p(.*) 𐳠$1
+P(.*) 𐲠$1
+qu(.*) 𐳓𐳮$1 # qu->kv
+Qu(.*) 𐲓𐳮$1 # Qu->Kv
+QU(.*) 𐲓𐲮$1 # QU->KV
+r(.*) 𐳢$1
+R(.*) 𐲢$1
+ssz(.*) 𐳥𐳥$1
+SSZ(.*) 𐲥𐲥$1
+sz(.*) 𐳥$1
+S[zZ](.*) 𐲥$1
+sch(.*) 𐳤$1
+Sch(.*) 𐲤$1
+s(.*) 𐳤$1
+S(.*) 𐲤$1
+tty(.*) 𐳨𐳨$1
+TTY(.*) 𐲨𐲨$1
+ty(.*) 𐳨$1
+T[yY](.*) 𐲨$1
+t(.*) 𐳦$1
+T(.*) 𐲦$1
+u(.*) 𐳪$1
+U(.*) 𐲪$1
+ú(.*) 𐳫$1
+Ú(.*) 𐲫$1
+ü(.*) 𐳬$1
+Ü(.*) 𐲬$1
+ű(.*) 𐳭$1
+Ű(.*) 𐲭$1
+[vw](.*) 𐳮$1
+[VW](.*) 𐲮$1
+x(.*) 𐳓𐳥$1 # x->ksz
+^X 𐲓𐳥$1 # X->KSz
+X 𐲓𐲥$1 # X->KSZ
+X([A-ZÁÉËÍÓÖŐÚÜŰ].*) 𐲓𐲥$1 # X->KSZ
+X(.*) 𐲓𐳥$1 # X->Ksz
+y(.*) 𐳐$1  # .+y->i
+Y(.*) 𐲐$1  # .+Y->I
+zzs(.*) 𐳰𐳰$1
+ZZS(.*) 𐲰𐲰$1
+zs(.*) 𐳰$1
+Z[sS](.*) 𐲰$1
+z(.*) 𐳯$1
+Z(.*) 𐲯$1
+
+# remove ZWSP (used for consonant disambiguation)
+​(.*) $1
+
+# punctuation
+”(.*) ‟$1
+\;(.*) ⁏$1
+\?(.*) ⸮$1
+,(.*) ⹁$1
+„(.*) ⹂$1
+
+# don't modify unknown characters
+(.)(.*) \1$2
+(.*) \1
 </textarea>
 <!-- **************************************************************************************************** -->
 <textarea id="xx" class="hidden"></textarea>
