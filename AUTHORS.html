@@ -1,0 +1,465 @@
+<html>
+<head><title>
+Authors and contributors of NUMBERTEXT/MONEYTEXT development</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<style type="text/css">
+@import "numbertext.css";
+</style>
+<pre>
+<!-- **************************************************************************************************** -->
+Authors and contributors of NUMBERTEXT/MONEYTEXT development
+
+= Developer =
+
+László Németh (nemeth at numbertext dot org):
+
+	- Soros programming language and its interpreters
+
+	- several language modules
+
+= Language module developers =
+
+Mihail Balabanov (m dot balabanov at gmail dot com):
+
+	- author of Bulgarian module (bg)
+
+Alex Bodnaru (alexbodn at 012 dot net dot il):
+
+	- author of Hebrew module (he_IL)
+
+Asterisks at OOo Wiki:
+
+	- author of Latvian module
+
+Adrián Chaves (adrian at chaves dot io):
+
+	- author of Galician module (gl)
+
+	- fix for Spanish: use plural for 0 (in currency)
+
+Dario Gallucci (dario-gallucci at GitHub - issue #42):
+
+	- review ordinal numbers in Italian module
+
+Ankur Heramb Joshi:
+
+	- author of Marathi module
+
+Mike Kaganski (mikekaganski at hotmail dot com:
+
+	- author of ordinal numbers of Russian module (ru)
+
+	- various fixes
+
+	- tdf#115007: add LibreOffice NatNum codes for cardinal/ordinal number names/indicators
+
+Alvar Laigna (alvar at bind dot ee):
+
+	- review and fix Estonian module (et)
+
+Eduardo Moreno (emoreno at tokonhu dot com):
+
+	- author of the first version of the Portuguese module (pt-PT)
+
+	- bug reports about Spanish module and short language code "es"
+
+Olexandr Nesterenko (olexn at ukr dot net):
+
+	- various fixes in Ukrainian module
+
+Eko Prasetiyo (ekoprasetiyo at gmail):
+
+	- author of Indonesian module
+
+Phillip Samuel (phillipsamuelk3 at gmail dot com):
+
+	- author of Luganda module
+
+Goran Rakić (grakic at devbase dot net):
+
+	- author of Serbian modules (sh-RS, sr-RS)
+
+Randem:
+	- author of Turkish module (tr)
+
+Olivier Ronez:
+
+	- patches for French language module (fr-FR):
+
+		- Spelling mistakes in the French file (https://bugs.launchpad.net/numbertext/+bug/419718)
+		- 81 in French (https://bugs.launchpad.net/numbertext/+bug/419729)
+		- milliard etc. instead of *milliarde (https://bugs.launchpad.net/numbertext/+bug/419718)
+
+	- author of Belgian and Swiss French modules (fr-BE and fr-CH):
+
+		- French numbers in Belgium (https://bugs.launchpad.net/numbertext/+bug/419731)
+		- French numbers in Switzerland (https://bugs.launchpad.net/numbertext/+bug/419734)
+
+Mihovil Stanić (mihovil dot stanic at gmail dot com):
+
+	- author of Croatian module (hr)
+
+Suokunlong: (suokunlong at 126 dot com):
+
+	- author of real native Simplified Chinese module (zh)
+
+DaeHyun Sung (sungdh86 at gmail):
+
+	- review and fix Korean module (ko) and add won unit to English
+
+Michel Weimerskirch (michel at weimerskirch dot net):
+
+	- author of Luxembourgish module (lb-LU) 
+
+= Contributors =
+
+4560041 at GitHub (issue #93):
+
+	- bug report about French: use hyphens instead of spaces, e.g. cent-deux
+
+Liudas Ališauskas (liudas dot alisauskas at gmail dot com):
+
+	- fix Lithuanian money handling
+
+andritis at GitHub (issue #52):
+
+	- fix 19 in in Latvian module
+
+arena94 at GitHub (issue #89–#90):
+
+	- bug report about French: missing formal 1100 and feminine
+
+armik71 at GitHub (issue #41):
+
+	- report problem with fix EUR 200, EUR 300 etc. in French module
+
+Mushtaque Asghar:
+
+	- bug report about missing XLS portability in
+	  http://extensions.services.openoffice.org/project/numbertext
+
+Attilafdd at launchpad dot net:
+
+	- fix Italian comma in it_IT module ("virgula" instead of "komma").
+
+Ruud Baars:
+
+	- bug reports about Dutch module
+
+Adolfo Jayme Barrientos (fitojb at ubuntu dot com):
+
+	- fix typo on web page
+	- fix Esperanto ordinal indicators (1-a instead of 1.)
+
+Stephan Bergmann:
+
+	- bug report about CXXFLAGS configuration problem
+
+	- fixes in LibreOffice for external/libnumbertext
+
+	- don't depend on en_US.UTF-8 locale
+
+Tomáš Chvátal (tchvatal at suse dot com):
+
+	- add enable-boost option to work with older gcc-4.8 and like using boost, default off
+
+Claudio Colombo (claudio underline c77 at yahoo dot it):
+
+	- it_IT bug report ("*unocento")
+
+Dániel Darabos:
+
+	- suggested __import__ for simple lazy loading in PyUNO implementation
+	  of OpenOffice.org NUMBERTEXT extension
+
+Susana Sotelo Docío:
+
+	- fix for numbers containing the string "ientos" (doscientos/as,
+	  quinientos/as, novecientos/as, etc) in Spanish module
+
+Rene Engelhard:
+
+	- Debian packaging, fix DEFPATH in spellout, libnumbertext bug reports
+
+	- report Python FutureWarning: Possible nested set at position
+
+Spiros Evangelatos (sevangelatos at gmail):
+
+	- fixes in Greek module: "and" in currency fractions and "0 euro"
+
+Aurimas Fišeras (aurimas at members fsf org):
+
+	- various fixes for Lithuanian module
+
+Gabryha at GitHub:
+
+	- bug report for Polish: fix ordinal 20-29 
+
+Sophie Gautier:
+
+	- bug report for French: milliard etc. instead of *milliarde
+
+georgepyh at OOo extension:
+
+	- bug report for Russian
+
+Lucian Adrian Grijincu (lucian dot grijincu at gmail):
+
+	- reported missing gender support in Romanian MONEYTEXT implementation:
+	  https://bugs.launchpad.net/bugs/421309)
+
+Tuomas Hietala (tjhietala at github):
+
+	- fixes and bug reports for Finnish
+
+Stanislav Horáček:
+
+	- bug report for Czech module
+
+Hsonesson1 at GitHub:
+
+	- bug report for Danish (en million, not et million etc.)
+
+Li-Wen Hsu (lwhsu at lwhsu dot org):
+
+	- add prefix-based datadir handling to Makefile.am
+
+Ilya Idamkin (ilya dot idamkin at duallab):
+
+	- port nn/nb language code handling to Java from C++
+
+	- fix handling of Thai 1
+
+	- fix typos
+
+Bee Ing at GitHub:
+
+	- add Malay currency MYR
+
+Alexander Ivanov (contributorpw at GitHub):
+
+	- add cardinal functions to Russian module
+
+	- tutorial fixes
+
+	- fix feminine RUB, UAH
+
+Jmzambon at OOO Wiki:
+
+	- patch for French un/une handling for currencies
+
+Juanma Sanchez (JuanmaSP at GitHub):
+
+        - bug report for boundary issue with optional function at Spanish and other languages
+
+Kent Karlsson:
+
+	- reported Swedish gender problem with currencies in sv_SE.sor.
+
+Vladislav Kiper <vladislav.kiper@duallab dot com>:
+
+	- fix Thai numbers greater than 999,999
+
+Viktor Kovács:
+
+	- add "sch" to "s", "ä" to "é" transliteration to Old Hungarian, fix change of "ü" and "ű"
+
+Mantas Kriaučiūnas at Launchpad.net:
+
+	- hints for Lithuanian module
+
+Kty0mka at GitHub:
+
+	- report bad euro cent in Ukrainian module
+
+Rimas Kudelis:
+
+	- bug report for default Lithuanian currency
+
+c-kuehl at GitHub:
+
+	- patch for German (function year)
+
+mike8p at launchpad.net:
+
+	- Spanish module: bug report for y dos cents -> con dos céntimos
+
+Volodymyr Lisivka:
+
+	- bug report about Ukrainian: replace apostrophe symbol to U+02BC
+
+Marcin Miłkowski (milek_pl at o2 dot pl):
+
+	- patch for Polish: https://bugs.launchpad.net/numbertext/+bug/421031:
+		- correct special affixation of number names after 2, 3 and 4
+
+Ming-Hua at GitHub:
+
+	- bug report about Chinese: missing ordinal numbers, use always 二
+
+Petr Mladek:
+
+	- bug report about document language detection in OOo 3.2
+
+Joan Montané (jmontane at openoffice dot org):
+
+	- patch for Catalan (http://wiki.services.openoffice.org/wiki/Talk:NUMBERTEXT/MONEYTEXT_development#Some_fixes_on_Catalan_definition):
+		- "amb" instead of "und"
+		- "cèntim" instead of (euro)cent
+		- "menys" for negative
+
+	- reported missing gender support for Catalan and Spanish (http://wiki.services.openoffice.org/wiki/Talk:NUMBERTEXT/MONEYTEXT_development#Some_languages_need_male.2Ffemale_option_for_number_to_text)
+
+	- various fixes and extensions for Catalan
+
+Julien2412 (serval2412 at yahoo dot fr):
+
+	- bug report and initial patches in Python 3 port (tabulator inconsistency, terminating white spaces)
+
+Bernard Marcelly (bmarcelly at openoffice dot org):
+
+	- bug report for French (http://wiki.services.openoffice.org/wiki/Talk:NUMBERTEXT/MONEYTEXT_development#French_numbering_remarks):
+		- syntax of decimals
+		- cent instead of un cent
+		- milliard etc. instead of *milliarde
+		- "et" instead of "y"
+		- virgule instead of comma
+		- point instead of comma in fr-CH
+		- "moins" instead of "négatif de"
+
+	- bug report about missing conversion beetween 0 and 1
+
+Jerzy Moruś (morchat at o2 dot pl):
+
+	- Polish translation of NUMBERTEXT/MONEYTEXT
+
+mrw at OOo Extension site:
+
+	- bug report about document language detection in OOo 3.2
+
+Balázs Meskó:
+
+        - clean-up Java implementation, adding also Maven support
+
+Valter Mura:
+
+	- bug report for Italian
+
+Julien Nabet (serval2412 at yahoo dot fr):
+
+	- fix cppcheck warnings
+
+	- report locale compiling problem
+
+Stephan Nilsson (Stephan at Nilsson dot tf):
+	- sv_SE bug report: the Swedish 7 is "sju", not *sjo
+
+Shantanu Oak (shantanu dot oak at gmail):
+
+	- various fixes in Marathi module
+
+Zoltán Óvári (ovari123 at zoho dot org):
+
+	- report problem with Old Hungarian transliteration of "Vörösmarty" and similar words in LibreOffice issue tdf#136368
+
+Nicolas Pagni (Nicolas dot Pagni at npagni dot it):
+
+	- bug report about the bad conversion of 1 eurocent in the Italian module
+
+Pintert3 at GitHub:
+
+	- bug report about outdated documentation
+
+Gwenaël Quenette (g_quenette at yahoo dot fr):
+
+	- bug report for the Portuguese module: cientos -> centos
+
+Eike Rathke (er at OpenOffice dot org):
+
+	- suggested new namespace and compatibility name usage.
+
+Modestas Rimkus:
+
+	- Lithuanian typo, correct ordinal indicator
+
+rogerclc at OOo extesion site:
+
+	- bug report about Russian MONEYTEXT conversion (russian grammar)
+
+Johanna Sørensen:
+
+	- bug report about "Dansk" language name on Numbertext.org home page
+
+Martin Srebotnjak:
+
+	- testing Slovenian module, information about ordinal and ordinal adverbial numbers
+
+Marcin Stępniak:
+
+	- patch to set default UTF-8 encoding in numbertext.jar
+
+Supapong at OOo Wiki:
+
+	- bug report about Thai numbers ending with "01" (Excel BAHTTEXT bug)
+
+Sylvaticus at GitHub:
+
+	- suggesting better introduction on web site
+
+Kálmán Szalai (Kami):
+
+	- ooo-build integration of Numbertext OpenOffice.org extension
+
+tengwar:
+
+	- bug report for Polish (pl) module: bad ordinal numbers
+
+András Tímár (timar74 at gmail dot com):
+
+	- official reviewer, as activist of FSF.hu Foundation, Hungary
+
+Tantai Thanakanok (tantai osdev co th):
+
+	- patch for extended Thai decimal support (1 and more than 2 digits with currencies)
+
+Rens Toonen (rens toonen at topicus nl):
+
+	- Java fix for Windows: replaced the system line seperator with a fixed value.
+
+tyindeepit at GitHub:
+
+	- patch for Thai module to fix currency with 1 digit decimal and handling of digit 1
+
+xhydrogene at launchpad dot net:
+
+	- bug reports for French (fr_FR) module:
+
+		- "comma" must be translated in french "virgule" (https://bugs.launchpad.net/numbertext/+bug/421148)
+		- "y" must be translated in french "et" (https://bugs.launchpad.net/numbertext/+bug/421151)
+		- "un mille" must be writed only "mille" in french (https://bugs.launchpad.net/numbertext/+bug/421164)
+
+Miklós Vajna (vmiklos at collabora dot co dot uk):
+
+	- code clean-ups
+	- small performance improvement during Soros compiling
+	- add Travis CI integration
+	- README to MarkDown
+
+Laimonas Vėbra (laimis) at LaunchPad:
+
+	- hints for Lithuanian module
+
+wasow at extensions openoffice org:
+
+	- bug report and patch (+UAH) to the Russian module
+
+Friedel Wolff (friedel at translate dot org dot za):
+
+	- bug report for Africaans module
+
+<!-- **************************************************************************************************** -->
+</pre>
+</body>
+</html>

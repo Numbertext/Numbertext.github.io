@@ -117,27 +117,27 @@
       <div class="col-md-3 col-sm-6">
         <div class="service"> <i class="fa fa-table"></i>
           <h3>LibreOffice</h3>
-	  <p>Extension with NUMBERTEXT and MONEYTEXT spreadsheet functions: <a href="https://extensions.libreoffice.org/extensions/numbertext-1/1-0.7/@@download/file/numbertext-1.0.7.oxt">numbertext-1.0.7.oxt</a>
-	  (<a href="https://extensions.libreoffice.org/extensions/numbertext-1/1-0.7">description</a>)</p>
+	  <p>Extension with NUMBERTEXT and MONEYTEXT spreadsheet functions: <a href="https://extensions.libreoffice.org/extensions/numbertext-1/1-0.9/@@download/file/numbertext-1.0.9.oxt">numbertext-1.0.9.oxt</a>
+	  (<a href="https://extensions.libreoffice.org/extensions/numbertext-1/1-0.9">description</a>)</p>
         </div>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="service"> <i class="fa fa-cogs"></i>
           <h3>C++</h3>
-	  <p>Source distribution (1.0.7): <a href="https://github.com/Numbertext/libnumbertext/releases/download/1.0.7/libnumbertext-1.0.7.tar.xz">libnumbertext-1.0.7.tar.xz</a> (<a href="https://github.com/Numbertext/libnumbertext/releases/tag/1.0.7">installation</a>)</p>
+	  <p>Source distribution (1.0.9): <a href="https://github.com/Numbertext/libnumbertext/releases/download/1.0.9/libnumbertext-1.0.9.tar.xz">libnumbertext-1.0.9.tar.xz</a> (<a href="https://github.com/Numbertext/libnumbertext/releases/tag/1.0.9">installation</a>)</p>
         </div>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="service"> <i class="fa fa-coffee"></i>
           <h3>Java</h3>
-	  <p>JAR package: <a href="https://github.com/Numbertext/libnumbertext/releases/download/1.0.7/numbertext.jar">numbertext.jar</a> (1.0.7).
+	  <p>JAR package: <a href="https://github.com/Numbertext/libnumbertext/releases/download/1.0.9/numbertext.jar">numbertext.jar</a> (1.0.9).
 	  Usage: java -jar numbertext.jar</p>
         </div>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="service"><i class="fa fa-pencil"></i>
           <h3>Python & JavaScript</h3>
-	  <p>Interpreters: <a href="https://github.com/Numbertext/libnumbertext/blob/master/src/Soros.py">Soros.py</a> and <a href="https://github.com/Numbertext/libnumbertext/blob/master/src/Soros.js">Soros.js</a>. For usage, see source distribution (<a href="https://github.com/Numbertext/libnumbertext/archive/1.0.7.zip">zip</a> or <a href="https://github.com/Numbertext/libnumbertext/archive/1.0.7.tar.gz">tar.gz</a>).</p>
+	  <p>Interpreters: <a href="https://github.com/Numbertext/libnumbertext/blob/master/src/Soros.py">Soros.py</a> and <a href="https://github.com/Numbertext/libnumbertext/blob/master/src/Soros.js">Soros.js</a>. For usage, see source distribution (<a href="https://github.com/Numbertext/libnumbertext/archive/1.0.9.zip">zip</a> or <a href="https://github.com/Numbertext/libnumbertext/archive/1.0.9.tar.gz">tar.gz</a>).</p>
         </div>
       </div>
     </div>
@@ -207,6 +207,8 @@ ALVAR LAIGNA
 EDUARDO MORENO 
 (Portuguese)
 •
+OLEXANDR NESTERENKO 
+•
 EKO PRASETIYO 
 (Indonesian)
 •
@@ -235,9 +237,13 @@ MICHEL WEIMERSKIRCH
 (Luxembourgish)
 </p><div id=row><p></p><p></p></div><h2></h2><h2>Contributors</h2>
 <p>
+4560041
+•
 LIUDAS ALIŠAUSKAS 
 •
 ANDRITIS
+•
+ARENA94
 •
 ARMIK71
 •
@@ -264,6 +270,8 @@ RENE ENGELHARD
 SPIROS EVANGELATOS 
 •
 AURIMAS FIŠERAS 
+•
+GABRYHA
 •
 SOPHIE GAUTIER
 •
@@ -305,7 +313,11 @@ C-KUEHL
 •
 MIKE8P
 •
+VOLODYMYR LISIVKA
+•
 MARCIN MIŁKOWSKI 
+•
+MING-HUA
 •
 PETR MLADEK
 •
@@ -326,6 +338,8 @@ VALTER MURA
 JULIEN NABET 
 •
 STEPHAN NILSSON 
+•
+SHANTANU OAK 
 •
 ZOLTÁN ÓVÁRI 
 •
@@ -2379,45 +2393,43 @@ USD:(\D+) $(\1: Yhdysvaltain dollari, Yhdysvaltain dollaria, sentti, senttiä)
 50 cinquante
 60 soixante
 
-71 septante et un		# [:fr-CH:] [:fr-BE:]
+71 septante-et-un		# [:fr-CH:] [:fr-BE:]
 7(\d) septante[-$1]		# [:fr-CH:] [:fr-BE:]
-71 soixante et onze		# default
+71 soixante-et-onze		# default
 7(\d) soixante-$(1\1)		# default
 
-81 huitante et un		# [:fr-CH:]
+81 huitante-et-un		# [:fr-CH:]
 8(\d) huitante[-$1]		# [:fr-CH:]
 80$ quatre-vingts		# default
 80 quatre-vingt			# default
 81 quatre-vingt-un		# default
 
-91 nonante et un		# [:fr-CH:] [:fr-BE:]
+91 nonante-et-un		# [:fr-CH:] [:fr-BE:]
 9(\d) nonante[-$1]		# [:fr-CH:] [:fr-BE:]
 9(\d) quatre-vingt-$(1\1)	# default
 
-(\d)1 $(\10) et un
+(\d)1 $(\10)-et-un
 (\d)(\d) $(\10)-$2
 
-1(\d\d) cent[ $1]
-(\d)00$ $1 cents
-(\d)(\d\d) $1 cent[ $2]
-1100 onze cents
-11(\d\d) onze cent[ $1]
-1(\d{3}) mille[ $1]
-(\d{1,3})(\d{3}) $1 mille[ $2]
-1(\d{6}) un million[ $1]
-(\d{1,3})(\d{6}) $1| millions[ $2]
-1(\d{9}) un milliard[ $1]
-(\d{1,3})(\d{9}) $1| milliards[ $2]
-1(\d{12}) un billion[ $1]
-(\d{1,3})(\d{12}) $1| billions[ $2]
-1(\d{15}) un billiard[ $1]
-(\d{1,3})(\d{15}) $1| billiards[ $2]
-1(\d{18}) un trillion[ $1]
-(\d{1,3})(\d{18}) $1| trillions[ $2]
-1(\d{21}) un trilliard[ $1]
-(\d{1,3})(\d{21}) $1| trilliards[ $2]
-1(\d{24}) un quadrillion[ $1]
-(\d{1,3})(\d{24}) $1| quadrillions[ $2]
+1(\d\d) cent[-$1]
+(\d)00$ $1-cents
+(\d)(\d\d) $1-cent[-$2]
+1(\d{3}) mille[-$1]
+(\d{1,3})(\d{3}) $1-mille[-$2]
+1(\d{6}) un-million[-$1]
+(\d{1,3})(\d{6}) $1|-millions[-$2]
+1(\d{9}) un-milliard[-$1]
+(\d{1,3})(\d{9}) $1|-milliards[-$2]
+1(\d{12}) un-billion[-$1]
+(\d{1,3})(\d{12}) $1|-billions[-$2]
+1(\d{15}) un-billiard[-$1]
+(\d{1,3})(\d{15}) $1|-billiards[-$2]
+1(\d{18}) un-trillion[-$1]
+(\d{1,3})(\d{18}) $1|-trillions[-$2]
+1(\d{21}) un-trilliard[-$1]
+(\d{1,3})(\d{21}) $1|-trilliards[-$2]
+1(\d{24}) un-quadrillion[-$1]
+(\d{1,3})(\d{24}) $1|-quadrillions[-$2]
 
 # negative number
 
@@ -2491,6 +2503,21 @@ XPF:(\D+) $(\1: franc Pacifique, francs Pacifique, de francs Pacifique, centime,
 "(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 et |$(\30)$(\2:sp)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 et |$3$(\2:sp)
 
+== informal ==
+
+(1\d)00 $1-cents
+(1\d)(\d\d) $1-cent[-$1]
+(.*)    $1
+
+== feminine ==
+
+1 une
+(.*)    $1
+
+== masculine ==
+
+(.*)    $1
+
 == ordinal-feminine ==
 
 1		première
@@ -2516,8 +2543,9 @@ XPF:(\D+) $(\1: franc Pacifique, francs Pacifique, de francs Pacifique, centime,
 
 == help ==
 
-"" $(1), $(2), $(3)\n$(help ordinal)$(help ordinal-feminine)$(help ordinal-masculine)$(help ordinal-number-feminine)$(help ordinal-number-masculine)
-(ordinal(-feminine|-masculine|-number)?) \1: $(\1 1), $(\1 2), $(\1 3)\n
+"" $(1), $(2), $(3)\n$(help feminine)$(help masculine)$(help ordinal)$(help ordinal-feminine)$(help ordinal-masculine)$(help ordinal-number-feminine)$(help ordinal-number-masculine)$(help informal)
+(informal) \1: $(\1 1100), $(\1 1200), $(\1 1300)\n
+(feminine|masculine|ordinal(-feminine|-masculine|-number)?) \1: $(\1 1), $(\1 2), $(\1 3)\n
 </textarea>
 <textarea id='ga' class='hidden'>
 ^0 náid
@@ -4787,7 +4815,7 @@ USD:(\D+) $(\1: ASV dolārs, ASV dolāri, ASV dolāru, cents, centi, centu)
 # e.g often a number is read first with units place & then ten's place. - e.g 34 read as " चौतीस " where " चौ " stands for 4 (units place) and then तीस  for 30 (ten's place) which is inverse with the number reading logic in ENGLISH (where it is read as Thirty Four)
 # Pronunciations of numbers changes and follows virtually no logic - e.g. 54 read as " चौपन्न " where ten's place 50 is read as पन्न but only No. 50 would be read as पन्नास !
 # when units place number is 9, the number is read with the reference to the NEXT number e.g. 39 is read as एकोणचाळीस  where " एकोण " stands for 9 (units place) and then चाळीस with reference to 40 (the NEXT number) which is inverse with the number reading logic in ENGLISH (where it is read as Thirty Nine - reference of previous ten's place)
-# Reading of same units place but different ten's place is vastly different - e.g. 27 सत्तावीस , 47 सत्तेचाळीस , 67 सदुसष्ठ , 77 सत्त्याहत्तर . Here same units place 7 has been read differently as  सत्ता , सत्ते , सदु , सत्त्या ... very difficult to frame any logic !
+# Reading of same units place but different ten's place is vastly different - e.g. 27 सत्तावीस , 47 सत्तेचाळीस , 67 सदुसष्ट , 77 सत्त्याहत्तर . Here same units place 7 has been read differently as  सत्ता , सत्ते , सदु , सत्त्या ... very difficult to frame any logic !
 # Therefore we have hard coded numbers from 0 to 100 with Marathi translations.
 # Number reading after Hundred's place is very similar to English logic ... hence no problem in coding for further Marathi numbers
 # --------------------------------------
@@ -4832,7 +4860,7 @@ USD:(\D+) $(\1: ASV dolārs, ASV dolāri, ASV dolāru, cents, centi, centu)
 34	चौतीस
 35	पस्तीस
 36	छत्तीस
-37	सदोतीस
+37	सदतीस
 38	अडतीस
 39	एकोणचाळीस
 40	चाळीस
@@ -4847,54 +4875,54 @@ USD:(\D+) $(\1: ASV dolārs, ASV dolāri, ASV dolāru, cents, centi, centu)
 49	एकोणपन्नास
 50	पन्नास
 51	एकावन्न
-52	बाव्वन्न
+52	बावन्न
 53	त्रेपन्न
 54	चौपन्न
 55	पंचावन्न
-56	छप्पन
+56	छप्पन्न
 57	सत्तावन्न
 58	अठ्ठावन्न
 59	एकोणसाठ
 60	साठ
-61	एकसष्ठ
-62	बासष्ठ
-63	त्रेसष्ठ
-64	चौसष्ठ
-65	पासष्ठ
-66	सहासष्ठ
-67	सदुसष्ठ
-68	अडुसष्ठ
+61	एकसष्ट
+62	बासष्ट
+63	त्रेसष्ट
+64	चौसष्ट
+65	पासष्ट
+66	सहासष्ट
+67	सदुसष्ट
+68	अडुसष्ट
 69	एकोणसत्तर
 70	सत्तर
 71	एकाहत्तर
-72	बहात्तर
+72	बाहत्तर
 73	त्र्याहत्तर
 74	चौऱ्याहत्तर
 75	पंचाहत्तर
-76	शहात्तर
-77	सत्याहत्तर
-78	अठ्ठयाहत्तर
+76	शाहत्तर
+77	सत्त्याहत्तर
+78	अठ्ठ्याहत्तर
 79	एकोणऐंशी
 80	ऐंशी
-81	एक्क्याऐंशी
+81	एक्याऐंशी
 82	ब्याऐंशी
 83	त्र्याऐंशी
 84	चौऱ्याऐंशी
-85	पंच्याऐंशी
+85	पंचाऐंशी
 86	शहाऐंशी
 87	सत्त्याऐंशी
-88	अठ्ठयाऐंशी
+88	अठ्ठ्याऐंशी
 89	एकोणनव्वद
 90	नव्वद
-91	एक्क्याण्णव
+91	एक्याण्णव
 92	ब्याण्णव
 93	त्र्याण्णव
 94	चौऱ्याण्णव
-95	पंच्याण्णव
-96	शह्याण्णव
+95	पंचाण्णव
+96	शहाण्णव
 97	सत्त्याण्णव
-98	अठ्ठयाण्णव
-99	नव्व्याण्णव
+98	अठ्ठ्याण्णव
+99	नव्याण्णव
 100	शंभर
 
 # ------------------------
@@ -5079,7 +5107,7 @@ ZWL:(\D+) $(\1: Zimbabwe dollar, Zimbabwe dollars, cent, cents)
 ([-−]?\d+) $(ordinal-masculine |$1)
 (.*)एक \1पहिला
 (.*)दोन \1दुसरा
-(.*)तीन \1तीसरा
+(.*)तीन \1तिसरा
 (.*)चार \1चौथा
 (.*)पाच \1पाचवा
 (.*)सहा \1सहावा
@@ -5099,14 +5127,14 @@ ZWL:(\D+) $(\1: Zimbabwe dollar, Zimbabwe dollars, cent, cents)
 
 (.*)एकोणऐंशी \1एकोणऐंशीवा
 (.*)ऐंशी \1ऐंशीवा
-(.*)एक्क्याऐंशी \1एक्क्याऐंशीवा
+(.*)एक्याऐंशी \1एक्याऐंशीवा
 (.*)ब्याऐंशी \1ब्याऐंशीवा
 (.*)त्र्याऐंशी \1त्र्याऐंशीवा
 (.*)चौऱ्याऐंशी \1चौऱ्याऐंशीवा
-(.*)पंच्याऐंशी \1पंच्याऐंशीवा
+(.*)पंचाऐंशी \1पंचाऐंशीवा
 (.*)शहाऐंशी \1शहाऐंशीवा
 (.*)सत्त्याऐंशी \1सत्त्याऐंशीवा
-(.*)अठ्ठयाऐंशी \1अठ्ठयाऐंशीवा
+(.*)अठ्ठ्याऐंशी \1अठ्ठ्याऐंशीवा
 
 ([-−]?\d+)[.,](.*) $1 दशांश $(\2)वा  # Ordinal of Decimals
 (.*)	\1ावा # General Masculine Ordinal
@@ -5119,7 +5147,7 @@ ZWL:(\D+) $(\1: Zimbabwe dollar, Zimbabwe dollars, cent, cents)
 ([-−]?\d+) $(ordinal-feminine |$1)
 (.*)एक \1पहिली
 (.*)दोन \1दुसरी
-(.*)तीन \1तीसरी
+(.*)तीन \1तिसरी
 (.*)चार \1चौथी
 (.*)पाच \1पाचवी
 (.*)सहा \1सहावी
@@ -5139,14 +5167,14 @@ ZWL:(\D+) $(\1: Zimbabwe dollar, Zimbabwe dollars, cent, cents)
 
 (.*)एकोणऐंशी \1एकोणऐंशीवी
 (.*)ऐंशी \1ऐंशीवी
-(.*)एक्क्याऐंशी \1एक्क्याऐंशीवी
+(.*)एक्याऐंशी \1एक्याऐंशीवी
 (.*)ब्याऐंशी \1ब्याऐंशीवी
 (.*)त्र्याऐंशी \1त्र्याऐंशीवी
 (.*)चौऱ्याऐंशी \1चौऱ्याऐंशीवी
-(.*)पंच्याऐंशी \1पंच्याऐंशीवी
+(.*)पंचाऐंशी \1पंचाऐंशीवी
 (.*)शहाऐंशी \1शहाऐंशीवी
 (.*)सत्त्याऐंशी \1सत्त्याऐंशीवी
-(.*)अठ्ठयाऐंशी \1अठ्ठयाऐंशीवी
+(.*)अठ्ठ्याऐंशी \1अठ्ठ्याऐंशीवी
 
 ([-−]?\d+)[.,](.*) $1 दशांश $(\2)वी  # Ordinal of Decimals
 (.*)	\1ावी # General Feminine Ordinal
@@ -5159,7 +5187,7 @@ ZWL:(\D+) $(\1: Zimbabwe dollar, Zimbabwe dollars, cent, cents)
 ([-−]?\d+) $(ordinal-neutral |$1)
 (.*)एक \1पहिले
 (.*)दोन \1दुसरे
-(.*)तीन \1तीसरे
+(.*)तीन \1तिसरे
 (.*)चार \1चौथे
 (.*)पाच \1पाचवे
 (.*)सहा \1सहावे 
@@ -5178,14 +5206,14 @@ ZWL:(\D+) $(\1: Zimbabwe dollar, Zimbabwe dollars, cent, cents)
 
 (.*)एकोणऐंशी \1एकोणऐंशीवे
 (.*)ऐंशी \1ऐंशीवे
-(.*)एक्क्याऐंशी \1एक्क्याऐंशीवे
+(.*)एक्याऐंशी \1एक्याऐंशीवे
 (.*)ब्याऐंशी \1ब्याऐंशीवे
 (.*)त्र्याऐंशी \1त्र्याऐंशीवे
 (.*)चौऱ्याऐंशी \1चौऱ्याऐंशीवे
-(.*)पंच्याऐंशी \1पंच्याऐंशीवे
+(.*)पंचाऐंशी \1पंचाऐंशीवे
 (.*)शहाऐंशी \1शहाऐंशीवे
 (.*)सत्त्याऐंशी \1सत्त्याऐंशीवे
-(.*)अठ्ठयाऐंशी \1अठ्ठयाऐंशीवे
+(.*)अठ्ठ्याऐंशी \1अठ्ठ्याऐंशीवे
 
 ([-−]?\d+)[.,](.*) $1 दशांश $(\2)वे # Ordinal of Decimals 
 (.*)	\1ावे # General Neutral Ordinal
@@ -5201,7 +5229,7 @@ ZWL:(\D+) $(\1: Zimbabwe dollar, Zimbabwe dollars, cent, cents)
 
 (.*)एक \1पहिला / \1 पहिली / \1 पहिले
 (.*)दोन	\1दुसरा / \1 दुसरी / \1 दुसरे
-(.*)तीन	\1तीसरा / \1 तीसरी / \1 तीसरे
+(.*)तीन	\1तिसरा / \1 तिसरी / \1 तिसरे
 (.*)चार	\1चौथा / \1 चौथी / \1 चौथे
 (.*)पाच \1पाचवा / \1 पाचवी / \1 पाचवे
 (.*)सहा \1सहावा / \1 सहावी / \1 सहावे 
@@ -5221,14 +5249,14 @@ ZWL:(\D+) $(\1: Zimbabwe dollar, Zimbabwe dollars, cent, cents)
 
 (.*)एकोणऐंशी \1एकोणऐंशीवा / \1 एकोणऐंशीवी / \1 एकोणऐंशीवे
 (.*)ऐंशी \1ऐंशीवा / \1 ऐंशीवी / \1 ऐंशीवे
-(.*)एक्क्याऐंशी \1एक्क्याऐंशीवा / \1 एक्क्याऐंशीवी / \1 एक्क्याऐंशीवे
+(.*)एक्याऐंशी \1एक्याऐंशीवा / \1 एक्याऐंशीवी / \1 एक्याऐंशीवे
 (.*)ब्याऐंशी \1ब्याऐंशीवा / \1 ब्याऐंशीवी / \1 ब्याऐंशीवे
 (.*)त्र्याऐंशी \1त्र्याऐंशीवा / \1 त्र्याऐंशीवी / \1 त्र्याऐंशीवे
 (.*)चौऱ्याऐंशी \1चौऱ्याऐंशीवा / \1 चौऱ्याऐंशीवी / \1 चौऱ्याऐंशीवे
-(.*)पंच्याऐंशी \1पंच्याऐंशीवा / \1 पंच्याऐंशीवी / \1 पंच्याऐंशीवे
+(.*)पंचाऐंशी \1पंचाऐंशीवा / \1 पंचाऐंशीवी / \1 पंचाऐंशीवे
 (.*)शहाऐंशी \1शहाऐंशीवा / \1 शहाऐंशीवी / \1 शहाऐंशीवे
 (.*)सत्त्याऐंशी \1सत्त्याऐंशीवा / \1 सत्त्याऐंशीवी / \1 सत्त्याऐंशीवे
-(.*)अठ्ठयाऐंशी \1अठ्ठयाऐंशीवा / \1 अठ्ठयाऐंशीवी / \1 अठ्ठयाऐंशीवे
+(.*)अठ्ठ्याऐंशी \1अठ्ठ्याऐंशीवा / \1 अठ्ठ्याऐंशीवी / \1 अठ्ठ्याऐंशीवे
 
 
 ([-−]?\d+)[.,](.*) $1 दशांश $(\2)वा / $1 दशांश $(\2)वी / $1 दशांश $(\2)वे # Ordinal of Decimals 
@@ -5841,6 +5869,8 @@ USD:(\D+) $(\1: dolar amerykański, dolary amerykańskie, dolarów amerykańskic
 ([-−]?\d+)	$(ordinal |$2)
 "(.*)siąt (.*)"	$(ordinal \2siąty \3)
 "(.*)eści (.*)"	$(ordinal \2esty \3)
+"(.*)dwadzieścia (.*)" $(ordinal \2dwudziesty \3)
+(.*)dwadzieścia \2dwudziesty
 
 (.*)jeden	\2pierwszy
 (.*)dwa		\2drugi
@@ -7284,27 +7314,27 @@ space:(.*) \1
 2 два
 3 три
 4 чотири
-5$ п’ять
-5 п’ят
+5$ пʼять
+5 пʼят
 6$ шість
 6 шіст
 7 сім
 8 вісім
-9$ дев’ять
-9 дев’ят
+9$ девʼять
+9 девʼят
 10 десять
 11 одинадцять
 12 дванадцять
 13 тринадцять
 14 чотирнадцять
-15 п’ятнадцать
+15 пʼятнадцять
 16 шістнадцять
 17 сімнадцять
 18 вісімнадцять
-19 дев’ятнадцять
+19 девʼятнадцять
 ([23])(\d) $1|дцять[ $2]
 4(\d) сорок[ $1]
-9(\d) дев’яносто[ $1]
+9(\d) девʼяносто[ $1]
 (\d)(\d) $1десят[ $2]
 1(\d\d) сто[ $1]
 2(\d\d) двісті[ $1]
@@ -7315,25 +7345,43 @@ space:(.*) \1
 (\d{1,3})(\d{3}) $1| тисяч[ $2]
 (1|\d?[02-9]1)(\d{6}) $1 мільйон[ $2]
 ([234]|\d?[02-9][234])(\d{6}) $1 мільйона[ $2]
-(\d{1,3})(\d{6}) $1 мільйонов[ $2]
+(\d{1,3})(\d{6}) $1| мільйонів[ $2]
 (1|\d?[02-9]1)(\d{9}) $1 мільярд[ $2]
 ([234]|\d?[02-9][234])(\d{9}) $1 мільярда[ $2]
-(\d{1,3})(\d{9}) $1 мільярдов[ $2]
+(\d{1,3})(\d{9}) $1| мільярдів[ $2]
 (1|\d?[02-9]1)(\d{12}) $1 трильйон[ $2]
 ([234]|\d?[02-9][234])(\d{12}) $1 трильйона[ $2]
-(\d{1,3})(\d{12}) $1 трильйонов[ $2]
+(\d{1,3})(\d{12}) $1| трильйонів[ $2]
 (1|\d?[02-9]1)(\d{15}) $1 квадрильйон[ $2]
 ([234]|\d?[02-9][234])(\d{15}) $1 квадрильйона[ $2]
-(\d{1,3})(\d{15}) $1 квадрильйонов[ $2]
+(\d{1,3})(\d{15}) $1| квадрильйонів[ $2]
 (1|\d?[02-9]1)(\d{18}) $1 квінтильйон[ $2]
 ([234]|\d?[02-9][234])(\d{18}) $1 квінтильйона[ $2]
-(\d{1,3})(\d{18}) $1 квінтильйонов[ $2]
+(\d{1,3})(\d{18}) $1| квінтильйонів[ $2]
 (1|\d?[02-9]1)(\d{21}) $1 секстильйон[ $2]
 ([234]|\d?[02-9][234])(\d{21}) $1 секстильйона[ $2]
-(\d{1,3})(\d{21}) $1 секстильйонов[ $2]
+(\d{1,3})(\d{21}) $1| секстильйонів[ $2]
 (1|\d?[02-9]1)(\d{24}) $1 септильйон[ $2]
 ([234]|\d?[02-9][234])(\d{24}) $1 септильйона[ $2]
-(\d{1,3})(\d{24}) $1 септильйонов[ $2]
+(\d{1,3})(\d{24}) $1| септильйонів[ $2]
+(1|\d?[02-9]1)(\d{27}) $1 октильйон[ $2]
+([234]|\d?[02-9][234])(\d{27}) $1 октильйона[ $2]
+(\d{1,3})(\d{27}) $1| октильйонів[ $2]
+(1|\d?[02-9]1)(\d{30}) $1 нонільйон[ $2]
+([234]|\d?[02-9][234])(\d{30}) $1 нонільйона[ $2]
+(\d{1,3})(\d{30}) $1| нонільйонів[ $2]
+(1|\d?[02-9]1)(\d{33}) $1 децильйон[ $2]
+([234]|\d?[02-9][234])(\d{33}) $1 децильйона[ $2]
+(\d{1,3})(\d{33}) $1| децильйонів[ $2]
+(1|\d?[02-9]1)(\d{36}) $1 ундецильйон[ $2]
+([234]|\d?[02-9][234])(\d{36}) $1 ундецильйона[ $2]
+(\d{1,3})(\d{36}) $1| ундецильйонів[ $2]
+(1|\d?[02-9]1)(\d{39}) $1 дуодецильйон[ $2]
+([234]|\d?[02-9][234])(\d{39}) $1 дуодецильйона[ $2]
+(\d{1,3})(\d{39}) $1| дуодецильйонів[ $2]
+(1|\d?[02-9]1)(\d{42}) $1 тредецильйон[ $2]
+([234]|\d?[02-9][234])(\d{42}) $1 тредецильйона[ $2]
+(\d{1,3})(\d{42}) $1| тредецильйонів[ $2]
 
 # negative numbers
 
@@ -7345,13 +7393,13 @@ space:(.*) \1
 "([-−]?)[.,](\d+)" $(\10.\2)
 "[-−]1[.,]" мінус одна ціла
 "([-−]?\d+[02-9]1|1)[.,]" $(f:|$1) ціла
-"([-−]?\d+)[.,]" $(f:|$1) цілий
-"([-−]?\d+[.,])1" $1| и одна десята
-"([-−]?\d+[.,])(\d)" $1| и $(f:|$2) десятий
-"([-−]?\d+[.,])([02-9]1)" $1| и $(f:|$2) сота
-"([-−]?\d+[.,])(\d\d)" $1| и $(f:|$2) сотий
-"([-−]?\d+[.,])(\d[02-9]1)" $1| и $(f:|$2) тисячна
-"([-−]?\d+[.,])(\d{3})" $1| и $(f:|$2) тисячний
+"([-−]?\d+)[.,]" $(f:|$1) цілих
+"([-−]?\d+[.,])1" $1| й одна десята
+"([-−]?\d+[.,])(\d)" $1| й $(f:|$2)| десятих
+"([-−]?\d+[.,])([02-9]1)" $1| й $(f:|$2) сота
+"([-−]?\d+[.,])(\d\d)" $1| й $(f:|$2)| сотих
+"([-−]?\d+[.,])(\d[02-9]1)" $1| й $(f:|$2) тисячна
+"([-−]?\d+[.,])(\d{3})" $1| й $(f:|$2)| тисячних
 "([-−]?\d+[.,])(\d)(\d)(\d)(\d)" $1| |$2 |$3 |$4 |$5
 "([-−]?\d+[.,]\d*)(\d)" $1| |$2
 
@@ -7360,6 +7408,10 @@ space:(.*) \1
 f:(.*)один \1одна
 f:(.*)два \1дві
 f:(.*) \1
+
+# neuter conversion
+n:(.*)один \1одне
+n:(.*) \1
 
 # possessive (1-999) - used in ordinals
 "pos:(.* )?од(ин|на) ?" [$(pos:\1)]одного
@@ -7370,10 +7422,10 @@ f:(.*) \1
 "pos:(.* )?([а-я]+)ь ?" [$(pos:\1)]\2и
 "pos:(.* )?сорок ?" [$(pos:\1)]сорока
 "pos:(.* )?([а-я]+)десят ?" [$(pos:\1)]\2десяти
-"pos:(.* )?([а-я]*)сто ?" [$(pos:\1)]\2сто
-"pos:(.*)двести ?"	\1двохсот
+"pos:(.* )?([а-я]*)сто ?" [$(pos:\1)]\2ста
+"pos:(.*)двісті ?"	\1двохсот
 "pos:(.*)иста ?"	\1ьохсот
-"pos:(.*)осемьсот ?" \1осьмисот
+"pos:(.*)ісімсот ?" \1осьмисот
 "pos:(.*[^и])сот ?" \1исот
 pos:(.*) \1
 
@@ -7398,6 +7450,7 @@ USD:(\D+) $(\1: долар США, долара США, доларів США, �
 "(UAH) ([-−]?\d*[02-9]1)([.,]00?)?" $(f:$2)|$(\1:us)
 "(UAH) ([-−]?[234])([.,]00?)?" $(f:$2)|$(\1:up)
 "(UAH) ([-−]?\d*[02-9][234])([.,]00?)?" $(f:$2)|$(\1:up)
+"(UAH) ([-−]?[0])([.,]0?)?" $2$(\1:ug)
 "(UAH) ([-−]?\d+)([.,]00?)?" $(f:$2)|$(\1:ug)
 
 "([A-Z]{3}) ([-−]?1)([.,]00?)?" $2|$(\1:us)
@@ -7415,6 +7468,20 @@ USD:(\D+) $(\1: долар США, долара США, доларів США, �
 "(([A-Z]{3}) [-−]?\d+)[.,]([02-9][234])" $1 |$3$(\2:sp)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 |$(\30)$(\2:sg)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 |$3$(\2:sg)
+
+== cardinal(-masculine)? ==
+
+([-−]?[0-9]+) $2
+
+== cardinal-feminine ==
+
+0	нуль
+([-−]?[0-9]+) $(f:$1)
+
+== cardinal-neuter ==
+
+0	нуль
+([-−]?[0-9]+) $(n:$1)
 
 == ordinal-feminine ==
 
@@ -7479,7 +7546,7 @@ USD:(\D+) $(\1: долар США, долара США, доларів США, �
 
 == help ==
 
-"" |$(1)|, |$(2)|, |$(3)|\n$(help ordinal-feminine)$(help ordinal-masculine)$(help ordinal-neuter)$(help ordinal-number-feminine)$(help ordinal-number-masculine)$(help ordinal-number-neuter)
+"" |$(1)|, |$(2)|, |$(3)|\n$(help cardinal-feminine)$(help cardinal-masculine)$(help cardinal-neuter)$(help ordinal-feminine)$(help ordinal-masculine)$(help ordinal-neuter)$(help ordinal-number-feminine)$(help ordinal-number-masculine)$(help ordinal-number-neuter)currency \(наприклад, UAH\): $(UAH 2.5)
 (.*) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
 </textarea>
 <textarea id='vi' class='hidden'>
@@ -7531,8 +7598,7 @@ USD:(\D+) $(\1: долар США, долара США, доларів США, �
 # Mandarin Chinese number names (simplified)
 ^0 零
 1 一
-2$ 二
-2 两
+2 二
 3 三
 4 四
 5 五
@@ -7695,10 +7761,18 @@ USD 美元
 
 "([A-Z]{3}) ([-−]?\d+([.,]\d+)?)" $(formal \2)$(formal \1)
 
+== ordinal ==
+
+([-−]?\d+) 第$1
+
+== ordinal-number ==
+
+(.*)    \1.
+
 == help ==
 
-"" |$(1)|, |$(2)|, |$(3)|\n$(help formal)
-(formal) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
+"" |$(1)|, |$(2)|, |$(3)|\n$(help formal)$(\0 ordinal)$(\0 ordinal-number)
+(formal|ordinal(-number)?) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
 </textarea>
 <textarea id='Roman' class='hidden'>
 # Roman numbers
@@ -7787,22 +7861,130 @@ help Modules\nRoman-large (language code): multiple parenthesized form\nRoman: o
 # Transliterate numbers and words
 
 # convert words with traditional or foreign "i" written as "y"
-# e.g. Áprily, Champs-Élysées, Élysée-palota, Dolly, Folly, Hollywood, jolly...
-"^(Áp​?ri​?l|Champs-Él|[cC]i​?t|Do​?lák-Sa​?l|[dfhjDFHJ]ol​?l|Él|Fesz​?t|[gG]rizz​?l|Ha​?rasz​?t|Hat​?va​?n|Husz​?t|[iI]n​?ter​?ci​?t|Kéth​?l|Ku​?ko​?r​?el​?l|Mind​?szen​?t|Nosz​?t|[pP]en​n|Pes​?t|Re​?gu​?l|So​?n|Szi​?l|Szte​?va​?no​?vi​?t|Thö​?kö​?l|Vö​?rös​?mar​?t|[zZ][lł]ot)y(.*) 0$" $1𐳐$2
-"^(ÁP​?RI​?L|CHAMPS-ÉL|CI​?T|DO​?LÁK-SA​?L|[DFHJ]OL​?L|ÉL|FESZ​?T|GRIZZ​?L|HA​?RASZ​?T|HAT​?VA​?N|HUSZ​?T|IN​?TER​?CI​?T|KÉTH​?L|KU​?KO​?R​?EL​?L|MIND​?SZEN​?T|NOSZ​?T|PEN​?N|PES​?T|RE​GU​?L|SO​N|SZI​?L|SZTE​?VA​?NO​?VI​?T|THÖ​?KÖ​?L|VÖ​?RÖS​?MAR​?T|Z[LŁ]OT)Y(.*) 0$" $1𐲐$2
+# e.g. Áprily, Champs-Élysées, Élysée-palota, Dolly, Folly, Hollywood, jolly, intercity, Kisfaludy ...
+"^(Áp​?ri​?l|Champs-Él|[cC]i​?t|Do​?lák-Sa​?l|[dfhjDFHJ]ol​?l|Él|Fesz​?t|[gG]rizz​?l|Ha​?rasz​?t|Hat​?va​?n|Husz​?t|[iI]n​?ter​?ci​?t|Jé​?ke​?l|Kis​?fa​?lu​?d|Ku​?ko​?r​?el​?l|Mo​?ho​?l|Mind​?szen​?t|Nosz​?t|[pP]en​n|Pes​?t|Re​?gu​?l|So​?n|Szi​?l|Szte​?va​?no​?vi​?t|Vö​?rös​?mar​?t|[zZ][lł]ot)y(.*) 0$" $1𐳐$2
+"^(ÁP​?RI​?L|CHAMPS-ÉL|CI​?T|DO​?LÁK-SA​?L|[DFHJ]OL​?L|ÉL|FESZ​?T|GRIZZ​?L|HA​?RASZ​?T|HAT​?VA​?N|HUSZ​?T|IN​?TER​?CI​?T|JÉ​?KE​?L|KIS​FA​LU​?D|KU​?KO​?R​?EL​?L|MIND​?SZEN​?T|MO​?HO​?L|NOSZ​?T|PEN​?N|PES​?T|RE​?GU​?L|SO​?N|SZI​?L|SZTE​?VA​?NO​?VI​?T|VÖ​?RÖS​?MAR​?T|Z[LŁ]OT)Y(.*) 0$" $1𐲐$2
+# punctuation with transliterated letters
+"^([-𐲀-𐳿0-9​–,„”\?\;‟⁏⸮⹁⹂]*[,„”\?\;]) 0$" $1
 # if the original word contains an unknown character, return without modification
-"^(.*[^-0-9a-zA-ZáéëóöőúüűÁÉËÓÖŐÚÜŰ​–,„”\?\;]) 0$" \1
+"^(.*[^-0-9qwertzuiopasdfghjklyxcvbnmQWERTZUIOPASDFGHJKLYXCVBNMáäéëíóöőúüűÁÄÉËÍÓÖŐÚÜŰ​–,„”\?\;].*) 0$" \1
 # words with y
 "^y(ard.*) 0$" 𐳒$1
-"^Y([aA][rR][dD].*|[uU]​[cC][oO][nN].*) 0$" 𐲒$1
+"^Y([aA][rR][dD].*|[uU]​?[cC][oO][nN].*) 0$" 𐲒$1
 "^Y([bB][lL].*) 0$" 𐲑$1
 "^Y(vet​?te.*) 0$" 𐲐$1
-"^([bB]o|[cC]ow​bo|[dD]isp​la|[gG]ra|[pP]la)y(.*) 0$" $1𐳒$2
-"^(BO|COW​BO|DISP​LA|GRA|PLA)Y(.*) 0$" $1𐲒$2
+"^([bB]o|[cC]ow​?bo|[dD]isp​?la|[gG]ra|[pP]la)y(.*) 0$" $1𐳒$2
+"^(BO|COW​?BO|DISP​?LA|GRA|PLA)Y(.*) 0$" $1𐲒$2
 # don't transliterate other words with starting y
 "(^[yY].*) 0$" \1
 # don't transliterate words with q, but not with qu
 "(^.*[qQ][^uU].*) 0$" \1
+"(^.*[qQ]) 0$" \1
+# other exceptions
+# Ágh -> Ág, Balogh -> Balog, Horváth -> Horvát, Mikszáth -> Mikszát, Németh -> Német, Tóth -> Tót, Virágh -> Virág, Végh -> Vég
+^([Á][gG]|B[aA]​?[lL][oO][gG]|H[oO][rR]​?[vV][áÁ][tT]|M[iI][kK]​?[sS][zZ][áÁ][tT]|N[éÉ]​?[mM][eE][tT]|T[óÓ][tT]|V[iI]​?[rR][áÁ][gG]|V[éÉ][gG])[hH](.*) $(\1\2)
+# Antall -> Antal, Gáll -> Gál, Széll -> Szél
+"^(An​?tal|Gál|Szél)​?l 0$" $(\1)
+"^(AN​?TAL|GÁL|SZÉL)​?L 0$" $(\1)
+# Apáthy -> Apáti, Bláthy -> Bláti, Básthy -> Básti ...
+^(A​?pá|Blá|Bás|Hon|Hor|Ka​?rin|Kom​?já|Szent​?ku|Szom​?ba)​?thy(.*) $(\1ti\2)
+^(A​?PÁ|BLÁ|BÁS|HON|HOR|KA​?RIN|KOM​?JÁ|SZENT​?KU|SZOM​?BA)​?THY(.*) $(\1TI\2)
+# Apponyi -> Aponyi
+^Ap​?([pP][oO]​?[nN][yY][iI].*) $(A\1)
+# Babits -> Babics, Derkovits -> Derkovics, Takáts -> Takács, Szűts -> Szűcs
+^(Ba​?bi|Der​?ko​?vi|Sin​?ko​?vi|Ta​?ká|Sz[üű])ts(.*) $(\1cs\2)
+^(BA​?BI|DER​?KO​?VI|SIN​?KO​?VI|TA​?KÁ|SZ[ÜŰ])TS(.*) $(\1CS\2)
+# Bakách -> Bakács, Damjanich -> Damjanics, Forgách -> Forgács, Jurisich -> Jurisics, Madách -> Madács
+^(Ba​?ká|Dam​?ja​?ni|For​?gá|Gras​?sal​?ko​?vi|Ju​?ri​?si|Ma​?dá)ch(.*) $(\1cs\2)
+^(BA​?KÁ|DAM​?JA​?NI|FOR​?GÁ|GRAS​?SAL​?KO​?VI|JU​?RI​?SI|MA​?DÁ)CH(.*) $(\1CS\2)
+# Bakócz -> Bakóc, Börötz -> Böröc, Göncz -> Gönc, Makovecz -> Makovec, Móricz -> Móric ...
+^(B[aA]​?[kK][óÓ]|B[öÖ]​?[rR][öÖ][cC]|G[öÖ][nN]|M[aA]​?[kK][oO]​?[vV][eE]|M[óÓ]​?[rR][iI]|K[oO][nN]|O​?[rR][aA]​?[vV][eE]|R[áÁ]|R[áÁ]|T[iI]​?[bB][oO][rR])([cCtT])[zZ](.*) $(\1\2\3)
+# Bakoss -> Bakos, Baross -> Baros, Boross -> Boros, Hankiss -> Hankis, Kass -> Kas, Kiss -> Kis, Terebess -> Terebes, Vass -> Vas
+"^(Ba​?kos|Ba​?ros|Bo​?ros|Han​?kis|Kas|Kis|Lo​?vas|Te​?re​?bes|Vas)​?s 0$" $(\1)
+"^(BA​?KOS|BA​?ROS|BO​?ROS|HAN​?KIS|KAS|KIS|LO​?VAS|TE​?RE​?BES|VAS)​?S 0$" $(\1)
+# Bay -> Baji
+"^Bay 0$" $(Baji)
+# Batsányi -> Bacsányi
+^Ba​?tsá​?nyi(.*) $(Bacsányi)
+^BA​?TSÁ​?NYI(.*) $(BACSÁNYI)
+# Bárczi -> Bárci, Kazinczy -> Kazinci, Rákóczi -> Rákóci
+^(Bár|Ka​?zin|Rá​?kó)​?cz[iy](.*) $(\1ci\2)
+^(BÁR|KA​?ZIN|RÁ​?KÓ)​?CZ[IY](.*) $(\1CI\2)
+# Báthory -> Bátori
+^(B[áÁ]​?[tT])[hH]([oO]​?[rR][yY].*) $(\1\2)
+# Batthyány -> Battyányi
+^Bat​?thyá​?ny(.*) $(Battyányi\1)
+^BAT​?THYÁ​?NY(.*) $(BATTYÁNYI\1)
+# Bessenyei -> Besenyei
+^(B[eE][sS])​?[sS]([eE]​?[nN][yY][eE]​?[iI].*) $(\1\2)
+# Czuci -> Cuci, Czuczor -> Cucor
+^Cz(u​?c)z(([iI]|[oO][rR]).*) $(C\1\2)
+# Csathó -> Csató
+^(C[sS][aA]​?[tT])[hH]([óÓ].*) $(\1\2)
+# Dessewffy -> Dezsőfi
+^De​?s​?sew​?ffy(.*) $(Dezsőfi\1)
+^DE​?S​?SEW​?FFY(.*) $(DEZSŐFI\1)
+# Eördögh -> Ördög
+^Eör​?dögh(.*) $(Ördög\1)
+^EÖR​?DÖGH(.*) $(ÖRDÖG\1)
+# Eöry -> Őri, Eőry -> Őri
+^E[öő]​?ry(.*) $(Őri\1)
+^E[ÖŐ]​?RY(.*) $(ŐRI\1)
+# Eötvös -> Ötvös
+^Eöt​?vös(.*) $(Ötvös\1)
+^EÖT​?VÖS(.*) $(ÖTVÖS\1)
+# Gaál -> Gál
+^Ga​?ál(.*) $(Gál\1)
+# Háy -> Háji, Fáy -> Fáji, Márki-Zay -> Márki-Zaji, Vay -> Vaji
+^(Há|Fá|Már​?ki-​?Za|Va|Za)y(.*) $(\1ji\2)
+^(HÁ|FÁ|MÁR​?KI-​?ZA|VA|ZA)Y(.*) $(\1JI\2)
+# Joó -> Jó
+^J[oO]​?([óÓ].*) $(J\1)
+# Kéthly -> Kétli
+^Kéth​?ly(.*) $(Kétli\1)
+^KÉTH​?LY(.*) $(KÉTLI\1)
+# Konkoly-Thege -> Konkoli-Tege
+^Kon​?ko​?ly-​?The​?g([eé].*) $(Konkoli-Teg\1)
+^KON​?KO​?LY-​?THE​?G([EÉ].*) $(KONKOLI-TEG\1)
+# Koós -> Kós, Soós -> Sós
+^([KS])[oO]([óÓ][sS])(.*) $(\1\2\3)
+# Kossuth -> Kosut, Passuth -> Pasut
+^(K[oO]|P[aA])[sS]​?([sS][uU][tT])[hH](.*) $(\1\2\3)
+# Pais -> Pajzs
+^Pai​?s(.*) $(Pajzs\1)
+^PAI​?S(.*) $(PAJZS\1)
+# Széchenyi -> Szécsényi
+^Szé​?che​?nyi(.*) $(Szécsényi\1)
+^SZÉ​?CHE​?NYI(.*) $(SZÉCSÉNYI\1)
+# Széchy -> Szécsi, Zichy -> Zicsi
+^(Szé|Zi)​?chy(.*) $(\1csi\2)
+^(SZÉ|ZI)​?CHY(.*) $(\1CSI\2)
+# Tarr -> Tar
+"^(T[aA][rR])[rR] 0$" $(\1)
+# Thewrewk -> Török
+^Thew​?rewk(.*) $(Török\1)
+^THEW​?REWK(.*) $(TÖRÖK\1)
+# Thököly -> Tököli
+^Thö​?kö​?ly(.*) $(Tököli\1)
+^THÖ​?KÖ​?LY(.*) $(TÖKÖLI\1)
+# Veér -> Vér
+^V[eE]​?([éÉ][rR].*) $(V\1)
+# Verseghy -> Versegi
+^Ver​?se​?ghy(.*) $(Versegi\1)
+# Wass -> Vas
+"^Was​?(sal|sá) 0$" $(Vas\1)
+"^WAS​?(SAL|SÁ) 0$" $(VAS\1)
+^Was​?s(.*) $(Vas\1)
+^WAS​?S(.*) $(VAS\1)
+# Wesselényi -> Veselényi
+^Wes​?se​?lé​?nyi(.*) $(Veselényi\1)
+^WES​?SE​?LÉ​?NYI(.*) $(VESELÉNYI\1)
+# Weöres -> Vörös
+^Weö​?res(.*) $(Vörös\1)
+^WEÖ​?RES(.*) $(VÖRÖS\1)
+# Zigány -> Cigány
+^Zi​?gán(y|ny)(.*) $(Cigán\1\2)
+^ZI​?GÁN(Y|NY)(.*) $(CIGÁN\1\2)
 
 # avoid of exceeding recursion depth
 # convert by 200-character parts
@@ -7826,13 +8008,13 @@ help Modules\nRoman-large (language code): multiple parenthesized form\nRoman: o
 
 (\d) $(\1: 𐳺 𐳻)
 (\d)(\d) $(\1: 𐳼 𐳽)$2
-1(\d\d) $1𐳾
+1(\d\d) 𐳾$1
 (\d)(\d\d) $1𐳾$2
-1(\d\d\d)$ $1𐳿
+1(\d\d\d)$ 𐳿$1
 (\d{1,3})(\d\d\d) $1𐳿$2
-1(\d{6})$ $1𐳿𐳿
+1(\d{6})$ 𐳿𐳿$1
 (\d{1,3})(\d{6}) $1𐳿𐳿$2
-1(\d{9})$ $1𐳿𐳿𐳿
+1(\d{9})$ 𐳿𐳿𐳿$1
 (\d{1,3})(\d{9}) $1𐳿𐳿𐳿$2
 
 # numbers with letters, for example dates with affixes
@@ -7893,7 +8075,7 @@ M(.*) 𐲘$1
 nny(.*) 𐳚𐳚$1
 NNY(.*) 𐲚𐲚$1
 ny(.*) 𐳚$1
-N[ny](.*) 𐲚$1
+N[yY](.*) 𐲚$1
 n(.*) 𐳙$1
 N(.*) 𐲙$1
 o(.*) 𐳛$1
@@ -9952,45 +10134,43 @@ USD:(\D+) $(\1: Yhdysvaltain dollari, Yhdysvaltain dollaria, sentti, senttiä)
 50 cinquante
 60 soixante
 
-71 septante et un		# [:fr-CH:] [:fr-BE:]
+71 septante-et-un		# [:fr-CH:] [:fr-BE:]
 7(\d) septante[-$1]		# [:fr-CH:] [:fr-BE:]
-71 soixante et onze		# default
+71 soixante-et-onze		# default
 7(\d) soixante-$(1\1)		# default
 
-81 huitante et un		# [:fr-CH:]
+81 huitante-et-un		# [:fr-CH:]
 8(\d) huitante[-$1]		# [:fr-CH:]
 80$ quatre-vingts		# default
 80 quatre-vingt			# default
 81 quatre-vingt-un		# default
 
-91 nonante et un		# [:fr-CH:] [:fr-BE:]
+91 nonante-et-un		# [:fr-CH:] [:fr-BE:]
 9(\d) nonante[-$1]		# [:fr-CH:] [:fr-BE:]
 9(\d) quatre-vingt-$(1\1)	# default
 
-(\d)1 $(\10) et un
+(\d)1 $(\10)-et-un
 (\d)(\d) $(\10)-$2
 
-1(\d\d) cent[ $1]
-(\d)00$ $1 cents
-(\d)(\d\d) $1 cent[ $2]
-1100 onze cents
-11(\d\d) onze cent[ $1]
-1(\d{3}) mille[ $1]
-(\d{1,3})(\d{3}) $1 mille[ $2]
-1(\d{6}) un million[ $1]
-(\d{1,3})(\d{6}) $1| millions[ $2]
-1(\d{9}) un milliard[ $1]
-(\d{1,3})(\d{9}) $1| milliards[ $2]
-1(\d{12}) un billion[ $1]
-(\d{1,3})(\d{12}) $1| billions[ $2]
-1(\d{15}) un billiard[ $1]
-(\d{1,3})(\d{15}) $1| billiards[ $2]
-1(\d{18}) un trillion[ $1]
-(\d{1,3})(\d{18}) $1| trillions[ $2]
-1(\d{21}) un trilliard[ $1]
-(\d{1,3})(\d{21}) $1| trilliards[ $2]
-1(\d{24}) un quadrillion[ $1]
-(\d{1,3})(\d{24}) $1| quadrillions[ $2]
+1(\d\d) cent[-$1]
+(\d)00$ $1-cents
+(\d)(\d\d) $1-cent[-$2]
+1(\d{3}) mille[-$1]
+(\d{1,3})(\d{3}) $1-mille[-$2]
+1(\d{6}) un-million[-$1]
+(\d{1,3})(\d{6}) $1|-millions[-$2]
+1(\d{9}) un-milliard[-$1]
+(\d{1,3})(\d{9}) $1|-milliards[-$2]
+1(\d{12}) un-billion[-$1]
+(\d{1,3})(\d{12}) $1|-billions[-$2]
+1(\d{15}) un-billiard[-$1]
+(\d{1,3})(\d{15}) $1|-billiards[-$2]
+1(\d{18}) un-trillion[-$1]
+(\d{1,3})(\d{18}) $1|-trillions[-$2]
+1(\d{21}) un-trilliard[-$1]
+(\d{1,3})(\d{21}) $1|-trilliards[-$2]
+1(\d{24}) un-quadrillion[-$1]
+(\d{1,3})(\d{24}) $1|-quadrillions[-$2]
 
 # negative number
 
@@ -10064,6 +10244,21 @@ XPF:(\D+) $(\1: franc Pacifique, francs Pacifique, de francs Pacifique, centime,
 "(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 et |$(\30)$(\2:sp)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 et |$3$(\2:sp)
 
+== informal ==
+
+(1\d)00 $1-cents
+(1\d)(\d\d) $1-cent[-$1]
+(.*)    $1
+
+== feminine ==
+
+1 une
+(.*)    $1
+
+== masculine ==
+
+(.*)    $1
+
 == ordinal-feminine ==
 
 1		première
@@ -10089,8 +10284,9 @@ XPF:(\D+) $(\1: franc Pacifique, francs Pacifique, de francs Pacifique, centime,
 
 == help ==
 
-"" $(1), $(2), $(3)\n$(help ordinal)$(help ordinal-feminine)$(help ordinal-masculine)$(help ordinal-number-feminine)$(help ordinal-number-masculine)
-(ordinal(-feminine|-masculine|-number)?) \1: $(\1 1), $(\1 2), $(\1 3)\n
+"" $(1), $(2), $(3)\n$(help feminine)$(help masculine)$(help ordinal)$(help ordinal-feminine)$(help ordinal-masculine)$(help ordinal-number-feminine)$(help ordinal-number-masculine)$(help informal)
+(informal) \1: $(\1 1100), $(\1 1200), $(\1 1300)\n
+(feminine|masculine|ordinal(-feminine|-masculine|-number)?) \1: $(\1 1), $(\1 2), $(\1 3)\n
 </textarea>
 <textarea rows='0' cols='0' id='ga' class='hidden'>
 ^0 náid
@@ -11180,22 +11376,130 @@ vasárnap	vasárnap	# no suffix in dates
 # Transliterate numbers and words
 
 # convert words with traditional or foreign "i" written as "y"
-# e.g. Áprily, Champs-Élysées, Élysée-palota, Dolly, Folly, Hollywood, jolly...
-"^(Áp​?ri​?l|Champs-Él|[cC]i​?t|Do​?lák-Sa​?l|[dfhjDFHJ]ol​?l|Él|Fesz​?t|[gG]rizz​?l|Ha​?rasz​?t|Hat​?va​?n|Husz​?t|[iI]n​?ter​?ci​?t|Kéth​?l|Ku​?ko​?r​?el​?l|Mind​?szen​?t|Nosz​?t|[pP]en​n|Pes​?t|Re​?gu​?l|So​?n|Szi​?l|Szte​?va​?no​?vi​?t|Thö​?kö​?l|Vö​?rös​?mar​?t|[zZ][lł]ot)y(.*) 0$" $1𐳐$2
-"^(ÁP​?RI​?L|CHAMPS-ÉL|CI​?T|DO​?LÁK-SA​?L|[DFHJ]OL​?L|ÉL|FESZ​?T|GRIZZ​?L|HA​?RASZ​?T|HAT​?VA​?N|HUSZ​?T|IN​?TER​?CI​?T|KÉTH​?L|KU​?KO​?R​?EL​?L|MIND​?SZEN​?T|NOSZ​?T|PEN​?N|PES​?T|RE​GU​?L|SO​N|SZI​?L|SZTE​?VA​?NO​?VI​?T|THÖ​?KÖ​?L|VÖ​?RÖS​?MAR​?T|Z[LŁ]OT)Y(.*) 0$" $1𐲐$2
+# e.g. Áprily, Champs-Élysées, Élysée-palota, Dolly, Folly, Hollywood, jolly, intercity, Kisfaludy ...
+"^(Áp​?ri​?l|Champs-Él|[cC]i​?t|Do​?lák-Sa​?l|[dfhjDFHJ]ol​?l|Él|Fesz​?t|[gG]rizz​?l|Ha​?rasz​?t|Hat​?va​?n|Husz​?t|[iI]n​?ter​?ci​?t|Jé​?ke​?l|Kis​?fa​?lu​?d|Ku​?ko​?r​?el​?l|Mo​?ho​?l|Mind​?szen​?t|Nosz​?t|[pP]en​n|Pes​?t|Re​?gu​?l|So​?n|Szi​?l|Szte​?va​?no​?vi​?t|Vö​?rös​?mar​?t|[zZ][lł]ot)y(.*) 0$" $1𐳐$2
+"^(ÁP​?RI​?L|CHAMPS-ÉL|CI​?T|DO​?LÁK-SA​?L|[DFHJ]OL​?L|ÉL|FESZ​?T|GRIZZ​?L|HA​?RASZ​?T|HAT​?VA​?N|HUSZ​?T|IN​?TER​?CI​?T|JÉ​?KE​?L|KIS​FA​LU​?D|KU​?KO​?R​?EL​?L|MIND​?SZEN​?T|MO​?HO​?L|NOSZ​?T|PEN​?N|PES​?T|RE​?GU​?L|SO​?N|SZI​?L|SZTE​?VA​?NO​?VI​?T|VÖ​?RÖS​?MAR​?T|Z[LŁ]OT)Y(.*) 0$" $1𐲐$2
+# punctuation with transliterated letters
+"^([-𐲀-𐳿0-9​–,„”\?\;‟⁏⸮⹁⹂]*[,„”\?\;]) 0$" $1
 # if the original word contains an unknown character, return without modification
-"^(.*[^-0-9a-zA-ZáéëóöőúüűÁÉËÓÖŐÚÜŰ​–,„”\?\;]) 0$" \1
+"^(.*[^-0-9qwertzuiopasdfghjklyxcvbnmQWERTZUIOPASDFGHJKLYXCVBNMáäéëíóöőúüűÁÄÉËÍÓÖŐÚÜŰ​–,„”\?\;].*) 0$" \1
 # words with y
 "^y(ard.*) 0$" 𐳒$1
-"^Y([aA][rR][dD].*|[uU]​[cC][oO][nN].*) 0$" 𐲒$1
+"^Y([aA][rR][dD].*|[uU]​?[cC][oO][nN].*) 0$" 𐲒$1
 "^Y([bB][lL].*) 0$" 𐲑$1
 "^Y(vet​?te.*) 0$" 𐲐$1
-"^([bB]o|[cC]ow​bo|[dD]isp​la|[gG]ra|[pP]la)y(.*) 0$" $1𐳒$2
-"^(BO|COW​BO|DISP​LA|GRA|PLA)Y(.*) 0$" $1𐲒$2
+"^([bB]o|[cC]ow​?bo|[dD]isp​?la|[gG]ra|[pP]la)y(.*) 0$" $1𐳒$2
+"^(BO|COW​?BO|DISP​?LA|GRA|PLA)Y(.*) 0$" $1𐲒$2
 # don't transliterate other words with starting y
 "(^[yY].*) 0$" \1
 # don't transliterate words with q, but not with qu
 "(^.*[qQ][^uU].*) 0$" \1
+"(^.*[qQ]) 0$" \1
+# other exceptions
+# Ágh -> Ág, Balogh -> Balog, Horváth -> Horvát, Mikszáth -> Mikszát, Németh -> Német, Tóth -> Tót, Virágh -> Virág, Végh -> Vég
+^([Á][gG]|B[aA]​?[lL][oO][gG]|H[oO][rR]​?[vV][áÁ][tT]|M[iI][kK]​?[sS][zZ][áÁ][tT]|N[éÉ]​?[mM][eE][tT]|T[óÓ][tT]|V[iI]​?[rR][áÁ][gG]|V[éÉ][gG])[hH](.*) $(\1\2)
+# Antall -> Antal, Gáll -> Gál, Széll -> Szél
+"^(An​?tal|Gál|Szél)​?l 0$" $(\1)
+"^(AN​?TAL|GÁL|SZÉL)​?L 0$" $(\1)
+# Apáthy -> Apáti, Bláthy -> Bláti, Básthy -> Básti ...
+^(A​?pá|Blá|Bás|Hon|Hor|Ka​?rin|Kom​?já|Szent​?ku|Szom​?ba)​?thy(.*) $(\1ti\2)
+^(A​?PÁ|BLÁ|BÁS|HON|HOR|KA​?RIN|KOM​?JÁ|SZENT​?KU|SZOM​?BA)​?THY(.*) $(\1TI\2)
+# Apponyi -> Aponyi
+^Ap​?([pP][oO]​?[nN][yY][iI].*) $(A\1)
+# Babits -> Babics, Derkovits -> Derkovics, Takáts -> Takács, Szűts -> Szűcs
+^(Ba​?bi|Der​?ko​?vi|Sin​?ko​?vi|Ta​?ká|Sz[üű])ts(.*) $(\1cs\2)
+^(BA​?BI|DER​?KO​?VI|SIN​?KO​?VI|TA​?KÁ|SZ[ÜŰ])TS(.*) $(\1CS\2)
+# Bakách -> Bakács, Damjanich -> Damjanics, Forgách -> Forgács, Jurisich -> Jurisics, Madách -> Madács
+^(Ba​?ká|Dam​?ja​?ni|For​?gá|Gras​?sal​?ko​?vi|Ju​?ri​?si|Ma​?dá)ch(.*) $(\1cs\2)
+^(BA​?KÁ|DAM​?JA​?NI|FOR​?GÁ|GRAS​?SAL​?KO​?VI|JU​?RI​?SI|MA​?DÁ)CH(.*) $(\1CS\2)
+# Bakócz -> Bakóc, Börötz -> Böröc, Göncz -> Gönc, Makovecz -> Makovec, Móricz -> Móric ...
+^(B[aA]​?[kK][óÓ]|B[öÖ]​?[rR][öÖ][cC]|G[öÖ][nN]|M[aA]​?[kK][oO]​?[vV][eE]|M[óÓ]​?[rR][iI]|K[oO][nN]|O​?[rR][aA]​?[vV][eE]|R[áÁ]|R[áÁ]|T[iI]​?[bB][oO][rR])([cCtT])[zZ](.*) $(\1\2\3)
+# Bakoss -> Bakos, Baross -> Baros, Boross -> Boros, Hankiss -> Hankis, Kass -> Kas, Kiss -> Kis, Terebess -> Terebes, Vass -> Vas
+"^(Ba​?kos|Ba​?ros|Bo​?ros|Han​?kis|Kas|Kis|Lo​?vas|Te​?re​?bes|Vas)​?s 0$" $(\1)
+"^(BA​?KOS|BA​?ROS|BO​?ROS|HAN​?KIS|KAS|KIS|LO​?VAS|TE​?RE​?BES|VAS)​?S 0$" $(\1)
+# Bay -> Baji
+"^Bay 0$" $(Baji)
+# Batsányi -> Bacsányi
+^Ba​?tsá​?nyi(.*) $(Bacsányi)
+^BA​?TSÁ​?NYI(.*) $(BACSÁNYI)
+# Bárczi -> Bárci, Kazinczy -> Kazinci, Rákóczi -> Rákóci
+^(Bár|Ka​?zin|Rá​?kó)​?cz[iy](.*) $(\1ci\2)
+^(BÁR|KA​?ZIN|RÁ​?KÓ)​?CZ[IY](.*) $(\1CI\2)
+# Báthory -> Bátori
+^(B[áÁ]​?[tT])[hH]([oO]​?[rR][yY].*) $(\1\2)
+# Batthyány -> Battyányi
+^Bat​?thyá​?ny(.*) $(Battyányi\1)
+^BAT​?THYÁ​?NY(.*) $(BATTYÁNYI\1)
+# Bessenyei -> Besenyei
+^(B[eE][sS])​?[sS]([eE]​?[nN][yY][eE]​?[iI].*) $(\1\2)
+# Czuci -> Cuci, Czuczor -> Cucor
+^Cz(u​?c)z(([iI]|[oO][rR]).*) $(C\1\2)
+# Csathó -> Csató
+^(C[sS][aA]​?[tT])[hH]([óÓ].*) $(\1\2)
+# Dessewffy -> Dezsőfi
+^De​?s​?sew​?ffy(.*) $(Dezsőfi\1)
+^DE​?S​?SEW​?FFY(.*) $(DEZSŐFI\1)
+# Eördögh -> Ördög
+^Eör​?dögh(.*) $(Ördög\1)
+^EÖR​?DÖGH(.*) $(ÖRDÖG\1)
+# Eöry -> Őri, Eőry -> Őri
+^E[öő]​?ry(.*) $(Őri\1)
+^E[ÖŐ]​?RY(.*) $(ŐRI\1)
+# Eötvös -> Ötvös
+^Eöt​?vös(.*) $(Ötvös\1)
+^EÖT​?VÖS(.*) $(ÖTVÖS\1)
+# Gaál -> Gál
+^Ga​?ál(.*) $(Gál\1)
+# Háy -> Háji, Fáy -> Fáji, Márki-Zay -> Márki-Zaji, Vay -> Vaji
+^(Há|Fá|Már​?ki-​?Za|Va|Za)y(.*) $(\1ji\2)
+^(HÁ|FÁ|MÁR​?KI-​?ZA|VA|ZA)Y(.*) $(\1JI\2)
+# Joó -> Jó
+^J[oO]​?([óÓ].*) $(J\1)
+# Kéthly -> Kétli
+^Kéth​?ly(.*) $(Kétli\1)
+^KÉTH​?LY(.*) $(KÉTLI\1)
+# Konkoly-Thege -> Konkoli-Tege
+^Kon​?ko​?ly-​?The​?g([eé].*) $(Konkoli-Teg\1)
+^KON​?KO​?LY-​?THE​?G([EÉ].*) $(KONKOLI-TEG\1)
+# Koós -> Kós, Soós -> Sós
+^([KS])[oO]([óÓ][sS])(.*) $(\1\2\3)
+# Kossuth -> Kosut, Passuth -> Pasut
+^(K[oO]|P[aA])[sS]​?([sS][uU][tT])[hH](.*) $(\1\2\3)
+# Pais -> Pajzs
+^Pai​?s(.*) $(Pajzs\1)
+^PAI​?S(.*) $(PAJZS\1)
+# Széchenyi -> Szécsényi
+^Szé​?che​?nyi(.*) $(Szécsényi\1)
+^SZÉ​?CHE​?NYI(.*) $(SZÉCSÉNYI\1)
+# Széchy -> Szécsi, Zichy -> Zicsi
+^(Szé|Zi)​?chy(.*) $(\1csi\2)
+^(SZÉ|ZI)​?CHY(.*) $(\1CSI\2)
+# Tarr -> Tar
+"^(T[aA][rR])[rR] 0$" $(\1)
+# Thewrewk -> Török
+^Thew​?rewk(.*) $(Török\1)
+^THEW​?REWK(.*) $(TÖRÖK\1)
+# Thököly -> Tököli
+^Thö​?kö​?ly(.*) $(Tököli\1)
+^THÖ​?KÖ​?LY(.*) $(TÖKÖLI\1)
+# Veér -> Vér
+^V[eE]​?([éÉ][rR].*) $(V\1)
+# Verseghy -> Versegi
+^Ver​?se​?ghy(.*) $(Versegi\1)
+# Wass -> Vas
+"^Was​?(sal|sá) 0$" $(Vas\1)
+"^WAS​?(SAL|SÁ) 0$" $(VAS\1)
+^Was​?s(.*) $(Vas\1)
+^WAS​?S(.*) $(VAS\1)
+# Wesselényi -> Veselényi
+^Wes​?se​?lé​?nyi(.*) $(Veselényi\1)
+^WES​?SE​?LÉ​?NYI(.*) $(VESELÉNYI\1)
+# Weöres -> Vörös
+^Weö​?res(.*) $(Vörös\1)
+^WEÖ​?RES(.*) $(VÖRÖS\1)
+# Zigány -> Cigány
+^Zi​?gán(y|ny)(.*) $(Cigán\1\2)
+^ZI​?GÁN(Y|NY)(.*) $(CIGÁN\1\2)
 
 # avoid of exceeding recursion depth
 # convert by 200-character parts
@@ -11219,13 +11523,13 @@ vasárnap	vasárnap	# no suffix in dates
 
 (\d) $(\1: 𐳺 𐳻)
 (\d)(\d) $(\1: 𐳼 𐳽)$2
-1(\d\d) $1𐳾
+1(\d\d) 𐳾$1
 (\d)(\d\d) $1𐳾$2
-1(\d\d\d)$ $1𐳿
+1(\d\d\d)$ 𐳿$1
 (\d{1,3})(\d\d\d) $1𐳿$2
-1(\d{6})$ $1𐳿𐳿
+1(\d{6})$ 𐳿𐳿$1
 (\d{1,3})(\d{6}) $1𐳿𐳿$2
-1(\d{9})$ $1𐳿𐳿𐳿
+1(\d{9})$ 𐳿𐳿𐳿$1
 (\d{1,3})(\d{9}) $1𐳿𐳿𐳿$2
 
 # numbers with letters, for example dates with affixes
@@ -11286,7 +11590,7 @@ M(.*) 𐲘$1
 nny(.*) 𐳚𐳚$1
 NNY(.*) 𐲚𐲚$1
 ny(.*) 𐳚$1
-N[ny](.*) 𐲚$1
+N[yY](.*) 𐲚$1
 n(.*) 𐳙$1
 N(.*) 𐲙$1
 o(.*) 𐳛$1
@@ -12542,7 +12846,7 @@ USD:(\D+) $(\1: ASV dolārs, ASV dolāri, ASV dolāru, cents, centi, centu)
 # e.g often a number is read first with units place & then ten's place. - e.g 34 read as " चौतीस " where " चौ " stands for 4 (units place) and then तीस  for 30 (ten's place) which is inverse with the number reading logic in ENGLISH (where it is read as Thirty Four)
 # Pronunciations of numbers changes and follows virtually no logic - e.g. 54 read as " चौपन्न " where ten's place 50 is read as पन्न but only No. 50 would be read as पन्नास !
 # when units place number is 9, the number is read with the reference to the NEXT number e.g. 39 is read as एकोणचाळीस  where " एकोण " stands for 9 (units place) and then चाळीस with reference to 40 (the NEXT number) which is inverse with the number reading logic in ENGLISH (where it is read as Thirty Nine - reference of previous ten's place)
-# Reading of same units place but different ten's place is vastly different - e.g. 27 सत्तावीस , 47 सत्तेचाळीस , 67 सदुसष्ठ , 77 सत्त्याहत्तर . Here same units place 7 has been read differently as  सत्ता , सत्ते , सदु , सत्त्या ... very difficult to frame any logic !
+# Reading of same units place but different ten's place is vastly different - e.g. 27 सत्तावीस , 47 सत्तेचाळीस , 67 सदुसष्ट , 77 सत्त्याहत्तर . Here same units place 7 has been read differently as  सत्ता , सत्ते , सदु , सत्त्या ... very difficult to frame any logic !
 # Therefore we have hard coded numbers from 0 to 100 with Marathi translations.
 # Number reading after Hundred's place is very similar to English logic ... hence no problem in coding for further Marathi numbers
 # --------------------------------------
@@ -12587,7 +12891,7 @@ USD:(\D+) $(\1: ASV dolārs, ASV dolāri, ASV dolāru, cents, centi, centu)
 34	चौतीस
 35	पस्तीस
 36	छत्तीस
-37	सदोतीस
+37	सदतीस
 38	अडतीस
 39	एकोणचाळीस
 40	चाळीस
@@ -12602,54 +12906,54 @@ USD:(\D+) $(\1: ASV dolārs, ASV dolāri, ASV dolāru, cents, centi, centu)
 49	एकोणपन्नास
 50	पन्नास
 51	एकावन्न
-52	बाव्वन्न
+52	बावन्न
 53	त्रेपन्न
 54	चौपन्न
 55	पंचावन्न
-56	छप्पन
+56	छप्पन्न
 57	सत्तावन्न
 58	अठ्ठावन्न
 59	एकोणसाठ
 60	साठ
-61	एकसष्ठ
-62	बासष्ठ
-63	त्रेसष्ठ
-64	चौसष्ठ
-65	पासष्ठ
-66	सहासष्ठ
-67	सदुसष्ठ
-68	अडुसष्ठ
+61	एकसष्ट
+62	बासष्ट
+63	त्रेसष्ट
+64	चौसष्ट
+65	पासष्ट
+66	सहासष्ट
+67	सदुसष्ट
+68	अडुसष्ट
 69	एकोणसत्तर
 70	सत्तर
 71	एकाहत्तर
-72	बहात्तर
+72	बाहत्तर
 73	त्र्याहत्तर
 74	चौऱ्याहत्तर
 75	पंचाहत्तर
-76	शहात्तर
-77	सत्याहत्तर
-78	अठ्ठयाहत्तर
+76	शाहत्तर
+77	सत्त्याहत्तर
+78	अठ्ठ्याहत्तर
 79	एकोणऐंशी
 80	ऐंशी
-81	एक्क्याऐंशी
+81	एक्याऐंशी
 82	ब्याऐंशी
 83	त्र्याऐंशी
 84	चौऱ्याऐंशी
-85	पंच्याऐंशी
+85	पंचाऐंशी
 86	शहाऐंशी
 87	सत्त्याऐंशी
-88	अठ्ठयाऐंशी
+88	अठ्ठ्याऐंशी
 89	एकोणनव्वद
 90	नव्वद
-91	एक्क्याण्णव
+91	एक्याण्णव
 92	ब्याण्णव
 93	त्र्याण्णव
 94	चौऱ्याण्णव
-95	पंच्याण्णव
-96	शह्याण्णव
+95	पंचाण्णव
+96	शहाण्णव
 97	सत्त्याण्णव
-98	अठ्ठयाण्णव
-99	नव्व्याण्णव
+98	अठ्ठ्याण्णव
+99	नव्याण्णव
 100	शंभर
 
 # ------------------------
@@ -12834,7 +13138,7 @@ ZWL:(\D+) $(\1: Zimbabwe dollar, Zimbabwe dollars, cent, cents)
 ([-−]?\d+) $(ordinal-masculine |$1)
 (.*)एक \1पहिला
 (.*)दोन \1दुसरा
-(.*)तीन \1तीसरा
+(.*)तीन \1तिसरा
 (.*)चार \1चौथा
 (.*)पाच \1पाचवा
 (.*)सहा \1सहावा
@@ -12854,14 +13158,14 @@ ZWL:(\D+) $(\1: Zimbabwe dollar, Zimbabwe dollars, cent, cents)
 
 (.*)एकोणऐंशी \1एकोणऐंशीवा
 (.*)ऐंशी \1ऐंशीवा
-(.*)एक्क्याऐंशी \1एक्क्याऐंशीवा
+(.*)एक्याऐंशी \1एक्याऐंशीवा
 (.*)ब्याऐंशी \1ब्याऐंशीवा
 (.*)त्र्याऐंशी \1त्र्याऐंशीवा
 (.*)चौऱ्याऐंशी \1चौऱ्याऐंशीवा
-(.*)पंच्याऐंशी \1पंच्याऐंशीवा
+(.*)पंचाऐंशी \1पंचाऐंशीवा
 (.*)शहाऐंशी \1शहाऐंशीवा
 (.*)सत्त्याऐंशी \1सत्त्याऐंशीवा
-(.*)अठ्ठयाऐंशी \1अठ्ठयाऐंशीवा
+(.*)अठ्ठ्याऐंशी \1अठ्ठ्याऐंशीवा
 
 ([-−]?\d+)[.,](.*) $1 दशांश $(\2)वा  # Ordinal of Decimals
 (.*)	\1ावा # General Masculine Ordinal
@@ -12874,7 +13178,7 @@ ZWL:(\D+) $(\1: Zimbabwe dollar, Zimbabwe dollars, cent, cents)
 ([-−]?\d+) $(ordinal-feminine |$1)
 (.*)एक \1पहिली
 (.*)दोन \1दुसरी
-(.*)तीन \1तीसरी
+(.*)तीन \1तिसरी
 (.*)चार \1चौथी
 (.*)पाच \1पाचवी
 (.*)सहा \1सहावी
@@ -12894,14 +13198,14 @@ ZWL:(\D+) $(\1: Zimbabwe dollar, Zimbabwe dollars, cent, cents)
 
 (.*)एकोणऐंशी \1एकोणऐंशीवी
 (.*)ऐंशी \1ऐंशीवी
-(.*)एक्क्याऐंशी \1एक्क्याऐंशीवी
+(.*)एक्याऐंशी \1एक्याऐंशीवी
 (.*)ब्याऐंशी \1ब्याऐंशीवी
 (.*)त्र्याऐंशी \1त्र्याऐंशीवी
 (.*)चौऱ्याऐंशी \1चौऱ्याऐंशीवी
-(.*)पंच्याऐंशी \1पंच्याऐंशीवी
+(.*)पंचाऐंशी \1पंचाऐंशीवी
 (.*)शहाऐंशी \1शहाऐंशीवी
 (.*)सत्त्याऐंशी \1सत्त्याऐंशीवी
-(.*)अठ्ठयाऐंशी \1अठ्ठयाऐंशीवी
+(.*)अठ्ठ्याऐंशी \1अठ्ठ्याऐंशीवी
 
 ([-−]?\d+)[.,](.*) $1 दशांश $(\2)वी  # Ordinal of Decimals
 (.*)	\1ावी # General Feminine Ordinal
@@ -12914,7 +13218,7 @@ ZWL:(\D+) $(\1: Zimbabwe dollar, Zimbabwe dollars, cent, cents)
 ([-−]?\d+) $(ordinal-neutral |$1)
 (.*)एक \1पहिले
 (.*)दोन \1दुसरे
-(.*)तीन \1तीसरे
+(.*)तीन \1तिसरे
 (.*)चार \1चौथे
 (.*)पाच \1पाचवे
 (.*)सहा \1सहावे 
@@ -12933,14 +13237,14 @@ ZWL:(\D+) $(\1: Zimbabwe dollar, Zimbabwe dollars, cent, cents)
 
 (.*)एकोणऐंशी \1एकोणऐंशीवे
 (.*)ऐंशी \1ऐंशीवे
-(.*)एक्क्याऐंशी \1एक्क्याऐंशीवे
+(.*)एक्याऐंशी \1एक्याऐंशीवे
 (.*)ब्याऐंशी \1ब्याऐंशीवे
 (.*)त्र्याऐंशी \1त्र्याऐंशीवे
 (.*)चौऱ्याऐंशी \1चौऱ्याऐंशीवे
-(.*)पंच्याऐंशी \1पंच्याऐंशीवे
+(.*)पंचाऐंशी \1पंचाऐंशीवे
 (.*)शहाऐंशी \1शहाऐंशीवे
 (.*)सत्त्याऐंशी \1सत्त्याऐंशीवे
-(.*)अठ्ठयाऐंशी \1अठ्ठयाऐंशीवे
+(.*)अठ्ठ्याऐंशी \1अठ्ठ्याऐंशीवे
 
 ([-−]?\d+)[.,](.*) $1 दशांश $(\2)वे # Ordinal of Decimals 
 (.*)	\1ावे # General Neutral Ordinal
@@ -12956,7 +13260,7 @@ ZWL:(\D+) $(\1: Zimbabwe dollar, Zimbabwe dollars, cent, cents)
 
 (.*)एक \1पहिला / \1 पहिली / \1 पहिले
 (.*)दोन	\1दुसरा / \1 दुसरी / \1 दुसरे
-(.*)तीन	\1तीसरा / \1 तीसरी / \1 तीसरे
+(.*)तीन	\1तिसरा / \1 तिसरी / \1 तिसरे
 (.*)चार	\1चौथा / \1 चौथी / \1 चौथे
 (.*)पाच \1पाचवा / \1 पाचवी / \1 पाचवे
 (.*)सहा \1सहावा / \1 सहावी / \1 सहावे 
@@ -12976,14 +13280,14 @@ ZWL:(\D+) $(\1: Zimbabwe dollar, Zimbabwe dollars, cent, cents)
 
 (.*)एकोणऐंशी \1एकोणऐंशीवा / \1 एकोणऐंशीवी / \1 एकोणऐंशीवे
 (.*)ऐंशी \1ऐंशीवा / \1 ऐंशीवी / \1 ऐंशीवे
-(.*)एक्क्याऐंशी \1एक्क्याऐंशीवा / \1 एक्क्याऐंशीवी / \1 एक्क्याऐंशीवे
+(.*)एक्याऐंशी \1एक्याऐंशीवा / \1 एक्याऐंशीवी / \1 एक्याऐंशीवे
 (.*)ब्याऐंशी \1ब्याऐंशीवा / \1 ब्याऐंशीवी / \1 ब्याऐंशीवे
 (.*)त्र्याऐंशी \1त्र्याऐंशीवा / \1 त्र्याऐंशीवी / \1 त्र्याऐंशीवे
 (.*)चौऱ्याऐंशी \1चौऱ्याऐंशीवा / \1 चौऱ्याऐंशीवी / \1 चौऱ्याऐंशीवे
-(.*)पंच्याऐंशी \1पंच्याऐंशीवा / \1 पंच्याऐंशीवी / \1 पंच्याऐंशीवे
+(.*)पंचाऐंशी \1पंचाऐंशीवा / \1 पंचाऐंशीवी / \1 पंचाऐंशीवे
 (.*)शहाऐंशी \1शहाऐंशीवा / \1 शहाऐंशीवी / \1 शहाऐंशीवे
 (.*)सत्त्याऐंशी \1सत्त्याऐंशीवा / \1 सत्त्याऐंशीवी / \1 सत्त्याऐंशीवे
-(.*)अठ्ठयाऐंशी \1अठ्ठयाऐंशीवा / \1 अठ्ठयाऐंशीवी / \1 अठ्ठयाऐंशीवे
+(.*)अठ्ठ्याऐंशी \1अठ्ठ्याऐंशीवा / \1 अठ्ठ्याऐंशीवी / \1 अठ्ठ्याऐंशीवे
 
 
 ([-−]?\d+)[.,](.*) $1 दशांश $(\2)वा / $1 दशांश $(\2)वी / $1 दशांश $(\2)वे # Ordinal of Decimals 
@@ -13596,6 +13900,8 @@ USD:(\D+) $(\1: dolar amerykański, dolary amerykańskie, dolarów amerykańskic
 ([-−]?\d+)	$(ordinal |$2)
 "(.*)siąt (.*)"	$(ordinal \2siąty \3)
 "(.*)eści (.*)"	$(ordinal \2esty \3)
+"(.*)dwadzieścia (.*)" $(ordinal \2dwudziesty \3)
+(.*)dwadzieścia \2dwudziesty
 
 (.*)jeden	\2pierwszy
 (.*)dwa		\2drugi
@@ -15039,27 +15345,27 @@ space:(.*) \1
 2 два
 3 три
 4 чотири
-5$ п’ять
-5 п’ят
+5$ пʼять
+5 пʼят
 6$ шість
 6 шіст
 7 сім
 8 вісім
-9$ дев’ять
-9 дев’ят
+9$ девʼять
+9 девʼят
 10 десять
 11 одинадцять
 12 дванадцять
 13 тринадцять
 14 чотирнадцять
-15 п’ятнадцать
+15 пʼятнадцять
 16 шістнадцять
 17 сімнадцять
 18 вісімнадцять
-19 дев’ятнадцять
+19 девʼятнадцять
 ([23])(\d) $1|дцять[ $2]
 4(\d) сорок[ $1]
-9(\d) дев’яносто[ $1]
+9(\d) девʼяносто[ $1]
 (\d)(\d) $1десят[ $2]
 1(\d\d) сто[ $1]
 2(\d\d) двісті[ $1]
@@ -15070,25 +15376,43 @@ space:(.*) \1
 (\d{1,3})(\d{3}) $1| тисяч[ $2]
 (1|\d?[02-9]1)(\d{6}) $1 мільйон[ $2]
 ([234]|\d?[02-9][234])(\d{6}) $1 мільйона[ $2]
-(\d{1,3})(\d{6}) $1 мільйонов[ $2]
+(\d{1,3})(\d{6}) $1| мільйонів[ $2]
 (1|\d?[02-9]1)(\d{9}) $1 мільярд[ $2]
 ([234]|\d?[02-9][234])(\d{9}) $1 мільярда[ $2]
-(\d{1,3})(\d{9}) $1 мільярдов[ $2]
+(\d{1,3})(\d{9}) $1| мільярдів[ $2]
 (1|\d?[02-9]1)(\d{12}) $1 трильйон[ $2]
 ([234]|\d?[02-9][234])(\d{12}) $1 трильйона[ $2]
-(\d{1,3})(\d{12}) $1 трильйонов[ $2]
+(\d{1,3})(\d{12}) $1| трильйонів[ $2]
 (1|\d?[02-9]1)(\d{15}) $1 квадрильйон[ $2]
 ([234]|\d?[02-9][234])(\d{15}) $1 квадрильйона[ $2]
-(\d{1,3})(\d{15}) $1 квадрильйонов[ $2]
+(\d{1,3})(\d{15}) $1| квадрильйонів[ $2]
 (1|\d?[02-9]1)(\d{18}) $1 квінтильйон[ $2]
 ([234]|\d?[02-9][234])(\d{18}) $1 квінтильйона[ $2]
-(\d{1,3})(\d{18}) $1 квінтильйонов[ $2]
+(\d{1,3})(\d{18}) $1| квінтильйонів[ $2]
 (1|\d?[02-9]1)(\d{21}) $1 секстильйон[ $2]
 ([234]|\d?[02-9][234])(\d{21}) $1 секстильйона[ $2]
-(\d{1,3})(\d{21}) $1 секстильйонов[ $2]
+(\d{1,3})(\d{21}) $1| секстильйонів[ $2]
 (1|\d?[02-9]1)(\d{24}) $1 септильйон[ $2]
 ([234]|\d?[02-9][234])(\d{24}) $1 септильйона[ $2]
-(\d{1,3})(\d{24}) $1 септильйонов[ $2]
+(\d{1,3})(\d{24}) $1| септильйонів[ $2]
+(1|\d?[02-9]1)(\d{27}) $1 октильйон[ $2]
+([234]|\d?[02-9][234])(\d{27}) $1 октильйона[ $2]
+(\d{1,3})(\d{27}) $1| октильйонів[ $2]
+(1|\d?[02-9]1)(\d{30}) $1 нонільйон[ $2]
+([234]|\d?[02-9][234])(\d{30}) $1 нонільйона[ $2]
+(\d{1,3})(\d{30}) $1| нонільйонів[ $2]
+(1|\d?[02-9]1)(\d{33}) $1 децильйон[ $2]
+([234]|\d?[02-9][234])(\d{33}) $1 децильйона[ $2]
+(\d{1,3})(\d{33}) $1| децильйонів[ $2]
+(1|\d?[02-9]1)(\d{36}) $1 ундецильйон[ $2]
+([234]|\d?[02-9][234])(\d{36}) $1 ундецильйона[ $2]
+(\d{1,3})(\d{36}) $1| ундецильйонів[ $2]
+(1|\d?[02-9]1)(\d{39}) $1 дуодецильйон[ $2]
+([234]|\d?[02-9][234])(\d{39}) $1 дуодецильйона[ $2]
+(\d{1,3})(\d{39}) $1| дуодецильйонів[ $2]
+(1|\d?[02-9]1)(\d{42}) $1 тредецильйон[ $2]
+([234]|\d?[02-9][234])(\d{42}) $1 тредецильйона[ $2]
+(\d{1,3})(\d{42}) $1| тредецильйонів[ $2]
 
 # negative numbers
 
@@ -15100,13 +15424,13 @@ space:(.*) \1
 "([-−]?)[.,](\d+)" $(\10.\2)
 "[-−]1[.,]" мінус одна ціла
 "([-−]?\d+[02-9]1|1)[.,]" $(f:|$1) ціла
-"([-−]?\d+)[.,]" $(f:|$1) цілий
-"([-−]?\d+[.,])1" $1| и одна десята
-"([-−]?\d+[.,])(\d)" $1| и $(f:|$2) десятий
-"([-−]?\d+[.,])([02-9]1)" $1| и $(f:|$2) сота
-"([-−]?\d+[.,])(\d\d)" $1| и $(f:|$2) сотий
-"([-−]?\d+[.,])(\d[02-9]1)" $1| и $(f:|$2) тисячна
-"([-−]?\d+[.,])(\d{3})" $1| и $(f:|$2) тисячний
+"([-−]?\d+)[.,]" $(f:|$1) цілих
+"([-−]?\d+[.,])1" $1| й одна десята
+"([-−]?\d+[.,])(\d)" $1| й $(f:|$2)| десятих
+"([-−]?\d+[.,])([02-9]1)" $1| й $(f:|$2) сота
+"([-−]?\d+[.,])(\d\d)" $1| й $(f:|$2)| сотих
+"([-−]?\d+[.,])(\d[02-9]1)" $1| й $(f:|$2) тисячна
+"([-−]?\d+[.,])(\d{3})" $1| й $(f:|$2)| тисячних
 "([-−]?\d+[.,])(\d)(\d)(\d)(\d)" $1| |$2 |$3 |$4 |$5
 "([-−]?\d+[.,]\d*)(\d)" $1| |$2
 
@@ -15115,6 +15439,10 @@ space:(.*) \1
 f:(.*)один \1одна
 f:(.*)два \1дві
 f:(.*) \1
+
+# neuter conversion
+n:(.*)один \1одне
+n:(.*) \1
 
 # possessive (1-999) - used in ordinals
 "pos:(.* )?од(ин|на) ?" [$(pos:\1)]одного
@@ -15125,10 +15453,10 @@ f:(.*) \1
 "pos:(.* )?([а-я]+)ь ?" [$(pos:\1)]\2и
 "pos:(.* )?сорок ?" [$(pos:\1)]сорока
 "pos:(.* )?([а-я]+)десят ?" [$(pos:\1)]\2десяти
-"pos:(.* )?([а-я]*)сто ?" [$(pos:\1)]\2сто
-"pos:(.*)двести ?"	\1двохсот
+"pos:(.* )?([а-я]*)сто ?" [$(pos:\1)]\2ста
+"pos:(.*)двісті ?"	\1двохсот
 "pos:(.*)иста ?"	\1ьохсот
-"pos:(.*)осемьсот ?" \1осьмисот
+"pos:(.*)ісімсот ?" \1осьмисот
 "pos:(.*[^и])сот ?" \1исот
 pos:(.*) \1
 
@@ -15153,6 +15481,7 @@ USD:(\D+) $(\1: долар США, долара США, доларів США, �
 "(UAH) ([-−]?\d*[02-9]1)([.,]00?)?" $(f:$2)|$(\1:us)
 "(UAH) ([-−]?[234])([.,]00?)?" $(f:$2)|$(\1:up)
 "(UAH) ([-−]?\d*[02-9][234])([.,]00?)?" $(f:$2)|$(\1:up)
+"(UAH) ([-−]?[0])([.,]0?)?" $2$(\1:ug)
 "(UAH) ([-−]?\d+)([.,]00?)?" $(f:$2)|$(\1:ug)
 
 "([A-Z]{3}) ([-−]?1)([.,]00?)?" $2|$(\1:us)
@@ -15170,6 +15499,20 @@ USD:(\D+) $(\1: долар США, долара США, доларів США, �
 "(([A-Z]{3}) [-−]?\d+)[.,]([02-9][234])" $1 |$3$(\2:sp)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 |$(\30)$(\2:sg)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 |$3$(\2:sg)
+
+== cardinal(-masculine)? ==
+
+([-−]?[0-9]+) $2
+
+== cardinal-feminine ==
+
+0	нуль
+([-−]?[0-9]+) $(f:$1)
+
+== cardinal-neuter ==
+
+0	нуль
+([-−]?[0-9]+) $(n:$1)
 
 == ordinal-feminine ==
 
@@ -15234,7 +15577,7 @@ USD:(\D+) $(\1: долар США, долара США, доларів США, �
 
 == help ==
 
-"" |$(1)|, |$(2)|, |$(3)|\n$(help ordinal-feminine)$(help ordinal-masculine)$(help ordinal-neuter)$(help ordinal-number-feminine)$(help ordinal-number-masculine)$(help ordinal-number-neuter)
+"" |$(1)|, |$(2)|, |$(3)|\n$(help cardinal-feminine)$(help cardinal-masculine)$(help cardinal-neuter)$(help ordinal-feminine)$(help ordinal-masculine)$(help ordinal-neuter)$(help ordinal-number-feminine)$(help ordinal-number-masculine)$(help ordinal-number-neuter)currency \(наприклад, UAH\): $(UAH 2.5)
 (.*) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
 </textarea>
 <textarea rows='0' cols='0' id='vi' class='hidden'>
@@ -15286,8 +15629,7 @@ USD:(\D+) $(\1: долар США, долара США, доларів США, �
 # Mandarin Chinese number names (simplified)
 ^0 零
 1 一
-2$ 二
-2 两
+2 二
 3 三
 4 四
 5 五
@@ -15450,10 +15792,18 @@ USD 美元
 
 "([A-Z]{3}) ([-−]?\d+([.,]\d+)?)" $(formal \2)$(formal \1)
 
+== ordinal ==
+
+([-−]?\d+) 第$1
+
+== ordinal-number ==
+
+(.*)    \1.
+
 == help ==
 
-"" |$(1)|, |$(2)|, |$(3)|\n$(help formal)
-(formal) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
+"" |$(1)|, |$(2)|, |$(3)|\n$(help formal)$(\0 ordinal)$(\0 ordinal-number)
+(formal|ordinal(-number)?) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
 </textarea>
 <!-- **************************************************************************************************** -->
 <script language="javascript1.3">
