@@ -18,7 +18,7 @@ IDE of Soros programming language (<a href="https://github.com/Numbertext/libnum
 MAXLIST=1000
 <!-- **************************************************************************************************** -->
 function Soros(program, lang) {
-    this.funcpat = /(\|?(\uE008\()+)?(\|?\uE008\(([^\(\)]*)\)\|?)(\)+\|?)?/
+    this.funcpat = /(\|?(\uE008\()+)?(\|?\uE008\(([^\(\)]*)\)\|?)(\uE00A?\)+\|?)?/
     this.meta = "\\\"$()|#;[]"
     this.enc = "\uE000\uE001\uE002\uE003\uE004\uE005\uE006\uE007\uE008\uE009"
     this.lines = []
@@ -135,7 +135,6 @@ function Soros(program, lang) {
                     // call inner separator: [ ... $1 ... ] -> $(\uE00A ... \uE00A$1\uE00A ... )
                     .replace(/^[[]\$(\d\d?|\([^\)]+\))/g,"$(\uE00A\uE00A|$$$1\uE00A")
                     .replace(/[[]([^\$[\\]*)\$(\d\d?|\([^\)]+\))/g,"$(\uE00A$1\uE00A$$$2\uE00A")
-                    .replace(/\uE00A]$/, "|\uE00A)") // add "|" in terminating position
                     .replace(/]/g, ")")
                     .replace(/(\$\d|\))\|\$/g,"$1||$$") // $(..)|$(..) -> $(..)||$(..)
                     .replace(/\$/g, "\uE008")
@@ -249,6 +248,7 @@ function copy_result() {
 <option value='eo'>eo</option>
 <option value='es'>es</option>
 <option value='et'>et</option>
+<option value='fa'>fa</option>
 <option value='fi'>fi</option>
 <option value='fr'>fr</option>
 <option value='ga'>ga</option>
@@ -275,6 +275,7 @@ function copy_result() {
 <option value='ro'>ro</option>
 <option value='ru'>ru</option>
 <option value='sh'>sh</option>
+<option value='sk'>sk</option>
 <option value='sl'>sl</option>
 <option value='sq'>sq</option>
 <option value='sr'>sr</option>
@@ -287,6 +288,7 @@ function copy_result() {
 <option value='Roman'>Roman</option>
 <option value='Suzhou'>Suzhou</option>
 <option value='hu Hung'>hu Hung</option>
+<option value='mul'>mul</option>
 <!-- **************************************************************************************************** -->
 	</select>
 	</div>
@@ -1648,10 +1650,8 @@ USD:(.+),(.+) $(\2mm:щатски долар,щатски долара,цент,
 80 vuitanta
 90 noranta
 (\d)(\d) $(\10)-$2
-100 cent
-1(\d\d) cent $1
-(\d)00 $1-cents
-(\d)(\d\d) $1-cents $2
+1(\d\d) cent[ $1]
+(\d)(\d\d) $1-cents[ $2]
 1(\d{3}) mil[ $1]
 (\d{1,3})(\d{3}) $1 mil[ $2]
 1(\d{6}) un milió[ $1]
@@ -1812,10 +1812,9 @@ XEU:(.+),(.+) $(\2mm: ecu, ecus, d'ecus, cèntim, cèntims, \1)
 </textarea>
 <textarea id='cs' class='hidden'>
 ^0 nula
-^1$ jedno
-1 jeden
-^2$ dvě
+1 jedna
 2 dva
+^2$ dvě
 3 tři
 4 čtyři
 5 pět
@@ -1840,7 +1839,7 @@ XEU:(.+),(.+) $(\2mm: ecu, ecus, d'ecus, cèntim, cèntims, \1)
 (\d)(\d\d) $1 set[ $2]
 1(\d\d\d) tisíc[ $1]
 ([234])(\d\d\d) $1 tisíce[ $2]
-(\d{1,3})(\d\d\d) $1 tisíce[ $2]
+(\d{1,3})(\d\d\d) $1 tisíc[ $2]
 1(\d{6}) milión[ $1]
 ([234])(\d{6}) $1 milióny[ $2]
 (\d{1,3})(\d{6}) $1 miliónů[ $2]
@@ -1876,53 +1875,63 @@ XEU:(.+),(.+) $(\2mm: ecu, ecus, d'ecus, cèntim, cèntims, \1)
 
 # currency
 
-# unit/subunit singular/plural
+# unit/subunit singular / plural / plural genitiv
 
-us:([^,]*),([^,]*),([^,]*),([^,]*) \1
-up:([^,]*),([^,]*),([^,]*),([^,]*) \2
-ss:([^,]*),([^,]*),([^,]*),([^,]*) \3
-sp:([^,]*),([^,]*),([^,]*),([^,]*) \4
+us:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \1
+up:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \2
+ug:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \3
+ss:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \4
+sp:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \5
+sg:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \6
+ugender:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \7
+sgender:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \8
 
-CHF:(\D+) $(\1: švýcarský frank, švýcarských franků, centim, centimů)
-CNY:(\D+) $(\1: juan renminbi, juan renminbi, fen, fen)
-CZK:(\D+) $(\1: koruna česká, korun českých, haléř, haléřů)
-EUR:(\D+) $(\1: euro, euro, cent, centů)
-GBP:(\D+) $(\1: libra šterlinků, libra šterlinků, penny, pence)
-JPY:(\D+) $(\1: jen, jenů, sen, sen)
-USD:(\D+) $(\1: americký dolar, amerických dolarů, cent, centů)
+CHF:(\D+) $(\1: švýcarský frank, švýcarské franky, švýcarských franků, centim, centimy, centimů,masculine,masculine)
+CNY:(\D+) $(\1: jüan, jüany, jüanů, fen, feny, fenů,masculine,masculine)
+CZK:(\D+) $(\1: koruna česká, koruny české, korun českých, haléř, haléře, haléřů,feminine,masculine)
+EUR:(\D+) $(\1: euro, eura, eur, cent, centy, centů,neuter,masculine)
+GBP:(\D+) $(\1: libra šterlinků, libry šterlinků, liber šterlinků, pence, pence, pencí,feminine,feminine)
+JPY:(\D+) $(\1: jen, jeny, jenů, sen, seny, senů,masculine,masculine)
+RUB:(\D+) $(\1: rubl, rubly, rublů, kopějka, kopějky, kopějek,masculine,feminine)
+SKK:(\D+) $(\1: slovenská koruna, slovenské koruny, slovenských korun, haléř, haléře, haléřů,feminine,masculine)
+USD:(\D+) $(\1: americký dolar, americké dolary, amerických dolarů, cent, centy, centů,masculine,masculine)
 
-"([A-Z]{3}) ([-−]?1)([.,]00?)?" $2$(\1:us)
-"([A-Z]{3}) ([-−]?\d+)([.,]00?)?" $2$(\1:up)
+"([A-Z]{3}) ([-−]?1)([.,]00?)?" $(cardinal-$(\1:ugender) \2)$(\1:us)
+"([A-Z]{3}) ([-−]?[2-4])([.,]00?)?" $(cardinal-$(\1:ugender) \2)$(\1:up)
+"([A-Z]{3}) ([-−]?\d+)([.,]00?)?" $(cardinal-$(\1:ugender) \2)$(\1:ug)
 
-"(CNY [-−]?\d+)[.,]10?" $1 $2 jiao
-"(CNY [-−]?\d+)[.,](\d)0?" $1 $2 jiao
-"(CNY [-−]?\d+[.,]\d)1" $1 $2 fen
-"(CNY [-−]?\d+[.,]\d)(\d)" $1 $2 fen
+"(CNY [-−]?\d+)[.,]10?" $1 $(cardinal-neuter 1) ťiao
+"(CNY [-−]?\d+)[.,](\d)0?" $1 $(cardinal-neuter \2) ťiao
+"((CNY) [-−]?\d+[.,]\d)1" $1 $(cardinal-masculine 1)$(\2:ss)
+"((CNY) [-−]?\d+[.,]\d)(2|3|4)" $1 $(cardinal-masculine \3)$(\2:sp)
+"((CNY) [-−]?\d+[.,]\d)(\d)" $1 $(cardinal-masculine \3)$(\2:sg)
 
-"(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 $(1)$(\2:ss)
-"(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 $(\30)$(\2:sp)
-"(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 $3$(\2:sp)
+"(([A-Z]{3}) [-−]?\d+)[.,](00)" $1 $(cardinal-$(\2:sgender) \1)$(\2:sg)
+"(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 $(cardinal-$(\2:sgender) \3)$(\2:ss)
+"(([A-Z]{3}) [-−]?\d+)[.,](02|03|04)" $1 $(cardinal-$(\2:sgender) \3)$(\2:sp)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 $(cardinal-$(\2:sgender) \3)$(\2:sg)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 $(cardinal-$(\2:sgender) \30)$(\2:sg)
 
 == cardinal-neuter ==
 
+1 jedno
+2 dvě
 (.*) $1
 
 == cardinal-feminine ==
 
 1 jedna
+2 dvě
 (.*) $1
 
 == cardinal-masculine ==
 
 1 jeden
-2 dva
 (.*) $1
 
 == ordinal ==
 
 ([-−]?\d+)	$(ordinal |$1)
-
-(.*)(jedno|jeden)(.*)	$(ordinal \1první\3)
 
 "(.*)dvě stě(.*)"	$(ordinal \1dvoustý\2)
 "(.*)tři sta(.*)"	$(ordinal \1třístý\2)
@@ -1930,18 +1939,38 @@ USD:(\D+) $(\1: americký dolar, amerických dolarů, cent, centů)
 "(.*)(pět|šest|sedm|osm) set(.*)"	$(ordinal \1\2istý\3)
 "(.*)devět set(.*)"	$(ordinal \1devítistý\2)
 
+nula	nultý
+(.*)(jedno|jedna|jeden)	$(ordinal \1první)
+(.*)(jedenáct)	$(ordinal \1jedenáctý)
+(.*)(dva|dvě)	$(ordinal \1druhý)
 (.*)(dvě|dva)\b(.*)	$(ordinal \1druhý\3)
 (.*)tři\b(.*)		$(ordinal \1třetí\2)
 (.*)čtyři\b(.*)		$(ordinal \1čtvrtý\2)
 (.*)pět\b(.*)		$(ordinal \1pátý\2)
 "(.*)(šest|sedm|osm|desát|náct|sát)( .+|$)"	$(ordinal \1\2ý\3)
 (.*)devět\b(.*)		$(ordinal \1devátý\2)
-"(.*)[^ ](c|s)et\b(.*)"	$(ordinal \1\2átý\3)
+"(.*)(c|s)et\b(.*)"	$(ordinal \1\2átý\3)
 (.*)sto\b(.*)		$(ordinal \1stý\2)
 (.*)tisíce?(.*)		\1tisící\2
-(.*)milión[yů](.*)	\1milióntý\2
+(.*)milión[yů]?(.*)	\1milióntý\2
 (.*)miliard[ay]?(.*)	\1miliardtý\2
 (.*)			\1
+
+== ordinal-masculine ==
+
+(.*) $(ordinal |$1)
+
+== ordinal-feminine ==
+
+([-−]?\d+) $(ordinal-feminine |$(ordinal-masculine \1))
+(.*)ý(.*)		$(ordinal-feminine \1á\2)
+(.*)	\1
+
+== ordinal-neuter ==
+
+([-−]?\d+) $(ordinal-neuter |$(ordinal-masculine \1))
+(.*)ý(.*)		$(ordinal-neuter \1é\2)
+(.*)	\1
 
 == ordinal-number ==
 
@@ -1949,7 +1978,7 @@ USD:(\D+) $(\1: americký dolar, amerických dolarů, cent, centů)
 
 == help ==
 
-"" |$(1)|, |$(2)|, |$(3)|\n$(help cardinal-neuter)$(help cardinal-feminine)$(help cardinal-masculine)$(help ordinal)$(help ordinal-number)
+"" |$(1)|, |$(2)|, |$(3)|\n$(help cardinal-neuter)$(help cardinal-feminine)$(help cardinal-masculine)$(help ordinal)$(help ordinal-masculine)$(help ordinal-feminine)$(help ordinal-neuter)$(help ordinal-number)
 (.*) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
 </textarea>
 <textarea id='da' class='hidden'>
@@ -1986,8 +2015,7 @@ USD:(\D+) $(\1: americký dolar, amerických dolarů, cent, centů)
 90 halvfems
 
 (\d)(\d) $2|og$(\10)
-(\d)00 $1 hundrede
-(\d)(\d\d) $1 hundrede og $2
+(\d)(\d\d) $1 hundrede[ og $2]
 (\d{1,3})(\d{3}) $1 tusind[ og $2]
 
 a:1,0+
@@ -2478,10 +2506,12 @@ sp:([^,]*),([^,]*),([^,]*),([^,]*) \4
 AUD:(\D+) $(\1: Australian dollar, Australian dollars, cent, cents)
 BGN:(\D+) $(\1: lev, leva, stotinka, stotinki)
 BWP:(\D+) $(\1: pula, pula, thebe, thebe)
+BZD:(\D+) $(\1: Belize dollar, Belize dollars, cent, cents)
 CAD:(\D+) $(\1: Canadian dollar, Canadian dollars, cent, cents)
 CHF:(\D+) $(\1: Swiss franc, Swiss francs, centime, centimes)
 CNY:(\D+) $(\1: Chinese yuan, Chinese yuan, fen, fen)
 CZK:(\D+) $(\1: Czech koruna, Czech koruny, halér, halére)
+DKK:(\D+) $(\1: Danish krone, Danish kroner, øre, øre)
 EEK:(\D+) $(\1: kroon, kroonid,	sent, senti)
 EUR:(\D+) $(\1: euro, euro, cent, cents)
 GBP:(\D+) $(\1: pound sterling, pounds sterling, penny, pence)
@@ -2490,11 +2520,13 @@ GMD:(\D+) $(\1: dalasi, dalasi, butut, bututs)
 HKD:(\D+) $(\1: Hong Kong dollar, Hong Kong dollars, cent, cents)
 HRK:(\D+) $(\1: kuna, kuna, lipa, lipa)
 HUF:(\D+) $(\1: forint, forint, fillér, fillér)
+ILS:(\D+) $(\1: Israeli shekel, Israeli shekels, agora, agoras)
 INR:(\D+) $(\1: Indian rupee, Indian rupees, paisa, paise)
 JMD:(\D+) $(\1: Jamaica dollar, Jamaica dollars, cent, cents)
 JPY:(\D+) $(\1: Japanese yen, Japanese yen, sen, sen)
 KES:(\D+) $(\1: Kenyan shilling, Kenyan shillings, cent, cents)
 KRW:(\D+) $(\1: Korean won, Korean won, jeon, jeon)
+LKR:(\D+) $(\1: Sri Lankan rupee, Sri Lankan rupees, cent, cents)
 LRD:(\D+) $(\1: Liberian dollar, Liberian dollars, cent, cents)
 LSL:(\D+) $(\1: loti, maloti, sente, lisente)
 LTL:(\D+) $(\1: litas, litai, centas, centai)
@@ -2528,8 +2560,8 @@ UGX:(\D+) $(\1: Uganda shilling, Uganda shillings, cent, cents)
 USD:(\D+) $(\1: U.S. dollar, U.S. dollars, cent, cents)
 X[AO]F:(\D+) $(\1: CFA franc, CFA francs, centime, centimes)
 ZAR:(\D+) $(\1: South African rand, South African rand, cent, cents)
-ZMK:(\D+) $(\1: Zambian kwacha, Zambian kwacha, ngwee, ngwee)
-ZWL:(\D+) $(\1: Zimbabwe dollar, Zimbabwe dollars, cent, cents)
+ZMW:(\D+) $(\1: Zambian kwacha, Zambian kwacha, ngwee, ngwee)
+ZW[DL]:(\D+) $(\1: Zimbabwe dollar, Zimbabwe dollars, cent, cents)
 
 "(JPY [-−]?\d+)[.,](\d\d)0" $1
 "(JPY [-−]?\d+[.,]\d\d)(\d)" $1 $2 rin
@@ -2726,14 +2758,12 @@ USD:(\D+) $(\1: usona dolaro, usonaj dolaroj, cendo, cendoj)
 80 ochenta
 90 noventa
 (\d)(\d) $(\10) y $2
-100 cien
-1(\d\d) ciento $1
+1(\d\d) cien[to $1]
 500 quinientos
 700 setecientos
 900 novecientos
 ([579])(\d\d) $(\100) $2
-(\d)00 $1cientos
-(\d)(\d\d) $1cientos $2
+(\d)(\d\d) $1cientos[ $2]
 1(\d{3}) mil[ $1]
 (\d{1,3})(\d{3}) $1 mil[ $2]
 1(\d{6}) un millón[ $1]
@@ -2786,10 +2816,13 @@ HNL:(\D+) $(\1: lempira, lempiras, centavo, centavos)
 JPY:(\D+) $(\1: yen, yenes, sen, sen)
 MXN:(\D+) $(\1: peso mexicano, pesos mexicanos, centavo, centavos)
 NIO:(\D+) $(\1: córdoba, córdobas, centavo, centavos)
+PAB:(\D+) $(\1: balboa, balboas, céntimo, céntimos)
 PEN:(\D+) $(\1: sol, soles, centavo, centavos)
 PYG:(\D+) $(\1: guaraní, guaraníes, céntimo, céntimos)
+SVC:(\D+) $(\1: colón salvadoreño, colones salvadoreños, céntimo, céntimos)
 USD:(\D+) $(\1: dólar estadounidense, dólares estadounidenses, centavo, centavos)
 UYU:(\D+) $(\1: peso uruguayo, pesos uruguayos, centésimo, centésimos)
+VE[DS]:(\D+) $(\1: bolívar venezolano, bolívares venezolanos, centavo, centavos)
 VEF:(\D+) $(\1: bolívar fuerte, bolívares fuertes, céntimo, céntimos)
 
 # masculine to feminine conversion of "un" after millions,
@@ -3034,6 +3067,285 @@ RUB:(\D+) $(\1: Vene rubla, Vene rublat, kopikas, kopikat)
 
 "" $(1), $(2), $(3)\n$(help ordinal)$(help ordinal-number)
 (ordinal(-number)?) \1: $(\1 1)|, $(\1 2)|, $(\1 3)\n
+</textarea>
+<textarea id='fa' class='hidden'>
+^0 صفر
+1 یک
+2 دو
+3 سه
+4 چهار
+5 پنج
+6 شش
+7 هفت
+8 هشت
+9 نه
+10 ده
+11 یازده
+12 دوازده
+13 سیزده
+14 چهارده
+15 پانزده
+16 شانزده
+17 هفده
+18 هجده
+19 نوزده
+2(\d) بیست[ و $1]
+3(\d) سی[ و $1]
+4(\d) چهل[ و $1]
+5(\d) پنجاه[ و $1]
+6(\d) شصت[ و $1]
+7(\d) هفتاد[ و $1]
+8(\d) هشتاد[ و $1]
+9(\d) نود[ و $1]
+
+# separator function
+:0+			# one million
+:0*\d?\d " و "	# one million and twenty-two
+:\d+ " و "		# one million, one thousand
+
+
+2(\d\d) دویست[ و $1]
+3(\d\d) سیصد[ و $1]
+5(\d\d) پانصد[ و $1]
+(\d)(\d\d) $1صد[ و $2]
+(\d{1,2})([1-9]\d\d) $1 هزار و[ $2]
+
+(\d{1,3})(\d{3}) $1 هزار$(:\2)$2
+(\d{1,3})(\d{6}) $1 میلیون$(:\2)$2
+(\d{1,3})(\d{9}) $1 میلیارد$(:\2)$2
+(\d{1,3})(\d{12}) $1 تریلیون$(:\2)$2
+(\d{1,3})(\d{15}) $1 کوادریلیون$(:\2)$2
+(\d{1,3})(\d{18}) $1 کوینتیلیون$(:\2)$2
+(\d{1,3})(\d{21}) $1 سکستیلیون$(:\2)$2
+(\d{1,3})(\d{24}) $1 سپتیلیون$(:\2)$2
+(\d{1,3})(\d{27}) $1 اکتیلیون$(:\2)$2
+(\d{1,3})(\d{30}) $1 نانیلیون$(:\2)$2
+(\d{1,3})(\d{33}) $1 دسیلیون$(:\2)$2
+(\d{1,3})(\d{36}) $1 آندسیلیون$(:\2)$2
+(\d{1,3})(\d{39}) $1 دیودسیلیون$(:\2)$2
+(\d{1,3})(\d{42}) $1 تریدسیلیون$(:\2)$2
+(\d{1,3})(\d{45}) $1 کواتیوردسیلیون$(:\2)$2
+(\d{1,3})(\d{48}) $1 کویندسیلیون$(:\2)$2
+(\d{1,3})(\d{51}) $1 سکسدسیلیون$(:\2)$2
+(\d{1,3})(\d{54}) $1 سپتدسیلیون$(:\2)$2
+(\d{1,3})(\d{57}) $1 اُکتودسیلیون$(:\2)$2
+(\d{1,3})(\d{60}) $1 نومدسیلیون$(:\2)$2
+(\d{1,3})(\d{63}) $1 ویجینتیلیون$(:\2)$2
+(\d{1,3})(\d{66}) $1 آنویجینتیلیون$(:\2)$2
+(\d{1,3})(\d{69}) $1 دویجینتیلیون$(:\2)$2
+(\d{1,3})(\d{72}) $1 ترسویجینتیلیون$(:\2)$2
+(\d{1,3})(\d{75}) $1 کوادرویجینتیلیون$(:\2)$2
+(\d{1,3})(\d{78}) $1 کوینکاویجینتیلیون$(:\2)$2
+(\d{1,3})(\d{81}) $1 سیسویجینتیلیون$(:\2)$2
+(\d{1,3})(\d{84}) $1 سپتمویجینتیلیون$(:\2)$2
+(\d{1,3})(\d{87}) $1 آکتوویجینتیلیون$(:\2)$2
+(\d{1,3})(\d{90}) $1 نومویجینتیلیون$(:\2)$2
+(\d{1,3})(\d{93}) $1 تریویجینتیلیون$(:\2)$2
+(\d{1,3})(\d{96}) $1 آنتریویجینتیلیون$(:\2)$2
+(\d{1,3})(\d{99}) $1 دوتریویجینتیلیون$(:\2)$2
+(\d{1,3})(\d{100}) $1 گوگول$(:\2)$2
+
+# negative number
+
+[-−](\d+) منفی |$1
+
+# decimals
+
+0[.,] ممیز
+([-−]?\d+)[.,] $1| ممیز
+([-−]?\d+[.,]\d*)(\d) $1| |$2
+
+# currency
+
+# unit/subunit singular/plural
+
+us:([^,]*),([^,]*),([^,]*),([^,]*) \1
+up:([^,]*),([^,]*),([^,]*),([^,]*) \2
+ss:([^,]*),([^,]*),([^,]*),([^,]*) \3
+sp:([^,]*),([^,]*),([^,]*),([^,]*) \4
+
+ZMW:(\D+) $(\1: کواچای زامبیا, کواچای زامبیا, نگوی, نگوی)
+ZAR:(\D+) $(\1: رند آفریقای جنوبی, رند آفریقای جنوبی, سنت, سنت)
+YER:(\D+) $(\1: ریال یمن, ریال یمن, فلس, فلس)
+WST:(\D+) $(\1: طلای ساموآ, طلای ساموآ, سن, سن)
+VUV:(\D+) $(\1: واتوی وانواتو, واتوی وانواتو,,)
+VND:(\D+) $(\1: دانگ ویتنام, دانگ ویتنام, هائو, هائو)
+VES:(\D+) $(\1: بولیوار ونزوئلا, بولیوار ونزوئلا, سنتیمو, سنتیمو)
+UZS:(\D+) $(\1: سوم ازبکستان, سوم ازبکستان, تین, تین)
+UYU:(\D+) $(\1: پزوی اروگوئه, پزوی اروگوئه, سنتسیمو, سنتسیمو)
+USD:(\D+) $(\1: دلار آمریکا, دلار آمریکا, سنت, سنت)
+UGX:(\D+) $(\1: شیلینگ اوگاندا, شیلینگ اوگاندا,,)
+UAH:(\D+) $(\1: گریونا اوکراین, گریونا اوکراین, کوپک, کوپک)
+TZS:(\D+) $(\1: شیلینگ تانزانیا, شیلینگ تانزانیا, سنت, سنت)
+TWD:(\D+) $(\1: دلار جدید تایوان, دلار جدید تایوان, سنت, سنت)
+TTD:(\D+) $(\1: دلار ترینیداد و توباگو, دلار ترینیداد و توباگو, سنت, سنت)
+TRY:(\D+) $(\1: لیره ترک, لیره ترک, قرش, قرش)
+TOP:(\D+) $(\1: پاآنگای تونگا, پاآنگای تونگا, سنیتی, سنیتی)
+TND:(\D+) $(\1: دینار تونس, دینار تونس, میلیم, میلیم)
+TMT:(\D+) $(\1: منات ترکمنستان, منات ترکمنستان, تنگه, تنگه)
+TJS:(\D+) $(\1: سامانی تاجیکستان, سامانی تاجیکستان, درم, درم)
+THB:(\D+) $(\1: بات تایلند, بات تایلند, ساتانگ, ساتانگ)
+SYP:(\D+) $(\1: لیره سوریه, لیره سوریه, قرش, قرش)
+SSP:(\D+) $(\1: پوند سودان جنوبی, پوند سودان جنوبی, قرش, قرش)
+SRD:(\D+) $(\1: دلار سورینام, دلار سورینام, سنت, سنت)
+SOS:(\D+) $(\1: شیلینگ سومالی, شیلینگ سومالی, سنت, سنت)
+SLS:(\D+) $(\1: شیلینگ سومالی‌لند, شیلینگ سومالی‌لند, سنت, سنت)
+SLL:(\D+) $(\1: لئون سیرالئون, لئون سیرالئون, سنت, سنت)
+SGD:(\D+) $(\1: دلار سنگاپور, دلار سنگاپور, سنت, سنت)
+SEK:(\D+) $(\1: کرون سوئد, کرون سوئد, اوره, اوره)
+SDG:(\D+) $(\1: پوند سودان, پوند سودان, قرش, قرش)
+SCR:(\D+) $(\1: روپیه سیشل, روپیه سیشل, سنت, سنت)
+SBD:(\D+) $(\1: دلار جزایر سلیمان, دلار جزایر سلیمان, سنت, سنت)
+RWF:(\D+) $(\1: فرانک رواندا, فرانک رواندا, سانتیم, سانتیم)
+RUB:(\D+) $(\1: روبل روسیه, روبل روسیه, کوپک, کوپک)
+RSD:(\D+) $(\1: دینار صربستان, دینار صربستان, پارا, پارا)
+RON:(\D+) $(\1: لئوی رومانی, لئوی رومانی, بان, بان)
+PYG:(\D+) $(\1: گوارانی پاراگوئه, گوارانی پاراگوئه, سنتیمو, سنتیمو)
+PRB:(\D+) $(\1: روبل ترانسنیسترین, روبل ترانسنیسترین, کوپک, کوپک)
+PLN:(\D+) $(\1: زلوتی لهستان, زلوتی لهستان, گروش, گروش)
+PKR:(\D+) $(\1: روپیه پاکستان, روپیه پاکستان, پیسه, پیسه)
+PHP:(\D+) $(\1: پزو فیلیپین, پزو فیلیپین, سنتیمو, سنتیمو)
+PGK:(\D+) $(\1: کینای پاپوآ گینه نو, کینای پاپوآ گینه نو, تویا, تویا)
+PEN:(\D+) $(\1: سول پرو, سول پرو, سنتیمو, سنتیمو)
+NZD:(\D+) $(\1: دلار نیوزیلند, دلار نیوزیلند, سنت, سنت)
+NOK:(\D+) $(\1: کرون نروژ, کرون نروژ, اوره, اوره)
+NIO:(\D+) $(\1: کوردوبای نیکاراگوئه, کوردوبای نیکاراگوئه, سنتاوو, سنتاوو)
+NGN:(\D+) $(\1: نایرا نیجریه, نایرا نیجریه, کوبو, کوبو)
+MZN:(\D+) $(\1: متیکال موزامبیک, متیکال موزامبیک, سنتاوو, سنتاوو)
+MYR:(\D+) $(\1: رینگیت مالزی, رینگیت مالزی, سن, سن)
+MXN:(\D+) $(\1: پزو مکزیک, پزو مکزیک, سنتاوو, سنتاوو)
+MWK:(\D+) $(\1: کواچا مالاویا, کواچا مالاویا, تامبالا, تامبالا)
+MUR:(\D+) $(\1: روپیه موریس, روپیه موریس, سنت, سنت)
+MRU:(\D+) $(\1: اوقیه موریتانی, اوقیه موریتانی, خمس, خمس)
+MNT:(\D+) $(\1: توگروگ مغولستان, توگروگ مغولستان, مونگو, مونگو)
+MMK:(\D+) $(\1: کیات میانمار, کیات میانمار, پیا, پیا)
+MKD:(\D+) $(\1: دینار مقدونیه, دینار مقدونیه, دنی, دنی)
+MGA:(\D+) $(\1: آریاری ماداگاسکار, آریاری ماداگاسکار, ایراایمبیلانجا, ایراایمبیلانجا)
+MDL:(\D+) $(\1: لئوی مولداوی, لئوی مولداوی, بان, بان)
+LYD:(\D+) $(\1: دینار لیبی, دینار لیبی, درهم, درهم)
+LRD:(\D+) $(\1: دلار لیبریا, دلار لیبریا, سنت, سنت)
+LKR:(\D+) $(\1: روپیه سری‌لانکا, روپیه سری‌لانکا, سنت, سنت)
+LAK:(\D+) $(\1: کیپ لائوس, کیپ لائوس, ات, ات)
+KZT:(\D+) $(\1: تنگه قزاقستان, تنگه قزاقستان, تیین, تیین)
+KRW:(\D+) $(\1: وون کره جنوبی, وون کره جنوبی, جیون, جیون)
+KPW:(\D+) $(\1: وون کره شمالی, وون کره شمالی, چون, چون)
+KHR:(\D+) $(\1: ریال کامبوج, ریال کامبوج, سن, سن)
+KGS:(\D+) $(\1: سوم قرقیزستان, سوم قرقیزستان, تیین, تیین)
+KES:(\D+) $(\1: شیلینگ کنیا, شیلینگ کنیا, سنت, سنت)
+JPY:(\D+) $(\1: ین ژاپن, ین ژاپن, سن, سن)
+JMD:(\D+) $(\1: دلار جامائیکا, دلار جامائیکا, سنت, سنت)
+ISK:(\D+) $(\1: کرونای ایسلند, کرونای ایسلند, اوره, اوره)
+IRR:(\D+) $(\1: ریال ایران, ریال ایران, دینار, دینار)
+IQD:(\D+) $(\1: دینار عراق, دینار عراق, فلس, فلس)
+INR:(\D+) $(\1: روپیه هند, روپیه هند, پیسه, پیسه)
+ILS:(\D+) $(\1: شکل جدید اسرائیل, شکل جدید اسرائیل, آگوروت, آگوروت)
+IDR:(\D+) $(\1: روپیه اندونزی, روپیه اندونزی, سن, سن)
+HUF:(\D+) $(\1: فورینت مجارستان, فورینت مجارستان, فیلر, فیلر)
+HTG:(\D+) $(\1: گورد هائیتی, گورد هائیتی, سانتیم, سانتیم)
+HRK:(\D+) $(\1: کونای کرواسی, کونای کرواسی, لیپا, لیپا)
+HNL:(\D+) $(\1: لامپیرای هندوراس, لامپیرای هندوراس, سنتاوو, سنتاوو)
+GYD:(\D+) $(\1: دلار گویان, دلار گویان, سنت, سنت)
+GTQ:(\D+) $(\1: کوتزال گواتمالا, کوتزال گواتمالا, سنتاوو, سنتاوو)
+GNF:(\D+) $(\1: فرانک گینه, فرانک گینه, سانتیم, سانتیم)
+GMD:(\D+) $(\1: دالاسی گامبیا, دالاسی گامبیا, بوتوت, بوتوت)
+GHS:(\D+) $(\1: سدی غنا, سدی غنا, پسوا, پسوا)
+GEL:(\D+) $(\1: لاری گرجستان, لاری گرجستان, تتری, تتری)
+GBP:(\D+) $(\1: پوند استرلینگ, پوند استرلینگ, پنی, پنی)
+FJD:(\D+) $(\1: دلار فیجی, دلار فیجی, سنت, سنت)
+EUR:(\D+) $(\1: یورو, یورو, سنت, سنت)
+ETB:(\D+) $(\1: بیر اتیوپی, بیر اتیوپی, سانتیم, سانتیم)
+EGP:(\D+) $(\1: پوند مصر, پوند مصر, قرش, قرش)
+DZD:(\D+) $(\1: دینار الجزایر, دینار الجزایر, سانتیم, سانتیم)
+DOP:(\D+) $(\1: پزو دومینیکن, پزو دومینیکن, سنتاوو, سنتاوو)
+CZK:(\D+) $(\1: کرونای چک, کرونای چک, هالر, هالر)
+CUP:(\D+) $(\1: پزوی کوبا, پزوی کوبا, سنتاوو, سنتاوو)
+CRC:(\D+) $(\1: کولون کاستاریکا, کولون کاستاریکا, سنتیمو, سنتیمو)
+COP:(\D+) $(\1: پزو کلمبیا, پزو کلمبیا, سنتاوو, سنتاوو)
+CNY:(\D+) $(\1: رنمینبی, رنمینبی, جیائو, جیائو)
+CLP:(\D+) $(\1: پزو شیلی, پزو شیلی, سنتاوو, سنتاوو)
+CHF:(\D+) $(\1: فرانک سوئیس, فرانک سوئیس, سانتیم, سانتیم)
+CDF:(\D+) $(\1: فرانک کنگو, فرانک کنگو, سانتیم, سانتیم)
+CAD:(\D+) $(\1: دلار کانادا, دلار کانادا, سنت, سنت)
+BYN:(\D+) $(\1: روبل بلاروس, روبل بلاروس, کاپیکا, کاپیکا)
+BWP:(\D+) $(\1: پولای بوتسوانا, پولای بوتسوانا, تیب, تیب)
+BRL:(\D+) $(\1: رئال برزیل, رئال برزیل, سنتاوو, سنتاوو)
+BOB:(\D+) $(\1: بولیویانو بولیوی, بولیویانو بولیوی, سنتاوو, سنتاوو)
+BIF:(\D+) $(\1: فرانک بوروندی, فرانک بوروندی, سانتیم, سانتیم)
+BDT:(\D+) $(\1: تاکا بنگلادش, تاکا بنگلادش, پیسه, پیسه)
+AZN:(\D+) $(\1: منات آذربایجان, منات آذربایجان, گپیک, گپیک)
+AUD:(\D+) $(\1: دلار استرالیا, دلار استرالیا, سنت, سنت)
+ARS:(\D+) $(\1: پزو آرژانتین, پزو آرژانتین, سنتاوو, سنتاوو)
+AOA:(\D+) $(\1: کوانزای آنگولا, کوانزای آنگولا, سنتیمو, سنتیمو)
+AMD:(\D+) $(\1: درام ارمنستان, درام ارمنستان, لوما, لوما)
+ALL:(\D+) $(\1: لک آلبانی, لک آلبانی, کیندارکا, کیندارکا)
+AFN:(\D+) $(\1: افغانی افغانستان, افغانی افغانستان, پول, پول)
+
+"(JPY [-−]?\d+)[.,](\d\d)0" $1
+"(JPY [-−]?\d+[.,]\d\d)(\d)" $1 $2 rin
+
+"([A-Z]{3}) ([-−]?1)([.,]00?)?" $2$(\1:us)
+"([A-Z]{3}) ([-−]?\d+)([.,]00?)?" $2$(\1:up)
+
+"(CNY [-−]?\d+)[.,](\d)0?" $1 $2 jiao
+"(CNY [-−]?\d+[.,]\d)(\d)" $1 $2 fen
+
+"((MGA|MRO) [-−]?\d+)[.,]0" $1
+"((MGA|MRO) [-−]?\d+)[.,]2" $1 و |$(1)$(\2:ss)
+"((MGA|MRO) [-−]?\d+)[.,]4" $1 و |$(2)$(\2:sp)
+"((MGA|MRO) [-−]?\d+)[.,]6" $1 و |$(3)$(\2:sp)
+"((MGA|MRO) [-−]?\d+)[.,]8" $1 و |$(4)$(\2:sp)
+
+"(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 و |$(1)$(\2:ss)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 و |$(\30)$(\2:sp)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 و |$3$(\2:sp)
+
+== money ==
+
+"(JPY [-−]?\d+)[.,](\d\d)0" $1
+"(JPY [-−]?\d+[.,]\d\d)(\d)" $1 $2 rin
+
+"([A-Z]{3}) ([-−]?1)([.,]00?)?" $2$(\1:us)
+"([A-Z]{3}) ([-−]?\d+)([.,]00?)?" $2$(\1:up)
+
+"(CNY [-−]?\d+)[.,](\d)0?" $1 $2 jiao
+"(CNY [-−]?\d+[.,]\d)(\d)" $1 $2 fen
+
+"(MGA|MRO) ([-−]?\d+)[.,]0" $2$(\1:us)
+"(MGA|MRO) ([-−]?\d+)[.,]2" $2 و 1/5$(\1:us)
+"(MGA|MRO) ([-−]?\d+)[.,]4" $2 و 2/5$(\1:up)
+"(MGA|MRO) ([-−]?\d+)[.,]6" $2 و 3/5$(\1:up)
+"(MGA|MRO) ([-−]?\d+)[.,]8" $2 و 4/5$(\1:up)
+
+"([A-Z]{3}) ([-−]?1)" $2$(\1:us)
+"([A-Z]{3}) ([-−]?\d+)" $2$(\1:up)
+"(([A-Z]{3}) ([-−]?\d+))[.,](01)" $3 و 1/100$(\2:us)
+"(([A-Z]{3}) ([-−]?\d+))[.,](\d)" $3 و \40/100$(\2:up)
+"(([A-Z]{3}) ([-−]?\d+))[.,](\d\d)" $3 و \4/100$(\2:up)
+"(([A-Z]{3}) ([-−]?\d+))[.,](\d\d\d)" $3 و \4/1000$(\2:up)
+
+== ordinal ==
+
+# convert to text, and recall to convert
+# cardinal names to ordinal ones
+
+([-−]?\d+) $(ordinal |$1)
+
+(.*)سه	\1سومین
+(.*)	\1مین
+
+== ordinal-number ==
+
+(.*)	\1مین
+
+== year ==
+
+(.*) \1
+
+== help ==
+
+"" $(1)|, $(2), $(3)\n$(\0 ordinal)$(\0 ordinal-number)year: $(year 1999), two thousand, $(year 2001)\ncurrency \(for example, USD\): $(USD 2.5)\nmoney USD: $(money USD 2.5)
+"(ordinal(-number)?|USD)" \1: $(\1 1), $(\1 2), $(\1 3)\n
+
 </textarea>
 <textarea id='fi' class='hidden'>
 ^0 nolla
@@ -3402,6 +3714,21 @@ XPF:(\D+) $(\1: franc Pacifique, francs Pacifique, de francs Pacifique, centime,
 (\d{1,3})(\d{9}) $1 billiún$(:\2)$2
 (\d{1,3})(\d{12}) $1 trilliún$(:\2)$2
 
+# currency
+
+# unit/subunit
+
+u:([^,]*),([^,]*)	\1
+s:([^,]*),([^,]*)	\2
+
+EUR:(.)	$(\1: euro, cent)
+GBP:(.)	$(\1: punt steirling, pingin)
+USD:(.)	$(\1: dollar, cent)
+
+"([A-Z]{3}) ([-−]?\d+)([.,]00?)?" $2$(\1:u)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 $(\30)$(\2:s)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 $3$(\2:s)
+
 == ordinal ==
 
 # chapter one -> caibidil a haon
@@ -3420,7 +3747,7 @@ XPF:(\D+) $(\1: franc Pacifique, francs Pacifique, de francs Pacifique, centime,
 
 == help ==
 
-"" |$(1)|, |$(2)|, |$(3)|\n$(help ordinal)$(help ordinal-number)
+"" |$(1)|, |$(2)|, |$(3)|\n$(help ordinal)$(help ordinal-number)currency \(for example, EUR\): $(EUR 2.5)\n
 (.*) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
 
 </textarea>
@@ -7023,17 +7350,23 @@ JPY:(.+),(.+) $(\1mm: yen, yeni, sen, sen, \2)
 RON:(.+),(.+) $(\1mm: leu românesc, lei românești, ban, bani, \2)
 USD:(.+),(.+) $(\1mm: dolar american, dolari americani, cent, cenți, \2)
 
-"([A-Z]{3}) ([-−]?1)([.,]00?)?"$(\1:us,|$2)
-"([A-Z]{3}) ([-−]?\d+)([.,]00?)?"$(\1:up,|$2)
+"([A-Z]{3}) ([-−]?1)([.,]00?)?" $(-remove-extra-space $(\1:us,|$2))
+"([A-Z]{3}) ([-−]?\d+)([.,]00?)?" $(-remove-extra-space $(\1:up,|$2))
 
 "(CNY [-−]?\d+)[.,]10?" $1| un jiao
 "(CNY [-−]?\d+)[.,](\d)0?" $1| $2| jiao
 "(CNY [-−]?\d+[.,]\d)1" $1| $2| fen
 "(CNY [-−]?\d+[.,]\d)(\d)" $1| $2| fen
 
-"(([A-Z]{3}) [-−]?\d+)[.,](01)" $1|$(\2:ss,$(1))
-"(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1|$(\2:sp,$(\30))
-"(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1|$(\2:sp,$3)
+"(([A-Z]{3}) [-−]?\d+)[.,](01)" $(-remove-extra-space $1|$(\2:ss,$(1)))
+"(([A-Z]{3}) [-−]?\d+)[.,](\d)" $(-remove-extra-space $1|$(\2:sp,$(\30)))
+"(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $(-remove-extra-space $1|$(\2:sp,$3))
+
+== -remove-extra-space ==
+
+"^ (.*)" $(-remove-extra-space \1)
+"(.*) ( .*)" \1\2
+(.*)     \1
 
 == ordinal(-masculine)? ==
 
@@ -7202,6 +7535,7 @@ USD:(\D+) $(\1: доллар США, доллара США, долларов С�
 "((UAH) [-−]?\d+)[.,]([02-9])1" $1 [$(\30) ]одна$(\2:ss)
 "((UAH) [-−]?\d+)[.,]([02-9])2" $1 [$(\30) ]две$(\2:sp)
 "(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 |$(1)$(\2:ss)
+"((EUR|GBP|USD) [-−]?\d+)[.,]([02-9]1)" $1 $3|$(\2:ss)
 "((EUR|GBP|USD) [-−]?\d+)[.,]([02-9]2)" $1 $3|$(\2:sp)
 "(([A-Z]{3}) [-−]?\d+)[.,]([02-9][234])" $1 |$3$(\2:sp)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 |$(\30)$(\2:sg)
@@ -7431,6 +7765,178 @@ USD:(\D+) $(\1: доллар США, доллара США, долларов С�
 "" |$(1)|, |$(2)|, |$(3)|\n$(help ordinal-number)
 (.*) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
 </textarea>
+<textarea id='sk' class='hidden'>
+^0 nula
+1 jeden
+2 dva
+^2$ dve
+3 tri
+4 štyri
+5 päť
+6 šesť
+7 sedem
+8 osem
+9 deväť
+10 desať
+11 jedenásť
+14 štrnásť
+15 pätnásť
+19 devätnásť
+1(\d) $1násť
+([234])(\d) $1dsať[ $2]
+5(\d) päťdesiat[ $1]
+6(\d) šesdesiat[ $1]
+9(\d) devädesiat[ $1]
+(\d)(\d) $1desiat[ $2]
+1(\d\d) sto[ $1]
+([234])(\d\d) $1sto[ $2]
+(\d)(\d\d) $1sto[ $2]
+1(\d\d\d) tisíc[ $1]
+(\d{1,3})(\d\d\d) $1 tisíc[ $2]
+1(\d{6}) milión[ $1]
+([234])(\d{6}) $1 milióny[ $2]
+(\d{1,3})(\d{6}) $1 miliónov[ $2]
+1(\d{9}) miliarda[ $1]
+([234])(\d{9}) $1 miliardy[ $2]
+(\d{1,3})(\d{9}) $1 miliárd[ $2]
+1(\d{12}) bilión[ $1]
+([234])(\d{12}) $1 bilióny[ $2]
+(\d{1,3})(\d{12}) $1 biliónov[ $2]
+1(\d{15}) biliarda[ $1]
+([234])(\d{15}) $1 biliardy[ $2]
+(\d{1,3})(\d{15}) $1 biliárd[ $2]
+1(\d{18}) trilión[ $1]
+([234])(\d{18}) $1 trilióny[ $2]
+(\d{1,3})(\d{18}) $1 triliónov[ $2]
+1(\d{21}) triliarda[ $1]
+([234])(\d{21}) $1 triliardy[ $2]
+(\d{1,3})(\d{21}) $1 triliárd[ $2]
+1(\d{24}) kvadrilión[ $1]
+([234])(\d{24}) $1 kvadrilióny[ $2]
+(\d{1,3})(\d{24}) $1 kvadriliónov[ $2]
+
+# negative number
+
+[-−](\d+) mínus |$1
+
+# decimals
+
+([-−]?\d+)[.,] $1| celých
+([-−]?\d+[.,])([^0]\d) $1| |$2
+([-−]?\d+[.,])(\d)(\d)(\d) $1| |$2 |$3 |$4
+([-−]?\d+[.,]\d*)(\d) $1| |$2
+
+# currency
+
+# unit/subunit singular / plural / plural genitiv
+
+us:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \1
+up:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \2
+ug:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \3
+ss:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \4
+sp:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \5
+sg:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \6
+ugender:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \7
+sgender:([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*) \8
+
+CHF:(\D+) $(\1: švajčiarsky frank, švajčiarske franky, švajčiarskych frankov, cent, centy, centov,masculine,masculine)
+CNY:(\D+) $(\1: jüan, jüany, jüanů, fen, feny, fenů,masculine,masculine)
+CZK:(\D+) $(\1: koruna česká, koruny české, korún českých, halier, haliere, halierov,feminine,masculine)
+EUR:(\D+) $(\1: euro, eurá, eur, cent, centy, centov,neuter,masculine)
+GBP:(\D+) $(\1: britská libra, britské libry, britské liber, penca, pence, pencí,feminine,feminine)
+JPY:(\D+) $(\1: jen, jeny, jenov, sen, seny, senov,masculine,masculine)
+RUB:(\D+) $(\1: rubeľ, ruble, rublov, kopejka, kopejky, kopejok,masculine,feminine)
+SKK:(\D+) $(\1: slovenská koruna, slovenské koruny, slovenských korún, halier, haliere, halierov,feminine,masculine)
+USD:(\D+) $(\1: americký dolár, americké doláre, amerických dolárov, cent, centy, centov,masculine,masculine)
+
+"([A-Z]{3}) ([-−]?1)([.,]00?)?" $(cardinal-$(\1:ugender) \2)$(\1:us)
+"([A-Z]{3}) ([-−]?[2-4])([.,]00?)?" $(cardinal-$(\1:ugender) \2)$(\1:up)
+"([A-Z]{3}) ([-−]?\d+)([.,]00?)?" $(cardinal-$(\1:ugender) \2)$(\1:ug)
+
+"(CNY [-−]?\d+)[.,]10?" $1 $(cardinal-neuter 1) ťiao
+"(CNY [-−]?\d+)[.,](\d)0?" $1 $(cardinal-neuter \2) ťiao
+"((CNY) [-−]?\d+[.,]\d)1" $1 $(cardinal-masculine 1)$(\2:ss)
+"((CNY) [-−]?\d+[.,]\d)(2|3|4)" $1 $(cardinal-masculine \3)$(\2:sp)
+"((CNY) [-−]?\d+[.,]\d)(\d)" $1 $(cardinal-masculine \3)$(\2:sg)
+
+"(([A-Z]{3}) [-−]?\d+)[.,](00)" $1 $(cardinal-$(\2:sgender) \1)$(\2:sg)
+"(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 $(cardinal-$(\2:sgender) \3)$(\2:ss)
+"(([A-Z]{3}) [-−]?\d+)[.,](02|03|04)" $1 $(cardinal-$(\2:sgender) \3)$(\2:sp)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 $(cardinal-$(\2:sgender) \3)$(\2:sg)
+"(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 $(cardinal-$(\2:sgender) \30)$(\2:sg)
+
+== cardinal-neuter ==
+
+1 jedno
+2 dve
+(.*) $1
+
+== cardinal-feminine ==
+
+1 jedna
+2 dve
+(.*) $1
+
+== cardinal-masculine ==
+
+1 jeden
+(.*) $1
+
+== ordinal ==
+
+([-−]?\d+)	$(ordinal |$1)
+
+"(.*)dvesto(.*)"	$(ordinal \1dvojstý\2)
+"(.*)tristo(.*)"	$(ordinal \1trojstý\2)
+"(.*)štyristo(.*)"	$(ordinal \1štvorstý\2)
+"(.*)(päť|šesť|sedem|osem|deväť)sto(.*)"	$(ordinal \1\2stý\3)
+
+nula	nultý
+(.*)(jedno|jedna|jeden)	$(ordinal \1prvý)
+(.*)(jedenásť)	$(ordinal \1jedenásty)
+(.*)(dva|dve)	$(ordinal \1druhý)
+(.*)(dve|dva)\b(.*)	$(ordinal \1druhý\3)
+(.*)tri\b(.*)		$(ordinal \1tretí\2)
+(.*)štyri\b(.*)		$(ordinal \1štvrtý\2)
+(.*)päť\b(.*)		$(ordinal \1piaty\2)
+"(.*)(šesť|sedem|osem|desiat|násť|siat)( .+|$)"	$(ordinal \1\2y\3)
+(.*)deväť\b(.*)		$(ordinal \1deviaty\2)
+"(.*)sto\b(.*)"	$(ordinal \1\2iaty\3)
+(.*)sto\b(.*)		$(ordinal \1stý\2)
+(.*)tisíc?(.*)		\1tisíci\2
+(.*)milión(y|ov)(.*)	\1miliónty\2
+(.*)miliard[ay]?(.*)	\1miliardtý\2
+(.*)			\1
+
+== ordinal-masculine ==
+
+(.*) $(ordinal |$1)
+
+== ordinal-feminine ==
+
+([-−]?\d+) $(ordinal-feminine |$(ordinal-masculine \1))
+(.*)ý(.*)		$(ordinal-feminine \1á\2)
+(.*)[yi](.*)		$(ordinal-feminine \1a\2)
+(.*)tretí(.*)		$(ordinal-feminine \1tretia\2)
+(.*)	\1
+
+== ordinal-neuter ==
+
+([-−]?\d+) $(ordinal-neuter |$(ordinal-masculine \1))
+(.*)ý(.*)		$(ordinal-neuter \1é\2)
+(.*)[yi](.*)		$(ordinal-neuter \1e\2)
+(.*)tretí(.*)		$(ordinal-feminine \1tretie\2)
+(.*)	\1
+
+== ordinal-number ==
+
+(\d+)	\1.
+
+== help ==
+
+"" |$(1)|, |$(2)|, |$(3)|\n$(help cardinal-neuter)$(help cardinal-feminine)$(help cardinal-masculine)$(help ordinal)$(help ordinal-masculine)$(help ordinal-feminine)$(help ordinal-neuter)$(help ordinal-number)
+(.*) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|\n
+</textarea>
 <textarea id='sl' class='hidden'>
 ^0 nič
 1 ena
@@ -7522,14 +8028,22 @@ USD:(.+) $(\1: ameriški dolar, ameriška dolarja, ameriški dolarji, ameriške 
 "(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 $(\30)$(\2:s5)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d\d)" $1 $3$(\2:s5)
 
-== cardinal(-feminine|-neuter)? ==
+== cardinal-feminine ==
 
-(\d+) $2
+(\d+) $1
+
+== cardinal-neuter ==
+
+(\d+) $(cardinal-neuter |$1)
+(.*)ena \1eno
+(.*) \1
 
 == cardinal-masculine ==
 
 (\d+) $(cardinal-masculine |$1)
+(.*)ena \1eden
 (.*)dve \1dva
+(.*tri) \1je
 (.*) \1
 
 == cardinal-adverbial ==
@@ -8289,6 +8803,7 @@ USD:(\D+) $(\1: долар США, долара США, доларів США, �
 "((UAH) [-−]?\d+)[.,]([02-9])1" $1 [$(\30) ]одна$(\2:ss)
 "((UAH) [-−]?\d+)[.,]([02-9])2" $1 [$(\30) ]двi$(\2:sp)
 "(([A-Z]{3}) [-−]?\d+)[.,](01)" $1 |$(1)$(\2:ss)
+"((EUR|GBP|USD) [-−]?\d+)[.,]([02-9]1)" $1 $3|$(\2:ss)
 "((EUR|GBP|USD) [-−]?\d+)[.,]([02-9]2)" $1 $3|$(\2:sp)
 "(([A-Z]{3}) [-−]?\d+)[.,]([02-9][234])" $1 |$3$(\2:sp)
 "(([A-Z]{3}) [-−]?\d+)[.,](\d)" $1 |$(\30)$(\2:sg)
@@ -8685,6 +9200,9 @@ help Modules\nRoman-large (language code): multiple parenthesized form\nRoman: o
 
 # Transliterate numbers and words
 
+# parentheses
+"([\(\[\{])(.*) 0$" \1$2
+"(.*)([\]\)\}]) 0$" $1\2
 # convert words with traditional or foreign "i" written as "y"
 # e.g. Áprily, Champs-Élysées, Élysée-palota, Dolly, Folly, Hollywood, jolly, intercity, Kisfaludy ...
 "^(Áp​?ri​?l|Champs-Él|[cC]i​?t|Do​?lák-Sa​?l|[dfhjDFHJ]ol​?l|Él|Fesz​?t|[gG]rizz​?l|Ha​?rasz​?t|Hat​?va​?n|Husz​?t|[iI]n​?ter​?ci​?t|Jé​?ke​?l|Kis​?fa​?lu​?d|Ku​?ko​?r​?el​?l|Mo​?ho​?l|Mind​?szen​?t|Nosz​?t|[pP]en​n|Pes​?t|Re​?gu​?l|So​?n|Szi​?l|Szte​?va​?no​?vi​?t|Vö​?rös​?mar​?t|[zZ][lł]ot)y(.*) 0$" $1𐳐$2
@@ -8969,6 +9487,197 @@ Z(.*) 𐲯$1
 # don't modify unknown characters
 (.)(.*) \1$2
 (.*) \1
+</textarea>
+<textarea id='mul' class='hidden'>
+# numbering for multiple languages
+
+# note symbols
+
+# default: *, **, ***, ****, †, ‡, §
+# source: The United Nations Editorial Manual Online, access: 2022-07-14
+# https://www.un.org/dgacm/en/content/editorial-manual/footnotes/chap-09
+
+1 *
+2 **
+3 ***
+4 ****
+5 †
+6 ‡
+7 §
+(\d*) \1
+
+# Note for LibreOffice users: adding ZWJ character before the return value
+# disables superscript only for that symbol in Writer. E.g. when asterisk is
+# already designed as a superscript letter, but the other symbols need manual
+# approximation of superscript character style:
+#
+#1 ‍*
+#5 ‍**
+#9 ‍***
+#
+# In Writer, there are different numbering variants of the
+# following functions, (1) default, (2) superscript, except *,
+# (3) superscript, except *, †, ‡ (when the font contains also superscript
+# variants of † and ‡, and used by setting font feature "sups").
+
+
+== chicago ==
+
+# *, †, ‡, §, **, ††, ...
+# source: The Chicago Manual of Style Online access: 2022-07-14,
+# also used by LibreOffice Writer and OOXML (referred as "chicago")
+
+1 *
+2 †
+3 ‡
+4 §
+5 **
+6 ††
+7 ‡‡
+8 §§
+9 ***
+10 †††
+11 ‡‡‡
+12 §§§
+13 ****
+14 ††††
+15 ‡‡‡‡
+16 §§§§
+17 *****
+18 †††††
+19 ‡‡‡‡‡
+20 §§§§§
+(\d*) \1
+
+
+== chicago-table ==
+
+# source: The Chicago Manual of Style Online access: 2022-07-14
+# 3.79: Notes to specific parts of a table
+# https://www.chicagomanualofstyle.org/search.html?clause=dagger
+
+1 *
+2 †
+3 ‡
+4 §
+5 ‖
+6 \#
+7 **
+8 ††
+9 ‡‡
+10 §§
+11 ‖‖
+12 \#\#
+13 ***
+14 †††
+15 ‡‡‡
+16 §§§
+17 ‖‖‖
+18 \#\#\#
+(.*) \1
+
+
+== bringhurst ==
+
+# source: Bringhurst, R.: The Elements of Typographic Style,
+# implemented in footmisc – a portmanteau package for customizing
+# footnotes in LATEX, https://texdoc.org/serve/footmisc/0, access: 2022-07-14
+
+1 *
+2 †
+3 ‡
+4 §
+5 ‖
+6 ¶
+7 **
+8 ††
+9 ‡‡
+10 §§
+11 ‖‖
+12 ¶¶
+13 ***
+14 †††
+15 ‡‡‡
+16 §§§
+17 ‖‖‖
+18 ¶¶¶
+
+(.*) \1
+
+
+== gyurgyak ==
+
+# source: J. Gyurgyák: Szerkesztők és szerzők kézikönyve, Osiris, 1997
+# also used by Linux Libertine G font feature "foot" = 2 (default in Hungarian),
+# see http://numbertext.org/linux/fontfeatures.pdf
+
+1 *
+2 **
+3 ***
+4 †
+5 ††
+6 †††
+7 ‡
+8 ‡‡
+9 ‡‡‡
+10 §
+11 §§
+12 §§§
+(.*) \1
+
+
+== lamport ==
+
+# source: footmisc – a portmanteau package for customizing footnotes in LATEX
+# https://texdoc.org/serve/footmisc/0, access: 2022-07-14
+
+1 *
+2 †
+3 ‡
+4 §
+5 ¶
+6 ‖
+7 **
+8 ††
+9 ‡‡
+10 §§
+11 ¶¶
+12 ‖‖
+13 **
+14 ††
+15 ‡‡
+16 §§
+(.*) \1
+
+
+== un ==
+
+# source: The United Nations Editorial Manual Online, access: 2022-07-14
+# https://www.un.org/dgacm/en/content/editorial-manual/footnotes/chap-09
+
+# same as the default style
+(.*) $1
+
+
+== wiley ==
+
+# source: footmisc – a portmanteau package for customizing footnotes in LATEX
+# https://texdoc.org/serve/footmisc/0, access: 2022-07-14
+
+1 *
+2 **
+3 †
+4 ‡
+5 §
+6 ¶
+7 ‖
+(.*) \1
+
+== help ==
+"" |$(1)|, |$(2)|, |$(3), |$(4), |$(5), |$(6), |$(7)|\n$(help chicago)$(help chicago-table)|$(help bringhurst)|$(help gyurgyak)|$(help lamport)|$(help un)|$(help wiley)
+(chicago-table) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|, $(\1 4)|, $(\1 5)|, $(\1 6)|\n
+([-a-z]*?) \1: |$(\1 1)|, |$(\1 2)|, |$(\1 3)|, $(\1 4)|, $(\1 5)|, $(\1 6)|, $(\1 7)|\n
+
 </textarea>
 <!-- **************************************************************************************************** -->
 <textarea id="xx" class="hidden"></textarea>
